@@ -162,23 +162,27 @@ ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_UNIQUE_EMAIL = True
 
-# Security behind reverse proxy (EasyPanel)
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-USE_X_FORWARDED_HOST = True
+# Security Headers
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_BROWSER_XSS_FILTER = True
+X_FRAME_OPTIONS = 'DENY'
 
-# Secure cookies and optional HTTPS redirect in production
+# Only set this to True if you're behind a proxy that sets X-Forwarded-Proto header
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Ensure all cookies are only sent over HTTPS
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
-# Enable strict HTTPS redirect only after certificate is issued and working
+# Redirect all non-HTTPS requests to HTTPS
 SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', default=False)
 
-# HSTS Settings - Enable only after confirming HTTPS works
-SECURE_HSTS_SECONDS = int(env('SECURE_HSTS_SECONDS', default='0'))  # Start with 0, then increase to 31536000 (1 year)
+# HSTS Settings - Start with 0, then increase to 31536000 (1 year) after confirming HTTPS works
+SECURE_HSTS_SECONDS = int(env('SECURE_HSTS_SECONDS', default='0'))
 SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=False)
 SECURE_HSTS_PRELOAD = env.bool('SECURE_HSTS_PRELOAD', default=False)
 
-# Security middleware (add to MIDDLEWARE if not present)
+# Ensure SecurityMiddleware is in MIDDLEWARE
 if 'django.middleware.security.SecurityMiddleware' not in MIDDLEWARE:
     MIDDLEWARE.insert(1, 'django.middleware.security.SecurityMiddleware')
 
