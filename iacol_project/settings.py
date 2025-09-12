@@ -173,6 +173,15 @@ CSRF_COOKIE_SECURE = True
 # Enable strict HTTPS redirect only after certificate is issued and working
 SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', default=False)
 
+# HSTS Settings - Enable only after confirming HTTPS works
+SECURE_HSTS_SECONDS = int(env('SECURE_HSTS_SECONDS', default='0'))  # Start with 0, then increase to 31536000 (1 year)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool('SECURE_HSTS_INCLUDE_SUBDOMAINS', default=False)
+SECURE_HSTS_PRELOAD = env.bool('SECURE_HSTS_PRELOAD', default=False)
+
+# Security middleware (add to MIDDLEWARE if not present)
+if 'django.middleware.security.SecurityMiddleware' not in MIDDLEWARE:
+    MIDDLEWARE.insert(1, 'django.middleware.security.SecurityMiddleware')
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configuración N8N
