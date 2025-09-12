@@ -10,6 +10,7 @@ services:
     depends_on:
       - db
       - redis
+      - posteio
 
   worker:
     build: .
@@ -47,5 +48,33 @@ services:
     ports:
       - "6379:6379"
 
+  posteio:
+    image: analogic/poste.io
+    container_name: posteio
+    hostname: mail.iacol.online  # Cambia esto a tu dominio
+    ports:
+      - "25:25"
+      - "143:143"
+      - "587:587"
+      - "993:993"
+      - "995:995"
+      - "4190:4190"
+      - "110:110"
+      - "465:465"
+    environment:
+      - TZ=America/Bogota
+      - HTTPS=OFF  # Desactivado ya que ya tienes un proxy inverso
+      - DISABLE_CLAMAV=true
+      - DISABLE_RSPAMD=true
+      - DISABLE_SIEVE=false
+      - DISABLE_SIGNING=false
+      - DISABLE_GREYLISTING=false
+      - DISABLE_RATELIMITING=false
+      - DISABLE_DNS_RESOLVER=false
+    volumes:
+      - posteio_data:/data
+    restart: always
+
 volumes:
   postgres_data:
+  posteio_data:

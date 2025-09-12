@@ -15,9 +15,23 @@ if ENV_FILE.exists():
 # Security / core
 SECRET_KEY = env('SECRET_KEY', default='tu-secret-key-super-seguro-2024-iacol')
 DEBUG = env.bool('DEBUG', default=True)
+
+# Email settings
 if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
     DEFAULT_FROM_EMAIL = "no-reply@iacol.com"
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST = env('EMAIL_HOST', default='posteio')  # Nombre del servicio en docker-compose
+    EMAIL_PORT = env.int('EMAIL_PORT', default=587)
+    EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
+    EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='no-reply@iacol.online')
+    EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='tu_contraseña_segura')
+    DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='no-reply@iacol.online')
+    SERVER_EMAIL = env('SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
+
+# Email subject prefix
+EMAIL_SUBJECT_PREFIX = '[IACOL] '
 
 ALLOWED_HOSTS = [h.strip() for h in env('ALLOWED_HOSTS', default='*').split(',')]
 
