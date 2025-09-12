@@ -119,8 +119,8 @@ else:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': env('DB_NAME', default='iacol'),
             'USER': env('DB_USER', default='postgres'),
-            'PASSWORD': env('DB_PASSWORD', default='postgres'),
-            'HOST': 'db',  # Nombre del servicio en docker-compose
+            'PASSWORD': env('DB_PASSWORD', default='Memo20012804.'),
+            'HOST': 'iacol_iacol-website-db',  # Nombre del servicio en docker-compose
             'PORT': '5432',
         }
     }
