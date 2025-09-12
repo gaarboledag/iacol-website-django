@@ -91,8 +91,8 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': env('DB_NAME', default='iacol'),
         'USER': env('DB_USER', default='postgres'),
-        'PASSWORD': env('DB_PASSWORD', default='postgres'),
-        'HOST': env('DB_HOST', default='db'),
+        'PASSWORD': env('DB_PASSWORD', default='Memo20012804.'),
+        'HOST': env('DB_HOST', default='iacol_iacol-website-db'),
         'PORT': env('DB_PORT', default='5432'),
     }
 }
