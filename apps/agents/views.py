@@ -5,8 +5,13 @@ from django.http import JsonResponse, Http404
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.views import View
-from .models import Agent, UserSubscription, AgentConfiguration, AgentUsageLog
-from .forms import AgentConfigurationForm
+from django.urls import reverse_lazy
+from django.views.generic import CreateView, UpdateView, DeleteView
+from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
+from .models import Agent, UserSubscription, AgentConfiguration, AgentUsageLog, Provider
+from .forms import AgentConfigurationForm, ProviderForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 @login_required
 def agent_list(request):
@@ -94,25 +99,118 @@ def agent_configure(request, agent_id):
         status='active'
     )
     
-    try:
-        configuration = AgentConfiguration.objects.get(user=request.user, agent=agent)
-    except AgentConfiguration.DoesNotExist:
-        configuration = None
-    
-    if request.method == 'POST':
-        form = AgentConfigurationForm(request.POST, instance=configuration)
-        if form.is_valid():
-            config = form.save(commit=False)
-            config.user = request.user
-            config.agent = agent
-            config.save()
-            messages.success(request, 'Configuración guardada exitosamente.')
-            return redirect('agents:agent_dashboard', agent_id=agent.id)
-    else:
-        form = AgentConfigurationForm(instance=configuration)
-    
+    # Get or create configuration
+    configuration, created = AgentConfiguration.objects.get_or_create(
+        user=request.user, 
+        agent=agent,
+        defaults={'configuration_data': {}}
+    )
+
+    # Get providers if enabled
+    providers = []
+    if hasattr(configuration, 'enable_providers') and configuration.enable_providers:
+        providers = configuration.providers.all().order_by('name')
+
     return render(request, 'agents/agent_configure.html', {
         'agent': agent,
-        'form': form,
         'configuration': configuration,
+        'providers': providers,
+        'enable_providers': getattr(configuration, 'enable_providers', False),
     })
+
+@login_required
+def toggle_module(request, agent_id, module_name):
+    """Activar o desactivar un módulo de configuración"""
+    if request.method != 'POST':
+        return JsonResponse({'status': 'error', 'message': 'Método no permitido'}, status=405)
+    
+    agent = get_object_or_404(Agent, id=agent_id)
+    configuration, _ = AgentConfiguration.objects.get_or_create(
+        user=request.user, 
+        agent=agent,
+        defaults={'configuration_data': {}}
+    )
+    
+    # Handle different modules
+    if module_name == 'providers':
+        configuration.enable_providers = not getattr(configuration, 'enable_providers', False)
+        configuration.save()
+        return JsonResponse({
+            'status': 'success', 
+            'enabled': configuration.enable_providers,
+            'redirect': reverse_lazy('agents:agent_configure', kwargs={'agent_id': agent.id})
+        })
+    
+    return JsonResponse({'status': 'error', 'message': 'Módulo no encontrado'}, status=404)
+
+class ProviderCreateView(LoginRequiredMixin, CreateView):
+    model = Provider
+    form_class = ProviderForm
+    template_name = 'agents/provider_form.html'
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.configuration = get_object_or_404(
+            AgentConfiguration, 
+            user=request.user, 
+            agent=self.agent
+        )
+        return super().dispatch(request, *args, **kwargs)
+    
+    def form_valid(self, form):
+        form.instance.agent_config = self.configuration
+        messages.success(self.request, _("Proveedor agregado exitosamente."))
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Agregar Proveedor")
+        return context
+
+class ProviderUpdateView(LoginRequiredMixin, UpdateView):
+    model = Provider
+    form_class = ProviderForm
+    template_name = 'agents/provider_form.html'
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.provider = self.get_object()
+        self.agent = self.provider.agent_config.agent
+        return super().dispatch(request, *args, **kwargs)
+    
+    def form_valid(self, form):
+        messages.success(self.request, _("Proveedor actualizado exitosamente."))
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Editar Proveedor")
+        return context
+
+class ProviderDeleteView(LoginRequiredMixin, DeleteView):
+    model = Provider
+    template_name = 'agents/provider_confirm_delete.html'
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.provider = self.get_object()
+        self.agent = self.provider.agent_config.agent
+        return super().dispatch(request, *args, **kwargs)
+    
+    def delete(self, request, *args, **kwargs):
+        messages.success(request, _("Proveedor eliminado exitosamente."))
+        return super().delete(request, *args, **kwargs)
+    
+    def get_success_url(self):
+        return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        return context

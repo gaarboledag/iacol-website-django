@@ -39,8 +39,8 @@
                         {% if agent.id in user_subscriptions %}
                             <div>
                                 <span class="badge bg-success me-2">Suscrito</span>
-                                <a href="{% url 'agents:agent_dashboard' agent.id %}" class="btn btn-iacol btn-sm">
-                                    Usar
+                                <a href="{% url 'agents:agent_configure' agent.id %}" class="btn btn-iacol btn-sm">
+                                    Configurar
                                 </a>
                             </div>
                         {% else %}

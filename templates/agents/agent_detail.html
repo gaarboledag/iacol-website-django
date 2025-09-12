@@ -52,10 +52,7 @@
                             <i class="fas fa-check-circle me-2"></i>
                             Ya tienes acceso a este agente
                         </div>
-                        <a href="{% url 'agents:agent_dashboard' agent.id %}" class="btn btn-iacol w-100 mb-2">
-                            Ir al Dashboard
-                        </a>
-                        <a href="{% url 'agents:agent_configure' agent.id %}" class="btn btn-outline-secondary w-100">
+                        <a href="{% url 'agents:agent_configure' agent.id %}" class="btn btn-iacol w-100">
                             Configurar Agente
                         </a>
                     {% else %}

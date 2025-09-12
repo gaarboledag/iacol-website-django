@@ -2,6 +2,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import RedirectView
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -11,6 +13,9 @@ urlpatterns = [
     path('agents/', include('apps.agents.urls')),
     path('payments/', include('apps.payments.urls')),
     path('', include('apps.authentication.urls')),
+    
+    # Redirección para cualquier URL no encontrada
+    path('<path:undefined_path>', lambda request: RedirectView.as_view(url='/')(request), name='redirect-to-home'),
 ]
 
 if settings.DEBUG:

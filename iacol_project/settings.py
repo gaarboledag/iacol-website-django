@@ -58,7 +58,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'apps.authentication',
-    'apps.dashboard',
+    'apps.dashboard.apps.DashboardConfig',
     'apps.agents',
     'apps.payments',
     'apps.api',
@@ -100,16 +100,30 @@ TEMPLATES = [
 WSGI_APPLICATION = 'iacol_project.wsgi.application'
 
 # Base de datos
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DB_NAME', default='iacol'),
-        'USER': env('DB_USER', default='postgres'),
-        'PASSWORD': env('DB_PASSWORD', default='Memo20012804.'),
-        'HOST': env('DB_HOST', default='iacol_iacol-website-db'),
-        'PORT': env('DB_PORT', default='5432'),
+# Configuración para desarrollo local (cuando no se usa Docker)
+if os.environ.get('DOCKER_CONTAINER') != 'true':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env('DB_NAME', default='iacol'),
+            'USER': env('DB_USER', default='postgres'),
+            'PASSWORD': env('DB_PASSWORD', default='Memo20012804.'),
+            'HOST': env('DB_HOST', default='localhost'),  # Cambiado a localhost para desarrollo local
+            'PORT': env('DB_PORT', default='5432'),
+        }
     }
-}
+else:
+    # Configuración para producción (cuando se usa Docker)
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env('DB_NAME', default='iacol'),
+            'USER': env('DB_USER', default='postgres'),
+            'PASSWORD': env('DB_PASSWORD', default='postgres'),
+            'HOST': 'db',  # Nombre del servicio en docker-compose
+            'PORT': '5432',
+        }
+    }
 
 # Internacionalización
 LANGUAGE_CODE = 'es-co'
@@ -165,6 +179,59 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+# Logging Configuration
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+            'formatter': 'verbose',
+        },
+        'dashboard_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'dashboard_debug.log'),
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'apps.dashboard': {
+            'handlers': ['console', 'dashboard_file'],
+            'level': 'DEBUG',
+            'propagate': False,
+        },
+        'apps.agents': {
+            'handlers': ['console', 'file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
+
+# Application URLs
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/dashboard/'
 LOGOUT_REDIRECT_URL = '/'

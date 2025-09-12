@@ -65,12 +65,43 @@ class AgentConfiguration(models.Model):
     configuration_data = models.JSONField(default=dict)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    
+    # Nuevo campo para indicar si este agente tiene habilitada la gestión de proveedores
+    enable_providers = models.BooleanField(
+        default=False,
+        verbose_name='Habilitar gestión de proveedores',
+        help_text='Permitir a los usuarios gestionar proveedores para este agente'
+    )
 
     class Meta:
         unique_together = ['user', 'agent']
+        verbose_name = 'Configuración de agente'
+        verbose_name_plural = 'Configuraciones de agentes'
 
     def __str__(self):
         return f"Config: {self.user.username} - {self.agent.name}"
+
+class Provider(models.Model):
+    """Modelo para almacenar información de proveedores de un agente"""
+    name = models.CharField(max_length=200, verbose_name='Nombre del proveedor')
+    phone = models.CharField(max_length=20, verbose_name='Número de teléfono')
+    city = models.CharField(max_length=100, verbose_name='Ciudad')
+    agent_config = models.ForeignKey(
+        AgentConfiguration, 
+        on_delete=models.CASCADE,
+        related_name='providers',
+        verbose_name='Configuración del agente'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Proveedor'
+        verbose_name_plural = 'Proveedores'
+        ordering = ['name']
+
+    def __str__(self):
+        return f"{self.name} - {self.city}"
 
 class AgentUsageLog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

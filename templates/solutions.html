@@ -135,7 +135,7 @@
 
               {% if user.is_authenticated and agent.id in user_subscriptions %}
                 <div class="btn-row">
-                  <a href="{% url 'agents:agent_dashboard' agent.id %}" class="btn btn-iacol btn-eq btn-sm">Usar</a>
+                  <a href="{% url 'agents:agent_configure' agent.id %}" class="btn btn-iacol btn-eq btn-sm">Configurar</a>
                 </div>
               {% else %}
                 <div class="btn-row">

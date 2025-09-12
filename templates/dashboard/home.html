@@ -44,11 +44,33 @@
   .status-cancelled { background: #dc3545; }
 
   /* Empty state */
-  .empty-state { padding: 3rem 1rem; }
-  .empty-illustration { width: 64px; height: 64px; border-radius: 14px; background: #f5f5f5; display: inline-flex; align-items: center; justify-content: center; color: #6c757d; }
+  .empty-state { 
+    padding: 3rem 1rem; 
+    text-align: center;
+  }
+  .empty-illustration { 
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%; 
+    background: #f8f9fa; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #6c757d;
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  .empty-state h5 {
+    margin-bottom: 0.5rem;
+    color: #343a40;
+  }
+  .empty-state p {
+    color: #6c757d;
+    margin-bottom: 1.5rem;
+  }
 
   /* Recent activity */
-  .activity-item { padding: .5rem 0; }
+  .activity-item { padding: .75rem 0; }
   .activity-item + .activity-item { border-top: 1px dashed #eee; }
 </style>
 {% endblock %}
@@ -83,11 +105,15 @@
         <div class="card-header d-flex flex-wrap gap-2 justify-content-between align-items-center">
           <h5 class="mb-0">Mis Agentes</h5>
           <div class="d-flex align-items-center gap-2">
+            {% if subscriptions %}
             <div class="input-group input-group-sm" style="width: 260px;">
               <span class="input-group-text bg-white border-end-0"><i class="fas fa-search"></i></span>
               <input id="agentSearch" type="text" class="form-control search-input border-start-0" placeholder="Buscar agente..." oninput="filterAgents()">
             </div>
-            <a href="{% url 'agents:agent_list' %}" class="btn btn-outline-primary btn-sm">Ver Todos</a>
+            {% endif %}
+            <a href="{% url 'agents:agent_list' %}" class="btn {% if not subscriptions %}btn-primary{% else %}btn-outline-primary{% endif %} btn-sm">
+              {% if not subscriptions %}Explorar Agentes{% else %}Ver Todos{% endif %}
+            </a>
           </div>
         </div>
         <div class="card-body">
@@ -98,27 +124,22 @@
                 <div class="agent-card card border-0 bg-white h-100">
                   <div class="card-body">
                     <div class="d-flex justify-content-between align-items-start mb-2">
-                      <div class="d-flex align-items-center gap-3">
+                      <div class="d-flex align-items-center gap-2">
                         <div class="agent-icon">
                           <i class="fas fa-robot"></i>
                         </div>
-                        <div>
-                          <h6 class="card-title mb-1">{{ subscription.agent.name }}</h6>
-                          <div class="text-muted small">{{ subscription.agent.description|truncatewords:16 }}</div>
-                        </div>
+                        <h6 class="mb-0">{{ subscription.agent.name }}</h6>
                       </div>
-                      <span class="chip" title="Estado de suscripción">
-                        <span class="status-dot {% if subscription.status|lower == 'active' or subscription.status|lower == 'activo' %}status-active{% elif subscription.status|lower == 'pending' or subscription.status|lower == 'pendiente' %}status-pending{% else %}status-cancelled{% endif %}"></span>
-                        {{ subscription.status }}
-                      </span>
+                      <span class="badge bg-success">Activo</span>
                     </div>
-
-                    <div class="agent-actions mt-3">
-                      <a href="{% url 'agents:agent_dashboard' subscription.agent.id %}" class="btn btn-primary btn-sm me-2">
-                        <i class="fas fa-gauge-high me-1"></i> Dashboard
-                      </a>
-                      <a href="{% url 'agents:agent_configure' subscription.agent.id %}" class="btn btn-outline-secondary btn-sm">
-                        <i class="fas fa-sliders me-1"></i> Configurar
+                    <p class="text-muted small mb-3">{{ subscription.agent.description|truncatewords:15 }}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <span class="text-muted small">
+                        <i class="far fa-calendar-alt me-1"></i>
+                        Suscrito el {{ subscription.created_at|date:"d M Y" }}
+                      </span>
+                      <a href="{% url 'agents:agent_configure' subscription.agent.id %}" class="btn btn-sm btn-outline-primary">
+                        Configurar <i class="fas fa-arrow-right ms-1"></i>
                       </a>
                     </div>
                   </div>
@@ -127,14 +148,14 @@
               {% endfor %}
             </div>
           {% else %}
-            <div class="empty-state text-center">
-              <div class="empty-illustration mx-auto mb-3">
-                <i class="fas fa-robot fa-lg"></i>
+            <div class="empty-state">
+              <div class="empty-illustration">
+                <i class="fas fa-robot"></i>
               </div>
-              <h5 class="text-muted">No tienes agentes suscritos</h5>
-              <p class="text-muted">Explora nuestros agentes y encuentra el que mejor se adapte a tus necesidades.</p>
+              <h5>No tienes agentes suscritos</h5>
+              <p>Explora nuestra colección de agentes y comienza a potenciar tu negocio con IA.</p>
               <a href="{% url 'agents:agent_list' %}" class="btn btn-primary">
-                Explorar Agentes
+                <i class="fas fa-robot me-2"></i>Explorar Agentes
               </a>
             </div>
           {% endif %}
@@ -147,29 +168,30 @@
       <div class="card h-100">
         <div class="card-header d-flex justify-content-between align-items-center">
           <h5 class="mb-0">Actividad Reciente</h5>
-          <span class="chip"><i class="fas fa-clock"></i> Últimas</span>
+          <span class="badge bg-primary">Nuevo</span>
         </div>
         <div class="card-body">
           {% if recent_logs %}
-            {% for log in recent_logs %}
-              <div class="activity-item d-flex align-items-center">
-                <div class="me-3">
-                  {% if log.success %}
-                    <i class="fas fa-check-circle text-success"></i>
-                  {% else %}
-                    <i class="fas fa-times-circle text-danger"></i>
-                  {% endif %}
+            <div class="activity-list">
+              {% for log in recent_logs %}
+              <div class="activity-item">
+                <div class="d-flex justify-content-between mb-1">
+                  <strong>{{ log.get_action_display }}</strong>
+                  <small class="text-muted">{{ log.created_at|timesince }} atrás</small>
                 </div>
-                <div class="flex-grow-1">
-                  <h6 class="mb-0">{{ log.agent.name }}</h6>
-                  <small class="text-muted">{{ log.created_at|timesince }} ago</small>
+                <div class="text-muted small">
+                  {{ log.details|default:"Sin detalles adicionales" }}
                 </div>
               </div>
-            {% endfor %}
+              {% endfor %}
+            </div>
           {% else %}
-            <div class="text-center py-3">
-              <i class="fas fa-history fa-2x text-muted mb-2"></i>
-              <p class="text-muted">Sin actividad reciente</p>
+            <div class="empty-state py-4">
+              <div class="empty-illustration">
+                <i class="fas fa-history"></i>
+              </div>
+              <h5>Sin actividad reciente</h5>
+              <p>Aquí verás el historial de interacciones con tus agentes.</p>
             </div>
           {% endif %}
         </div>
@@ -181,12 +203,19 @@
 
 {% block extra_js %}
 <script>
-  function filterAgents() {
-    const q = (document.getElementById('agentSearch').value || '').trim().toLowerCase();
-    document.querySelectorAll('#agentsGrid .agent-item').forEach(el => {
-      const name = el.getAttribute('data-name');
-      el.style.display = !q || (name && name.includes(q)) ? '' : 'none';
-    });
+function filterAgents() {
+  const input = document.getElementById('agentSearch');
+  const filter = input.value.toLowerCase();
+  const items = document.getElementsByClassName('agent-item');
+  
+  for (let item of items) {
+    const name = item.getAttribute('data-name');
+    if (name.includes(filter)) {
+      item.style.display = 'block';
+    } else {
+      item.style.display = 'none';
+    }
   }
+}
 </script>
 {% endblock %}
