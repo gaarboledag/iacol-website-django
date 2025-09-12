@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Cortex Platform | IACOL Empresarial{% endblock %}</title>
+    
+    <!-- Glacial Indifference -->
+    <link href="https://fonts.cdnfonts.com/css/glacial-indifference" rel="stylesheet">
+    
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #000000;
+            --primary-dark: #111111;    
+            --dark: #0f0f0f;
+            --light: #ffffff;
+            --gray: #666666;
+            --gray-light: #eeeeee;
+        }
+        
+        body {
+            font-family: 'Glacial Indifference', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background-color: #ffffff;
+        }
+        
+        /* Asegurar que controles y botones usen la misma tipografía */
+        button, input, select, textarea, .btn {
+            font-family: 'Glacial Indifference', sans-serif;
+        }
+        
+        .navbar {
+            padding: 0.75rem 0;
+            background-color: #ffffff !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.3s ease;
+        }
+        
+        .navbar-brand {
+            font-weight: 600;
+            font-size: 1.25rem;
+            color: var(--dark) !important;
+            letter-spacing: -0.5px;
+            padding: 0.25rem 0;
+        }
+        
+        .nav-link {
+            font-weight: 400;
+            font-size: 0.95rem;
+            color: var(--gray) !important;
+            margin: 0 0.75rem;
+            padding: 0.5rem 0.75rem !important;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: 0;
+            left: 50%;
+            background-color: #000;
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover:after, .nav-link.active:after {
+            width: 70%;
+        }
+        
+        .nav-link:hover, .nav-link.active {
+            color: #000 !important;
+            background: transparent;
+        }
+        
+        .navbar-toggler {
+            padding: 0.4rem 0.75rem;
+            border: none;
+        }
+        
+        .navbar-toggler:focus {
+            box-shadow: none;
+            outline: none;
+        }
+        
+        .btn-primary {
+            background-color: #000;
+            border: 1px solid #000;
+            border-radius: 8px;
+            padding: 0.6rem 1.5rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .btn-outline-primary {
+            border: 1px solid #000;
+            color: #000;
+            border-radius: 8px;
+            padding: 0.6rem 1.5rem;
+            font-weight: 500;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        
+        .btn-outline-primary:hover {
+            background-color: #000;
+            color: #fff;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .hero-section {
+            background: #ffffff;
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::after {
+            content: none;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .display-4 {
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.1;
+        }
+        
+        .lead {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            border: 1px solid #eee;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s ease;
+            box-shadow: none;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: none;
+        }
+        
+        .card-body {
+            padding: 2rem;
+        }
+        
+        .icon-box {
+            width: 64px;
+            height: 64px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            background: #f5f5f5;
+            color: #111;
+            font-size: 1.5rem;
+        }
+        
+        footer {
+            background-color: #000;
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-links h5 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #bdbdbd;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            text-decoration: none;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.12);
+            color: white;
+            margin-right: 0.75rem;
+            transition: background-color 0.2s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: #111;
+            transform: none;
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 3rem;
+            color: #bdbdbd;
+            font-size: 0.9rem;
+        }
+        
+        /* Utilidades BW */
+        .badge-ghost {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid #e5e5e5;
+            color: #111;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        .grayscale { filter: grayscale(100%); }
+        .grayscale img { filter: inherit; }
+    </style>
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'img/iacol_hor.webp' %}" alt="IACOL" height="28">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'solutions' %}active{% endif %}" href="{% url 'solutions' %}">Soluciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'resources' %}active{% endif %}" href="{% url 'resources' %}">Recursos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">Contacto</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                            <a href="{% url 'dashboard:home' %}" class="btn btn-primary">Dashboard</a>
+                        </li>
+                    {% else %}
+                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                            <a href="{% url 'account_login' %}" class="btn btn-outline-primary">Iniciar Sesión</a>
+                        </li>
+                        <li class="nav-item ms-lg-3 mt-2 mt-lg-0">
+                            <a href="{% url 'account_signup' %}" class="btn btn-primary">Registrarse</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Messages -->
+    {% if messages %}
+        <div class="container mt-3">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <!-- Main Content -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white mt-5">
+        <div class="container py-5">
+            <div class="row g-4">
+                <div class="col-md-4 align-items-center">
+                    <h5 class="mb-3">IACOL Empresarial</h5>
+                    <p class="mb-3 text-secondary">Aliados en Transformación Digital, Data Science y Automatizaciones con Inteligencia Artificial.</p>
+                    <div class="social-links justify-content-center d-flex">
+                        <a href="https://www.linkedin.com/in/gaarboledag/" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/gaarboledag" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-2 footer-links">
+                    <h5>Producto</h5>
+                    <ul>
+                        <li><a href="{% url 'home' %}">Inicio</a></li>
+                        <li><a href="{% url 'solutions' %}">Soluciones</a></li>
+                        <li><a href="{% url 'resources' %}">Recursos</a></li>
+                        <li><a href="{% url 'contact' %}">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-6 col-md-2 footer-links">
+                    <h5>Cuenta</h5>
+                    <ul>
+                        {% if user.is_authenticated %}
+                            <li><a href="{% url 'dashboard:home' %}">Panel de Control</a></li>
+                        {% else %}
+                            <li><a href="{% url 'account_login' %}">Iniciar Sesión</a></li>
+                            <li><a href="{% url 'account_signup' %}">Registrarse</a></li>
+                        {% endif %}
+                        <li><a href="{% url 'account_reset_password' %}">Restablecer contraseña</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4 footer-links"> 
+                    <h5>Contacto</h5>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> <a href="mailto:hola@iacol.com">admin@iacol.online</a></li>
+                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +57 (324) 269-3804</li>
+                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Ibagué, Colombia</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="copyright text-center">
+                <small>&copy; {% now "Y" %} IACOL Empresarial. Todos los derechos reservados.</small>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js para gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    {% block extra_js %}
+    {% endblock %}
+</body>
+</html>

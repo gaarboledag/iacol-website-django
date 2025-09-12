@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Crear Cuenta - IACOL{% endblock %}
+
+{% block extra_css %}
+<style>
+  .auth-wrapper { min-height: calc(100vh - 140px); display: flex; align-items: center; }
+  .auth-card { border: 1px solid #eee; border-radius: 16px; padding: 2rem; background: #fff; }
+  .auth-title { font-weight: 800; letter-spacing: -0.5px; }
+  .auth-subtitle { color: var(--gray); }
+  .auth-divider { height: 1px; background: #eee; margin: 1.25rem 0; }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="auth-wrapper py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="auth-card">
+          <div class="mb-3 text-center">
+            <h1 class="h3 auth-title mb-2">Crear cuenta</h1>
+            <p class="auth-subtitle mb-0">Regístrate con tu correo electrónico</p>
+          </div>
+
+          <form method="post" action="{% url 'account_signup' %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="btn btn-primary w-100 mt-2">Crear cuenta</button>
+          </form>
+
+          <div class="auth-divider"></div>
+          <p class="mb-0 text-center">
+            ¿Ya tienes cuenta?
+            <a href="{% url 'account_login' %}" class="link-dark">Iniciar sesión</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

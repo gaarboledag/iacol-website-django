@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ agent.name }} - IACOL Empresarial{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                {% if agent.image %}
+                    <img src="{{ agent.image.url }}" class="card-img-top" alt="{{ agent.name }}" style="height: 300px; object-fit: cover;">
+                {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 300px;">
+                        <i class="fas fa-robot fa-5x text-iacol"></i>
+                    </div>
+                {% endif %}
+                
+                <div class="card-body">
+                    <h1 class="card-title">{{ agent.name }}</h1>
+                    <p class="card-text">{{ agent.description }}</p>
+                    
+                    <div class="mb-3">
+                        <span class="badge bg-primary me-2">{{ agent.category.name }}</span>
+                        <span class="badge bg-secondary">{{ agent.get_pricing_type_display }}</span>
+                    </div>
+                    
+                    {% if agent.features %}
+                    <h5>Características:</h5>
+                    <ul class="list-group list-group-flush mb-3">
+                        {% for feature in agent.features %}
+                        <li class="list-group-item">
+                            <i class="fas fa-check text-success me-2"></i>{{ feature }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Información de Precios</h5>
+                    <div class="text-center mb-3">
+                        <span class="h2 text-iacol"><span class="money" data-value="{{ agent.price|floatformat:0 }}"></span></span>
+                        <span class="text-muted">/mes</span>
+                    </div>
+                    
+                    {% if has_subscription %}
+                        <div class="alert alert-success">
+                            <i class="fas fa-check-circle me-2"></i>
+                            Ya tienes acceso a este agente
+                        </div>
+                        <a href="{% url 'agents:agent_dashboard' agent.id %}" class="btn btn-iacol w-100 mb-2">
+                            Ir al Dashboard
+                        </a>
+                        <a href="{% url 'agents:agent_configure' agent.id %}" class="btn btn-outline-secondary w-100">
+                            Configurar Agente
+                        </a>
+                    {% else %}
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'payments:plans' %}" class="btn btn-iacol">
+                                Suscribirse Ahora
+                            </a>
+                            <a href="{% url 'agents:agent_list' %}" class="btn btn-outline-secondary">
+                                Ver Otros Agentes
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  (function() {
+    const fmt = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
+    document.querySelectorAll('.money').forEach(el => {
+      const raw = (el.getAttribute('data-value') || '0').toString();
+      const cleaned = raw.replace(/[^0-9,.-]/g, '').replace(/(,)(?=\d{0,2}$)/, '.').replace(/,/g, '');
+      const num = Number(cleaned);
+      el.textContent = fmt.format(isNaN(num) ? 0 : num);
+    });
+  })();
+</script>
+{% endblock %}

@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - {{ agent.name }} - IACOL Empresarial{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row mb-4">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="h3">
+                    <i class="fas fa-robot me-2"></i>{{ agent.name }}
+                </h1>
+                <div>
+                    <a href="{% url 'agents:agent_configure' agent.id %}" class="btn btn-outline-primary me-2">
+                        <i class="fas fa-cog me-1"></i>Configurar
+                    </a>
+                    <a href="{% url 'agents:agent_list' %}" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left me-1"></i>Volver
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="stats-card">
+                <div class="d-flex justify-content-between">    
+                    <div>
+                        <h6 class="text-muted">Total Ejecuciones</h6>
+                        <h3 class="text-primary">{{ total_executions }}</h3>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-play fa-2x text-primary"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="stats-card">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="text-muted">Exitosas</h6>
+                        <h3 class="text-success">{{ successful_executions }}</h3>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-check fa-2x text-success"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="stats-card">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="text-muted">Fallidas</h6>
+                        <h3 class="text-danger">{{ failed_executions }}</h3>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-times fa-2x text-danger"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="stats-card">
+                <div class="d-flex justify-content-between">
+                    <div>
+                        <h6 class="text-muted">Tasa de Éxito</h6>
+                        <h3 class="text-info">{{ success_rate|floatformat:1 }}%</h3>
+                    </div>
+                    <div class="align-self-center">
+                        <i class="fas fa-chart-pie fa-2x text-info"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <!-- Gráfico de ejecuciones -->
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Historial de Ejecuciones</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="executionChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Actividad Reciente -->
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Ejecuciones Recientes</h5>
+                </div>
+                <div class="card-body">
+                    {% if recent_executions %}
+                        {% for execution in recent_executions %}
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="me-3">
+                                {% if execution.success %}
+                                    <i class="fas fa-check-circle text-success"></i>
+                                {% else %}
+                                    <i class="fas fa-times-circle text-danger"></i>
+                                {% endif %}
+                            </div>
+                            <div class="flex-grow-1">
+                                <h6 class="mb-0">Ejecución {{ execution.execution_id|truncatechars:10 }}</h6>
+                                <small class="text-muted">
+                                    {{ execution.created_at|timesince }} ago
+                                    {% if execution.execution_time %}
+                                        - {{ execution.execution_time|floatformat:2 }}s
+                                    {% endif %}
+                                </small>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="text-center py-3">
+                            <i class="fas fa-history fa-2x text-muted mb-2"></i>
+                            <p class="text-muted">Sin ejecuciones aún</p>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configuración Actual -->
+    {% if configuration %}
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Configuración Actual</h5>
+                    <a href="{% url 'agents:agent_configure' agent.id %}" class="btn btn-outline-primary btn-sm">
+                        Editar
+                    </a>
+                </div>
+                <div class="card-body">
+                    <pre class="bg-light p-3 rounded"><code>{{ configuration.configuration_data|pprint }}</code></pre>
+                    <small class="text-muted">Última actualización: {{ configuration.updated_at }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+// Gráfico de ejecuciones (ejemplo básico)
+const ctx = document.getElementById('executionChart').getContext('2d');
+const executionChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+        datasets: [{
+            label: 'Ejecuciones Exitosas',
+            data: [12, 19, 3, 5, 2, 3, 7],
+            borderColor: 'rgb(75, 192, 192)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            tension: 0.1
+        }, {
+            label: 'Ejecuciones Fallidas',
+            data: [2, 3, 0, 1, 0, 1, 1],
+            borderColor: 'rgb(255, 99, 132)',
+            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            tension: 0.1
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+{% endblock %}

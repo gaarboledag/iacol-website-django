@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}Planes de Suscripción - IACOL Empresarial{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-5">Planes de Suscripción</h1>
+        <p class="lead">Elige el plan que mejor se adapte a tus necesidades empresariales</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card card-iacol h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Plan Básico</h5>
+                    <div class="mb-3">
+                        <span class="h2">$99</span>
+                        <span class="text-muted">/mes</span>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-success me-2"></i>Hasta 3 agentes</li>
+                        <li><i class="fas fa-check text-success me-2"></i>1,000 ejecuciones/mes</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Soporte por email</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Dashboard básico</li>
+                    </ul>
+                    <button class="btn btn-outline-dark w-100">Seleccionar Plan</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card card-iacol h-100 border-primary">
+                <div class="card-header bg-primary text-white text-center">
+                    <h6 class="mb-0">MÁS POPULAR</h6>
+                </div>
+                <div class="card-body text-center">
+                    <h5 class="card-title">Plan Profesional</h5>
+                    <div class="mb-3">
+                        <span class="h2">$299</span>
+                        <span class="text-muted">/mes</span>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-success me-2"></i>Hasta 10 agentes</li>
+                        <li><i class="fas fa-check text-success me-2"></i>5,000 ejecuciones/mes</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Soporte prioritario</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Dashboard avanzado</li>
+                        <li><i class="fas fa-check text-success me-2"></i>API personalizada</li>
+                    </ul>
+                    <button class="btn btn-iacol w-100">Seleccionar Plan</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card card-iacol h-100">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Plan Empresarial</h5>
+                    <div class="mb-3">
+                        <span class="h2">$999</span>
+                        <span class="text-muted">/mes</span>
+                    </div>
+                    <ul class="list-unstyled">
+                        <li><i class="fas fa-check text-success me-2"></i>Agentes ilimitados</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Ejecuciones ilimitadas</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Soporte 24/7</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Dashboard personalizado</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Agentes personalizados</li>
+                    </ul>
+                    <button class="btn btn-outline-dark w-100">Contactar Ventas</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

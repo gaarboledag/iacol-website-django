@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Agentes Disponibles - IACOL Empresarial{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-5">Agentes de IA Disponibles</h1>
+        <p class="lead">Elige los agentes que mejor se adapten a las necesidades de tu empresa</p>
+    </div>
+
+    <div class="row">
+        {% for agent in agents %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card card-iacol h-100">
+                {% if agent.image %}
+                    <img src="{{ agent.image.url }}" class="card-img-top" alt="{{ agent.name }}" style="height: 200px; object-fit: cover;">
+                {% else %}
+                    <div class="card-img-top bg-light d-flex align-items-center justify-content-center" style="height: 200px;">
+                        <i class="fas fa-robot fa-4x text-iacol"></i>
+                    </div>
+                {% endif %}
+                
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">{{ agent.name }}</h5>
+                    <p class="card-text flex-grow-1">{{ agent.description|truncatewords:20 }}</p>
+                    
+                    <div class="mb-3">
+                        <span class="badge bg-primary">{{ agent.category.name }}</span>
+                        <span class="badge bg-secondary">{{ agent.get_pricing_type_display }}</span>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong class="text-iacol h5"><span class="money" data-value="{{ agent.price|floatformat:0 }}"></span></strong>
+                            <small class="text-muted">/mes</small>
+                        </div>
+                        
+                        {% if agent.id in user_subscriptions %}
+                            <div>
+                                <span class="badge bg-success me-2">Suscrito</span>
+                                <a href="{% url 'agents:agent_dashboard' agent.id %}" class="btn btn-iacol btn-sm">
+                                    Usar
+                                </a>
+                            </div>
+                        {% else %}
+                            <a href="{% url 'agents:agent_detail' agent.id %}" class="btn btn-outline-dark">
+                                Ver Detalles
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center py-5">
+            <i class="fas fa-robot fa-4x text-muted mb-3"></i>
+            <h4 class="text-muted">No hay agentes disponibles</h4>
+            <p class="text-muted">Próximamente tendremos agentes disponibles para ti.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  (function() {
+    const fmt = new Intl.NumberFormat('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
+    document.querySelectorAll('.money').forEach(el => {
+      const raw = (el.getAttribute('data-value') || '0').toString();
+      // normaliza: elimina separadores no numéricos y convierte coma decimal a punto
+      const cleaned = raw.replace(/[^0-9,.-]/g, '').replace(/(,)(?=\d{0,2}$)/, '.').replace(/,/g, '');
+      const num = Number(cleaned);
+      el.textContent = fmt.format(isNaN(num) ? 0 : num);
+    });
+  })();
+</script>
+{% endblock %}

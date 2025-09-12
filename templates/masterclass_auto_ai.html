@@ -1,0 +1,344 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Masterclass en Implementación de IA para Centros Automotrices | IACOL Empresarial{% endblock %}
+
+{% block extra_css %}
+<style>
+  .split-wrapper {
+    position: relative;
+  }
+  .split-divider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: #eee;
+    display: none;
+  }
+  @media (min-width: 992px) {
+    .split-divider { display: block; }
+  }
+  .sticky-sidebar {
+    position: sticky;
+    top: 90px; /* below navbar */
+  }
+  .lesson-text {
+    color: #555;
+  }
+  .muted-small { color: #6c757d; font-size: .9rem; }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="py-5">
+  <div class="container split-wrapper">
+    <span class="badge-ghost mb-3 d-inline-block">Formación Especializada</span>
+    <h1 class="display-5 fw-bold mb-4">Masterclass en Implementación de IA para Centros Automotrices</h1>
+    <p class="lead text-muted mb-5">Aprende paso a paso cómo incorporar Inteligencia Artificial en los procesos clave de un centro automotriz: atención al cliente, operaciones, inventario y analítica.</p>
+
+    <div class="split-divider"></div>
+
+    <div class="row g-5">
+      <!-- Left: Accordion lessons -->
+      <div class="col-lg-7">
+        <div class="accordion" id="masterclassAccordion">
+          <!-- Item 1 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                1. Introducción y mapa de ruta de IA en centros automotrices
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#masterclassAccordion">
+              <div class="accordion-body">
+                <div class="ratio ratio-16x9 mb-3">
+                  <!-- Reproduce video local desde static/vid -->
+                  <video id="introVideo" class="w-100 h-100" controls preload="metadata" playsinline>
+                    <source src="{% static 'vid/video.mp4' %}" type="video/mp4">
+                    Tu navegador no soporta la reproducción de video. Puedes descargarlo aquí: 
+                    <a href="{% static 'vid/video.mp4' %}">video</a>.
+                  </video>
+                </div>
+                <div class="lesson-text">
+                  <p>
+                    En esta lección revisamos el panorama general de casos de uso de IA aplicados a centros automotrices, 
+                    los retos de adopción y un marco de trabajo para priorizar implementaciones con impacto.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                2. Atención al cliente con agentes conversacionales
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#masterclassAccordion">
+              <div class="accordion-body">
+                <div class="ratio ratio-16x9 mb-3">
+                  <iframe src="about:blank" title="Agentes conversacionales" allowfullscreen></iframe>
+                </div>
+                <div class="lesson-text">
+                  <p>
+                    Diseñamos flujos de atención automatizados para citas, cotizaciones y seguimiento, integrados con tus sistemas actuales.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                3. IA para operaciones: diagnóstico, órdenes y tiempos
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#masterclassAccordion">
+              <div class="accordion-body">
+                <div class="ratio ratio-16x9 mb-3">
+                  <iframe src="about:blank" title="IA en operaciones" allowfullscreen></iframe>
+                </div>
+                <div class="lesson-text">
+                  <p>
+                    Cómo estructurar datos de órdenes de trabajo y aplicar modelos para estimar tiempos, detectar cuellos de botella y proponer optimizaciones.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                4. Inventario y compras asistidas por IA
+              </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#masterclassAccordion">
+              <div class="accordion-body">
+                <div class="ratio ratio-16x9 mb-3">
+                  <iframe src="about:blank" title="Inventario con IA" allowfullscreen></iframe>
+                </div>
+                <div class="lesson-text">
+                  <p>
+                    Pronósticos de demanda, reposición automática y señales tempranas de faltantes para mantener operaciones fluidas.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFive">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                5. Métricas, tableros y gobierno de datos
+              </button>
+            </h2>
+            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#masterclassAccordion">
+              <div class="accordion-body">
+                <div class="ratio ratio-16x9 mb-3">
+                  <iframe src="about:blank" title="Métricas y BI" allowfullscreen></iframe>
+                </div>
+                <div class="lesson-text">
+                  <p>
+                    Definimos KPIs clave, buenas prácticas de calidad de datos y tableros para la toma de decisiones.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Static sticky questionnaire wizard -->
+      <div class="col-lg-5">
+        <div class="sticky-sidebar">
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+              <!-- Gate / Start Screen -->
+              <div id="startScreen">
+                <h3 class="h4 mb-2">Cuestionario de Diagnóstico</h3>
+                <p class="text-muted mb-4">Antes de iniciar, por favor visualiza al menos el 80% del primer video introductorio.</p>
+                <div class="d-grid gap-2">
+                  <button id="btnStart" class="btn btn-primary">Iniciar</button>
+                  <div id="startHint" class="alert alert-warning mt-2 d-none" role="alert">
+                    Debes ver al menos el 80% del primer video para comenzar el cuestionario.
+                  </div>
+                  <p class="muted-small mb-0">Progreso de video: <span id="videoProgress">0%</span></p>
+                </div>
+              </div>
+
+              <!-- Step 1 -->
+              <div id="step1" class="d-none">
+                <h3 class="h5 mb-3">Parte 1: Conociendo tu Centro Automotriz</h3>
+                <div class="mb-3">
+                  <label class="form-label">1. ¿Cuántas órdenes de trabajo procesas al mes?</label>
+                  <select class="form-select" id="q1">
+                    <option value="">Selecciona...</option>
+                    <option value="<100">< 100</option>
+                    <option value="100-300">100 - 300</option>
+                    <option value=">300">> 300</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">2. Área de mayor prioridad</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2a" value="Atención al cliente">
+                    <label class="form-check-label" for="q2a">Atención al cliente</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2b" value="Operaciones">
+                    <label class="form-check-label" for="q2b">Operaciones</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="q2" id="q2c" value="Inventario">
+                    <label class="form-check-label" for="q2c">Inventario</label>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end gap-2">
+                  <button class="btn btn-primary" id="toStep2">Continuar</button>
+                </div>
+              </div>
+
+              <!-- Step 2 -->
+              <div id="step2" class="d-none">
+                <h3 class="h5 mb-3">Parte 2: Procesos y Datos</h3>
+                <div class="mb-3">
+                  <label class="form-label">3. ¿Qué sistemas utilizas actualmente?</label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="q3a" value="ERP">
+                    <label class="form-check-label" for="q3a">ERP</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="q3b" value="CRM">
+                    <label class="form-check-label" for="q3b">CRM</label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="q3c" value="Hojas de cálculo">
+                    <label class="form-check-label" for="q3c">Hojas de cálculo</label>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label" for="q4">4. Describe brevemente tus principales retos</label>
+                  <textarea class="form-control" id="q4" rows="3" placeholder="Ej. tiempos de espera altos, falta de seguimiento, etc."></textarea>
+                </div>
+                <div class="d-flex justify-content-between gap-2">
+                  <button class="btn btn-outline-primary" id="backTo1">Volver</button>
+                  <button class="btn btn-primary" id="toStep3">Continuar</button>
+                </div>
+              </div>
+
+              <!-- Step 3 -->
+              <div id="step3" class="d-none">
+                <h3 class="h5 mb-3">Parte 3: Objetivos y Cierre</h3>
+                <div class="mb-3">
+                  <label class="form-label">5. Objetivo principal con IA en los próximos 3 meses</label>
+                  <input class="form-control" id="q5" type="text" placeholder="Ej. reducir tiempos de atención un 20%">
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">6. ¿Deseas recibir una propuesta personalizada?</label>
+                  <select class="form-select" id="q6">
+                    <option value="">Selecciona...</option>
+                    <option>Sí</option>
+                    <option>No</option>
+                  </select>
+                </div>
+                <div class="d-flex justify-content-between gap-2">
+                  <button class="btn btn-outline-primary" id="backTo2">Volver</button>
+                  <button class="btn btn-primary" id="finish">Enviar</button>
+                </div>
+              </div>
+
+              <!-- Done Screen -->
+              <div id="doneScreen" class="d-none text-center">
+                <div class="mb-3">
+                  <i class="fas fa-check-circle text-success" style="font-size:2.25rem;"></i>
+                </div>
+                <h3 class="h5 mb-2">¡Cuestionario enviado!</h3>
+                <p class="text-muted mb-0">Gracias por tu tiempo. Usaremos tus respuestas para preparar recomendaciones específicas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Wizard state and helpers
+  (function() {
+    const startScreen = document.getElementById('startScreen');
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    const doneScreen = document.getElementById('doneScreen');
+
+    const btnStart = document.getElementById('btnStart');
+    const startHint = document.getElementById('startHint');
+    const videoProgressEl = document.getElementById('videoProgress');
+
+    let canStart = false;
+
+    function show(el) { el.classList.remove('d-none'); }
+    function hide(el) { el.classList.add('d-none'); }
+
+    // Start gate logic
+    btnStart.addEventListener('click', function(e) {
+      e.preventDefault();
+      if (!canStart) {
+        startHint.classList.remove('d-none');
+        startHint.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        return;
+      }
+      hide(startScreen);
+      show(step1);
+    });
+
+    // Step navigation
+    document.getElementById('toStep2').addEventListener('click', function() {
+      hide(step1); show(step2);
+    });
+    document.getElementById('backTo1').addEventListener('click', function() {
+      hide(step2); show(step1);
+    });
+    document.getElementById('toStep3').addEventListener('click', function() {
+      hide(step2); show(step3);
+    });
+    document.getElementById('backTo2').addEventListener('click', function() {
+      hide(step3); show(step2);
+    });
+    document.getElementById('finish').addEventListener('click', function() {
+      hide(step3); show(doneScreen);
+    });
+
+    // HTML5 video progress tracking for 80% gate
+    const videoEl = document.getElementById('introVideo');
+    if (videoEl) {
+      const updateProgress = () => {
+        const current = videoEl.currentTime || 0;
+        const duration = videoEl.duration || 0;
+        if (duration > 0) {
+          const pct = Math.min(100, Math.round((current / duration) * 100));
+          videoProgressEl.textContent = pct + '%';
+          if (pct >= 80) {
+            canStart = true;
+          }
+        }
+      };
+      videoEl.addEventListener('timeupdate', updateProgress);
+      videoEl.addEventListener('loadedmetadata', updateProgress);
+      videoEl.addEventListener('seeked', updateProgress);
+    }
+  })();
+</script>
+{% endblock %}

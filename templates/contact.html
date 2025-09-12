@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contacto | IACOL Empresarial{% endblock %}
+
+{% block extra_css %}
+<style>
+  .contact-hero {
+    padding: 6rem 0 3rem;
+    background: #fff;
+  }
+  .contact-card {
+    border: 1px solid #eee;
+    border-radius: 12px;
+  }
+  .contact-bullets li {
+    margin-bottom: 0.5rem;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="contact-hero">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-7">
+        <span class="badge-ghost mb-3">Descubra oportunidades</span>
+        <h1 class="display-5 mb-3">Accede a una evaluación estratégica <span class="text-decoration-underline">Sin Costo</span></h1>
+        <p class="lead">Nuestro primer paso es entender su operación y sus desafíos. Por eso, le invitamos a participar en una evaluación inicial, donde analizaremos el potencial de nuestra colaboración.</p>
+        <ul class="contact-bullets text-secondary">
+          <li>Revisamos sus procesos, sus canales actuales y sus oportunidades de mejora.</li>
+          <li>Le entregamos una visión clara de cómo podría optimizar resultados con datos y tecnología.</li>
+        </ul>
+        <div class="d-flex flex-wrap gap-2 mt-4">
+          <a href="mailto:admin@iacol.online?subject=Agendar%20Evaluaci%C3%B3n%20Estrat%C3%A9gica&body=Hola%20IACOL%2C%20quiero%20agendar%20una%20evaluaci%C3%B3n%20estrat%C3%A9gica." class="btn btn-primary btn-lg">AGENDAR EVALUACIÓN</a>
+          <a href="https://wa.me/573242693804?text=Hola%20IACOL%2C%20quiero%20agendar%20una%20evaluaci%C3%B3n%20estrat%C3%A9gica" target="_blank" rel="noopener" class="btn btn-outline-primary btn-lg"><i class="fa-brands fa-whatsapp me-2"></i>WhatsApp</a>
+        </div>
+      </div>
+      <div class="col-lg-5">
+        <div class="card contact-card">
+          <div class="card-body">
+            <h5 class="mb-3">Información de contacto</h5>
+            <ul class="list-unstyled mb-0 text-secondary">
+              <li class="mb-2"><i class="fas fa-envelope me-2"></i> <a href="mailto:admin@iacol.online">admin@iacol.online</a></li>
+              <li class="mb-2"><i class="fas fa-phone me-2"></i> +57 (324) 269-3804</li>
+              <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Ibagué, Colombia</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="icon-box"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+            <h5>Diagnóstico inicial</h5>
+            <p class="text-secondary mb-0">Analizamos rápidamente el estado actual de sus procesos y canales para identificar puntos de mejora.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="icon-box"><i class="fa-solid fa-lightbulb"></i></div>
+            <h5>Oportunidades</h5>
+            <p class="text-secondary mb-0">Detectamos oportunidades concretas donde la analítica y la automatización con IA generan impacto.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="icon-box"><i class="fa-solid fa-rocket"></i></div>
+            <h5>Plan de acción</h5>
+            <p class="text-secondary mb-0">Le entregamos una visión clara y accionable para optimizar resultados con datos y tecnología.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
