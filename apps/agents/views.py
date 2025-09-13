@@ -10,8 +10,8 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
-from .models import Agent, UserSubscription, AgentConfiguration, AgentUsageLog, Provider, ProviderCategory
-from .forms import AgentConfigurationForm, ProviderForm, ProviderCategoryForm
+from .models import Agent, UserSubscription, AgentConfiguration, AgentUsageLog, Provider, ProviderCategory, Brand
+from .forms import AgentConfigurationForm, ProviderForm, ProviderCategoryForm, BrandForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 @login_required
@@ -319,6 +319,113 @@ class ProviderCategoryDeleteView(LoginRequiredMixin, DeleteView):
     
     def get_success_url(self):
         return reverse_lazy('agents:provider_category_list', kwargs={'agent_id': self.agent.id})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        return context
+
+class BrandListView(LoginRequiredMixin, ListView):
+    model = Brand
+    template_name = 'agents/brand_list.html'
+    context_object_name = 'brands'
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent_config = get_object_or_404(
+            AgentConfiguration,
+            user=request.user,
+            agent=self.agent
+        )
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get_queryset(self):
+        return Brand.objects.filter(agent_config=self.agent_config).order_by('name')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['agent_config'] = self.agent_config
+        return context
+
+class BrandCreateView(LoginRequiredMixin, CreateView):
+    model = Brand
+    form_class = BrandForm
+    template_name = 'agents/brand_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent_config = get_object_or_404(
+            AgentConfiguration,
+            user=request.user,
+            agent=self.agent
+        )
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.agent_config
+        return kwargs
+    
+    def form_valid(self, form):
+        form.instance.agent_config = self.agent_config
+        messages.success(self.request, _("Marca creada exitosamente."))
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy('agents:brand_list', kwargs={'agent_id': self.agent.id})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Agregar Marca")
+        return context
+
+class BrandUpdateView(LoginRequiredMixin, UpdateView):
+    model = Brand
+    form_class = BrandForm
+    template_name = 'agents/brand_form.html'
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.brand = self.get_object()
+        self.agent = self.brand.agent_config.agent
+        self.agent_config = self.brand.agent_config
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.agent_config
+        return kwargs
+    
+    def form_valid(self, form):
+        messages.success(self.request, _("Marca actualizada exitosamente."))
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy('agents:brand_list', kwargs={'agent_id': self.agent.id})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Editar Marca")
+        return context
+
+class BrandDeleteView(LoginRequiredMixin, DeleteView):
+    model = Brand
+    template_name = 'agents/brand_confirm_delete.html'
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.brand = self.get_object()
+        self.agent = self.brand.agent_config.agent
+        return super().dispatch(request, *args, **kwargs)
+    
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        messages.success(request, _("Marca eliminada exitosamente."))
+        return response
+    
+    def get_success_url(self):
+        return reverse_lazy('agents:brand_list', kwargs={'agent_id': self.agent.id})
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

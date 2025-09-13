@@ -6351,3 +6351,1408 @@ Traceback (most recent call last):
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
 ERROR 2025-09-13 09:22:22,265 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 09:23:25,346 basehttp 59 131468792686272 "GET /agents/1/configure/ HTTP/1.1" 200 20204
+ERROR 2025-09-13 09:23:25,968 log 59 131468804224704 Internal Server Error: /.well-known/appspecific/com.chrome.devtools.json
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:23:25,975 basehttp 59 131468804224704 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 500 62963
+ERROR 2025-09-13 09:23:26,776 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:23:26,777 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 09:23:27,676 basehttp 59 131468804224704 "GET /agents/providers/1/delete/ HTTP/1.1" 200 15561
+ERROR 2025-09-13 09:23:28,258 log 59 131468792686272 Internal Server Error: /.well-known/appspecific/com.chrome.devtools.json
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:23:28,259 basehttp 59 131468792686272 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 500 62963
+ERROR 2025-09-13 09:23:28,961 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:23:28,967 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63597
+INFO 2025-09-13 09:23:31,708 basehttp 59 131468792686272 "POST /agents/providers/1/delete/ HTTP/1.1" 302 0
+INFO 2025-09-13 09:23:32,313 basehttp 59 131468792686272 "GET /agents/1/configure/ HTTP/1.1" 200 16801
+ERROR 2025-09-13 09:23:32,961 log 59 131468804224704 Internal Server Error: /.well-known/appspecific/com.chrome.devtools.json
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:23:32,962 basehttp 59 131468804224704 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 500 62963
+ERROR 2025-09-13 09:23:33,580 log 59 131468804224704 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:23:33,584 basehttp 59 131468804224704 "GET /favicon.ico HTTP/1.1" 500 63590
+ERROR 2025-09-13 09:24:45,753 log 59 131468804224704 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:24:45,754 basehttp 59 131468804224704 "GET /favicon.ico HTTP/1.1" 500 63728
+ERROR 2025-09-13 09:24:45,933 log 59 131468804224704 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:24:45,934 basehttp 59 131468804224704 "GET /favicon.ico HTTP/1.1" 500 63582
+INFO 2025-09-13 09:25:04,751 basehttp 59 131468804224704 "GET /agents/1/provider-categories/ HTTP/1.1" 200 26540
+ERROR 2025-09-13 09:25:05,030 log 59 131468804224704 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:25:05,033 basehttp 59 131468804224704 "GET /favicon.ico HTTP/1.1" 500 63600
+INFO 2025-09-13 09:25:07,322 basehttp 59 131468804224704 "GET /agents/1/configure/ HTTP/1.1" 200 16801
+ERROR 2025-09-13 09:25:07,492 log 59 131468804224704 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:25:07,494 basehttp 59 131468804224704 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 09:25:09,036 basehttp 59 131468804224704 "GET /dashboard/ HTTP/1.1" 200 20673
+ERROR 2025-09-13 09:25:09,199 log 59 131468804224704 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:25:09,200 basehttp 59 131468804224704 "GET /favicon.ico HTTP/1.1" 500 63581
+INFO 2025-09-13 09:42:00,043 basehttp 59 131468792686272 "GET / HTTP/1.1" 200 27807
+ERROR 2025-09-13 09:42:00,435 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:42:00,436 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63571
+INFO 2025-09-13 09:42:02,786 basehttp 59 131468792686272 "GET /agents/ HTTP/1.1" 200 16231
+ERROR 2025-09-13 09:42:02,956 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:42:02,957 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63578
+ERROR 2025-09-13 09:42:04,841 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:42:04,844 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63571
+INFO 2025-09-13 09:42:05,695 basehttp 59 131468792686272 "GET /dashboard/ HTTP/1.1" 200 20673
+ERROR 2025-09-13 09:42:05,866 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:42:05,867 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63581
+ERROR 2025-09-13 09:42:07,659 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:42:07,660 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63571
+INFO 2025-09-13 09:42:13,759 basehttp 59 131468792686272 "GET /solutions/ HTTP/1.1" 200 21914
+ERROR 2025-09-13 09:42:13,937 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:42:13,938 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63581
+INFO 2025-09-13 09:42:14,718 basehttp 59 131468792686272 "GET /resources/ HTTP/1.1" 200 16746
+ERROR 2025-09-13 09:42:14,883 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:42:14,884 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63581
+INFO 2025-09-13 09:42:17,014 basehttp 59 131468792686272 "GET /contact/ HTTP/1.1" 200 17323
+ERROR 2025-09-13 09:42:17,169 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:42:17,170 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63579
+INFO 2025-09-13 09:42:29,123 basehttp 59 131468792686272 "GET /contact/ HTTP/1.1" 200 17323
+ERROR 2025-09-13 09:42:29,265 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:42:29,266 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63579
+INFO 2025-09-13 09:42:29,666 basehttp 59 131468792686272 "GET /dashboard/ HTTP/1.1" 200 20673
+ERROR 2025-09-13 09:42:29,827 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:42:29,829 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63581
+INFO 2025-09-13 09:42:31,345 basehttp 59 131468792686272 "GET /agents/1/configure/ HTTP/1.1" 200 16801
+ERROR 2025-09-13 09:42:31,496 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:42:31,497 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 09:42:33,184 basehttp 59 131468792686272 "GET /agents/1/provider-categories/ HTTP/1.1" 200 26540
+ERROR 2025-09-13 09:42:33,356 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:42:33,360 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63600
+ERROR 2025-09-13 09:42:37,257 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:42:37,260 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 09:42:38,389 basehttp 59 131468792686272 "GET /agents/1/providers/add/ HTTP/1.1" 200 17268
+ERROR 2025-09-13 09:42:38,553 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:42:38,554 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63594
+INFO 2025-09-13 09:42:46,119 basehttp 59 131468792686272 "POST /agents/1/providers/add/ HTTP/1.1" 302 0
+INFO 2025-09-13 09:42:46,156 basehttp 59 131468792686272 "GET /agents/1/configure/ HTTP/1.1" 200 20546
+ERROR 2025-09-13 09:42:46,332 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:42:46,334 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 09:45:00,984 basehttp 59 131468792686272 "GET / HTTP/1.1" 200 27807
+ERROR 2025-09-13 09:45:01,362 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:45:01,363 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63571
+INFO 2025-09-13 09:45:02,777 basehttp 59 131468792686272 "GET /dashboard/ HTTP/1.1" 200 20673
+ERROR 2025-09-13 09:45:02,963 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:45:02,964 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63581
+INFO 2025-09-13 09:45:11,118 basehttp 59 131468792686272 "GET /agents/1/configure/ HTTP/1.1" 200 20204
+ERROR 2025-09-13 09:45:11,269 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:45:11,270 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+ERROR 2025-09-13 09:45:14,763 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:45:14,764 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63581
+INFO 2025-09-13 09:45:16,286 basehttp 59 131468792686272 "GET /agents/1/configure/ HTTP/1.1" 200 20204
+ERROR 2025-09-13 09:45:16,434 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:45:16,436 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 09:45:17,533 basehttp 59 131468792686272 "GET /agents/providers/3/edit/ HTTP/1.1" 200 17327
+ERROR 2025-09-13 09:45:17,684 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:45:17,685 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63595
+INFO 2025-09-13 09:45:19,544 basehttp 59 131468792686272 "GET /agents/1/provider-categories/ HTTP/1.1" 200 26538
+ERROR 2025-09-13 09:45:19,699 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:45:19,700 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63600
+INFO 2025-09-13 09:45:28,021 basehttp 59 131468792686272 "GET /agents/1/configure/ HTTP/1.1" 200 20204
+ERROR 2025-09-13 09:45:28,189 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:45:28,190 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 09:47:22,220 basehttp 59 131468792686272 "GET /dashboard/ HTTP/1.1" 200 20673
+ERROR 2025-09-13 09:47:22,503 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:47:22,504 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63581
+INFO 2025-09-13 09:57:05,641 basehttp 59 131468792686272 "GET /agents/1/configure/ HTTP/1.1" 200 20204
+ERROR 2025-09-13 09:57:06,014 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:57:06,015 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 09:57:13,248 basehttp 59 131468792686272 "GET /agents/providers/3/edit/ HTTP/1.1" 200 17327
+ERROR 2025-09-13 09:57:13,523 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:57:13,525 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63595
+INFO 2025-09-13 09:57:16,917 basehttp 59 131468792686272 "GET /agents/1/configure/ HTTP/1.1" 200 20204
+ERROR 2025-09-13 09:57:17,083 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 09:57:17,084 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 10:30:59,824 basehttp 59 131468792686272 "GET /agents/1/provider-categories/ HTTP/1.1" 200 26538
+ERROR 2025-09-13 10:31:00,152 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:31:00,156 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63600
+ERROR 2025-09-13 10:31:07,257 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:31:07,259 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 10:31:56,109 basehttp 59 131468792686272 "GET /agents/1/provider-categories/ HTTP/1.1" 200 26538
+ERROR 2025-09-13 10:31:56,379 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:31:56,381 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63600
+INFO 2025-09-13 10:31:58,531 basehttp 59 131468792686272 "GET /agents/1/configure/ HTTP/1.1" 200 20204
+ERROR 2025-09-13 10:31:58,692 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:31:58,693 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 10:32:00,068 basehttp 59 131468792686272 "GET /agents/1/provider-categories/ HTTP/1.1" 200 26538
+ERROR 2025-09-13 10:32:00,228 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:32:00,230 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63600
+INFO 2025-09-13 10:32:03,837 basehttp 59 131468792686272 "GET /agents/1/configure/ HTTP/1.1" 200 20204
+ERROR 2025-09-13 10:32:03,983 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:32:03,984 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 10:32:07,693 basehttp 59 131468792686272 "GET /dashboard/ HTTP/1.1" 200 20673
+ERROR 2025-09-13 10:32:07,865 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:32:07,867 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63581
+INFO 2025-09-13 10:32:09,787 basehttp 59 131468792686272 "GET /agents/1/configure/ HTTP/1.1" 200 20204
+ERROR 2025-09-13 10:32:09,969 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:32:09,970 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 10:32:11,490 basehttp 59 131468792686272 "GET /agents/providers/3/edit/ HTTP/1.1" 200 17327
+ERROR 2025-09-13 10:32:11,648 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:32:11,649 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63595
+INFO 2025-09-13 10:32:14,652 basehttp 59 131468792686272 "GET /agents/1/configure/ HTTP/1.1" 200 20204
+ERROR 2025-09-13 10:32:14,820 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:32:14,821 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 10:32:16,358 basehttp 59 131468792686272 "GET /agents/1/provider-categories/ HTTP/1.1" 200 26538
+ERROR 2025-09-13 10:32:16,516 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:32:16,518 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63600
+INFO 2025-09-13 10:32:20,808 basehttp 59 131468792686272 "GET /agents/1/configure/ HTTP/1.1" 200 20204
+ERROR 2025-09-13 10:32:20,982 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:32:20,986 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 10:32:48,527 basehttp 59 131468792686272 "GET /agents/providers/3/edit/ HTTP/1.1" 200 17327
+ERROR 2025-09-13 10:32:48,682 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:32:48,683 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63595
+INFO 2025-09-13 10:32:50,310 basehttp 59 131468792686272 "GET /agents/1/configure/ HTTP/1.1" 200 20204
+ERROR 2025-09-13 10:32:50,465 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:32:50,466 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63590
+WARNING 2025-09-13 10:50:14,635 log 59 131468792686272 Not Found: /agents/providers/1/edit/
+WARNING 2025-09-13 10:50:14,636 basehttp 59 131468792686272 "GET /agents/providers/1/edit/ HTTP/1.1" 404 4095
+ERROR 2025-09-13 10:50:14,723 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:50:14,724 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63595
+INFO 2025-09-13 10:50:18,170 basehttp 59 131468792686272 "GET /agents/providers/3/edit/ HTTP/1.1" 200 17327
+ERROR 2025-09-13 10:50:18,522 log 59 131468792686272 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:50:18,524 basehttp 59 131468792686272 "GET /favicon.ico HTTP/1.1" 500 63595
+INFO 2025-09-13 10:57:39,447 autoreload 59 131468938222464 /app/apps/agents/models.py changed, reloading.
+INFO 2025-09-13 10:57:41,838 autoreload 110 126213960379264 Watching for file changes with StatReloader
+INFO 2025-09-13 10:57:49,837 autoreload 110 126213960379264 /app/apps/agents/views.py changed, reloading.
+INFO 2025-09-13 10:57:51,574 autoreload 114 136232025992064 Watching for file changes with StatReloader
+INFO 2025-09-13 10:58:36,863 basehttp 114 136231958607552 "GET / HTTP/1.1" 200 27807
+ERROR 2025-09-13 10:58:37,240 log 114 136231958607552 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:58:37,243 basehttp 114 136231958607552 "GET /favicon.ico HTTP/1.1" 500 63571
+INFO 2025-09-13 10:58:38,990 basehttp 114 136231958607552 "GET /contact/ HTTP/1.1" 200 17323
+ERROR 2025-09-13 10:58:39,169 log 114 136231958607552 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:58:39,171 basehttp 114 136231958607552 "GET /favicon.ico HTTP/1.1" 500 63579
+INFO 2025-09-13 10:58:40,805 basehttp 114 136231958607552 "GET /dashboard/ HTTP/1.1" 200 20673
+ERROR 2025-09-13 10:58:40,990 log 114 136231958607552 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:58:40,992 basehttp 114 136231958607552 "GET /favicon.ico HTTP/1.1" 500 63581
+ERROR 2025-09-13 10:58:41,936 log 114 136231958607552 Internal Server Error: /agents/1/configure/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/apps/agents/views.py", line 115, in agent_configure
+    return render(request, 'agents/agent_configure.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'brand_list' not found. 'brand_list' is not a valid view function or pattern name.
+ERROR 2025-09-13 10:58:41,951 basehttp 114 136231958607552 "GET /agents/1/configure/ HTTP/1.1" 500 197903
+ERROR 2025-09-13 10:58:42,141 log 114 136231958607552 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 10:58:42,144 basehttp 114 136231958607552 "GET /favicon.ico HTTP/1.1" 500 63590
+ERROR 2025-09-13 11:02:11,862 log 114 136231958607552 Internal Server Error: /agents/1/configure/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/apps/agents/views.py", line 115, in agent_configure
+    return render(request, 'agents/agent_configure.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'brand_list' not found. 'brand_list' is not a valid view function or pattern name.
+ERROR 2025-09-13 11:02:11,874 basehttp 114 136231958607552 "GET /agents/1/configure/ HTTP/1.1" 500 198040
+ERROR 2025-09-13 11:02:12,118 log 114 136231958607552 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:02:12,121 basehttp 114 136231958607552 "GET /favicon.ico HTTP/1.1" 500 63590
+ERROR 2025-09-13 11:02:14,265 log 114 136231958607552 Internal Server Error: /agents
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:02:14,266 basehttp 114 136231958607552 "GET /agents HTTP/1.1" 500 63678
+ERROR 2025-09-13 11:02:14,377 log 114 136231958607552 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:02:14,380 basehttp 114 136231958607552 "GET /favicon.ico HTTP/1.1" 500 63577
+INFO 2025-09-13 11:02:17,452 basehttp 114 136231958607552 "GET / HTTP/1.1" 200 27807
+ERROR 2025-09-13 11:02:17,972 log 114 136231958607552 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:02:17,973 basehttp 114 136231958607552 "GET /favicon.ico HTTP/1.1" 500 63571
+INFO 2025-09-13 11:02:18,942 basehttp 114 136231958607552 "GET /contact/ HTTP/1.1" 200 17323
+ERROR 2025-09-13 11:02:19,116 log 114 136231958607552 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:02:19,118 basehttp 114 136231958607552 "GET /favicon.ico HTTP/1.1" 500 63579
+INFO 2025-09-13 11:02:20,730 basehttp 114 136231958607552 "GET /dashboard/ HTTP/1.1" 200 20673
+ERROR 2025-09-13 11:02:20,916 log 114 136231958607552 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:02:20,918 basehttp 114 136231958607552 "GET /favicon.ico HTTP/1.1" 500 63581
+ERROR 2025-09-13 11:02:23,197 log 114 136231958607552 Internal Server Error: /agents/1/configure/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 23, in _wrapper_view
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/apps/agents/views.py", line 115, in agent_configure
+    return render(request, 'agents/agent_configure.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/backends/django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 175, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 157, in render
+    return compiled_parent._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 167, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/loader_tags.py", line 63, in render
+    result = block.nodelist.render(context)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 321, in render
+    return nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in render
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 1005, in <listcomp>
+    return SafeString("".join([node.render_annotated(context) for node in self]))
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/base.py", line 966, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/template/defaulttags.py", line 471, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/base.py", line 88, in reverse
+    return resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/urls/resolvers.py", line 828, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'brand_list' not found. 'brand_list' is not a valid view function or pattern name.
+ERROR 2025-09-13 11:02:23,204 basehttp 114 136231958607552 "GET /agents/1/configure/ HTTP/1.1" 500 197903
+ERROR 2025-09-13 11:02:23,414 log 114 136231958607552 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:02:23,416 basehttp 114 136231958607552 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 11:05:03,631 autoreload 14 135707464838016 Watching for file changes with StatReloader
+INFO 2025-09-13 11:05:07,109 basehttp 14 135707330868928 "GET / HTTP/1.1" 200 28011
+INFO 2025-09-13 11:05:08,759 basehttp 14 135707330868928 "GET /static/img/main.webp HTTP/1.1" 200 74230
+ERROR 2025-09-13 11:05:08,968 log 14 135707330868928 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:05:08,970 basehttp 14 135707330868928 "GET /favicon.ico HTTP/1.1" 500 64875
+ERROR 2025-09-13 11:05:15,778 log 14 135707322476224 Internal Server Error: /agents
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:05:15,780 basehttp 14 135707322476224 "GET /agents HTTP/1.1" 500 63678
+ERROR 2025-09-13 11:05:15,896 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:05:15,897 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63577
+INFO 2025-09-13 11:05:17,426 basehttp 14 135707322476224 "GET / HTTP/1.1" 200 27807
+ERROR 2025-09-13 11:05:17,835 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:05:17,836 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63571
+INFO 2025-09-13 11:05:18,985 basehttp 14 135707322476224 "GET /contact/ HTTP/1.1" 200 17323
+ERROR 2025-09-13 11:05:19,174 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:05:19,175 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63579
+INFO 2025-09-13 11:05:26,269 basehttp 14 135707322476224 "GET /dashboard/ HTTP/1.1" 200 20673
+ERROR 2025-09-13 11:05:26,454 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:05:26,456 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63581
+INFO 2025-09-13 11:05:27,289 basehttp 14 135707322476224 "GET /agents/1/configure/ HTTP/1.1" 200 20398
+ERROR 2025-09-13 11:05:27,448 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:05:27,450 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 11:05:30,027 basehttp 14 135707322476224 "GET /agents/providers/3/edit/ HTTP/1.1" 200 18158
+ERROR 2025-09-13 11:05:30,223 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:05:30,224 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63595
+INFO 2025-09-13 11:05:32,762 basehttp 14 135707322476224 "GET /agents/1/configure/ HTTP/1.1" 200 20398
+ERROR 2025-09-13 11:05:32,951 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:05:32,953 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 11:05:36,502 basehttp 14 135707322476224 "GET /agents/1/provider-categories/ HTTP/1.1" 200 26538
+ERROR 2025-09-13 11:05:36,680 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:05:36,681 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63600
+INFO 2025-09-13 11:05:39,597 basehttp 14 135707322476224 "GET /agents/provider-categories/8/edit/ HTTP/1.1" 200 16201
+ERROR 2025-09-13 11:05:39,766 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:05:39,768 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63605
+INFO 2025-09-13 11:05:41,601 basehttp 14 135707322476224 "GET /agents/1/provider-categories/ HTTP/1.1" 200 26538
+ERROR 2025-09-13 11:05:41,779 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:05:41,781 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63600
+INFO 2025-09-13 11:05:42,734 basehttp 14 135707322476224 "GET /agents/1/configure/ HTTP/1.1" 200 20398
+ERROR 2025-09-13 11:05:42,882 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:05:42,883 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 11:05:44,680 basehttp 14 135707322476224 "GET /agents/1/brands/ HTTP/1.1" 200 17836
+ERROR 2025-09-13 11:05:44,833 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:05:44,834 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63587
+INFO 2025-09-13 11:05:55,409 basehttp 14 135707322476224 "GET /agents/1/brands/add/ HTTP/1.1" 200 16977
+ERROR 2025-09-13 11:05:55,565 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:05:55,566 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63591
+INFO 2025-09-13 11:06:05,251 basehttp 14 135707322476224 "POST /agents/1/brands/add/ HTTP/1.1" 302 0
+INFO 2025-09-13 11:06:05,290 basehttp 14 135707322476224 "GET /agents/1/brands/ HTTP/1.1" 200 19901
+ERROR 2025-09-13 11:06:05,451 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:06:05,452 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63587
+INFO 2025-09-13 11:06:09,010 basehttp 14 135707322476224 "GET /agents/brands/1/edit/ HTTP/1.1" 200 17769
+ERROR 2025-09-13 11:06:09,199 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:06:09,200 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63592
+INFO 2025-09-13 11:06:10,903 basehttp 14 135707322476224 "GET /agents/1/brands/ HTTP/1.1" 200 19563
+ERROR 2025-09-13 11:06:11,069 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:06:11,070 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63587
+INFO 2025-09-13 11:06:12,351 basehttp 14 135707322476224 "GET /agents/1/brands/add/ HTTP/1.1" 200 16977
+ERROR 2025-09-13 11:06:12,511 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:06:12,513 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63591
+INFO 2025-09-13 11:06:18,278 basehttp 14 135707322476224 "POST /agents/1/brands/add/ HTTP/1.1" 302 0
+INFO 2025-09-13 11:06:18,316 basehttp 14 135707322476224 "GET /agents/1/brands/ HTTP/1.1" 200 21461
+ERROR 2025-09-13 11:06:18,479 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:06:18,481 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63587
+INFO 2025-09-13 11:06:19,759 basehttp 14 135707322476224 "GET /agents/1/brands/add/ HTTP/1.1" 200 16977
+ERROR 2025-09-13 11:06:19,932 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:06:19,933 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63591
+INFO 2025-09-13 11:06:26,750 basehttp 14 135707322476224 "POST /agents/1/brands/add/ HTTP/1.1" 302 0
+INFO 2025-09-13 11:06:26,792 basehttp 14 135707322476224 "GET /agents/1/brands/ HTTP/1.1" 200 23019
+ERROR 2025-09-13 11:06:26,985 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:06:26,986 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63587
+INFO 2025-09-13 11:06:28,522 basehttp 14 135707322476224 "GET /agents/1/brands/add/ HTTP/1.1" 200 16977
+ERROR 2025-09-13 11:06:28,697 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:06:28,701 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63591
+INFO 2025-09-13 11:06:33,758 basehttp 14 135707322476224 "POST /agents/1/brands/add/ HTTP/1.1" 302 0
+INFO 2025-09-13 11:06:33,791 basehttp 14 135707322476224 "GET /agents/1/brands/ HTTP/1.1" 200 24573
+ERROR 2025-09-13 11:06:33,959 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:06:33,960 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63587
+INFO 2025-09-13 11:06:34,963 basehttp 14 135707322476224 "GET /agents/1/brands/add/ HTTP/1.1" 200 16977
+ERROR 2025-09-13 11:06:35,124 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:06:35,126 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63591
+INFO 2025-09-13 11:06:38,843 basehttp 14 135707322476224 "POST /agents/1/brands/add/ HTTP/1.1" 302 0
+INFO 2025-09-13 11:06:38,939 basehttp 14 135707322476224 "GET /agents/1/brands/ HTTP/1.1" 200 26128
+ERROR 2025-09-13 11:06:39,117 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:06:39,118 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63587
+INFO 2025-09-13 11:06:43,221 basehttp 14 135707322476224 "GET /agents/1/configure/ HTTP/1.1" 200 20398
+ERROR 2025-09-13 11:06:43,417 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:06:43,418 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 11:06:45,792 basehttp 14 135707322476224 "GET /agents/providers/3/edit/ HTTP/1.1" 200 18328
+ERROR 2025-09-13 11:06:45,968 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:06:45,970 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63595
+INFO 2025-09-13 11:07:00,354 basehttp 14 135707322476224 "GET /agents/1/brands/ HTTP/1.1" 200 25790
+ERROR 2025-09-13 11:07:00,519 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:07:00,521 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63587
+INFO 2025-09-13 11:07:02,187 basehttp 14 135707322476224 "GET /agents/brands/4/edit/ HTTP/1.1" 200 17766
+ERROR 2025-09-13 11:07:02,345 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:07:02,347 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63592
+INFO 2025-09-13 11:07:03,454 basehttp 14 135707322476224 "GET /agents/1/brands/ HTTP/1.1" 200 25790
+ERROR 2025-09-13 11:07:03,663 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:07:03,664 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63587
+INFO 2025-09-13 11:07:06,421 basehttp 14 135707322476224 "GET /agents/1/configure/ HTTP/1.1" 200 20398
+ERROR 2025-09-13 11:07:06,604 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:07:06,608 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 11:07:07,821 basehttp 14 135707322476224 "GET /agents/1/providers/add/ HTTP/1.1" 200 18269
+ERROR 2025-09-13 11:07:08,033 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:07:08,036 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63594
+INFO 2025-09-13 11:07:21,698 basehttp 14 135707322476224 "POST /agents/1/providers/add/ HTTP/1.1" 302 0
+INFO 2025-09-13 11:07:21,740 basehttp 14 135707322476224 "GET /agents/1/configure/ HTTP/1.1" 200 23832
+ERROR 2025-09-13 11:07:21,934 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:07:21,935 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 11:07:24,530 basehttp 14 135707322476224 "GET /agents/providers/3/edit/ HTTP/1.1" 200 18328
+ERROR 2025-09-13 11:07:24,732 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:07:24,733 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63595
+INFO 2025-09-13 11:07:28,883 basehttp 14 135707322476224 "GET /agents/1/configure/ HTTP/1.1" 200 23490
+ERROR 2025-09-13 11:07:29,037 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:07:29,039 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 11:07:30,899 basehttp 14 135707322476224 "GET /agents/1/brands/ HTTP/1.1" 200 25790
+ERROR 2025-09-13 11:07:31,087 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:07:31,088 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63587
+INFO 2025-09-13 11:07:32,227 basehttp 14 135707322476224 "GET /agents/1/configure/ HTTP/1.1" 200 23490
+ERROR 2025-09-13 11:07:32,398 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:07:32,399 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63590
+INFO 2025-09-13 11:07:34,851 basehttp 14 135707322476224 "GET /agents/providers/3/edit/ HTTP/1.1" 200 18328
+ERROR 2025-09-13 11:07:35,036 log 14 135707322476224 Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: <lambda>() got an unexpected keyword argument 'undefined_path'
+ERROR 2025-09-13 11:07:35,038 basehttp 14 135707322476224 "GET /favicon.ico HTTP/1.1" 500 63595
+INFO 2025-09-13 11:11:46,472 autoreload 14 135707464838016 /app/apps/agents/forms.py changed, reloading.
+INFO 2025-09-13 11:11:48,092 autoreload 35 130652234079104 Watching for file changes with StatReloader

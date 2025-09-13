@@ -45,6 +45,9 @@
                         <a href="{% url 'agents:provider_category_list' agent.id %}" class="btn btn-outline-primary btn-sm">
                             <i class="fas fa-tags me-1"></i>Gestionar Categorías
                         </a>
+                        <a href="{% url 'agents:brand_list' agent.id %}" class="btn btn-outline-info btn-sm">
+                            <i class="fas fa-tag me-1"></i>Gestionar Marcas
+                        </a>
                         <a href="{% url 'agents:provider_add' agent_id=agent.id %}" class="btn btn-success btn-sm">
                             <i class="fas fa-plus me-1"></i>Agregar Proveedor
                         </a>

@@ -25,4 +25,10 @@ urlpatterns = [
     path('<int:agent_id>/provider-categories/add/', views.ProviderCategoryCreateView.as_view(), name='provider_category_add'),
     path('provider-categories/<int:pk>/edit/', views.ProviderCategoryUpdateView.as_view(), name='provider_category_edit'),
     path('provider-categories/<int:pk>/delete/', views.ProviderCategoryDeleteView.as_view(), name='provider_category_delete'),
+    
+    # URLs para la gestión de marcas
+    path('<int:agent_id>/brands/', views.BrandListView.as_view(), name='brand_list'),
+    path('<int:agent_id>/brands/add/', views.BrandCreateView.as_view(), name='brand_add'),
+    path('brands/<int:pk>/edit/', views.BrandUpdateView.as_view(), name='brand_edit'),
+    path('brands/<int:pk>/delete/', views.BrandDeleteView.as_view(), name='brand_delete'),
 ]

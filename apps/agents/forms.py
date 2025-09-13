@@ -1,7 +1,7 @@
 from django import forms
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Field
-from .models import AgentConfiguration, Provider, ProviderCategory
+from crispy_forms.layout import Submit, Layout, Field, Div, HTML
+from .models import AgentConfiguration, Provider, ProviderCategory, Brand
 
 class AgentConfigurationForm(forms.ModelForm):
     class Meta:
@@ -40,10 +40,53 @@ class ProviderCategoryForm(forms.ModelForm):
             instance.save()
         return instance
 
+class BrandForm(forms.ModelForm):
+    class Meta:
+        model = Brand
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Nombre de la marca'
+            }),
+        }
+        labels = {
+            'name': 'Nombre de la marca',
+        }
+
+    def __init__(self, *args, **kwargs):
+        self.agent_config = kwargs.pop('agent_config', None)
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if self.agent_config:
+            instance.agent_config = self.agent_config
+        if commit:
+            instance.save()
+        return instance
+
 class ProviderForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.agent_config = kwargs.pop('agent_config', None)
+        super().__init__(*args, **kwargs)
+        
+        # Filter categories and brands by agent_config
+        if self.agent_config:
+            self.fields['category'].queryset = ProviderCategory.objects.filter(
+                agent_config=self.agent_config
+            )
+            
+            # Update the brands field to use CheckboxSelectMultiple
+            self.fields['brands'].widget = forms.CheckboxSelectMultiple()
+            self.fields['brands'].queryset = Brand.objects.filter(
+                agent_config=self.agent_config
+            )
+            self.fields['brands'].required = False
+            
     class Meta:
         model = Provider
-        fields = ['name', 'phone', 'city', 'category']
+        fields = ['name', 'phone', 'city', 'category', 'brands']
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -63,24 +106,12 @@ class ProviderForm(forms.ModelForm):
                 'placeholder': 'Seleccione una categoría'
             }),
         }
-        labels = {
-            'name': 'Nombre',
-            'phone': 'Teléfono',
-            'city': 'Ciudad',
-            'category': 'Categoría',
-        }
-        help_texts = {
-            'phone': 'Formato: (XXX) XXX-XXXX',
-        }
-
-    def __init__(self, *args, **kwargs):
-        self.agent_config = kwargs.pop('agent_config', None)
-        super().__init__(*args, **kwargs)
         
-        # Filtrar categorías solo para la configuración del agente actual
+    def save(self, commit=True):
+        instance = super().save(commit=False)
         if self.agent_config:
-            self.fields['category'].queryset = ProviderCategory.objects.filter(
-                agent_config=self.agent_config
-            )
-        else:
-            self.fields['category'].queryset = ProviderCategory.objects.none()
+            instance.agent_config = self.agent_config
+        if commit:
+            instance.save()
+            self.save_m2m()  # This is needed for many-to-many fields
+        return instance

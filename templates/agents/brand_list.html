@@ -1,16 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}{{ title }} - {{ block.super }}{% endblock %}
+{% block title %}Gestión de Marcas - {{ agent.name }} - {{ block.super }}{% endblock %}
 
 {% block extra_css %}
 <style>
-    .category-table {
+    .brand-table {
         width: 100%;
         border-collapse: separate;
         border-spacing: 0 0.75rem;
     }
-    .category-table th {
+    .brand-table th {
         font-weight: 600;
         color: #5a5c69;  
         text-transform: uppercase;
@@ -20,7 +20,7 @@
         padding: 0.75rem 1.5rem;
         background-color: #f8f9fc;  
     }
-    .category-table td {
+    .brand-table td {
         background: white;
         padding: 1.25rem 1.5rem;
         vertical-align: middle;
@@ -28,16 +28,16 @@
         border-top: 1px solid #e3e6f0;
         border-bottom: 1px solid #e3e6f0;
     }
-    .category-table tr:first-child td {
+    .brand-table tr:first-child td {
         border-top: 1px solid #e3e6f0;
     }
-    .category-table tr:last-child td {
+    .brand-table tr:last-child td {
         border-bottom: 1px solid #e3e6f0;
     }
-    .category-table tr:hover td {
+    .brand-table tr:hover td {
         background-color: #f8f9fc;
     }
-    .badge-category {
+    .badge-brand {
         background-color: #e3e6f0;
         color: #4e73df;
         font-weight: 600;
@@ -88,13 +88,13 @@
     }
     
     @media (max-width: 768px) {
-        .category-table {
+        .brand-table {
             display: block;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
         }
-        .category-table th, 
-        .category-table td {
+        .brand-table th, 
+        .brand-table td {
             padding: 1rem;
         }
         .action-buttons {
@@ -110,68 +110,57 @@
         <div class="mb-3 mb-md-0">
             <h1 class="h3 mb-1 page-title">
                 <i class="fas fa-tags me-2"></i>
-                Gestión de Categorías de Proveedores
+                Gestión de Marcas
             </h1>
-            <p class="text-muted mb-0">Administra las categorías disponibles para los proveedores de {{ agent.name }}</p>
+            <p class="text-muted mb-0">Administra las marcas disponibles para los proveedores de {{ agent.name }}</p>
         </div>
         <div>
             <a href="{% url 'agents:agent_configure' agent.id %}" class="btn btn-outline-secondary me-2">
                 <i class="fas fa-arrow-left me-1"></i> Volver a Configuración
             </a>
-            <a href="{% url 'agents:provider_category_add' agent.id %}" class="btn btn-primary">
-                <i class="fas fa-plus me-1"></i> Agregar Categoría
+            <a href="{% url 'agents:brand_add' agent.id %}" class="btn btn-primary">
+                <i class="fas fa-plus me-1"></i> Agregar Marca
             </a>
         </div>
     </div>
 
-    {% if object_list %}
-        <div class="card shadow-sm mb-4">
-            <div class="card-body p-0">
+    <div class="card shadow-sm mb-4">
+        <div class="card-body p-0">
+            {% if brands %}
                 <div class="table-responsive">
-                    <table class="category-table">
+                    <table class="brand-table">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Proveedores</th>
-                                <th>Última actualización</th>
+                                <th>Fecha de Creación</th>
+                                <th>Última Actualización</th>
                                 <th class="text-end">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for category in object_list %}
+                            {% for brand in brands %}
                             <tr>
                                 <td>
-                                    <div class="d-flex align-items-center">
-                                        <div class="me-2">
-                                            <i class="fas fa-tag text-primary"></i>
-                                        </div>
-                                        <div>
-                                            <div class="font-weight-600">{{ category.name }}</div>
-                                            <small class="text-muted">ID: {{ category.id|stringformat:"04d" }}</small>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <span class="badge-category">
-                                        {{ category.providers.count }} proveedor{{ category.providers.count|pluralize:"es" }}
+                                    <span class="badge-brand">
+                                        <i class="fas fa-tag me-1"></i>
+                                        {{ brand.name }}
                                     </span>
                                 </td>
-                                <td>
-                                    <small class="text-muted">
-                                        {{ category.updated_at|date:"d M Y"|default:"No disponible" }}
-                                    </small>
-                                </td>
+                                <td>{{ brand.created_at|date:"d/m/Y H:i" }}</td>
+                                <td>{{ brand.updated_at|date:"d/m/Y H:i" }}</td>
                                 <td class="text-end">
                                     <div class="action-buttons">
-                                        <a href="{% url 'agents:provider_category_edit' category.id %}" 
-                                           class="btn btn-sm btn-outline-primary action-btn" 
-                                           title="Editar">
-                                            <i class="fas fa-pen"></i>
+                                        <a href="{% url 'agents:brand_edit' brand.id %}" 
+                                           class="action-btn btn btn-sm btn-outline-primary"
+                                           data-bs-toggle="tooltip" 
+                                           title="Editar marca">
+                                            <i class="fas fa-edit"></i>
                                         </a>
-                                        <a href="{% url 'agents:provider_category_delete' category.id %}" 
-                                           class="btn btn-sm btn-outline-danger action-btn" 
-                                           title="Eliminar">
-                                            <i class="fas fa-trash"></i>
+                                        <a href="{% url 'agents:brand_delete' brand.id %}" 
+                                           class="action-btn btn btn-sm btn-outline-danger"
+                                           data-bs-toggle="tooltip" 
+                                           title="Eliminar marca">
+                                            <i class="fas fa-trash-alt"></i>
                                         </a>
                                     </div>
                                 </td>
@@ -180,35 +169,28 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
+            {% else %}
+                <div class="empty-state">
+                    <i class="fas fa-tags"></i>
+                    <h5>No hay marcas registradas</h5>
+                    <p>Comienza agregando tu primera marca para organizar mejor tus proveedores.</p>
+                    <a href="{% url 'agents:brand_add' agent.id %}" class="btn btn-primary">
+                        <i class="fas fa-plus me-1"></i> Agregar Marca
+                    </a>
+                </div>
+            {% endif %}
         </div>
-    {% else %}
-        <div class="empty-state">
-            <i class="fas fa-tags"></i>
-            <h5>No hay categorías de proveedores</h5>
-            <p>Comienza creando tu primera categoría para organizar a tus proveedores.</p>
-            <a href="{% url 'agents:provider_category_add' agent.id %}" class="btn btn-primary">
-                <i class="fas fa-plus me-1"></i> Crear Categoría
-            </a>
-        </div>
-    {% endif %}
-    
-    <div class="d-flex justify-content-between align-items-center mt-4">
-        {% if object_list %}
-        <div class="text-muted small">
-            Mostrando {{ object_list|length }} categoría{{ object_list|length|pluralize:"s" }}
-        </div>
-        {% endif %}
     </div>
 </div>
 {% endblock %}
 
 {% block extra_js %}
 <script>
-    $(document).ready(function() {
-        // Inicialización de tooltips
-        $('[title]').tooltip({
-            trigger: 'hover'
+    // Inicializar tooltips
+    document.addEventListener('DOMContentLoaded', function() {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
         });
     });
 </script>

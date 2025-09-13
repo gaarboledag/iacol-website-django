@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Marca - {{ object.name }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-danger shadow-sm">
+                <div class="card-header bg-danger text-white">
+                    <h5 class="mb-0">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        Confirmar Eliminación
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <h5 class="alert-heading">
+                            <i class="fas fa-exclamation-circle me-2"></i>
+                            ¿Estás seguro de que deseas eliminar esta marca?
+                        </h5>
+                        <p class="mb-0">
+                            Estás a punto de eliminar la marca <strong>"{{ object.name }}"</strong>.
+                            Esta acción no se puede deshacer y eliminará permanentemente la marca del sistema.
+                        </p>
+                    </div>
+
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h6 class="text-uppercase text-muted mb-3">Detalles de la Marca</h6>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <p class="mb-2">
+                                        <span class="text-muted">Nombre:</span><br>
+                                        <strong>{{ object.name }}</strong>
+                                    </p>
+                                </div>
+                                <div class="col-md-6">
+                                    <p class="mb-2">
+                                        <span class="text-muted">Creada el:</span><br>
+                                        <strong>{{ object.created_at|date:"d/m/Y H:i" }}</strong>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-3">
+                                <span class="badge bg-danger-soft text-danger">
+                                    <i class="fas fa-exclamation-triangle me-1"></i>
+                                    Esta acción afectará a los proveedores asociados
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="d-flex justify-content-between">
+                            <a href="{% url 'agents:brand_list' agent.id %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-1"></i> Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash-alt me-1"></i> Sí, eliminar marca
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

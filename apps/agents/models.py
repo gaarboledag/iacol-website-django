@@ -102,6 +102,27 @@ class ProviderCategory(models.Model):
     def __str__(self):
         return self.name
 
+class Brand(models.Model):
+    """Modelo para almacenar marcas de proveedores"""
+    name = models.CharField(max_length=100, verbose_name='Nombre de la marca')
+    agent_config = models.ForeignKey(
+        AgentConfiguration,
+        on_delete=models.CASCADE,
+        related_name='brands',
+        verbose_name='Configuración del agente'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Marca'
+        verbose_name_plural = 'Marcas'
+        unique_together = ['name', 'agent_config']
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
 class Provider(models.Model):
     """Modelo para almacenar información de proveedores de un agente"""
     name = models.CharField(max_length=200, verbose_name='Nombre del proveedor')
@@ -114,6 +135,12 @@ class Provider(models.Model):
         blank=True,
         related_name='providers',
         verbose_name='Categoría'
+    )
+    brands = models.ManyToManyField(
+        Brand,
+        related_name='providers',
+        blank=True,
+        verbose_name='Marcas que maneja'
     )
     agent_config = models.ForeignKey(
         AgentConfiguration, 
