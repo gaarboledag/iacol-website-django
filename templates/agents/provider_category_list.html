@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }} - {{ block.super }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .category-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 0.75rem;
+    }
+    .category-table th {
+        font-weight: 600;
+        color: #5a5c69;  
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        letter-spacing: 0.5px;
+        border: none;
+        padding: 0.75rem 1.5rem;
+        background-color: #f8f9fc;  
+    }
+    .category-table td {
+        background: white;
+        padding: 1.25rem 1.5rem;
+        vertical-align: middle;
+        border: none;
+        border-top: 1px solid #e3e6f0;
+        border-bottom: 1px solid #e3e6f0;
+    }
+    .category-table tr:first-child td {
+        border-top: 1px solid #e3e6f0;
+    }
+    .category-table tr:last-child td {
+        border-bottom: 1px solid #e3e6f0;
+    }
+    .category-table tr:hover td {
+        background-color: #f8f9fc;
+    }
+    .badge-category {
+        background-color: #e3e6f0;
+        color: #4e73df;
+        font-weight: 600;
+        padding: 0.35em 0.8em;
+        border-radius: 50rem;
+        font-size: 0.8em;
+    }
+    .action-btn {
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;  
+        border-radius: 50%;
+        margin: 0 2px;
+        transition: all 0.2s ease;
+    }
+    .action-btn i {
+        margin: 0;  
+        font-size: 0.9em;  
+    }
+    .empty-state {
+        background: #f8f9fc;
+        border-radius: 0.5rem;
+        padding: 3rem 1.5rem;
+        text-align: center;
+    }
+    .empty-state i {
+        font-size: 2.5rem;
+        color: #d1d3e2;
+        margin-bottom: 1rem;
+    }
+    .empty-state h5 {
+        color: #5a5c69;  
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+    }
+    .empty-state p {
+        color: #858796;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Estilo para el título principal */
+    .page-title {
+        color: #5a5c69;
+        font-weight: 600;
+    }
+    
+    @media (max-width: 768px) {
+        .category-table {
+            display: block;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .category-table th, 
+        .category-table td {
+            padding: 1rem;
+        }
+        .action-buttons {
+            white-space: nowrap;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4">
+        <div class="mb-3 mb-md-0">
+            <h1 class="h3 mb-1 page-title">
+                <i class="fas fa-tags me-2"></i>
+                Categorías de Proveedores
+            </h1>
+            <p class="text-muted mb-0">Administra las categorías para organizar a tus proveedores</p>
+        </div>
+        <a href="{% url 'agents:provider_category_add' agent.id %}" class="btn btn-primary">
+            <i class="fas fa-plus me-1"></i> Nueva Categoría
+        </a>
+    </div>
+
+    {% if object_list %}
+        <div class="card shadow-sm mb-4">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="category-table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Proveedores</th>
+                                <th>Última actualización</th>
+                                <th class="text-end">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for category in object_list %}
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="me-2">
+                                            <i class="fas fa-tag text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <div class="font-weight-600">{{ category.name }}</div>
+                                            <small class="text-muted">ID: {{ category.id|stringformat:"04d" }}</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <span class="badge-category">
+                                        {{ category.providers.count }} proveedor{{ category.providers.count|pluralize:"es" }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        {{ category.updated_at|date:"d M Y"|default:"No disponible" }}
+                                    </small>
+                                </td>
+                                <td class="text-end">
+                                    <div class="action-buttons">
+                                        <a href="{% url 'agents:provider_category_edit' category.id %}" 
+                                           class="btn btn-sm btn-outline-primary action-btn" 
+                                           title="Editar">
+                                            <i class="fas fa-pen"></i>
+                                        </a>
+                                        <a href="{% url 'agents:provider_category_delete' category.id %}" 
+                                           class="btn btn-sm btn-outline-danger action-btn" 
+                                           title="Eliminar">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="empty-state">
+            <i class="fas fa-tags"></i>
+            <h5>No hay categorías de proveedores</h5>
+            <p>Comienza creando tu primera categoría para organizar a tus proveedores.</p>
+            <a href="{% url 'agents:provider_category_add' agent.id %}" class="btn btn-primary">
+                <i class="fas fa-plus me-1"></i> Crear Categoría
+            </a>
+        </div>
+    {% endif %}
+    
+    <div class="d-flex justify-content-between align-items-center mt-4">
+        <a href="{% url 'agents:agent_configure' agent.id %}" class="btn btn-link text-decoration-none">
+            <i class="fas fa-arrow-left me-1"></i> Volver a la configuración
+        </a>
+        {% if object_list %}
+        <div class="text-muted small">
+            Mostrando {{ object_list|length }} categoría{{ object_list|length|pluralize:"s" }}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        // Inicialización de tooltips
+        $('[title]').tooltip({
+            trigger: 'hover'
+        });
+    });
+</script>
+{% endblock %}

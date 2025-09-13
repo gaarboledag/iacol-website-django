@@ -54,6 +54,7 @@
     height: 100%;
     padding: 2rem 15px;
   }
+
   @media (max-width: 991.98px) {
     .hero-section::before {
       width: 100%;
@@ -94,6 +95,24 @@
   .feature-chip:hover {
     transform: translateY(-2px);
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.08) !important;
+  }
+  
+  /* Responsive styles for startup challenges section */
+  @media (max-width: 767.98px) {
+    #startup-challenges .icon-box {
+      width: 32px !important;
+      height: 32px !important;
+      font-size: 1.25rem !important;
+    }
+    #startup-challenges p {
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem !important;
+      text-align: left;
+    }
+    #startup-challenges h2 {
+      font-size: 1.5rem;
+      line-height: 1.2;
+    }
   }
 </style>
 {% endblock %}
@@ -147,8 +166,8 @@
       </div>
       <div class="col-lg-6">
         <div class="d-flex flex-column gap-3">
-          <div class="d-flex gap-3 p-3 p-md-4 rounded-3 bg-white shadow-sm feature-chip">
-            <div class="icon-box flex-shrink-0" style="width: 44px; height: 44px; font-size: 1.1rem;">
+          <div class="d-flex gap-3 p-3 p-md-4 rounded-3 bg-white shadow-sm feature-chip align-items-center">
+            <div class="icon-box flex-shrink-0" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
               <i class="fas fa-handshake-angle"></i>
             </div>
             <div>
@@ -156,8 +175,8 @@
               <p class="mb-0 text-muted">Somos tus socios, no solo proveedores. Te guiamos antes, durante y después de la implementación.</p>
             </div>
           </div>
-          <div class="d-flex gap-3 p-3 p-md-4 rounded-3 bg-white shadow-sm feature-chip">
-            <div class="icon-box flex-shrink-0" style="width: 44px; height: 44px; font-size: 1.1rem;">
+          <div class="d-flex gap-3 p-3 p-md-4 rounded-3 bg-white shadow-sm feature-chip align-items-center">
+            <div class="icon-box flex-shrink-0" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
               <i class="fas fa-arrow-trend-up"></i>
             </div>
             <div>
@@ -184,10 +203,10 @@
             <div class="col-md-4">
                 <div class="card h-100 border-0">
                     <div class="card-body p-4">
-                        <div class="icon-box mb-4 mx-auto">
+                        <div class="icon-box mb-4 mx-auto text-center" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
                           <i class="fas fa-chart-pie"></i>
                         </div>
-                        <h3 class="h4 mb-3">Visualización de Datos y Dashboards BI</h3>
+                        <h3 class="h4 mb-3 text-center">Visualización de Datos y Dashboards BI</h3>
                         <p class="text-muted mb-0">
                           Conecta tus fuentes y crea paneles interactivos para monitorear KPIs y descubrir insights accionables en tiempo real.
                         </p>
@@ -198,10 +217,10 @@
             <div class="col-md-4">
                 <div class="card h-100 border-0">
                     <div class="card-body p-4">
-                        <div class="icon-box mb-4 mx-auto">
+                        <div class="icon-box mb-4 mx-auto text-center" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
                           <i class="fas fa-robot"></i>
                         </div>
-                        <h3 class="h4 mb-3">Agentes Conversacionales de IA</h3>
+                        <h3 class="h4 mb-3 text-center">Agentes Conversacionales de IA</h3>
                         <p class="text-muted mb-0">
                           Chatbots y asistentes que entienden el contexto, resuelven consultas y se integran con tus sistemas 24/7.
                         </p>
@@ -212,10 +231,10 @@
             <div class="col-md-4">
                 <div class="card h-100 border-0">
                     <div class="card-body p-4">
-                        <div class="icon-box mb-4 mx-auto">
+                        <div class="icon-box mb-4 mx-auto text-center" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
                           <i class="fas fa-gears"></i>
                         </div>
-                        <h3 class="h4 mb-3">Automatización de Flujos y Desarrollos a Medida</h3>
+                        <h3 class="h4 mb-3 text-center">Automatización de Flujos y Desarrollos a Medida</h3>
                         <p class="text-muted mb-0">
                           Orquesta procesos de punta a punta e implementa integraciones y microservicios a la medida de tu negocio.
                         </p>
@@ -262,28 +281,28 @@
   
             <ul class="list-unstyled mt-4 mb-0">
               <li class="d-flex align-items-center gap-3 mb-3">
-                <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1rem;">
+                <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.5rem;">
                   <i class="fas fa-rotate"></i>
                 </div>
                 <p class="mb-0">Procesos manuales o repetitivos que consumen el tiempo valioso de tu equipo.</p>
               </li>
   
               <li class="d-flex align-items-center gap-3 mb-3">
-                <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1rem;">
+                <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.5rem;">
                   <i class="fas fa-diagram-project"></i>
                 </div>
                 <p class="mb-0">La información no fluye bien entre áreas, personas o herramientas, creando reprocesos que toman tiempo.</p>
               </li>
   
               <li class="d-flex align-items-center gap-3 mb-3">
-                <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1rem;">
+                <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.5rem;">
                   <i class="fas fa-brain"></i>
                 </div>
                 <p class="mb-0">Entiendes que la Inteligencia Artificial es el camino, pero no sabes por dónde empezar a aplicarla a tu empresa.</p>
               </li>
   
               <li class="d-flex align-items-center gap-3">
-                <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1rem;">
+                <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.5rem;">
                   <i class="fas fa-chart-bar"></i>
                 </div>
                 <p class="mb-0">Buscas tomar decisiones en base a datos, pero no tienes un equipo interno de datos para apoyarte.</p>
@@ -308,31 +327,31 @@
                 <div class="row g-4">
                     <div class="col-md-4">
                         <div class="p-4 rounded-3 h-100">
-                            <div class="icon-box mx-auto mb-3" style="width: 50px; height: 50px; font-size: 1.25rem;">
+                            <div class="icon-box mx-auto mb-0" style="width: 50px; height: 50px; font-size: 1.5rem;">
                                 <i class="fas fa-envelope"></i>
                             </div>
-                            <h5 class="h6 mb-2">Correo Electrónico</h5>
+                            <h5 class="h6 mb-0">Correo Electrónico</h5>
                             <p class="text-muted mb-0">admin@iacol.online</p>
                         </div>
                     </div>
                     
                     <div class="col-md-4">
                         <div class="p-4 rounded-3 h-100">
-                            <div class="icon-box mx-auto mb-3" style="width: 50px; height: 50px; font-size: 1.25rem;">
+                            <div class="icon-box mx-auto mb-0" style="width: 50px; height: 50px; font-size: 1.5rem;">
                                 <i class="fas fa-phone"></i>
                             </div>
-                            <h5 class="h6 mb-2">Teléfono</h5>
+                            <h5 class="h6 mb-0">Teléfono</h5>
                             <p class="text-muted mb-0">+57 (304) 269-3804</p>
                         </div>
                     </div>
                     
                     <div class="col-md-4">
                         <div class="p-4 rounded-3 h-100">
-                            <div class="icon-box mx-auto mb-3" style="width: 50px; height: 50px; font-size: 1.25rem;">
+                            <div class="icon-box mx-auto mb-0" style="width: 50px; height: 50px; font-size: 1.5rem;">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
-                            <h5 class="h6 mb-2">Ubicación</h5>
-                            <p class="text-muted mb-0">Ibagué, Colombia</p>
+                            <h5 class="h6 mb-0">Ubicación</h5>
+                            <p class="text-muted mb-0">Colombia</p>
                         </div>
                     </div>
                 </div>

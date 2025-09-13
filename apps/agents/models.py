@@ -81,11 +81,40 @@ class AgentConfiguration(models.Model):
     def __str__(self):
         return f"Config: {self.user.username} - {self.agent.name}"
 
+class ProviderCategory(models.Model):
+    """Modelo para categorías de proveedores"""
+    name = models.CharField(max_length=100, verbose_name='Nombre de la categoría')
+    agent_config = models.ForeignKey(
+        AgentConfiguration,
+        on_delete=models.CASCADE,
+        related_name='provider_categories',
+        verbose_name='Configuración del agente'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Categoría de proveedor'
+        verbose_name_plural = 'Categorías de proveedores'
+        unique_together = ['name', 'agent_config']
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
 class Provider(models.Model):
     """Modelo para almacenar información de proveedores de un agente"""
     name = models.CharField(max_length=200, verbose_name='Nombre del proveedor')
     phone = models.CharField(max_length=20, verbose_name='Número de teléfono')
     city = models.CharField(max_length=100, verbose_name='Ciudad')
+    category = models.ForeignKey(
+        ProviderCategory,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='providers',
+        verbose_name='Categoría'
+    )
     agent_config = models.ForeignKey(
         AgentConfiguration, 
         on_delete=models.CASCADE,

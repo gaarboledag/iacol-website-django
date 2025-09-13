@@ -34,6 +34,10 @@
         html {
             font-size: 16px;
             scroll-behavior: smooth;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
         }
         
         body {
@@ -44,6 +48,14 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1;
         }
         
         /* Typography */
@@ -96,7 +108,7 @@
         
         /* Buttons */
         .btn {
-            padding: 0.6rem 1.5rem;
+            padding: 0.4rem 1rem;
             border-radius: 8px;
             font-weight: 500;
             transition: all 0.2s ease;

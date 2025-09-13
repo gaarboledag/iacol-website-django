@@ -20,5 +20,9 @@ urlpatterns = [
     path('providers/<int:pk>/edit/', views.ProviderUpdateView.as_view(), name='provider_edit'),
     path('providers/<int:pk>/delete/', views.ProviderDeleteView.as_view(), name='provider_delete'),
     
-    # Otras URLs existentes...
+    # URLs para la gestión de categorías de proveedores
+    path('<int:agent_id>/provider-categories/', views.ProviderCategoryListView.as_view(), name='provider_category_list'),
+    path('<int:agent_id>/provider-categories/add/', views.ProviderCategoryCreateView.as_view(), name='provider_category_add'),
+    path('provider-categories/<int:pk>/edit/', views.ProviderCategoryUpdateView.as_view(), name='provider_category_edit'),
+    path('provider-categories/<int:pk>/delete/', views.ProviderCategoryDeleteView.as_view(), name='provider_category_delete'),
 ]

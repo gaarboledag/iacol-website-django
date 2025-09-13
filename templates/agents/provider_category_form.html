@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{{ title }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">{{ title }}</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Información de la Categoría</h6>
+                </div>
+                <div class="card-body">
+                    <form method="post" class="form">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i> Guardar
+                            </button>
+                            <a href="{% if object %}{% url 'agents:provider_category_list' agent.id %}{% else %}{% url 'agents:agent_configure' agent.id %}{% endif %}" 
+                               class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Ayuda</h6>
+                </div>
+                <div class="card-body">
+                    <p>Las categorías de proveedores te permiten organizar tus proveedores en grupos lógicos.</p>
+                    <p>Ejemplos de categorías podrían ser:</p>
+                    <ul>
+                        <li>Proveedores de Materiales</li>
+                        <li>Servicios Profesionales</li>
+                        <li>Logística y Transporte</li>
+                        <li>Tecnología</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminar Categoría - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Eliminar Categoría</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-danger">Confirmar Eliminación</h6>
+                </div>
+                <div class="card-body">
+                    <p>¿Estás seguro de que deseas eliminar la categoría <strong>{{ object.name }}</strong>?</p>
+                    
+                    {% if object.providers.exists %}
+                        <div class="alert alert-warning">
+                            <i class="fas fa-exclamation-triangle"></i> 
+                            Esta categoría tiene {{ object.providers.count }} proveedor(es) asociado(s). 
+                            Al eliminar esta categoría, estos proveedores quedarán sin categoría.
+                        </div>
+                    {% endif %}
+                    
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Sí, eliminar
+                            </button>
+                            <a href="{% url 'agents:provider_category_list' agent.id %}" class="btn btn-secondary">
+                                <i class="fas fa-times"></i> Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Información Adicional</h6>
+                </div>
+                <div class="card-body">
+                    <p>Al eliminar una categoría:</p>
+                    <ul>
+                        <li>La categoría será eliminada permanentemente</li>
+                        <li>Los proveedores asociados no se eliminarán, pero quedarán sin categoría</li>
+                        <li>Esta acción no se puede deshacer</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

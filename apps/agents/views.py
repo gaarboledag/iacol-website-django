@@ -1,16 +1,17 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from django.http import JsonResponse, Http404
+from django.http import JsonResponse, Http404, HttpResponseRedirect
+from django.views.decorators.http import require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.views import View
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
-from .models import Agent, UserSubscription, AgentConfiguration, AgentUsageLog, Provider
-from .forms import AgentConfigurationForm, ProviderForm
+from .models import Agent, UserSubscription, AgentConfiguration, AgentUsageLog, Provider, ProviderCategory
+from .forms import AgentConfigurationForm, ProviderForm, ProviderCategoryForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 @login_required
@@ -147,24 +148,28 @@ class ProviderCreateView(LoginRequiredMixin, CreateView):
     model = Provider
     form_class = ProviderForm
     template_name = 'agents/provider_form.html'
-    
+
     def dispatch(self, request, *args, **kwargs):
         self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
-        self.configuration = get_object_or_404(
-            AgentConfiguration, 
-            user=request.user, 
+        self.agent_config = AgentConfiguration.objects.get(
+            user=self.request.user,
             agent=self.agent
         )
         return super().dispatch(request, *args, **kwargs)
-    
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.agent_config
+        return kwargs
+
     def form_valid(self, form):
-        form.instance.agent_config = self.configuration
-        messages.success(self.request, _("Proveedor agregado exitosamente."))
+        form.instance.agent_config = self.agent_config
+        messages.success(self.request, _("Proveedor creado exitosamente."))
         return super().form_valid(form)
-    
+
     def get_success_url(self):
         return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['agent'] = self.agent
@@ -179,7 +184,13 @@ class ProviderUpdateView(LoginRequiredMixin, UpdateView):
     def dispatch(self, request, *args, **kwargs):
         self.provider = self.get_object()
         self.agent = self.provider.agent_config.agent
+        self.agent_config = self.provider.agent_config  # Añade esta línea
         return super().dispatch(request, *args, **kwargs)
+    
+    def get_form_kwargs(self):  # Añade este método
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.agent_config
+        return kwargs
     
     def form_valid(self, form):
         messages.success(self.request, _("Proveedor actualizado exitosamente."))
@@ -209,6 +220,105 @@ class ProviderDeleteView(LoginRequiredMixin, DeleteView):
     
     def get_success_url(self):
         return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        return context
+
+class ProviderCategoryListView(LoginRequiredMixin, ListView):
+    model = ProviderCategory
+    template_name = 'agents/provider_category_list.html'
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        return super().dispatch(request, *args, **kwargs)
+    
+    def get_queryset(self):
+        return ProviderCategory.objects.filter(agent_config__agent=self.agent)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        return context
+
+class ProviderCategoryCreateView(LoginRequiredMixin, CreateView):
+    model = ProviderCategory
+    form_class = ProviderCategoryForm
+    template_name = 'agents/provider_category_form.html'
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        # Get or create the agent configuration
+        self.agent_config, _ = AgentConfiguration.objects.get_or_create(
+            user=self.request.user,
+            agent=self.agent,
+            defaults={'configuration_data': {}}
+        )
+        return super().dispatch(request, *args, **kwargs)
+    
+    def form_valid(self, form):
+        form.instance.agent_config = self.agent_config
+        messages.success(self.request, _("Categoría de proveedor agregada exitosamente."))
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy('agents:provider_category_list', kwargs={'agent_id': self.agent.id})
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.agent_config
+        return kwargs
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Agregar Categoría de Proveedor")
+        return context
+
+class ProviderCategoryUpdateView(LoginRequiredMixin, UpdateView):
+    model = ProviderCategory
+    form_class = ProviderCategoryForm
+    template_name = 'agents/provider_category_form.html'
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.category = self.get_object()
+        self.agent = self.category.agent_config.agent  # Fixed: Access agent through agent_config
+        return super().dispatch(request, *args, **kwargs)
+    
+    def form_valid(self, form):
+        messages.success(self.request, _("Categoría de proveedor actualizada exitosamente."))
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse_lazy('agents:provider_category_list', kwargs={'agent_id': self.agent.id})
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.category.agent_config
+        return kwargs
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Editar Categoría de Proveedor")
+        return context
+
+class ProviderCategoryDeleteView(LoginRequiredMixin, DeleteView):
+    model = ProviderCategory
+    template_name = 'agents/provider_category_confirm_delete.html'
+    
+    def dispatch(self, request, *args, **kwargs):
+        self.category = self.get_object()
+        self.agent = self.category.agent_config.agent  # Fixed: Access agent through agent_config
+        return super().dispatch(request, *args, **kwargs)
+    
+    def delete(self, request, *args, **kwargs):
+        messages.success(request, _("Categoría de proveedor eliminada exitosamente."))
+        return super().delete(request, *args, **kwargs)
+    
+    def get_success_url(self):
+        return reverse_lazy('agents:provider_category_list', kwargs={'agent_id': self.agent.id})
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
