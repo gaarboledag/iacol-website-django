@@ -42,6 +42,9 @@ def resources(request):
     return render(request, 'resources.html')
 
 
+def findpartai_landing(request):
+    """Página de landing para FindPartAi"""
+    return render(request, 'landing.html')
 def masterclass_auto_ai(request):
     """Página Masterclass en Implementación de IA para Centros Automotrices"""
     return render(request, 'masterclass_auto_ai.html')

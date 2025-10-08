@@ -100,30 +100,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'iacol_project.wsgi.application'
 
 # Base de datos
-# Configuración para desarrollo local (cuando no se usa Docker)
-if os.environ.get('DOCKER_CONTAINER') != 'true':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env('DB_NAME', default='iacol'),
-            'USER': env('DB_USER', default='postgres'),
-            'PASSWORD': env('DB_PASSWORD', default='Memo20012804.'),
-            'HOST': env('DB_HOST', default='localhost'),  # Cambiado a localhost para desarrollo local
-            'PORT': env('DB_PORT', default='5432'),
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DB_NAME', default='iacol'),
+        'USER': env('DB_USER', default='postgres'),
+        'PASSWORD': env('DB_PASSWORD', default='Memo20012804.'),
+        'HOST': env('DB_HOST', default='localhost'),
+        'PORT': env('DB_PORT', default='5432'),
     }
-else:
-    # Configuración para producción (cuando se usa Docker)
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env('DB_NAME', default='iacol'),
-            'USER': env('DB_USER', default='postgres'),
-            'PASSWORD': env('DB_PASSWORD', default='Memo20012804.'),
-            'HOST': 'iacol_iacol-website-db',  # Nombre del servicio en docker-compose
-            'PORT': '5432',
-        }
-    }
+}
 
 # Internacionalización
 LANGUAGE_CODE = 'es-co'
@@ -135,7 +121,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 # Archivos media
 MEDIA_URL = '/media/'

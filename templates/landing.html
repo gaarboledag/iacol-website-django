@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FindPartAi - Cotización con Proveedores para Centros Automotrices</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/glacial-indifference" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-red: #dc3545;
+            --primary-white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray-dark: #343a40;
+            --metallic-gray: #c0c0c0;
+            --tech-blue: #007bff;
+            --tech-cyan: #17a2b8;
+        }
+
+        body {
+            font-family: 'Glacial Indifference', sans-serif;
+            color: var(--gray-dark);
+            background-color: var(--primary-white);
+            line-height: 1.6;
+        }
+
+        * {
+            font-family: 'Glacial Indifference', sans-serif;
+        }
+
+        .hero-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-findpartai img {
+            height: 60px;
+        }
+
+        .hero-section {
+            background: var(--primary-white);
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23e0e0e0" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .hero-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--gray-dark);
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-section h2 {
+            font-size: 1.8rem;
+            color: var(--gray-dark);
+            margin-bottom: 3rem;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .problem-section {
+            background-color: var(--primary-white);
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .problem-stats {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+            align-items: center;
+        }
+
+        .stat-item {
+            flex: 1;
+            min-width: 250px;
+            margin: 1rem;
+            padding: 2rem;
+            background: var(--primary-white);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-item i {
+            font-size: 3rem;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .stat-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gray-dark);
+        }
+
+        .solution-section {
+            background: var(--primary-white);
+            padding: 6rem 0;
+        }
+
+        .solution-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--primary-white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--tech-cyan);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+        }
+
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gray-dark);
+        }
+
+        .workflow-section {
+            background-color: var(--primary-white);
+            padding: 6rem 0;
+        }
+
+        .workflow-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .workflow-steps {
+            margin-top: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: relative;
+        }
+
+        .workflow-steps::before {
+            content: '';
+            position: absolute;
+            top: 40%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            z-index: 0;
+        }
+
+        .step {
+            background: linear-gradient(135deg, #ffffff 0%, #fff6f6 100%);
+            border: 0px;
+            border-radius: 15px;
+            width: 220px;
+            height: 400px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+            z-index: 1;
+            margin: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(77, 8, 15, 0.2);
+        }
+
+        .step:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(87, 15, 22, 0.2);
+        }
+
+        .step i {
+            font-size: 2.5rem;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .step-text {
+            text-align: center;
+            color: var(--gray-dark);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .step-title {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .step small {
+            color: var(--gray);
+            font-weight: bold;
+        }
+
+        .step-ai {
+            background: linear-gradient(135deg, #ffffff 0%, #e0f7fa 100%);
+            border-left: 3px solid var(--tech-cyan);
+        }
+
+        .step-user {
+            border-right: 3px solid var(--primary-red);
+        }
+
+        .benefits-section {
+            background: var(--primary-white);
+            padding: 6rem 0;
+        }
+
+        .benefits-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--gray-dark);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: var(--primary-white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .benefit-percentage {
+            font-size: 3rem;
+            font-weight: bold;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--gray-dark);
+        }
+
+        .intro-video-section {
+            background-color: var(--primary-white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .intro-video-section video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .demo-section {
+            background: var(--primary-white);
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .mockup-container {
+            position: relative;
+            display: inline-block;
+            max-width: 800px;
+            width: 100%;
+        }
+
+        .laptop-screen {
+            background-color: #000;
+            border-radius: 10px 10px 0 0;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .laptop-screen video {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .laptop-base {
+            height: 20px;
+            background-color: #333;
+            border-radius: 0 0 10px 10px;
+            margin: 0 auto;
+            width: 60%;
+            position: relative;
+        }
+
+        .laptop-base::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 3px;
+            background-color: #666;
+            border-radius: 2px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            align-items: center;
+
+        }
+
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: var(--primary-white);
+            border: none;
+            padding: 0rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
+            align-content: center;
+            height: 50px;
+        }
+
+        .btn-primary:hover {
+            background-color: #b02a37;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-red);
+            border: 2px solid var(--primary-red);
+            padding: 0rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            align-content: center;
+            height: 50px;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-red);
+            color: var(--primary-white);
+            transform: translateY(-2px);
+        }
+
+        .success-stories {
+            background: var(--primary-white);
+            padding: 6rem 0;
+        }
+
+        .success-stories h2 {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--gray-dark);
+        }
+
+        .stories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .story-card {
+            background: var(--primary-white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .story-video {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .story-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .story-content {
+            padding: 2rem;
+        }
+
+        .story-content img {
+            max-width: 100px;
+            margin-bottom: 1rem;
+        }
+
+        .story-content p {
+            color: var(--gray-dark);
+            line-height: 1.6;
+        }
+
+        .faq-section {
+            background-color: var(--primary-white);
+            padding: 4rem 0;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            color: var(--gray-dark);
+        }
+
+        #faqAccordion {
+            margin-top: 50px;
+        }
+
+        .accordion-button {
+            background-color: var(--primary-white);
+            color: var(--gray-dark);
+            border: none;
+            font-weight: 500;
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .accordion-button::before {
+            content: '\f128'; /* question icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-red);
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: var(--gray-dark);
+            color: var(--primary-white);
+        }
+
+        .accordion-button:not(.collapsed)::before {
+            color: var(--primary-white);
+        }
+
+        .accordion-body {
+            background-color: var(--gray-light);
+        }
+
+        .cta-section {
+            background: var(--primary-white);
+            color: var(--gray-dark);
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Tablet styles */
+        @media (max-width: 1024px) {
+            .hero-section h1 {
+                font-size: 3rem;
+            }
+
+            .hero-section h2 {
+                font-size: 1.6rem;
+            }
+
+            .step {
+                width: 180px;
+                height: 350px;
+                padding: 1.5rem;
+            }
+
+            .stat-item {
+                min-width: 200px;
+            }
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .hero-logos {
+                justify-content: center;
+            }
+
+            .hero-section {
+                padding: 3rem 0;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .hero-ctas {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .workflow-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .workflow-steps::before {
+                display: none;
+            }
+
+            .step {
+                width: 90%;
+                height: auto;
+                margin: 1rem 0;
+                padding: 1.5rem;
+            }
+
+            .step-text {
+                max-width: none;
+            }
+
+            .stories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid, .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .problem-section{
+                padding-bottom: 2em;
+            }
+
+            .demo-section{
+                padding-bottom: 3em;
+            }
+
+            .workflow-title{
+                margin-bottom: 0em;
+            }
+
+            .workflow-steps{
+                margin-top: 2em;
+            }
+
+            .problem-stats {
+                flex-direction: column;
+
+            }
+
+            .stat-item {
+                min-width: auto;
+                width: 90%;
+                margin: 5px;
+                padding: 1rem;
+            }
+
+            .stat-item i {
+                font-size: 2rem;
+            }
+
+            .stat-item h3 {
+                font-size: 1.2rem;
+            }
+
+            .benefits-section{
+                padding-top: 3em;
+            }
+
+            .mockup-container {
+                max-width: 100%;
+            }
+
+            .laptop-screen {
+                padding: 15px;
+            }
+
+            .hero-ctas .btn-primary, .hero-ctas .btn-secondary,.btn-primary {
+                width: 80%;
+                margin-bottom: 0.5rem;
+                font-size: 0.8rem;
+                padding: 0.4rem 0.8rem;
+                height: 32px;
+                line-height: 1;
+                align-items: center;
+            }
+        }
+
+        /* Small mobile styles */
+        @media (max-width: 576px) {
+            .hero-section h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-section h2 {
+                font-size: 1rem;
+            }
+
+            .hero-section {
+                padding: 3rem 2.5rem;                
+            }
+
+            .section {
+                padding: 4rem 0;
+            }
+
+            .step {
+                padding: 1rem;
+                min-height: 250px;
+            }
+
+            .step-title {
+                font-size: 1.2rem;
+            }
+            .step-number {
+                font-size: 2.5rem;
+            }
+
+            .stat-item {
+                padding: 1.5rem;
+            }
+
+            .benefit-card, .feature-card {
+                padding: 1.5rem;
+            }
+
+            .cta-section {
+                padding: 4rem 0;
+            }
+
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="hero-logos">
+                <div class="logo-findpartai">
+                    <img src="{% static 'img/findpartai.webp' %}" alt="FindPartAI">
+                </div>
+            </div>
+        <h1>Cotiza y compra los repuestos al instante con IA</h1>
+        <h2>FindPartAI contacta a tus proveedores por <strong>WhatsApp</strong>, compara precios y ayuda al equipo a gestionar las <strong>cotizaciones en segundos.</strong></strong></h2>
+            <div class="hero-ctas">
+                <a href="https://calendly.com/your-calendly-link" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
+                <a href="#demo" class="btn-secondary">Ver Cómo Funciona</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Intro Video Section -->
+    <section class="intro-video-section">
+        <div class="container">
+            <video controls autoplay muted loop>
+                <source src="{% static 'vid/landing_video.mp4' %}" type="video/mp4">
+                Tu navegador no soporta el elemento de video.
+            </video>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem-section">
+        <div class="container">
+            <h2>¿<strong>Cuánto tiempo dedica</strong> el área administrativa del taller a <strong>cotizar repuestos</strong>?</h2>
+            <div class="problem-stats">
+                <div class="stat-item">
+                    <i class="fas fa-users"></i>
+                    <h3>CONTACTOS EXCESIVOS</h3>
+                    <p>Cada cotización implica, en promedio, más de 6 contactos con distintos proveedores.</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-clock"></i>
+                    <h3>FLUJO INTERRUMPIDO</h3>
+                    <p>La comparación de precios y disponibilidad se realiza en medio de un alto flujo de mensajes.</p>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-cogs"></i>
+                    <h3>BOTELLA ADMINISTRATIVA</h3>
+                    <p>Tareas repetitivas que demandan gran parte de la jornada del personal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo-section">
+        <div class="container">
+            <h2 style="margin-bottom: 3rem; color: var(--gray-dark);">Observa a <strong>FindPartAI trabajando en Acción</strong></h2>
+            <div class="mockup-container">
+                <div class="laptop-screen">
+                    <video controls autoplay muted loop>
+                        <source src="{% static 'vid/landing_video.mp4' %}" type="video/mp4">
+                        Tu navegador no soporta el elemento de video.
+                    </video>
+                </div>
+                <div class="laptop-base"></div>
+            </div>
+            <a href="https://calendly.com/your-calendly-link" class="btn-primary" style="margin-top: 3rem;">AGENDA UNA DEMO GRATUITA</a>
+        </div>
+    </section>
+
+
+    <!-- Workflow Section -->
+    <section class="workflow-section">
+        <div class="container">
+            <div class="workflow-title">
+                <h2>¿Cómo Funciona <strong>FindPartAI</strong>? Explicado en <strong>5 Pasos</strong>.</h2>
+            </div>
+            <div class="workflow-steps">
+                <div class="step step-user">
+                    <div class="step-number">1</div>
+                    <div class="step-title"><strong>SOLICITAS COTIZACIÓN</strong></div>
+                    <div class="step-text">El administrador envía la solicitud de cotización por WhatsApp a FindPartAI.<br><small><strong>Recibe tu cotización.</strong></small></div>
+                </div>
+                <div class="step step-ai">
+                    <div class="step-number">2</div>
+                    <div class="step-title"><strong>FindPartAI COTIZA</strong></div>
+                    <div class="step-text">FindPartAI le escribe automáticamente a cada proveedor que vendan los repuestos.<br><small><strong>Contacta tus proveedores.</strong></small></div>
+                </div>
+                <div class="step step-user">
+                    <div class="step-number">3</div>
+                    <div class="step-title"><strong>EL PROVEEDOR RESPONDE</strong></div>
+                    <div class="step-text">Responden con precios, disponibilidad, etc.<br><small><strong>Recibe las respuestas.</strong></small></div>
+                </div>
+                <div class="step step-ai">
+                    <div class="step-number">4</div>
+                    <div class="step-title"><strong>FindPartAI COMPARA</strong></div>
+                    <div class="step-text">Te presenta una comparativa completa de costos y respuestas.<br><small><strong>Compara precios y disponibilidad de los repuestos.</strong></small></div>
+                </div>
+                <div class="step step-ai">
+                    <div class="step-number">5</div>
+                    <div class="step-title"><strong>FindPartAI SOLICITA COMPRA</strong></div>
+                    <div class="step-text">El administrativo elige un proveedor y FindPartAI gestiona la compra/envío.<br><small><strong>Compra la c    otización indicada.</strong></small></div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 2rem; font-style: italic;">En todo momento, el administrativo mantiene el control sobre la conversación y el agente.</p>
+        </div>
+    </section>
+
+
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+            <div class="benefits-title">
+                <h2>El Impacto de FindPartAI en <strong>Resultados Inmediatos</strong></h2>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-percentage">80%</div>
+                    <h3>AHORRO DE TIEMPO EN COTIZACIONES</h3>
+                    <p>Optimiza el tiempo del área administrativa desde el primer dia de implementación.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-dollar-sign" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
+                    <h3>MEJORES PRECIOS</h3>
+                    <p>Al consultar más proveedores, podrás acceder al mejor precio y disponibilidad.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-users" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
+                    <h3>ESCALABILIDAD SIN CONTRATACIÓN ADMINISTRATIVA</h3>
+                    <p>Las demás áreas del Centro Automotriz podrán crecer sin necesidad de contratar más personal administrativo.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-expand" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
+                    <h3>ORGANIZACIÓN Y UPLEVEL DE LA COMUNICACIÓN DEL TALLER</h3>
+                    <p>Convierte el caos de WhatsApp en una base de proveedores organizada que facilite la toma de decisiones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Stories -->
+    <section class="success-stories">
+        <div class="container">
+            <h2><strong>Casos de Éxito</strong></h2>
+            <div class="stories-grid">
+                <div class="story-card">
+                    <div class="story-video">
+                        <video controls>
+                            <source src="{% static 'vid/client_testimonial.mp4' %}" type="video/mp4">
+                            Tu navegador no soporta el elemento de video.
+                        </video>
+                    </div>
+                    <div class="story-content">
+                        <img src="{% static 'img/client_logo.webp' %}" alt="Cliente">
+                        <p>En este video hablo de mi primer cliente y en la fase en la que estoy actualmente. Aquí va una descripción breve del caso de éxito.</p>
+                    </div>
+                </div>
+                <!-- Add more story cards as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2><strong>Preguntas Frecuentes</strong></h2>
+            <div class="accordion" id="faqAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            ¿Qué es FindPartAi?
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            FindPartAi es un sistema de comunicación y cotización con proveedores de repuestos por WhatsApp para centros automotrices.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            ¿Cómo funciona?
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            El sistema automatiza la comunicación con proveedores a través de WhatsApp, facilitando el sourcing de repuestos.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            ¿Es seguro?
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                        <div class="accordion-body">
+                            Sí, utilizamos protocolos de seguridad avanzados para proteger la información.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>¿Listo para <strong>revolucionar el abastecimiento</strong> tu centro automotriz?</h2>
+            <p>Contacta conmigo para una demostración personalizada.</p>
+            <a href="https://calendly.com/your-calendly-link" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
+            <div style="margin-top: 3rem;">
+                <img src="{% static 'img/findpartai.webp' %}" alt="FindPartAI" style="max-width: 150px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS for animations -->
+    <script>
+        // Simple scroll reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply to sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        // Hero animation on load
+        window.addEventListener('load', () => {
+            document.querySelector('.hero-section').style.opacity = '1';
+            document.querySelector('.hero-section').style.transform = 'translateY(0)';
+        });
+    </script>
+</body>
+</html>

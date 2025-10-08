@@ -15,7 +15,7 @@ urlpatterns = [
     path('', include('apps.authentication.urls')),
     
     # Redirección para cualquier URL no encontrada
-    path('<path:undefined_path>', lambda request: RedirectView.as_view(url='/')(request), name='redirect-to-home'),
+    path('<path:undefined_path>', RedirectView.as_view(url='/'), name='redirect-to-home'),
 ]
 
 if settings.DEBUG:
