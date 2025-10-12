@@ -25,7 +25,6 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
-vid/*.mp4
 MANIFEST
 
 # PyInstaller
@@ -138,6 +137,7 @@ dmypy.json
 Thumbs.db
 
 # Django specific
+static/
 staticfiles/
 media/
 
