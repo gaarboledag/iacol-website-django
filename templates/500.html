@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Error del servidor | IACOL Empresarial{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+                <div class="mb-4">
+                    <i class="fas fa-server fa-5x text-muted"></i>
+                </div>
+                <h1 class="display-4 mb-3">500</h1>
+                <h2 class="h3 mb-3">Error interno del servidor</h2>
+                <p class="lead mb-4">
+                    Lo sentimos, ha ocurrido un error interno en el servidor. Estamos trabajando para solucionarlo.
+                </p>
+                <a href="{% url 'home' %}" class="btn btn-primary btn-lg">
+                    <i class="fas fa-home me-2"></i>Volver al inicio
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

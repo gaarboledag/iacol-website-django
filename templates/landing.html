@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FindPartAi - Cotización con Proveedores para Centros Automotrices</title>
+    <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
 
     <!-- Fonts -->
     <link href="https://fonts.cdnfonts.com/css/glacial-indifference" rel="stylesheet">
@@ -333,46 +334,57 @@
             position: relative;
         }
 
+        .demo-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .demo-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
+        }
+
         .mockup-container {
             position: relative;
             display: inline-block;
-            max-width: 800px;
+            max-width: 400px;
             width: 100%;
         }
 
-        .laptop-screen {
+        .phone-screen {
             background-color: #000;
-            border-radius: 10px 10px 0 0;
-            padding: 20px;
+            border-radius: 30px;
+            padding: 10px;
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .laptop-screen video {
             width: 100%;
-            height: auto;
-            border-radius: 5px;
+            aspect-ratio: 9/16; /* Phone aspect ratio */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .laptop-base {
-            height: 20px;
-            background-color: #333;
-            border-radius: 0 0 10px 10px;
-            margin: 0 auto;
-            width: 60%;
-            position: relative;
+        .phone-screen video {
+            width: 100%;
+            height: 100%;
+            border-radius: 20px;
+            object-fit: cover;
         }
 
-        .laptop-base::after {
-            content: '';
+        .phone-notch {
             position: absolute;
-            bottom: 5px;
+            top: 10px;
             left: 50%;
             transform: translateX(-50%);
-            width: 40px;
-            height: 3px;
-            background-color: #666;
-            border-radius: 2px;
+            width: 150px;
+            height: 25px;
+            background-color: #000;
+            border-radius: 0 0 15px 15px;
+            z-index: 2;
         }
 
         .hero-ctas {
@@ -675,8 +687,17 @@
                 max-width: 100%;
             }
 
-            .laptop-screen {
-                padding: 15px;
+            .phone-screen {
+                padding: 8px;
+            }
+
+            .demo-content {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .demo-text {
+                text-align: center;
             }
 
             .hero-ctas .btn-primary, .hero-ctas .btn-secondary,.btn-primary {
@@ -750,7 +771,7 @@
         <h1>Cotiza y compra los repuestos al instante con IA</h1>
         <h2>FindPartAI contacta a tus proveedores por <strong>WhatsApp</strong>, compara precios y ayuda al equipo a gestionar las <strong>cotizaciones en segundos.</strong></strong></h2>
             <div class="hero-ctas">
-                <a href="https://calendly.com/your-calendly-link" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
+                <a href="https://wa.me/573229528027?text=Quiero%20saber%20m%C3%A1s%20sobre%20FindPartAI%20para%20mi%20taller" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
                 <a href="#demo" class="btn-secondary">Ver Cómo Funciona</a>
             </div>
         </div>
@@ -794,16 +815,21 @@
     <section id="demo" class="demo-section">
         <div class="container">
             <h2 style="margin-bottom: 3rem; color: var(--gray-dark);">Observa a <strong>FindPartAI trabajando en Acción</strong></h2>
-            <div class="mockup-container">
-                <div class="laptop-screen">
-                    <video controls autoplay muted loop>
-                        <source src="{% static 'vid/landing_video.mp4' %}" type="video/mp4">
-                        Tu navegador no soporta el elemento de video.
-                    </video>
+            <div class="demo-content">
+                <div class="mockup-container">
+                    <div class="phone-notch"></div>
+                    <div class="phone-screen">
+                        <video controls autoplay muted loop>
+                            <source src="{% static 'vid/video-demo.mp4' %}" type="video/mp4">
+                            Tu navegador no soporta el elemento de video.
+                        </video>
+                    </div>
                 </div>
-                <div class="laptop-base"></div>
+                <div class="demo-text">
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--gray-dark);">Ve cómo FindPartAI automatiza el proceso de cotización, contactando proveedores por WhatsApp y comparando precios en segundos.</p>
+                    <a href="https://wa.me/573229528027?text=Quiero%20saber%20m%C3%A1s%20sobre%20FindPartAI%20para%20mi%20taller" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
+                </div>
             </div>
-            <a href="https://calendly.com/your-calendly-link" class="btn-primary" style="margin-top: 3rem;">AGENDA UNA DEMO GRATUITA</a>
         </div>
     </section>
 
@@ -855,7 +881,7 @@
             </div>
             <div class="benefits-grid">
                 <div class="benefit-card">
-                    <div class="benefit-percentage">80%</div>
+                    <div class="benefit-percentage">Hasta 80%</div>
                     <h3>AHORRO DE TIEMPO EN COTIZACIONES</h3>
                     <p>Optimiza el tiempo del área administrativa desde el primer dia de implementación.</p>
                 </div>
@@ -878,79 +904,14 @@
         </div>
     </section>
 
-    <!-- Success Stories -->
-    <section class="success-stories">
-        <div class="container">
-            <h2><strong>Casos de Éxito</strong></h2>
-            <div class="stories-grid">
-                <div class="story-card">
-                    <div class="story-video">
-                        <video controls>
-                            <source src="{% static 'vid/client_testimonial.mp4' %}" type="video/mp4">
-                            Tu navegador no soporta el elemento de video.
-                        </video>
-                    </div>
-                    <div class="story-content">
-                        <img src="{% static 'img/client_logo.webp' %}" alt="Cliente">
-                        <p>En este video hablo de mi primer cliente y en la fase en la que estoy actualmente. Aquí va una descripción breve del caso de éxito.</p>
-                    </div>
-                </div>
-                <!-- Add more story cards as needed -->
-            </div>
-        </div>
-    </section>
 
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <div class="container">
-            <h2><strong>Preguntas Frecuentes</strong></h2>
-            <div class="accordion" id="faqAccordion">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
-                            ¿Qué es FindPartAi?
-                        </button>
-                    </h2>
-                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            FindPartAi es un sistema de comunicación y cotización con proveedores de repuestos por WhatsApp para centros automotrices.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
-                            ¿Cómo funciona?
-                        </button>
-                    </h2>
-                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            El sistema automatiza la comunicación con proveedores a través de WhatsApp, facilitando el sourcing de repuestos.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
-                            ¿Es seguro?
-                        </button>
-                    </h2>
-                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                        <div class="accordion-body">
-                            Sí, utilizamos protocolos de seguridad avanzados para proteger la información.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Call to Action -->
     <section class="cta-section">
         <div class="container">
             <h2>¿Listo para <strong>revolucionar el abastecimiento</strong> tu centro automotriz?</h2>
             <p>Contacta conmigo para una demostración personalizada.</p>
-            <a href="https://calendly.com/your-calendly-link" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
+            <a href="https://wa.me/573229528027?text=Quiero%20saber%20m%C3%A1s%20sobre%20FindPartAI%20para%20mi%20taller" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
             <div style="margin-top: 3rem;">
                 <img src="{% static 'img/findpartai.webp' %}" alt="FindPartAI" style="max-width: 150px;">
             </div>

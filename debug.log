@@ -13802,3 +13802,490 @@ INFO 2025-10-07 17:51:41,862 autoreload 15212 11684 C:\Users\Guillermo Andrés\De
 INFO 2025-10-07 17:51:42,828 autoreload 13 132626132077440 /app/iacol_project/settings.py changed, reloading.
 INFO 2025-10-07 17:51:44,121 autoreload 13980 1752 Watching for file changes with StatReloader
 INFO 2025-10-07 17:51:47,607 autoreload 355 132456153320320 Watching for file changes with StatReloader
+INFO 2025-10-07 18:16:36,323 basehttp 355 132456084666048 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 2588672
+INFO 2025-10-07 18:16:40,278 basehttp 355 132456084666048 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 4032369
+INFO 2025-10-07 18:18:52,175 basehttp 355 132456084666048 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 917504
+INFO 2025-10-07 18:22:12,965 basehttp 355 132456084666048 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-07 18:23:43,470 basehttp 355 132456084666048 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-07 18:25:12,510 basehttp 355 132456084666048 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-10-07 18:25:12,632 basehttp 355 132456084666048 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-07 18:26:09,118 basehttp 355 132456084666048 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-10-07 18:26:09,176 basehttp 355 132456084666048 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-07 18:26:12,813 basehttp 355 132456084666048 "GET /findpartai/ HTTP/1.1" 200 30981
+INFO 2025-10-07 18:26:12,853 basehttp 355 132455851882176 "GET /static/vid/client_testimonial.mp4 HTTP/1.1" 304 0
+INFO 2025-10-07 18:26:12,859 basehttp 355 132456084666048 "GET /static/img/findpartai.webp HTTP/1.1" 200 12788
+INFO 2025-10-07 18:26:12,862 basehttp 355 132456075224768 "GET /static/img/client_logo.webp HTTP/1.1" 200 32364
+INFO 2025-10-07 18:26:12,888 basehttp 355 132456066832064 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 229376
+INFO 2025-10-07 18:26:13,184 basehttp 355 132456084666048 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-10-07 18:26:13,193 basehttp 355 132456084666048 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-07 18:26:14,946 basehttp 355 132456084666048 "GET /findpartai/ HTTP/1.1" 200 30981
+INFO 2025-10-07 18:26:15,109 basehttp 355 132456084666048 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-10-07 18:26:15,159 basehttp 355 132456084666048 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-07 18:26:26,525 basehttp 355 132456084666048 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 7670546
+INFO 2025-10-07 18:29:05,572 basehttp 355 132456084666048 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-07 18:29:06,244 basehttp 355 132455851882176 "GET /findpartai/ HTTP/1.1" 200 30981
+INFO 2025-10-07 18:29:06,630 basehttp 355 132456066832064 "GET /static/img/client_logo.webp HTTP/1.1" 304 0
+INFO 2025-10-07 18:29:06,654 basehttp 355 132456075224768 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-07 18:29:06,752 basehttp 355 132455843489472 "GET /static/vid/client_testimonial.mp4 HTTP/1.1" 304 0
+INFO 2025-10-07 18:29:07,810 basehttp 355 132455843489472 "GET /favicon.ico HTTP/1.1" 302 0
+INFO 2025-10-07 18:29:07,927 basehttp 355 132455843489472 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-07 18:29:30,572 basehttp 355 132455851882176 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 3244032
+INFO 2025-10-07 18:30:38,980 basehttp 355 132455851882176 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-07 18:30:50,012 basehttp 355 132455851882176 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 2202386
+INFO 2025-10-07 18:31:25,918 basehttp 355 132455851882176 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 527122
+INFO 2025-10-07 20:44:08,203 basehttp 355 132455851882176 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-07 20:44:08,765 basehttp 355 132455851882176 "GET /static/img/iacol_hor.webp HTTP/1.1" 200 32364
+INFO 2025-10-07 20:44:09,480 basehttp 355 132455851882176 "GET /static/img/main.webp HTTP/1.1" 200 74230
+INFO 2025-10-07 20:44:09,826 basehttp 355 132455851882176 "GET /findpartai/ HTTP/1.1" 200 30981
+INFO 2025-10-07 20:44:10,399 basehttp 355 132455851882176 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-07 20:44:10,572 basehttp 355 132455843489472 "GET /static/img/client_logo.webp HTTP/1.1" 304 0
+INFO 2025-10-07 20:44:11,013 basehttp 355 132456075224768 "GET /static/vid/client_testimonial.mp4 HTTP/1.1" 304 0
+INFO 2025-10-09 11:26:36,993 autoreload 13 132202570328960 Watching for file changes with StatReloader
+INFO 2025-10-09 11:26:56,707 basehttp 13 132202435180224 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 11:26:56,827 basehttp 13 132202435180224 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-09 11:26:56,938 basehttp 13 132202435180224 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-09 11:26:57,465 basehttp 13 132202435180224 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-09 11:26:57,483 basehttp 13 132202435180224 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 11:26:59,671 basehttp 13 132202435180224 "GET /finda HTTP/1.1" 302 0
+INFO 2025-10-09 11:26:59,727 basehttp 13 132202435180224 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 11:26:59,927 basehttp 13 132202435180224 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-09 11:26:59,975 basehttp 13 132202435180224 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 11:27:05,135 basehttp 13 132202435180224 "GET /findpartai/ HTTP/1.1" 200 31051
+INFO 2025-10-09 11:27:05,190 basehttp 13 132202435180224 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-09 11:27:05,199 basehttp 13 132202435180224 "GET /static/img/client_logo.webp HTTP/1.1" 304 0
+INFO 2025-10-09 11:27:05,217 basehttp 13 132202417346240 "GET /static/vid/client_testimonial.mp4 HTTP/1.1" 304 0
+INFO 2025-10-09 11:27:05,672 basehttp 13 132202417346240 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-09 11:27:05,704 basehttp 13 132202417346240 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 11:27:08,024 basehttp 13 132202417346240 "GET /findpartai/ HTTP/1.1" 200 31051
+INFO 2025-10-09 11:27:09,604 basehttp 13 132202417346240 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-09 11:27:09,705 basehttp 13 132202417346240 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 11:27:14,731 basehttp 13 132202425738944 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 8358674
+INFO 2025-10-09 12:09:19,973 autoreload 13 123985042475904 Watching for file changes with StatReloader
+INFO 2025-10-09 12:09:23,128 basehttp 13 123984901306048 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 12:09:23,167 basehttp 13 123984901306048 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-09 12:09:23,423 basehttp 13 123984901306048 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-09 12:09:23,569 basehttp 13 123984901306048 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-09 12:09:23,574 basehttp 13 123984901306048 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 14:42:46,147 basehttp 13 123984901306048 "GET /findpartai HTTP/1.1" 302 0
+INFO 2025-10-09 14:42:46,170 basehttp 13 123984901306048 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 14:42:46,202 basehttp 13 123984901306048 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-09 14:42:46,439 basehttp 13 123984901306048 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-09 14:42:46,498 basehttp 13 123984901306048 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-09 14:42:46,503 basehttp 13 123984901306048 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 14:42:49,556 basehttp 13 123984901306048 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 14:42:49,799 basehttp 13 123984901306048 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-09 14:42:49,804 basehttp 13 123984901306048 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 14:42:59,044 basehttp 13 123984901306048 "GET /findpartsai HTTP/1.1" 302 0
+INFO 2025-10-09 14:42:59,089 basehttp 13 123984901306048 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 14:42:59,224 basehttp 13 123984901306048 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-09 14:42:59,269 basehttp 13 123984901306048 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 14:43:09,558 basehttp 13 123984901306048 "GET /findpartai/ HTTP/1.1" 200 31051
+INFO 2025-10-09 14:43:09,583 basehttp 13 123984901306048 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-09 14:43:09,588 basehttp 13 123984892913344 "GET /static/img/client_logo.webp HTTP/1.1" 304 0
+INFO 2025-10-09 14:43:09,607 basehttp 13 123984884520640 "GET /static/vid/client_testimonial.mp4 HTTP/1.1" 304 0
+INFO 2025-10-09 14:43:09,810 basehttp 13 123984884520640 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-09 14:43:09,813 basehttp 13 123984884520640 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 14:43:10,080 basehttp 13 123984892913344 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 3244032
+INFO 2025-10-09 14:44:15,147 basehttp 13 123984892913344 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 5868306
+INFO 2025-10-09 15:11:21,323 basehttp 13 123984892913344 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-09 15:13:26,829 basehttp 13 123984892913344 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-09 15:13:28,784 basehttp 13 123984892913344 "GET /findpartai/ HTTP/1.1" 200 31051
+INFO 2025-10-09 15:13:29,202 basehttp 13 123984892913344 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-09 15:13:29,252 basehttp 13 123984892913344 "GET /static/vid/client_testimonial.mp4 HTTP/1.1" 304 0
+INFO 2025-10-09 15:13:29,410 basehttp 13 123984901306048 "GET /static/img/client_logo.webp HTTP/1.1" 304 0
+INFO 2025-10-09 15:13:42,022 basehttp 13 123984892913344 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-09 15:13:42,105 basehttp 13 123984892913344 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-09 15:13:45,017 basehttp 13 123984884520640 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 5734400
+INFO 2025-10-10 09:03:59,019 autoreload 13 126074365602688 Watching for file changes with StatReloader
+INFO 2025-10-11 07:52:51,229 autoreload 13 134490194594688 Watching for file changes with StatReloader
+INFO 2025-10-11 07:53:27,049 basehttp 13 134490055767744 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:53:27,177 basehttp 13 134490055767744 "GET /static/img/iacol_hor.webp HTTP/1.1" 200 32364
+INFO 2025-10-11 07:53:27,671 basehttp 13 134490055767744 "GET /static/img/main.webp HTTP/1.1" 200 74230
+INFO 2025-10-11 07:53:28,528 basehttp 13 134490055767744 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-11 07:53:28,539 basehttp 13 134490055767744 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:55:42,212 basehttp 13 134490055767744 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:55:42,284 basehttp 13 134490055767744 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 07:55:42,527 basehttp 13 134490055767744 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-11 07:55:42,644 basehttp 13 134490055767744 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-11 07:55:42,658 basehttp 13 134490055767744 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:55:43,937 basehttp 13 134490055767744 "GET /solutions/ HTTP/1.1" 200 21261
+INFO 2025-10-11 07:55:44,304 basehttp 13 134490055767744 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-11 07:55:44,355 basehttp 13 134490055767744 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:55:45,128 basehttp 13 134490055767744 "GET /resources/ HTTP/1.1" 200 17009
+INFO 2025-10-11 07:55:45,333 basehttp 13 134490055767744 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-11 07:55:45,341 basehttp 13 134490055767744 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:55:46,302 basehttp 13 134490055767744 "GET /accounts/signup/ HTTP/1.1" 200 16016
+INFO 2025-10-11 07:55:46,555 basehttp 13 134490055767744 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-11 07:55:46,606 basehttp 13 134490055767744 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:55:54,625 basehttp 13 134490055767744 "POST /accounts/signup/ HTTP/1.1" 200 16177
+INFO 2025-10-11 07:55:54,803 basehttp 13 134490055767744 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-11 07:55:54,810 basehttp 13 134490055767744 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:56:27,738 basehttp 13 134490047375040 "GET /accou HTTP/1.1" 302 0
+INFO 2025-10-11 07:56:27,758 basehttp 13 134490047375040 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:56:28,035 basehttp 13 134490047375040 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-11 07:56:28,055 basehttp 13 134490047375040 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:56:35,285 basehttp 13 134490047375040 "GET /findpatai/ HTTP/1.1" 302 0
+INFO 2025-10-11 07:56:35,337 basehttp 13 134490047375040 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:56:35,484 basehttp 13 134490047375040 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-11 07:56:35,490 basehttp 13 134490047375040 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:56:43,021 basehttp 13 134490047375040 "GET /findpartai/ HTTP/1.1" 200 31051
+INFO 2025-10-11 07:56:43,087 basehttp 13 134490047375040 "GET /static/img/findpartai.webp HTTP/1.1" 200 12788
+INFO 2025-10-11 07:56:43,089 basehttp 13 134490038982336 "GET /static/img/client_logo.webp HTTP/1.1" 200 32364
+INFO 2025-10-11 07:56:43,469 basehttp 13 134490047375040 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-11 07:56:43,501 basehttp 13 134490047375040 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:56:44,821 basehttp 13 134490030589632 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 11602706
+INFO 2025-10-11 07:57:38,020 basehttp 13 134490047375040 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 7965458
+INFO 2025-10-11 07:57:38,209 basehttp 13 134490030589632 "GET /findpartai/ HTTP/1.1" 200 31051
+INFO 2025-10-11 07:57:38,481 basehttp 13 134490030589632 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-11 07:57:38,490 basehttp 13 134490030589632 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:57:40,194 basehttp 13 134490030589632 "GET /findpartai/ HTTP/1.1" 200 31051
+INFO 2025-10-11 07:57:40,389 basehttp 13 134490030589632 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-11 07:57:40,440 basehttp 13 134490030589632 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:58:02,278 basehttp 13 134490030589632 "GET /findpartai/ HTTP/1.1" 200 31051
+INFO 2025-10-11 07:58:02,330 basehttp 13 134490030589632 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-11 07:58:02,338 basehttp 13 134490047375040 "GET /static/img/client_logo.webp HTTP/1.1" 304 0
+INFO 2025-10-11 07:58:02,565 basehttp 13 134490047375040 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-11 07:58:02,586 basehttp 13 134490047375040 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:58:27,979 basehttp 13 134490047375040 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 4786962
+INFO 2025-10-11 07:58:33,226 basehttp 13 134490030589632 "GET /findpartai/ HTTP/1.1" 200 31051
+INFO 2025-10-11 07:58:33,552 basehttp 13 134490030589632 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-11 07:58:33,563 basehttp 13 134490030589632 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:58:52,385 basehttp 13 134490030589632 "GET /findpartai/ HTTP/1.1" 200 31051
+INFO 2025-10-11 07:58:52,570 basehttp 13 134490030589632 "GET /static/img/favicon.png HTTP/1.1" 302 0
+INFO 2025-10-11 07:58:52,618 basehttp 13 134490030589632 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 07:59:11,263 basehttp 13 134490030589632 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 07:59:11,545 basehttp 13 134490030589632 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 3672850
+INFO 2025-10-11 08:04:35,589 autoreload 19 131077783260032 Watching for file changes with StatReloader
+INFO 2025-10-11 08:04:39,710 basehttp 19 131077714736832 "GET /findpartai/ HTTP/1.1" 200 31051
+INFO 2025-10-11 08:04:39,751 basehttp 19 131077714736832 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:04:39,759 basehttp 19 131077628749504 "GET /static/img/client_logo.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:04:39,759 basehttp 19 131077620356800 "GET /static/vid/client_testimonial.mp4 HTTP/1.1" 302 0
+INFO 2025-10-11 08:04:39,840 basehttp 19 131077714736832 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 08:04:40,414 basehttp 19 131077714736832 "GET /static/img/favicon.png HTTP/1.1" 200 181633
+INFO 2025-10-11 08:07:01,547 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 08:08:51,363 basehttp 19 131077628749504 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 08:08:51,437 basehttp 19 131077628749504 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:08:51,747 basehttp 19 131077628749504 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:10:20,813 basehttp 19 131077628749504 "GET /findpartai/ HTTP/1.1" 200 31051
+INFO 2025-10-11 08:10:20,923 basehttp 19 131077714736832 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:10:20,975 basehttp 19 131077637142208 "GET /static/img/client_logo.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:10:20,976 basehttp 19 131077620356800 "GET /static/vid/client_testimonial.mp4 HTTP/1.1" 302 0
+INFO 2025-10-11 08:10:21,025 basehttp 19 131077620356800 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 08:10:21,897 basehttp 19 131077620356800 "GET /static/img/favicon.png HTTP/1.1" 304 0
+INFO 2025-10-11 08:10:33,018 basehttp 19 131077637142208 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 393216
+INFO 2025-10-11 08:10:38,964 basehttp 19 131077637142208 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 5701632
+INFO 2025-10-11 08:10:50,983 basehttp 19 131077637142208 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 5013504
+INFO 2025-10-11 08:10:52,579 basehttp 19 131077637142208 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 1900544
+INFO 2025-10-11 08:10:52,905 basehttp 19 131077637142208 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 1585152
+INFO 2025-10-11 08:11:17,048 basehttp 19 131077637142208 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 28672
+INFO 2025-10-11 08:11:17,362 basehttp 19 131077637142208 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 1114112
+INFO 2025-10-11 08:12:07,100 basehttp 19 131077714736832 "GET /accounts/signup/ HTTP/1.1" 200 15895
+INFO 2025-10-11 08:12:07,161 basehttp 19 131077714736832 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:12:52,714 basehttp 19 131077714736832 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 08:12:53,007 basehttp 19 131077714736832 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:12:54,328 basehttp 19 131077714736832 "GET /accounts/signup/ HTTP/1.1" 200 15895
+INFO 2025-10-11 08:12:56,986 basehttp 19 131077714736832 "GET /accounts/login/ HTTP/1.1" 200 16298
+INFO 2025-10-11 08:12:58,052 basehttp 19 131077714736832 "GET /accounts/signup/ HTTP/1.1" 200 15895
+INFO 2025-10-11 08:12:58,887 basehttp 19 131077714736832 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 08:12:59,932 basehttp 19 131077714736832 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 08:13:04,451 basehttp 19 131077714736832 "GET /accounts/password/reset/ HTTP/1.1" 200 15594
+INFO 2025-10-11 08:13:13,981 basehttp 19 131077637142208 "GET /contact/ HTTP/1.1" 200 17586
+INFO 2025-10-11 08:13:14,062 basehttp 19 131077637142208 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:13:23,750 basehttp 19 131077637142208 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 08:13:24,759 basehttp 19 131077637142208 "GET /accounts/signup/ HTTP/1.1" 200 15895
+INFO 2025-10-11 08:13:25,961 basehttp 19 131077637142208 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 08:13:30,525 basehttp 19 131077637142208 "GET /solutions/ HTTP/1.1" 200 21261
+ERROR 2025-10-11 08:18:08,090 log 19 131077714736832 Internal Server Error: /accounts/password/reset/
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/utils/decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/allauth/decorators.py", line 20, in wrap
+    resp = function(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/allauth/account/views.py", line 111, in post
+    response = self.form_valid(form)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/allauth/account/views.py", line 761, in form_valid
+    form.save(self.request)
+  File "/usr/local/lib/python3.11/site-packages/allauth/account/forms.py", line 576, in save
+    self._send_unknown_account_mail(request, email)
+  File "/usr/local/lib/python3.11/site-packages/allauth/account/forms.py", line 589, in _send_unknown_account_mail
+    get_adapter().send_mail("account/email/unknown_account", email, context)
+  File "/usr/local/lib/python3.11/site-packages/allauth/account/adapter.py", line 144, in send_mail
+    msg.send()
+  File "/usr/local/lib/python3.11/site-packages/django/core/mail/message.py", line 298, in send
+    return self.get_connection(fail_silently).send_messages([self])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 127, in send_messages
+    new_conn_created = self.open()
+                       ^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/site-packages/django/core/mail/backends/smtp.py", line 85, in open
+    self.connection = self.connection_class(
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/smtplib.py", line 255, in __init__
+    (code, msg) = self.connect(host, port)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/smtplib.py", line 343, in connect
+    (code, msg) = self.getreply()
+                  ^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.11/smtplib.py", line 405, in getreply
+    raise SMTPServerDisconnected("Connection unexpectedly closed")
+smtplib.SMTPServerDisconnected: Connection unexpectedly closed
+ERROR 2025-10-11 08:18:08,117 basehttp 19 131077714736832 "POST /accounts/password/reset/ HTTP/1.1" 500 14792
+INFO 2025-10-11 08:19:24,460 basehttp 19 131077637142208 "GET /solutions/ HTTP/1.1" 200 20245
+INFO 2025-10-11 08:19:24,489 basehttp 19 131077637142208 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:19:24,747 basehttp 19 131077637142208 "GET /static/img/favicon.png HTTP/1.1" 304 0
+INFO 2025-10-11 08:20:08,558 basehttp 19 131077637142208 "GET /resources/ HTTP/1.1" 200 17009
+INFO 2025-10-11 08:20:11,300 basehttp 19 131077637142208 "GET /contact/ HTTP/1.1" 200 17586
+INFO 2025-10-11 08:20:53,959 basehttp 19 131077637142208 "GET /accounts/login/ HTTP/1.1" 200 16298
+INFO 2025-10-11 08:20:53,991 basehttp 19 131077637142208 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:20:55,268 basehttp 19 131077637142208 "GET /accounts/signup/ HTTP/1.1" 200 15895
+INFO 2025-10-11 08:20:56,243 basehttp 19 131077637142208 "GET / HTTP/1.1" 200 28081
+INFO 2025-10-11 08:20:56,348 basehttp 19 131077637142208 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:21:02,598 basehttp 19 131077637142208 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 08:21:06,220 basehttp 19 131077637142208 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 16056320
+INFO 2025-10-11 08:22:02,780 basehttp 19 131077637142208 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 08:25:17,321 basehttp 19 131077637142208 "GET /accounts/signup/ HTTP/1.1" 200 15910
+INFO 2025-10-11 08:25:17,357 basehttp 19 131077637142208 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:25:19,090 basehttp 19 131077637142208 "GET /resources/ HTTP/1.1" 200 17018
+INFO 2025-10-11 08:25:19,870 basehttp 19 131077637142208 "GET /contact/ HTTP/1.1" 200 17604
+INFO 2025-10-11 08:25:20,605 basehttp 19 131077637142208 "GET /solutions/ HTTP/1.1" 200 20254
+INFO 2025-10-11 08:25:21,069 basehttp 19 131077637142208 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 08:25:21,178 basehttp 19 131077637142208 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:25:30,798 basehttp 19 131077637142208 "GET /contact/ HTTP/1.1" 200 17604
+INFO 2025-10-11 08:25:36,757 basehttp 19 131077637142208 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 08:25:38,038 basehttp 19 131077637142208 "GET /solutions/ HTTP/1.1" 200 20254
+INFO 2025-10-11 08:25:38,541 basehttp 19 131077637142208 "GET /resources/ HTTP/1.1" 200 17018
+INFO 2025-10-11 08:25:38,867 basehttp 19 131077637142208 "GET /contact/ HTTP/1.1" 200 17604
+INFO 2025-10-11 08:25:39,760 basehttp 19 131077637142208 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 08:25:41,100 basehttp 19 131077714736832 "GET /findpartai/ HTTP/1.1" 200 31051
+INFO 2025-10-11 08:25:41,132 basehttp 19 131077714736832 "GET /static/img/client_logo.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:25:41,135 basehttp 19 131077637142208 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:25:41,148 basehttp 19 131077620356800 "GET /static/vid/client_testimonial.mp4 HTTP/1.1" 302 0
+INFO 2025-10-11 08:25:41,155 basehttp 19 131077620356800 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 08:25:41,209 basehttp 19 131077637142208 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 655360
+INFO 2025-10-11 08:25:41,350 basehttp 19 131077637142208 "GET /static/img/favicon.png HTTP/1.1" 304 0
+INFO 2025-10-11 08:28:43,847 basehttp 19 131077637142208 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 08:31:32,437 basehttp 19 131077637142208 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 08:31:34,992 basehttp 19 131077637142208 "GET /resources/ HTTP/1.1" 200 17018
+INFO 2025-10-11 08:31:35,029 basehttp 19 131077637142208 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:31:36,459 basehttp 19 131077637142208 "GET /contact/ HTTP/1.1" 200 17604
+INFO 2025-10-11 08:31:55,019 basehttp 19 131077637142208 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 08:31:55,134 basehttp 19 131077637142208 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:32:05,711 basehttp 19 131077637142208 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 08:32:05,848 basehttp 19 131077637142208 "GET /static/img/favicon.png HTTP/1.1" 304 0
+INFO 2025-10-11 08:32:07,745 basehttp 19 131077637142208 "GET /contact/ HTTP/1.1" 200 17604
+INFO 2025-10-11 08:32:21,456 basehttp 19 131077637142208 "GET /findpartai/ HTTP/1.1" 200 31231
+INFO 2025-10-11 08:32:21,482 basehttp 19 131077637142208 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:32:21,485 basehttp 19 131077714736832 "GET /static/img/client_logo.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:32:21,488 basehttp 19 131077620356800 "GET /static/vid/client_testimonial.mp4 HTTP/1.1" 302 0
+INFO 2025-10-11 08:32:21,498 basehttp 19 131077620356800 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 08:36:33,303 basehttp 19 131077637142208 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 08:36:51,154 basehttp 19 131077620356800 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 9076736
+INFO 2025-10-11 08:37:38,369 basehttp 19 131077620356800 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 1048576
+INFO 2025-10-11 08:37:44,115 basehttp 19 131077620356800 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 1048576
+INFO 2025-10-11 08:37:59,717 basehttp 19 131077620356800 "GET /findpartai/ HTTP/1.1" 200 30234
+INFO 2025-10-11 08:37:59,776 basehttp 19 131077714736832 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-11 08:38:00,184 basehttp 19 131077714736832 "GET /static/img/favicon.png HTTP/1.1" 304 0
+INFO 2025-10-11 08:38:11,151 basehttp 19 131077714736832 "GET /findpartai/ HTTP/1.1" 200 27874
+INFO 2025-10-11 09:21:50,482 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 4620288
+INFO 2025-10-11 09:23:39,347 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 10:07:15,005 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 10:08:00,835 basehttp 19 131077714736832 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 10:08:00,872 basehttp 19 131077714736832 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 10:08:01,106 basehttp 19 131077714736832 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-11 10:53:15,306 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 11:10:45,886 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 12:07:11,866 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 12:13:11,370 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 12:21:36,537 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 15:25:06,291 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 15:38:01,896 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 16:11:53,618 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 16:13:06,490 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 26068612
+INFO 2025-10-11 16:15:56,919 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 16:16:14,537 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 15681156
+INFO 2025-10-11 16:20:34,667 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 16:20:40,799 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 444036
+INFO 2025-10-11 17:26:48,697 basehttp 19 131077714736832 "GET /solutions/ HTTP/1.1" 200 20254
+INFO 2025-10-11 17:26:48,831 basehttp 19 131077714736832 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 17:26:51,523 basehttp 19 131077714736832 "GET /resources/ HTTP/1.1" 200 17018
+INFO 2025-10-11 17:26:52,745 basehttp 19 131077714736832 "GET /contact/ HTTP/1.1" 200 17604
+INFO 2025-10-11 17:26:54,324 basehttp 19 131077714736832 "GET /solutions/ HTTP/1.1" 200 20254
+INFO 2025-10-11 17:26:54,891 basehttp 19 131077714736832 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 17:26:55,182 basehttp 19 131077714736832 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-11 17:58:10,766 basehttp 19 131077714736832 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 18:07:41,584 basehttp 19 131077714736832 "GET /findpartai/ HTTP/1.1" 200 27848
+INFO 2025-10-11 18:07:41,735 basehttp 19 131077714736832 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-11 18:07:41,809 basehttp 19 131077714736832 "GET /static/vid/video-demo.mp4 HTTP/1.1" 302 0
+INFO 2025-10-11 18:07:41,868 basehttp 19 131077620356800 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 18:07:41,967 basehttp 19 131077714736832 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:07:42,419 basehttp 19 131077620356800 "GET /static/vid/landing_video.mp4 HTTP/1.1" 206 647168
+INFO 2025-10-11 18:07:42,629 basehttp 19 131077620356800 "GET /static/img/favicon.png HTTP/1.1" 304 0
+INFO 2025-10-11 18:08:13,470 basehttp 19 131077620356800 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-10-11 18:08:13,502 basehttp 19 131077620356800 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:09:50,368 basehttp 19 131077620356800 "GET /findpartai/ HTTP/1.1" 200 28699
+INFO 2025-10-11 18:09:50,497 basehttp 19 131077620356800 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-11 18:09:50,511 basehttp 19 131077620356800 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 18:09:50,535 basehttp 19 131077714736832 "GET /static/vid/video-demo.mp4 HTTP/1.1" 302 0
+INFO 2025-10-11 18:09:50,646 basehttp 19 131077714736832 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:09:51,316 basehttp 19 131077714736832 "GET /static/img/favicon.png HTTP/1.1" 304 0
+INFO 2025-10-11 18:10:03,434 basehttp 19 131077714736832 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 302 0
+INFO 2025-10-11 18:10:03,461 basehttp 19 131077714736832 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:22:55,090 autoreload 14 139897835834240 Watching for file changes with StatReloader
+INFO 2025-10-11 18:45:21,807 basehttp 14 139897767720640 "GET /findpartai/ HTTP/1.1" 200 28705
+INFO 2025-10-11 18:45:22,051 basehttp 14 139897767720640 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-11 18:45:22,217 basehttp 14 139897767720640 "GET /static/vid/video-demo.mp4 HTTP/1.1" 302 0
+INFO 2025-10-11 18:45:22,265 basehttp 14 139897688028864 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 18:45:22,632 basehttp 14 139897767720640 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:45:23,124 basehttp 14 139897767720640 "GET /static/img/favicon.png HTTP/1.1" 304 0
+INFO 2025-10-11 18:46:54,527 basehttp 14 139897767720640 "GET /findpartai/ HTTP/1.1" 200 28705
+INFO 2025-10-11 18:46:54,684 basehttp 14 139897767720640 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-11 18:46:54,715 basehttp 14 139897767720640 "GET /static/vid/video-demo.mp4 HTTP/1.1" 302 0
+INFO 2025-10-11 18:46:54,720 basehttp 14 139897688028864 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 18:46:54,788 basehttp 14 139897767720640 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:46:55,224 basehttp 14 139897767720640 "GET /static/img/favicon.png HTTP/1.1" 304 0
+INFO 2025-10-11 18:47:33,613 basehttp 14 139897767720640 "GET /findpartai/ HTTP/1.1" 200 28705
+INFO 2025-10-11 18:47:33,738 basehttp 14 139897767720640 "GET /static/vid/video-demo.mp4 HTTP/1.1" 302 0
+INFO 2025-10-11 18:47:33,805 basehttp 14 139897767720640 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:47:35,560 basehttp 14 139897767720640 "GET /findpartai/ HTTP/1.1" 200 28705
+INFO 2025-10-11 18:47:35,668 basehttp 14 139897767720640 "GET /static/vid/video-demo.mp4 HTTP/1.1" 302 0
+INFO 2025-10-11 18:47:35,717 basehttp 14 139897767720640 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:47:35,934 basehttp 14 139897767720640 "GET /findpartai/ HTTP/1.1" 200 28705
+INFO 2025-10-11 18:47:36,096 basehttp 14 139897767720640 "GET /findpartai/ HTTP/1.1" 200 28705
+INFO 2025-10-11 18:47:36,257 basehttp 14 139897767720640 "GET /findpartai/ HTTP/1.1" 200 28705
+INFO 2025-10-11 18:47:36,328 basehttp 14 139897688028864 "GET /static/vid/video-demo.mp4 HTTP/1.1" 302 0
+INFO 2025-10-11 18:47:36,481 basehttp 14 139897767720640 "GET /findpartai/ HTTP/1.1" 200 28705
+INFO 2025-10-11 18:47:36,574 basehttp 14 139897767720640 "GET /findpartai/ HTTP/1.1" 200 28705
+INFO 2025-10-11 18:47:36,702 basehttp 14 139897767720640 "GET /static/vid/video-demo.mp4 HTTP/1.1" 302 0
+INFO 2025-10-11 18:47:36,739 basehttp 14 139897767720640 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:47:44,200 basehttp 14 139897767720640 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:47:44,333 basehttp 14 139897767720640 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 18:47:44,450 basehttp 14 139897767720640 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-11 18:49:02,215 basehttp 14 139897767720640 "GET /findpartai/ HTTP/1.1" 200 28705
+INFO 2025-10-11 18:49:02,447 basehttp 14 139897767720640 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-11 18:49:02,483 basehttp 14 139897767720640 "GET /static/vid/video-demo.mp4 HTTP/1.1" 302 0
+INFO 2025-10-11 18:49:02,511 basehttp 14 139897679636160 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 18:49:02,566 basehttp 14 139897767720640 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:49:07,750 basehttp 14 139897767720640 "GET /findpartai/ HTTP/1.1" 200 28705
+INFO 2025-10-11 18:49:07,890 basehttp 14 139897767720640 "GET /static/vid/video-demo.mp4 HTTP/1.1" 302 0
+INFO 2025-10-11 18:49:07,985 basehttp 14 139897767720640 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:49:08,404 basehttp 14 139897767720640 "GET /static/img/favicon.png HTTP/1.1" 304 0
+INFO 2025-10-11 18:49:31,849 basehttp 14 139897767720640 "GET /findpartai/ HTTP/1.1" 200 28705
+INFO 2025-10-11 18:49:31,945 basehttp 14 139897767720640 "GET /static/vid/video-demo.mp4 HTTP/1.1" 302 0
+INFO 2025-10-11 18:49:32,157 basehttp 14 139897767720640 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:53:17,692 autoreload 14 139897835834240 /app/iacol_project/settings.py changed, reloading.
+INFO 2025-10-11 18:53:41,337 autoreload 50 130207906364288 Watching for file changes with StatReloader
+INFO 2025-10-11 18:54:08,811 basehttp 50 130207770998464 "GET /findpartai/ HTTP/1.1" 200 28705
+INFO 2025-10-11 18:54:08,939 basehttp 50 130207770998464 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-11 18:54:09,034 basehttp 50 130207762605760 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 18:54:09,352 basehttp 50 130207762605760 "GET /static/vid/video-demo.mp4 HTTP/1.1" 206 79643
+INFO 2025-10-11 18:54:09,524 basehttp 50 130207754213056 "GET /static/vid/video-demo.mp4 HTTP/1.1" 206 1819
+INFO 2025-10-11 18:54:10,110 basehttp 50 130207770998464 "GET /static/img/favicon.png HTTP/1.1" 304 0
+INFO 2025-10-11 18:54:38,460 basehttp 50 130207754213056 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:54:38,764 basehttp 50 130207754213056 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 18:54:38,973 basehttp 50 130207754213056 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-11 18:54:41,230 basehttp 50 130207754213056 "GET /accounts/login/ HTTP/1.1" 200 16307
+INFO 2025-10-11 18:54:42,959 basehttp 50 130207754213056 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:54:44,299 basehttp 50 130207754213056 "GET /solutions/ HTTP/1.1" 200 20254
+INFO 2025-10-11 18:54:45,468 basehttp 50 130207754213056 "GET /accounts/login/ HTTP/1.1" 200 16307
+INFO 2025-10-11 18:54:50,559 basehttp 50 130207754213056 "POST /accounts/login/ HTTP/1.1" 200 16502
+INFO 2025-10-11 18:54:55,196 basehttp 50 130207754213056 "POST /accounts/login/ HTTP/1.1" 200 16502
+INFO 2025-10-11 18:55:01,062 basehttp 50 130207754213056 "POST /accounts/login/ HTTP/1.1" 200 16502
+INFO 2025-10-11 18:55:04,445 basehttp 50 130207754213056 "POST /accounts/login/ HTTP/1.1" 200 16502
+INFO 2025-10-11 18:55:09,993 basehttp 50 130207754213056 "POST /accounts/login/ HTTP/1.1" 200 16502
+INFO 2025-10-11 18:55:15,655 basehttp 50 130207754213056 "POST /accounts/login/ HTTP/1.1" 200 16474
+INFO 2025-10-11 18:55:19,806 basehttp 50 130207754213056 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:55:27,143 basehttp 50 130207754213056 "GET /solutions/ HTTP/1.1" 200 20254
+INFO 2025-10-11 18:55:28,438 basehttp 50 130207754213056 "GET /resources/ HTTP/1.1" 200 17018
+INFO 2025-10-11 18:55:29,193 basehttp 50 130207754213056 "GET /contact/ HTTP/1.1" 200 17604
+INFO 2025-10-11 18:55:30,276 basehttp 50 130207754213056 "GET /resources/ HTTP/1.1" 200 17018
+INFO 2025-10-11 18:55:33,765 basehttp 50 130207754213056 "GET /contact/ HTTP/1.1" 200 17604
+INFO 2025-10-11 18:55:34,618 basehttp 50 130207754213056 "GET /accounts/login/ HTTP/1.1" 200 16307
+INFO 2025-10-11 18:55:35,463 basehttp 50 130207754213056 "GET /contact/ HTTP/1.1" 200 17604
+INFO 2025-10-11 18:55:35,924 basehttp 50 130207754213056 "GET /contact/ HTTP/1.1" 200 17604
+INFO 2025-10-11 18:55:36,696 basehttp 50 130207754213056 "GET /resources/ HTTP/1.1" 200 17018
+INFO 2025-10-11 18:55:40,244 basehttp 50 130207754213056 "GET /accounts/login/ HTTP/1.1" 200 16307
+INFO 2025-10-11 18:55:40,340 basehttp 50 130207754213056 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 18:55:58,804 basehttp 50 130207754213056 "POST /accounts/login/ HTTP/1.1" 200 16504
+INFO 2025-10-11 18:56:07,085 basehttp 50 130207754213056 "POST /accounts/login/ HTTP/1.1" 200 16504
+INFO 2025-10-11 18:56:11,367 basehttp 50 130207754213056 "GET /accounts/signup/ HTTP/1.1" 200 15910
+INFO 2025-10-11 18:56:18,365 basehttp 50 130207754213056 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 18:56:18,557 basehttp 50 130207754213056 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-11 18:56:20,998 basehttp 50 130207754213056 "GET /accounts/login/ HTTP/1.1" 200 16307
+INFO 2025-10-11 18:57:27,076 basehttp 50 130207754213056 "POST /accounts/login/ HTTP/1.1" 200 16504
+INFO 2025-10-11 18:57:27,190 basehttp 50 130207754213056 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 19:03:40,586 autoreload 14 131851338341248 Watching for file changes with StatReloader
+INFO 2025-10-11 19:05:36,207 basehttp 14 131851201017536 "POST /accounts/login/ HTTP/1.1" 200 16504
+INFO 2025-10-11 19:05:36,344 basehttp 14 131851201017536 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 19:05:42,364 basehttp 14 131851201017536 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 19:05:42,535 basehttp 14 131851201017536 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-11 19:05:43,527 basehttp 14 131851201017536 "GET /accounts/login/ HTTP/1.1" 200 16307
+INFO 2025-10-11 19:05:46,572 basehttp 14 131851201017536 "POST /accounts/login/ HTTP/1.1" 200 16502
+INFO 2025-10-11 19:06:23,260 basehttp 14 131851201017536 "POST /accounts/login/ HTTP/1.1" 200 16504
+INFO 2025-10-11 19:06:26,178 basehttp 14 131851201017536 "POST /accounts/login/ HTTP/1.1" 200 16504
+INFO 2025-10-11 19:06:30,151 basehttp 14 131851201017536 "POST /accounts/login/ HTTP/1.1" 200 16504
+INFO 2025-10-11 19:06:30,468 basehttp 14 131851201017536 "GET /static/img/favicon.png HTTP/1.1" 304 0
+INFO 2025-10-11 19:06:32,520 basehttp 14 131851201017536 "POST /accounts/login/ HTTP/1.1" 200 16504
+INFO 2025-10-11 19:08:11,091 basehttp 14 131851201017536 "POST /accounts/login/ HTTP/1.1" 200 16502
+INFO 2025-10-11 19:08:11,210 basehttp 14 131851201017536 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 19:10:03,462 autoreload 13 137555566807936 Watching for file changes with StatReloader
+INFO 2025-10-11 19:10:14,060 basehttp 13 137555498497728 "GET /accounts/login/ HTTP/1.1" 200 16307
+INFO 2025-10-11 19:10:14,179 basehttp 13 137555498497728 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 19:10:17,395 basehttp 13 137555498497728 "POST /accounts/login/ HTTP/1.1" 200 16502
+INFO 2025-10-11 19:10:19,978 basehttp 13 137555498497728 "POST /accounts/login/ HTTP/1.1" 200 16502
+INFO 2025-10-11 19:10:20,205 basehttp 13 137555498497728 "GET /static/img/favicon.png HTTP/1.1" 304 0
+INFO 2025-10-11 19:10:26,258 basehttp 13 137555498497728 "POST /accounts/login/ HTTP/1.1" 200 16502
+INFO 2025-10-11 19:10:51,754 basehttp 13 137555498497728 "POST /accounts/login/ HTTP/1.1" 200 16504
+INFO 2025-10-11 19:11:45,548 basehttp 13 137555498497728 "POST /accounts/login/ HTTP/1.1" 200 16504
+INFO 2025-10-11 19:11:45,640 basehttp 13 137555498497728 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 19:11:49,198 basehttp 13 137555498497728 "POST /accounts/login/ HTTP/1.1" 200 16504
+INFO 2025-10-11 19:11:54,358 basehttp 13 137555498497728 "POST /accounts/login/ HTTP/1.1" 200 16504
+INFO 2025-10-11 19:12:04,530 basehttp 13 137555498497728 "POST /accounts/login/ HTTP/1.1" 200 16502
+INFO 2025-10-11 19:12:08,287 basehttp 13 137555498497728 "POST /accounts/login/ HTTP/1.1" 200 16502
+INFO 2025-10-11 19:13:12,243 basehttp 13 137555498497728 "POST /accounts/login/ HTTP/1.1" 200 16474
+INFO 2025-10-11 19:13:12,361 basehttp 13 137555498497728 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 19:13:12,744 basehttp 13 137555498497728 "GET /static/img/favicon.png HTTP/1.1" 304 0
+INFO 2025-10-11 19:13:16,016 basehttp 13 137555498497728 "GET /accounts/login/ HTTP/1.1" 200 16307
+INFO 2025-10-11 19:13:18,096 basehttp 13 137555498497728 "POST /accounts/login/ HTTP/1.1" 200 16474
+INFO 2025-10-11 19:13:41,154 basehttp 13 137555498497728 "GET /accounts/login/ HTTP/1.1" 200 16307
+INFO 2025-10-11 19:13:43,432 basehttp 13 137555498497728 "POST /accounts/login/ HTTP/1.1" 200 16474
+INFO 2025-10-11 19:14:01,613 basehttp 13 137555498497728 "POST /accounts/login/ HTTP/1.1" 200 16504
+INFO 2025-10-11 19:14:04,234 basehttp 13 137555498497728 "POST /accounts/login/ HTTP/1.1" 200 16474
+INFO 2025-10-11 19:14:08,817 basehttp 13 137555498497728 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 19:14:09,063 basehttp 13 137555498497728 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-11 19:14:10,161 basehttp 13 137555498497728 "GET /solutions/ HTTP/1.1" 200 20254
+INFO 2025-10-11 19:14:10,980 basehttp 13 137555498497728 "GET /resources/ HTTP/1.1" 200 17018
+INFO 2025-10-11 19:14:11,766 basehttp 13 137555498497728 "GET /contact/ HTTP/1.1" 200 17604
+INFO 2025-10-11 19:14:11,934 basehttp 13 137555498497728 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 19:14:12,617 basehttp 13 137555498497728 "GET /accounts/login/ HTTP/1.1" 200 16307
+INFO 2025-10-11 19:14:16,134 basehttp 13 137555498497728 "POST /accounts/login/ HTTP/1.1" 200 16474
+INFO 2025-10-11 19:15:38,110 autoreload 13 137555566807936 /app/iacol_project/settings.py changed, reloading.
+INFO 2025-10-11 19:15:46,192 autoreload 59 134339564514176 Watching for file changes with StatReloader
+INFO 2025-10-11 19:16:23,527 autoreload 13 137913050893184 Watching for file changes with StatReloader
+INFO 2025-10-11 19:17:00,128 autoreload 13 137913050893184 /app/iacol_project/settings.py changed, reloading.
+INFO 2025-10-11 19:17:08,211 autoreload 17 126581264231296 Watching for file changes with StatReloader
+INFO 2025-10-11 19:17:16,737 basehttp 17 126581128296128 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-11 19:17:16,899 basehttp 17 126581128296128 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-11 19:17:17,151 basehttp 17 126581128296128 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-11 19:17:23,311 basehttp 17 126581128296128 "GET /accounts/login/ HTTP/1.1" 200 16307
+INFO 2025-10-11 19:17:27,873 basehttp 17 126581128296128 "POST /accounts/login/ HTTP/1.1" 200 16500
+INFO 2025-10-11 19:18:05,587 autoreload 13 126729157712768 Watching for file changes with StatReloader
+INFO 2025-10-11 19:21:47,448 autoreload 13 139606788512640 Watching for file changes with StatReloader
+INFO 2025-10-11 19:23:11,144 basehttp 13 139606720771776 "GET /findpartai/ HTTP/1.1" 200 28705
+INFO 2025-10-11 19:23:11,293 basehttp 13 139606720771776 "GET /static/img/findpartai.webp HTTP/1.1" 304 0
+INFO 2025-10-11 19:23:11,317 basehttp 13 139606720771776 "GET /static/vid/landing_video.mp4 HTTP/1.1" 304 0
+INFO 2025-10-11 19:23:11,320 basehttp 13 139606636885696 "GET /static/vid/video-demo.mp4 HTTP/1.1" 304 0

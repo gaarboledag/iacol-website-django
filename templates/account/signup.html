@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
 
-{% block title %}Crear Cuenta - IACOL{% endblock %}
+{% block title %}Registro - IACOL{% endblock %}
 
 {% block extra_css %}
 <style>
@@ -20,15 +20,28 @@
       <div class="col-md-6 col-lg-5">
         <div class="auth-card">
           <div class="mb-3 text-center">
-            <h1 class="h3 auth-title mb-2">Crear cuenta</h1>
-            <p class="auth-subtitle mb-0">Regístrate con tu correo electrónico</p>
+            <h1 class="h3 auth-title mb-2">Registro</h1>
+            <p class="auth-subtitle mb-0">Colabora con IACOL</p>
           </div>
 
-          <form method="post" action="{% url 'account_signup' %}">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <button type="submit" class="btn btn-primary w-100 mt-2">Crear cuenta</button>
-          </form>
+          <div class="text-center">
+            <p class="lead mb-4">
+              Si quieres colaborar con IACOL para tener un usuario registrado en la plataforma, contáctanos.
+            </p>
+            <div class="mb-4">
+              <i class="fas fa-envelope fa-2x text-primary mb-2"></i>
+              <p class="mb-1"><strong>Email:</strong></p>
+              <a href="mailto:gaarboledag@gmail.com" class="text-decoration-none">gaarboledag@gmail.com</a>
+            </div>
+            <div class="mb-4">
+              <i class="fas fa-phone fa-2x text-primary mb-2"></i>
+              <p class="mb-1"><strong>Teléfono:</strong></p>
+              <a href="tel:+573242693804" class="text-decoration-none">+57 (324) 269-3804</a>
+            </div>
+            <a href="{% url 'contact' %}" class="btn btn-primary">
+              <i class="fas fa-envelope me-2"></i>Contactar
+            </a>
+          </div>
 
           <div class="auth-divider"></div>
           <p class="mb-0 text-center">
@@ -41,3 +54,4 @@
   </div>
 </section>
 {% endblock %}
+

@@ -13,7 +13,7 @@ if ENV_FILE.exists():
     environ.Env.read_env(str(ENV_FILE))
 
 # Security / core
-SECRET_KEY = env('SECRET_KEY', default='tu-secret-key-super-seguro-2024-iacol')
+SECRET_KEY = env('SECRET_KEY', default='your-secret-key-here')
 DEBUG = env.bool('DEBUG', default=True)
 
 # Email settings
@@ -26,7 +26,7 @@ else:
     EMAIL_PORT = env.int('EMAIL_PORT', default=587)
     EMAIL_USE_TLS = env.bool('EMAIL_USE_TLS', default=True)
     EMAIL_HOST_USER = env('EMAIL_HOST_USER', default='no-reply@iacol.online')
-    EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='tu_contraseña_segura')
+    EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD', default='your-email-password')
     DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='no-reply@iacol.online')
     SERVER_EMAIL = env('SERVER_EMAIL', default=DEFAULT_FROM_EMAIL)
 
@@ -105,7 +105,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': env('DB_NAME', default='iacol'),
         'USER': env('DB_USER', default='postgres'),
-        'PASSWORD': env('DB_PASSWORD', default='Memo20012804.'),
+        'PASSWORD': env('DB_PASSWORD', default='your-db-password'),
         'HOST': env('DB_HOST', default='localhost'),
         'PORT': env('DB_PORT', default='5432'),
     }
@@ -228,6 +228,7 @@ ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 
 # Security Headers
 SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -261,4 +262,4 @@ N8N_API_URL = env('N8N_API_URL', default='http://n8n:5678/api/v1/')
 
 # Evolution API
 EVOLUTION_API_URL = env('EVOLUTION_API_URL', default='http://evolution_api:8080')
-EVOLUTION_API_KEY = env('EVOLUTION_API_KEY', default='change-me')
+EVOLUTION_API_KEY = env('EVOLUTION_API_KEY', default='your-api-key')
