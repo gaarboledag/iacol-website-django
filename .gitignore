@@ -141,5 +141,10 @@ Thumbs.db
 staticfiles/
 media/
 
+# Videos
+*.mp4
+*.mov
+*.avi
+
 # Docker
 .dockerignore
