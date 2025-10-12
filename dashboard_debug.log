@@ -158,3 +158,11 @@ INFO 2025-09-13 11:05:26,223 views 14 135707322476224 [DASHBOARD] Iniciando dash
 INFO 2025-09-13 11:05:26,236 views 14 135707322476224 [DASHBOARD] Suscripciones encontradas: 1
 INFO 2025-09-13 11:05:26,241 views 14 135707322476224 [DASHBOARD] Total de ejecuciones: 0
 INFO 2025-09-13 11:05:26,254 views 14 135707322476224 [DASHBOARD] Renderizando plantilla dashboard
+INFO 2025-10-11 19:24:23,433 views 13 139606720771776 [DASHBOARD] Iniciando dashboard para usuario: admin@iacol.online
+INFO 2025-10-11 19:24:23,451 views 13 139606720771776 [DASHBOARD] Suscripciones encontradas: 0
+INFO 2025-10-11 19:24:23,464 views 13 139606720771776 [DASHBOARD] Total de ejecuciones: 0
+INFO 2025-10-11 19:24:23,492 views 13 139606720771776 [DASHBOARD] Renderizando plantilla dashboard
+INFO 2025-10-11 19:24:28,495 views 13 139606720771776 [DASHBOARD] Iniciando dashboard para usuario: admin@iacol.online
+INFO 2025-10-11 19:24:28,511 views 13 139606720771776 [DASHBOARD] Suscripciones encontradas: 0
+INFO 2025-10-11 19:24:28,525 views 13 139606720771776 [DASHBOARD] Total de ejecuciones: 0
+INFO 2025-10-11 19:24:28,551 views 13 139606720771776 [DASHBOARD] Renderizando plantilla dashboard
