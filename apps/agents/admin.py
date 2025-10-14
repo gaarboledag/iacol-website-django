@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AgentCategory, Agent, UserSubscription, AgentConfiguration, AgentUsageLog
+from .models import AgentCategory, Agent, UserSubscription, AgentConfiguration, AgentUsageLog, Product, AutomotiveCenterInfo
 
 @admin.register(AgentCategory)
 class AgentCategoryAdmin(admin.ModelAdmin):
@@ -42,6 +42,50 @@ class UserSubscriptionAdmin(admin.ModelAdmin):
 class AgentConfigurationAdmin(admin.ModelAdmin):
     list_display = ['user', 'agent', 'updated_at']
     search_fields = ['user__username', 'agent__name']
+    fieldsets = (
+        (None, {
+            'fields': ('user', 'agent')
+        }),
+        ('Configuración', {
+            'fields': ('configuration_data', 'enable_providers', 'enable_products', 'enable_automotive_info')
+        }),
+    )
+
+    def get_readonly_fields(self, request, obj=None):
+        readonly = super().get_readonly_fields(request, obj)
+        if obj and 'MechAI' not in obj.agent.name:
+            readonly = list(readonly) + ['enable_providers', 'enable_products', 'enable_automotive_info']
+        return readonly
+
+    def get_exclude(self, request, obj=None):
+        exclude = super().get_exclude(request, obj)
+        if obj and 'MechAI' not in obj.agent.name:
+            exclude = list(exclude or []) + ['enable_providers', 'enable_products', 'enable_automotive_info']
+        return exclude
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        if obj and 'MechAI' not in obj.agent.name:
+            if 'enable_providers' in form.base_fields:
+                form.base_fields['enable_providers'].help_text = "Solo disponible para agentes MechAI"
+            if 'enable_products' in form.base_fields:
+                form.base_fields['enable_products'].help_text = "Solo disponible para agentes MechAI"
+            if 'enable_automotive_info' in form.base_fields:
+                form.base_fields['enable_automotive_info'].help_text = "Solo disponible para agentes MechAI"
+        return form
+
+@admin.register(Product)
+class ProductAdmin(admin.ModelAdmin):
+    list_display = ['title', 'price', 'agent_config', 'created_at']
+    list_filter = ['agent_config__agent', 'created_at']
+    search_fields = ['title', 'description']
+    readonly_fields = ['created_at', 'updated_at']
+
+@admin.register(AutomotiveCenterInfo)
+class AutomotiveCenterInfoAdmin(admin.ModelAdmin):
+    list_display = ['agent_config', 'physical_address', 'updated_at']
+    search_fields = ['agent_config__agent__name', 'physical_address']
+    readonly_fields = ['created_at', 'updated_at']
 
 @admin.register(AgentUsageLog)
 class AgentUsageLogAdmin(admin.ModelAdmin):

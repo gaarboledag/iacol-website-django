@@ -73,6 +73,20 @@ class AgentConfiguration(models.Model):
         help_text='Permitir a los usuarios gestionar proveedores para este agente'
     )
 
+    # Nuevo campo para indicar si este agente tiene habilitada la gestión de productos
+    enable_products = models.BooleanField(
+        default=False,
+        verbose_name='Habilitar gestión de productos',
+        help_text='Permitir a los usuarios gestionar productos para este agente'
+    )
+
+    # Nuevo campo para indicar si este agente tiene habilitada la información del centro automotriz
+    enable_automotive_info = models.BooleanField(
+        default=False,
+        verbose_name='Habilitar información del centro automotriz',
+        help_text='Permitir a los usuarios configurar información del centro automotriz para este agente'
+    )
+
     class Meta:
         unique_together = ['user', 'agent']
         verbose_name = 'Configuración de agente'
@@ -158,6 +172,111 @@ class Provider(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.city}"
+
+class ProductCategory(models.Model):
+    """Modelo para categorías de productos"""
+    name = models.CharField(max_length=100, verbose_name='Nombre de la categoría')
+    agent_config = models.ForeignKey(
+        AgentConfiguration,
+        on_delete=models.CASCADE,
+        related_name='product_categories',
+        verbose_name='Configuración del agente'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Categoría de producto'
+        verbose_name_plural = 'Categorías de productos'
+        unique_together = ['name', 'agent_config']
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+class ProductBrand(models.Model):
+    """Modelo para almacenar marcas de productos"""
+    name = models.CharField(max_length=100, verbose_name='Nombre de la marca')
+    agent_config = models.ForeignKey(
+        AgentConfiguration,
+        on_delete=models.CASCADE,
+        related_name='product_brands',
+        verbose_name='Configuración del agente'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Marca de producto'
+        verbose_name_plural = 'Marcas de productos'
+        unique_together = ['name', 'agent_config']
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+class Product(models.Model):
+    """Modelo para almacenar productos de un agente"""
+    title = models.CharField(max_length=200, verbose_name='Título del producto')
+    description = models.TextField(verbose_name='Descripción')
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Precio')
+    image = models.ImageField(upload_to='products/', null=True, blank=True, verbose_name='Imagen del producto')
+    category = models.ForeignKey(
+        ProductCategory,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='products',
+        verbose_name='Categoría'
+    )
+    brand = models.ForeignKey(
+        ProductBrand,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='products',
+        verbose_name='Marca'
+    )
+    agent_config = models.ForeignKey(
+        AgentConfiguration,
+        on_delete=models.CASCADE,
+        related_name='products',
+        verbose_name='Configuración del agente'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Producto'
+        verbose_name_plural = 'Productos'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.title} - ${self.price}"
+
+class AutomotiveCenterInfo(models.Model):
+    """Modelo para almacenar información del centro automotriz para agentes MechAI"""
+    agent_config = models.OneToOneField(
+        AgentConfiguration,
+        on_delete=models.CASCADE,
+        related_name='automotive_center_info',
+        verbose_name='Configuración del agente'
+    )
+    physical_address = models.TextField(verbose_name='Dirección física del taller')
+    business_hours = models.JSONField(
+        default=dict,
+        verbose_name='Horarios de atención',
+        help_text='Horarios de atención en formato JSON'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Información del Centro Automotriz'
+        verbose_name_plural = 'Información de Centros Automotrices'
+
+    def __str__(self):
+        return f"Centro Automotriz: {self.agent_config.agent.name}"
 
 class AgentUsageLog(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -10,8 +10,8 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
-from .models import Agent, UserSubscription, AgentConfiguration, AgentUsageLog, Provider, ProviderCategory, Brand
-from .forms import AgentConfigurationForm, ProviderForm, ProviderCategoryForm, BrandForm
+from .models import Agent, UserSubscription, AgentConfiguration, AgentUsageLog, Provider, ProviderCategory, Brand, Product, ProductCategory, ProductBrand, AutomotiveCenterInfo
+from .forms import AgentConfigurationForm, ProviderForm, ProviderCategoryForm, BrandForm, ProductForm, ProductCategoryForm, ProductBrandForm, AutomotiveCenterInfoForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 @login_required
@@ -94,15 +94,15 @@ def agent_configure(request, agent_id):
     """Configuración de un agente"""
     agent = get_object_or_404(Agent, id=agent_id)
     subscription = get_object_or_404(
-        UserSubscription, 
-        user=request.user, 
-        agent=agent, 
+        UserSubscription,
+        user=request.user,
+        agent=agent,
         status='active'
     )
-    
+
     # Get or create configuration
     configuration, created = AgentConfiguration.objects.get_or_create(
-        user=request.user, 
+        user=request.user,
         agent=agent,
         defaults={'configuration_data': {}}
     )
@@ -112,11 +112,25 @@ def agent_configure(request, agent_id):
     if hasattr(configuration, 'enable_providers') and configuration.enable_providers:
         providers = configuration.providers.all().order_by('name')
 
+    # Get products if enabled
+    products = []
+    if hasattr(configuration, 'enable_products') and configuration.enable_products:
+        products = configuration.products.all().order_by('-created_at')
+
+    # Get automotive center info if enabled
+    automotive_info = None
+    if hasattr(configuration, 'enable_automotive_info') and configuration.enable_automotive_info:
+        automotive_info = getattr(configuration, 'automotive_center_info', None)
+
     return render(request, 'agents/agent_configure.html', {
         'agent': agent,
         'configuration': configuration,
         'providers': providers,
+        'products': products,
+        'automotive_info': automotive_info,
         'enable_providers': getattr(configuration, 'enable_providers', False),
+        'enable_products': getattr(configuration, 'enable_products', False),
+        'enable_automotive_info': getattr(configuration, 'enable_automotive_info', False),
     })
 
 @login_required
@@ -124,24 +138,46 @@ def toggle_module(request, agent_id, module_name):
     """Activar o desactivar un módulo de configuración"""
     if request.method != 'POST':
         return JsonResponse({'status': 'error', 'message': 'Método no permitido'}, status=405)
-    
+
     agent = get_object_or_404(Agent, id=agent_id)
     configuration, _ = AgentConfiguration.objects.get_or_create(
-        user=request.user, 
+        user=request.user,
         agent=agent,
         defaults={'configuration_data': {}}
     )
-    
+
     # Handle different modules
     if module_name == 'providers':
+        if 'MechAI' not in agent.name:
+            return JsonResponse({'status': 'error', 'message': 'La gestión de proveedores solo está disponible para agentes MechAI'}, status=403)
         configuration.enable_providers = not getattr(configuration, 'enable_providers', False)
         configuration.save()
         return JsonResponse({
-            'status': 'success', 
+            'status': 'success',
             'enabled': configuration.enable_providers,
             'redirect': reverse_lazy('agents:agent_configure', kwargs={'agent_id': agent.id})
         })
-    
+    elif module_name == 'products':
+        if 'MechAI' not in agent.name:
+            return JsonResponse({'status': 'error', 'message': 'La gestión de productos solo está disponible para agentes MechAI'}, status=403)
+        configuration.enable_products = not getattr(configuration, 'enable_products', False)
+        configuration.save()
+        return JsonResponse({
+            'status': 'success',
+            'enabled': configuration.enable_products,
+            'redirect': reverse_lazy('agents:agent_configure', kwargs={'agent_id': agent.id})
+        })
+    elif module_name == 'automotive_info':
+        if 'MechAI' not in agent.name:
+            return JsonResponse({'status': 'error', 'message': 'La información del centro automotriz solo está disponible para agentes MechAI'}, status=403)
+        configuration.enable_automotive_info = not getattr(configuration, 'enable_automotive_info', False)
+        configuration.save()
+        return JsonResponse({
+            'status': 'success',
+            'enabled': configuration.enable_automotive_info,
+            'redirect': reverse_lazy('agents:agent_configure', kwargs={'agent_id': agent.id})
+        })
+
     return JsonResponse({'status': 'error', 'message': 'Módulo no encontrado'}, status=404)
 
 class ProviderCreateView(LoginRequiredMixin, CreateView):
@@ -237,6 +273,262 @@ class ProviderCategoryListView(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return ProviderCategory.objects.filter(agent_config__agent=self.agent)
     
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        return context
+
+class ProductCategoryListView(LoginRequiredMixin, ListView):
+    model = ProductCategory
+    template_name = 'agents/product_category_list.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return ProductCategory.objects.filter(agent_config__agent=self.agent)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        return context
+
+class ProductCategoryCreateView(LoginRequiredMixin, CreateView):
+    model = ProductCategory
+    form_class = ProductCategoryForm
+    template_name = 'agents/product_category_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        # Get or create the agent configuration
+        self.agent_config, _ = AgentConfiguration.objects.get_or_create(
+            user=self.request.user,
+            agent=self.agent,
+            defaults={'configuration_data': {}}
+        )
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.agent_config = self.agent_config
+        messages.success(self.request, _("Categoría de producto agregada exitosamente."))
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:product_category_list', kwargs={'agent_id': self.agent.id})
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.agent_config
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Agregar Categoría de Producto")
+        return context
+
+class ProductCategoryUpdateView(LoginRequiredMixin, UpdateView):
+    model = ProductCategory
+    form_class = ProductCategoryForm
+    template_name = 'agents/product_category_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.category = self.get_object()
+        self.agent = self.category.agent_config.agent
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        messages.success(self.request, _("Categoría de producto actualizada exitosamente."))
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:product_category_list', kwargs={'agent_id': self.agent.id})
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.category.agent_config
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Editar Categoría de Producto")
+        return context
+
+class ProductCategoryDeleteView(LoginRequiredMixin, DeleteView):
+    model = ProductCategory
+    template_name = 'agents/product_category_confirm_delete.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.category = self.get_object()
+        self.agent = self.category.agent_config.agent
+        return super().dispatch(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(request, _("Categoría de producto eliminada exitosamente."))
+        return super().delete(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:product_category_list', kwargs={'agent_id': self.agent.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        return context
+
+class AutomotiveCenterInfoCreateView(LoginRequiredMixin, CreateView):
+    model = AutomotiveCenterInfo
+    form_class = AutomotiveCenterInfoForm
+    template_name = 'agents/automotive_center_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent_config = AgentConfiguration.objects.get(
+            user=self.request.user,
+            agent=self.agent
+        )
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.agent_config = self.agent_config
+        messages.success(self.request, _("Información del centro automotriz creada exitosamente."))
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Configurar Centro Automotriz")
+        return context
+
+class AutomotiveCenterInfoUpdateView(LoginRequiredMixin, UpdateView):
+    model = AutomotiveCenterInfo
+    form_class = AutomotiveCenterInfoForm
+    template_name = 'agents/automotive_center_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.automotive_info = self.get_object()
+        self.agent = self.automotive_info.agent_config.agent
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        messages.success(self.request, _("Información del centro automotriz actualizada exitosamente."))
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Editar Centro Automotriz")
+        return context
+
+class ProductBrandListView(LoginRequiredMixin, ListView):
+    model = ProductBrand
+    template_name = 'agents/product_brand_list.html'
+    context_object_name = 'product_brands'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent_config = get_object_or_404(
+            AgentConfiguration,
+            user=request.user,
+            agent=self.agent
+        )
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return ProductBrand.objects.filter(agent_config=self.agent_config).order_by('name')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['agent_config'] = self.agent_config
+        return context
+
+class ProductBrandCreateView(LoginRequiredMixin, CreateView):
+    model = ProductBrand
+    form_class = ProductBrandForm
+    template_name = 'agents/product_brand_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent_config = get_object_or_404(
+            AgentConfiguration,
+            user=self.request.user,
+            agent=self.agent
+        )
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.agent_config
+        return kwargs
+
+    def form_valid(self, form):
+        form.instance.agent_config = self.agent_config
+        messages.success(self.request, _("Marca de producto creada exitosamente."))
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:product_brand_list', kwargs={'agent_id': self.agent.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Agregar Marca de Producto")
+        return context
+
+class ProductBrandUpdateView(LoginRequiredMixin, UpdateView):
+    model = ProductBrand
+    form_class = ProductBrandForm
+    template_name = 'agents/product_brand_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.brand = self.get_object()
+        self.agent = self.brand.agent_config.agent
+        self.agent_config = self.brand.agent_config
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.agent_config
+        return kwargs
+
+    def form_valid(self, form):
+        messages.success(self.request, _("Marca de producto actualizada exitosamente."))
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:product_brand_list', kwargs={'agent_id': self.agent.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Editar Marca de Producto")
+        return context
+
+class ProductBrandDeleteView(LoginRequiredMixin, DeleteView):
+    model = ProductBrand
+    template_name = 'agents/product_brand_confirm_delete.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.brand = self.get_object()
+        self.agent = self.brand.agent_config.agent
+        return super().dispatch(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        response = super().delete(request, *args, **kwargs)
+        messages.success(request, _("Marca de producto eliminada exitosamente."))
+        return response
+
+    def get_success_url(self):
+        return reverse_lazy('agents:product_brand_list', kwargs={'agent_id': self.agent.id})
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['agent'] = self.agent
@@ -413,20 +705,102 @@ class BrandUpdateView(LoginRequiredMixin, UpdateView):
 class BrandDeleteView(LoginRequiredMixin, DeleteView):
     model = Brand
     template_name = 'agents/brand_confirm_delete.html'
-    
+
     def dispatch(self, request, *args, **kwargs):
         self.brand = self.get_object()
         self.agent = self.brand.agent_config.agent
         return super().dispatch(request, *args, **kwargs)
-    
+
     def delete(self, request, *args, **kwargs):
         response = super().delete(request, *args, **kwargs)
         messages.success(request, _("Marca eliminada exitosamente."))
         return response
-    
+
     def get_success_url(self):
         return reverse_lazy('agents:brand_list', kwargs={'agent_id': self.agent.id})
-    
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        return context
+
+class ProductCreateView(LoginRequiredMixin, CreateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'agents/product_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent_config = AgentConfiguration.objects.get(
+            user=self.request.user,
+            agent=self.agent
+        )
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.agent_config
+        return kwargs
+
+    def form_valid(self, form):
+        form.instance.agent_config = self.agent_config
+        messages.success(self.request, _("Producto creado exitosamente."))
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Agregar Producto")
+        return context
+
+class ProductUpdateView(LoginRequiredMixin, UpdateView):
+    model = Product
+    form_class = ProductForm
+    template_name = 'agents/product_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.product = self.get_object()
+        self.agent = self.product.agent_config.agent
+        self.agent_config = self.product.agent_config
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.agent_config
+        return kwargs
+
+    def form_valid(self, form):
+        messages.success(self.request, _("Producto actualizado exitosamente."))
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Editar Producto")
+        return context
+
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
+    model = Product
+    template_name = 'agents/product_confirm_delete.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.product = self.get_object()
+        self.agent = self.product.agent_config.agent
+        return super().dispatch(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        messages.success(request, _("Producto eliminado exitosamente."))
+        return super().delete(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['agent'] = self.agent

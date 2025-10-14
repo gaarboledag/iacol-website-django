@@ -57,6 +57,7 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
+    'django_extensions',
     'apps.authentication',
     'apps.dashboard.apps.DashboardConfig',
     'apps.agents',
@@ -243,7 +244,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 
 # Redirect all non-HTTPS requests to HTTPS
-SECURE_SSL_REDIRECT = env.bool('SECURE_SSL_REDIRECT', default=False)
+SECURE_SSL_REDIRECT = False
 
 # HSTS Settings - Start with 0, then increase to 31536000 (1 year) after confirming HTTPS works
 SECURE_HSTS_SECONDS = int(env('SECURE_HSTS_SECONDS', default='0'))

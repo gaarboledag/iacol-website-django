@@ -31,4 +31,25 @@ urlpatterns = [
     path('<int:agent_id>/brands/add/', views.BrandCreateView.as_view(), name='brand_add'),
     path('brands/<int:pk>/edit/', views.BrandUpdateView.as_view(), name='brand_edit'),
     path('brands/<int:pk>/delete/', views.BrandDeleteView.as_view(), name='brand_delete'),
+
+    # URLs para la gestión de categorías de productos
+    path('<int:agent_id>/product-categories/', views.ProductCategoryListView.as_view(), name='product_category_list'),
+    path('<int:agent_id>/product-categories/add/', views.ProductCategoryCreateView.as_view(), name='product_category_add'),
+    path('product-categories/<int:pk>/edit/', views.ProductCategoryUpdateView.as_view(), name='product_category_edit'),
+    path('product-categories/<int:pk>/delete/', views.ProductCategoryDeleteView.as_view(), name='product_category_delete'),
+
+    # URLs para la gestión de marcas de productos
+    path('<int:agent_id>/product-brands/', views.ProductBrandListView.as_view(), name='product_brand_list'),
+    path('<int:agent_id>/product-brands/add/', views.ProductBrandCreateView.as_view(), name='product_brand_add'),
+    path('product-brands/<int:pk>/edit/', views.ProductBrandUpdateView.as_view(), name='product_brand_edit'),
+    path('product-brands/<int:pk>/delete/', views.ProductBrandDeleteView.as_view(), name='product_brand_delete'),
+
+    # URLs para la gestión de productos
+    path('<int:agent_id>/products/add/', views.ProductCreateView.as_view(), name='product_add'),
+    path('products/<int:pk>/edit/', views.ProductUpdateView.as_view(), name='product_edit'),
+    path('products/<int:pk>/delete/', views.ProductDeleteView.as_view(), name='product_delete'),
+
+    # URLs para la gestión de información del centro automotriz
+    path('<int:agent_id>/automotive-info/create/', views.AutomotiveCenterInfoCreateView.as_view(), name='automotive_info_create'),
+    path('automotive-info/<int:pk>/edit/', views.AutomotiveCenterInfoUpdateView.as_view(), name='automotive_info_update'),
 ]
