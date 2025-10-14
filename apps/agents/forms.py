@@ -95,16 +95,20 @@ class BrandForm(forms.ModelForm):
         return instance
 
 class ProviderForm(forms.ModelForm):
+    class Meta:
+        model = Provider
+        fields = ['name', 'phone', 'city', 'category', 'brands']
+
     def __init__(self, *args, **kwargs):
         self.agent_config = kwargs.pop('agent_config', None)
         super().__init__(*args, **kwargs)
-        
+
         # Filter categories and brands by agent_config
         if self.agent_config:
             self.fields['category'].queryset = ProviderCategory.objects.filter(
                 agent_config=self.agent_config
             )
-            
+
             # Update the brands field to use CheckboxSelectMultiple
             self.fields['brands'].widget = forms.CheckboxSelectMultiple()
             self.fields['brands'].queryset = Brand.objects.filter(
