@@ -39,7 +39,7 @@ class Agent(models.Model):
     def get_image_url(self):
         """Devuelve la URL correcta para acceder a la imagen"""
         if self.image and self.image.name:
-            return f"/api/media/agents/{self.image.name}"
+            return f"/api/media/agents/{self.image.name}/"
         return None
 
     def __str__(self):
@@ -176,7 +176,7 @@ class Provider(models.Model):
     def get_image_url(self):
         """Devuelve la URL correcta para acceder a la imagen"""
         if self.image and self.image.name:
-            return f"/api/media/products/{self.image.name}"
+            return f"/api/media/products/{self.image.name}/"
         return None
 
     class Meta:
