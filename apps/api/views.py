@@ -75,10 +75,20 @@ def get_agent_stats(request, agent_id):
         }, status=status.HTTP_404_NOT_FOUND)
 
 
-@api_view(['GET'])
+@permission_classes([])
 def serve_media(request, path):
-    """Sirve archivos de media de forma segura"""
+    """Sirve archivos de media de forma segura con logging para debugging"""
     file_path = os.path.join(settings.MEDIA_ROOT, path)
+
+    # Logging para debugging
+    import logging
+    logger = logging.getLogger(__name__)
+    logger.info(f"Intentando servir archivo: {file_path}")
+    logger.info(f"MEDIA_ROOT: {settings.MEDIA_ROOT}")
+    logger.info(f"Path solicitado: {path}")
+    logger.info(f"Archivo existe: {os.path.exists(file_path)}")
+    logger.info(f"Es archivo: {os.path.isfile(file_path) if os.path.exists(file_path) else 'N/A'}")
+
     if os.path.exists(file_path) and os.path.isfile(file_path):
         # Determinar tipo MIME basado en extensión
         ext = os.path.splitext(file_path)[1].lower()
@@ -93,7 +103,11 @@ def serve_media(request, path):
 
         try:
             with open(file_path, 'rb') as f:
-                return HttpResponse(f.read(), content_type=content_type)
-        except IOError:
+                response = HttpResponse(f.read(), content_type=content_type)
+                response['Content-Disposition'] = f'inline; filename="{os.path.basename(file_path)}"'
+                return response
+        except IOError as e:
+            logger.error(f"Error al leer archivo {file_path}: {e}")
             raise Http404("Error al leer el archivo")
+    logger.warning(f"Archivo no encontrado: {file_path}")
     raise Http404("Archivo no encontrado")

@@ -15,17 +15,13 @@ urlpatterns = [
     path('', include('apps.authentication.urls')),
 ]
 
-# Servir archivos media en desarrollo y producción
+# Servir archivos media en desarrollo y producción (temporal para testing)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-# Redirección para cualquier URL no encontrada (debe ir al final)
+# Catch-all debe ir AL FINAL para no interferir con rutas válidas
 urlpatterns += [
     path('<path:undefined_path>', RedirectView.as_view(url='/'), name='redirect-to-home'),
 ]
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

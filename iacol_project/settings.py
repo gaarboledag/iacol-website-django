@@ -198,6 +198,12 @@ LOGGING = {
             'filename': os.path.join(BASE_DIR, 'dashboard_debug.log'),
             'formatter': 'verbose',
         },
+        'media_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'media_debug.log'),
+            'formatter': 'verbose',
+        },
     },
     'loggers': {
         'django': {
@@ -213,6 +219,11 @@ LOGGING = {
         'apps.agents': {
             'handlers': ['console', 'file'],
             'level': 'INFO',
+            'propagate': False,
+        },
+        'apps.api': {
+            'handlers': ['console', 'media_file'],
+            'level': 'DEBUG',
             'propagate': False,
         },
     },
