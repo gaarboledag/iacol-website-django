@@ -390,3 +390,11 @@ INFO 2025-10-16 16:52:53,185 views 104 123467345159872 [DASHBOARD] Iniciando das
 INFO 2025-10-16 16:52:53,189 views 104 123467345159872 [DASHBOARD] Suscripciones encontradas: 2
 INFO 2025-10-16 16:52:53,192 views 104 123467345159872 [DASHBOARD] Total de ejecuciones: 0
 INFO 2025-10-16 16:52:53,200 views 104 123467345159872 [DASHBOARD] Renderizando plantilla dashboard
+INFO 2025-10-16 17:33:19,270 views 537 124134652630720 [DASHBOARD] Iniciando dashboard para usuario: admin@example.com
+INFO 2025-10-16 17:33:19,276 views 537 124134652630720 [DASHBOARD] Suscripciones encontradas: 2
+INFO 2025-10-16 17:33:19,282 views 537 124134652630720 [DASHBOARD] Total de ejecuciones: 0
+INFO 2025-10-16 17:33:19,293 views 537 124134652630720 [DASHBOARD] Renderizando plantilla dashboard
+INFO 2025-10-16 17:33:21,465 views 537 124134652630720 [DASHBOARD] Iniciando dashboard para usuario: admin@example.com
+INFO 2025-10-16 17:33:21,470 views 537 124134652630720 [DASHBOARD] Suscripciones encontradas: 2
+INFO 2025-10-16 17:33:21,473 views 537 124134652630720 [DASHBOARD] Total de ejecuciones: 0
+INFO 2025-10-16 17:33:21,482 views 537 124134652630720 [DASHBOARD] Renderizando plantilla dashboard

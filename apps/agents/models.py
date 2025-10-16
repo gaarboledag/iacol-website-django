@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+import os
+import uuid
 
 class AgentCategory(models.Model):
     name = models.CharField(max_length=100)
@@ -221,6 +223,7 @@ class Product(models.Model):
     description = models.TextField(verbose_name='Descripción')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Precio')
     image = models.ImageField(upload_to='products/', null=True, blank=True, verbose_name='Imagen del producto')
+
     category = models.ForeignKey(
         ProductCategory,
         on_delete=models.SET_NULL,
