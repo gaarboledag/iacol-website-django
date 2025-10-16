@@ -3,8 +3,11 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from django.contrib.auth.models import User
+from django.http import HttpResponse, Http404
+from django.conf import settings
 from apps.agents.models import Agent, AgentUsageLog
 import json
+import os
 from datetime import datetime
 
 @api_view(['POST'])
@@ -70,3 +73,27 @@ def get_agent_stats(request, agent_id):
         return Response({
             'error': 'Agent not found'
         }, status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['GET'])
+def serve_media(request, path):
+    """Sirve archivos de media de forma segura"""
+    file_path = os.path.join(settings.MEDIA_ROOT, path)
+    if os.path.exists(file_path) and os.path.isfile(file_path):
+        # Determinar tipo MIME basado en extensión
+        ext = os.path.splitext(file_path)[1].lower()
+        mime_types = {
+            '.png': 'image/png',
+            '.jpg': 'image/jpeg',
+            '.jpeg': 'image/jpeg',
+            '.gif': 'image/gif',
+            '.webp': 'image/webp',
+        }
+        content_type = mime_types.get(ext, 'application/octet-stream')
+
+        try:
+            with open(file_path, 'rb') as f:
+                return HttpResponse(f.read(), content_type=content_type)
+        except IOError:
+            raise Http404("Error al leer el archivo")
+    raise Http404("Archivo no encontrado")

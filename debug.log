@@ -14302,3 +14302,48 @@ INFO 2025-10-11 19:24:30,336 basehttp 13 139606720771776 "GET /agents/ HTTP/1.1"
 INFO 2025-10-11 19:32:57,879 basehttp 13 139606720771776 "GET /agents/ HTTP/1.1" 200 14980
 INFO 2025-10-11 19:32:58,006 basehttp 13 139606720771776 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
 INFO 2025-10-11 19:32:58,744 basehttp 13 139606720771776 "GET /static/img/favicon.png HTTP/1.1" 304 0
+INFO 2025-10-13 13:21:54,051 autoreload 12 138375576210304 Watching for file changes with StatReloader
+INFO 2025-10-13 13:28:18,569 basehttp 12 138375441938112 "HEAD / HTTP/1.1" 200 0
+INFO 2025-10-13 13:28:27,929 basehttp 12 138375441938112 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-13 13:31:56,949 basehttp 12 138375441938112 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-13 13:31:57,021 basehttp 12 138375441938112 "GET /static/img/iacol_hor.webp HTTP/1.1" 200 32364
+INFO 2025-10-13 13:31:57,233 basehttp 12 138375441938112 "GET /static/img/main.webp HTTP/1.1" 200 74230
+INFO 2025-10-13 13:32:05,170 basehttp 12 138375432496832 code 400, message Bad request version ('\x00\x12\x00\x10\x04\x03\x08\x04\x04\x01\x05\x03\x08\x05\x05\x01\x08\x06\x06\x01\x00')
+ERROR 2025-10-13 13:32:05,171 basehttp 12 138375432496832 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-13 13:32:05,176 basehttp 12 138375432496832 code 400, message Bad request version ('\x02h2\x08http/1.1\x00')
+ERROR 2025-10-13 13:32:05,177 basehttp 12 138375432496832 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-13 13:32:24,510 basehttp 12 138375432496832 code 400, message Bad request version ('localhost\x003\x04ï\x04í')
+ERROR 2025-10-13 13:32:24,514 basehttp 12 138375432496832 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-13 13:32:24,523 basehttp 12 138375432496832 code 400, message Bad request version ('\x8a\x8a\x00\x00\x00')
+ERROR 2025-10-13 13:32:24,524 basehttp 12 138375432496832 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-13 13:32:31,671 basehttp 12 138375441938112 "GET /findpartai HTTP/1.1" 302 0
+INFO 2025-10-13 13:32:31,681 basehttp 12 138375441938112 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-13 13:32:40,021 basehttp 12 138375432496832 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-13 13:32:40,111 basehttp 12 138375432496832 "GET /static/img/iacol_hor.webp HTTP/1.1" 200 32364
+INFO 2025-10-13 13:32:40,124 basehttp 12 138375424104128 "GET /static/img/main.webp HTTP/1.1" 200 74230
+INFO 2025-10-13 13:32:41,033 basehttp 12 138375424104128 "GET /static/img/favicon.png HTTP/1.1" 200 181633
+INFO 2025-10-13 13:32:53,774 basehttp 12 138375415711424 code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x06ò\x01\x00\x06î\x03\x03r0\x89\x87ï')
+ERROR 2025-10-13 13:32:53,775 basehttp 12 138375415711424 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-13 13:32:53,786 basehttp 12 138375415711424 code 400, message Bad request version ('\x00\x02\x01\x00\x003\x04ï\x04íºº\x00\x01\x00\x11ì\x04À@JXvuC\x1b;7f³SAä¯_`\x14¹a\x916\x11¤ÙE¹rì\x04\x1b\x1bd\x14')
+ERROR 2025-10-13 13:32:53,787 basehttp 12 138375415711424 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-13 13:34:00,507 basehttp 12 138375415711424 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-13 13:34:17,387 basehttp 12 138375415711424 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-13 13:34:36,707 basehttp 12 138375415711424 "GET / HTTP/1.1" 200 28093
+INFO 2025-10-13 13:35:54,875 basehttp 12 138375415711424 "HEAD /findpartai/ HTTP/1.1" 200 0
+INFO 2025-10-13 13:36:03,059 basehttp 12 138375415711424 "GET /findpartai/ HTTP/1.1" 200 29123
+INFO 2025-10-13 18:07:43,214 autoreload 13 129130879290240 Watching for file changes with StatReloader
+INFO 2025-10-13 18:11:38,394 basehttp 13 129130741888704 "GET / HTTP/1.1" 200 27889
+INFO 2025-10-13 18:11:38,585 basehttp 13 129130741888704 "GET /static/img/iacol_hor.webp HTTP/1.1" 304 0
+INFO 2025-10-13 18:11:38,860 basehttp 13 129130741888704 "GET /static/img/main.webp HTTP/1.1" 304 0
+INFO 2025-10-13 18:11:39,029 basehttp 13 129130741888704 "GET /static/img/favicon.png HTTP/1.1" 200 181633
+INFO 2025-10-13 18:13:11,143 basehttp 13 129130741888704 "GET / HTTP/1.1" 200 27889
+INFO 2025-10-13 18:13:15,582 basehttp 13 129130733496000 code 400, message Bad request version ('ßÏ1Ã¸×"Â')
+ERROR 2025-10-13 18:13:15,583 basehttp 13 129130733496000 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-13 18:13:15,588 basehttp 13 129130733496000 code 400, message Bad request version ('·\x12r/')
+ERROR 2025-10-13 18:13:15,589 basehttp 13 129130733496000 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-13 18:13:18,404 basehttp 13 129130733496000 code 400, message Bad request version ('ü\x13hÏç½\x13\x8d}')
+ERROR 2025-10-13 18:13:18,405 basehttp 13 129130733496000 You're accessing the development server over HTTPS, but it only supports HTTP.
+INFO 2025-10-13 18:13:18,415 basehttp 13 129130733496000 code 400, message Bad request version ('q«Ä¤gn\x94jq~\x12*!\x12\x9c*â:ÜÜ')
+ERROR 2025-10-13 18:13:18,417 basehttp 13 129130733496000 You're accessing the development server over HTTPS, but it only supports HTTP.
+WARNING 2025-10-13 19:02:29,356 log 690 124170054661824 Not Found: /admin/agents/product/add/
+WARNING 2025-10-13 19:02:30,809 log 690 124170054661824 Not Found: /admin/agents/product/

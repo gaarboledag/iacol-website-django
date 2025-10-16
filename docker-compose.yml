@@ -1,11 +1,13 @@
 services:
   web:
     build: .
-    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: sh -c "python manage.py migrate && python manage.py runserver_plus 0.0.0.0:8000 --cert-file /tmp/cert.pem --key-file /tmp/key.pem"
     volumes:
       - .:/app
+      - media_data:/app/media
     ports:
       - "8000:8000"
+      - "8443:8443"
     env_file: .env
     depends_on:
       - db
@@ -78,3 +80,4 @@ services:
 volumes:
   postgres_data:
   posteio_data:
+  media_data:
