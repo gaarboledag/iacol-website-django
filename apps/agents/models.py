@@ -36,6 +36,12 @@ class Agent(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def get_image_url(self):
+        """Devuelve la URL correcta para acceder a la imagen"""
+        if self.image and self.image.name:
+            return f"/api/media/agents/{self.image.name}"
+        return None
+
     def __str__(self):
         return self.name
 
@@ -166,6 +172,12 @@ class Provider(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def get_image_url(self):
+        """Devuelve la URL correcta para acceder a la imagen"""
+        if self.image and self.image.name:
+            return f"/api/media/products/{self.image.name}"
+        return None
 
     class Meta:
         verbose_name = 'Proveedor'
