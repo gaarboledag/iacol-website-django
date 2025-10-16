@@ -370,3 +370,7 @@ INFO 2025-10-16 09:10:46,308 views 13 137562893051584 [DASHBOARD] Iniciando dash
 INFO 2025-10-16 09:10:46,322 views 13 137562893051584 [DASHBOARD] Suscripciones encontradas: 2
 INFO 2025-10-16 09:10:46,328 views 13 137562893051584 [DASHBOARD] Total de ejecuciones: 0
 INFO 2025-10-16 09:10:46,347 views 13 137562893051584 [DASHBOARD] Renderizando plantilla dashboard
+INFO 2025-10-16 16:14:04,886 views 55 129158646589120 [DASHBOARD] Iniciando dashboard para usuario: admin@example.com
+INFO 2025-10-16 16:14:04,903 views 55 129158646589120 [DASHBOARD] Suscripciones encontradas: 2
+INFO 2025-10-16 16:14:04,912 views 55 129158646589120 [DASHBOARD] Total de ejecuciones: 0
+INFO 2025-10-16 16:14:04,949 views 55 129158646589120 [DASHBOARD] Renderizando plantilla dashboard

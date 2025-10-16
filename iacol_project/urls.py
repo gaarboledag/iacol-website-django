@@ -13,8 +13,16 @@ urlpatterns = [
     path('agents/', include('apps.agents.urls')),
     path('payments/', include('apps.payments.urls')),
     path('', include('apps.authentication.urls')),
-    
-    # Redirección para cualquier URL no encontrada
+]
+
+# Servir archivos media en desarrollo y producción
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# Redirección para cualquier URL no encontrada (debe ir al final)
+urlpatterns += [
     path('<path:undefined_path>', RedirectView.as_view(url='/'), name='redirect-to-home'),
 ]
 
