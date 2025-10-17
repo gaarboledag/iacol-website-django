@@ -39,23 +39,58 @@
 
 {% block extra_js %}
 <script>
-    // Preview image before upload
-    document.getElementById('id_image').addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                // You could add image preview functionality here
-                console.log('Image selected:', file.name);
-            };
-            reader.readAsDataURL(file);
-        }
-    });
+    // Toggle image upload method fields
+    function toggleImageFields() {
+        const uploadMethod = document.querySelector('input[name="image_upload_method"]:checked').value;
+        const fileField = document.getElementById('id_image').closest('.form-group');
+        const urlField = document.getElementById('id_image_url').closest('.form-group');
 
-    // Initialize Select2 for better category selection
-    $(document).ready(function() {
+        if (uploadMethod === 'file') {
+            fileField.style.display = 'block';
+            urlField.style.display = 'none';
+            // Make URL field not required
+            document.getElementById('id_image_url').required = false;
+            document.getElementById('id_image').required = true;
+        } else {
+            fileField.style.display = 'none';
+            urlField.style.display = 'block';
+            // Make file field not required
+            document.getElementById('id_image').required = false;
+            document.getElementById('id_image_url').required = true;
+        }
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Set initial state
+        toggleImageFields();
+
+        // Add event listeners to radio buttons
+        const radioButtons = document.querySelectorAll('input[name="image_upload_method"]');
+        radioButtons.forEach(radio => {
+            radio.addEventListener('change', toggleImageFields);
+        });
+
+        // Preview image before upload
+        document.getElementById('id_image').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    console.log('Image selected:', file.name);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Initialize Select2 for better category selection
         $('#id_category').select2({
             placeholder: 'Seleccione una categoría',
+            allowClear: true
+        });
+
+        $('#id_brand').select2({
+            placeholder: 'Seleccione una marca',
             allowClear: true
         });
     });

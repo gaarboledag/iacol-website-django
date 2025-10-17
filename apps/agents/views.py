@@ -744,6 +744,48 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.agent_config = self.agent_config
+
+        # Handle URL-based image upload
+        if hasattr(form.instance, 'image_upload_method') and form.cleaned_data.get('image_upload_method') == 'url':
+            image_url = form.cleaned_data.get('image_url')
+            if image_url:
+                try:
+                    import requests
+                    from django.core.files.base import ContentFile
+                    from django.core.files.storage import default_storage
+                    import os
+                    from urllib.parse import urlparse
+
+                    # Download image from URL
+                    response = requests.get(image_url, timeout=10)
+                    response.raise_for_status()
+
+                    # Get file extension from URL or content-type
+                    parsed_url = urlparse(image_url)
+                    filename = os.path.basename(parsed_url.path)
+                    if not filename or '.' not in filename:
+                        content_type = response.headers.get('content-type', '')
+                        ext = '.jpg'  # default
+                        if 'png' in content_type:
+                            ext = '.png'
+                        elif 'gif' in content_type:
+                            ext = '.gif'
+                        elif 'webp' in content_type:
+                            ext = '.webp'
+                        filename = f"product_{form.instance.title.replace(' ', '_')}{ext}"
+
+                    # Save image to storage
+                    file_path = f"products/{filename}"
+                    form.instance.image.save(filename, ContentFile(response.content), save=False)
+                    form.instance.image_url = image_url
+
+                except requests.RequestException as e:
+                    form.add_error('image_url', f"Error al descargar la imagen: {str(e)}")
+                    return self.form_invalid(form)
+                except Exception as e:
+                    form.add_error('image_url', f"Error al procesar la imagen: {str(e)}")
+                    return self.form_invalid(form)
+
         messages.success(self.request, _("Producto creado exitosamente."))
         return super().form_valid(form)
 
@@ -773,6 +815,47 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         return kwargs
 
     def form_valid(self, form):
+        # Handle URL-based image upload
+        if hasattr(form.instance, 'image_upload_method') and form.cleaned_data.get('image_upload_method') == 'url':
+            image_url = form.cleaned_data.get('image_url')
+            if image_url and image_url != getattr(self.product, 'image_url', None):
+                try:
+                    import requests
+                    from django.core.files.base import ContentFile
+                    from django.core.files.storage import default_storage
+                    import os
+                    from urllib.parse import urlparse
+
+                    # Download image from URL
+                    response = requests.get(image_url, timeout=10)
+                    response.raise_for_status()
+
+                    # Get file extension from URL or content-type
+                    parsed_url = urlparse(image_url)
+                    filename = os.path.basename(parsed_url.path)
+                    if not filename or '.' not in filename:
+                        content_type = response.headers.get('content-type', '')
+                        ext = '.jpg'  # default
+                        if 'png' in content_type:
+                            ext = '.png'
+                        elif 'gif' in content_type:
+                            ext = '.gif'
+                        elif 'webp' in content_type:
+                            ext = '.webp'
+                        filename = f"product_{form.instance.title.replace(' ', '_')}{ext}"
+
+                    # Save image to storage
+                    file_path = f"products/{filename}"
+                    form.instance.image.save(filename, ContentFile(response.content), save=False)
+                    form.instance.image_url = image_url
+
+                except requests.RequestException as e:
+                    form.add_error('image_url', f"Error al descargar la imagen: {str(e)}")
+                    return self.form_invalid(form)
+                except Exception as e:
+                    form.add_error('image_url', f"Error al procesar la imagen: {str(e)}")
+                    return self.form_invalid(form)
+
         messages.success(self.request, _("Producto actualizado exitosamente."))
         return super().form_valid(form)
 

@@ -160,6 +160,16 @@ class ProductBrandForm(forms.ModelForm):
         return instance
 
 class ProductForm(forms.ModelForm):
+    image_url = forms.URLField(
+        required=False,
+        widget=forms.URLInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'https://ejemplo.com/imagen.jpg',
+            'id': 'id_image_url'
+        }),
+        label='URL de la imagen'
+    )
+
     def __init__(self, *args, **kwargs):
         self.agent_config = kwargs.pop('agent_config', None)
         super().__init__(*args, **kwargs)
@@ -174,9 +184,29 @@ class ProductForm(forms.ModelForm):
                 agent_config=self.agent_config
             )
 
+        # Set initial values based on upload method
+        if self.instance and self.instance.pk:
+            if self.instance.image_upload_method == 'url' and self.instance.image_url:
+                self.fields['image_url'].initial = self.instance.image_url
+
+    def clean(self):
+        cleaned_data = super().clean()
+        upload_method = cleaned_data.get('image_upload_method')
+        image_file = cleaned_data.get('image')
+        image_url = cleaned_data.get('image_url')
+
+        # Only validate if this is a new form submission (not editing existing)
+        if not self.instance.pk:
+            if upload_method == 'file' and not image_file:
+                raise forms.ValidationError("Debe seleccionar un archivo de imagen.")
+            elif upload_method == 'url' and not image_url:
+                raise forms.ValidationError("Debe proporcionar una URL de imagen válida.")
+
+        return cleaned_data
+
     class Meta:
         model = Product
-        fields = ['title', 'description', 'price', 'image', 'category', 'brand']
+        fields = ['title', 'description', 'price', 'image_upload_method', 'image', 'image_url', 'category', 'brand']
         widgets = {
             'title': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -192,8 +222,12 @@ class ProductForm(forms.ModelForm):
                 'placeholder': '0.00',
                 'step': '0.01'
             }),
+            'image_upload_method': forms.RadioSelect(attrs={
+                'class': 'form-check-input'
+            }),
             'image': forms.FileInput(attrs={
-                'class': 'form-control'
+                'class': 'form-control',
+                'id': 'id_image_file'
             }),
             'category': forms.Select(attrs={
                 'class': 'form-select',

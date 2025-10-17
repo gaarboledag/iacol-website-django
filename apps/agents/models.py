@@ -231,10 +231,22 @@ class ProductBrand(models.Model):
 
 class Product(models.Model):
     """Modelo para almacenar productos de un agente"""
+    UPLOAD_METHODS = [
+        ('file', 'Subir archivo'),
+        ('url', 'Desde URL'),
+    ]
+
     title = models.CharField(max_length=200, verbose_name='Título del producto')
     description = models.TextField(verbose_name='Descripción')
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Precio')
     image = models.ImageField(upload_to='products/', null=True, blank=True, verbose_name='Imagen del producto')
+    image_upload_method = models.CharField(
+        max_length=10,
+        choices=UPLOAD_METHODS,
+        default='file',
+        verbose_name='Método de carga de imagen'
+    )
+    image_url = models.URLField(null=True, blank=True, verbose_name='URL de la imagen')
 
     category = models.ForeignKey(
         ProductCategory,
