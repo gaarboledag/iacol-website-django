@@ -35,7 +35,7 @@
 
             <!-- Configuration Modules Section -->
             {% if enable_providers %}
-            <div class="card border-0 shadow-sm mb-4">
+            <div class="card border-0 shadow-sm mb-4" id="providers-section">
                 <div class="card-header bg-white d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center p-3 p-md-4">
                     <div class="d-flex align-items-center mb-2 mb-md-0">
                         <i class="fas fa-truck me-2"></i>
@@ -43,10 +43,10 @@
                     </div>
                     <div class="d-flex gap-2">
                         <a href="{% url 'agents:provider_category_list' agent.id %}" class="btn btn-outline-primary btn-sm">
-                            <i class="fas fa-tags me-1"></i>Gestionar Categorías
+                            <i class="fas fa-tags me-1"></i>Categorías
                         </a>
                         <a href="{% url 'agents:brand_list' agent.id %}" class="btn btn-outline-info btn-sm">
-                            <i class="fas fa-tag me-1"></i>Gestionar Marcas
+                            <i class="fas fa-tag me-1"></i>Marcas
                         </a>
                         <a href="{% url 'agents:provider_add' agent_id=agent.id %}" class="btn btn-success btn-sm">
                             <i class="fas fa-plus me-1"></i>Agregar Proveedor
@@ -54,15 +54,46 @@
                     </div>
                 </div>
                 <div class="card-body p-0">
+                    <!-- Provider Filter -->
+                    <div class="p-3 border-bottom bg-light">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-4">
+                                <label for="providerSearch" class="form-label fw-semibold small text-uppercase text-muted mb-2">Buscar Proveedor</label>
+                                <input type="text" class="form-control form-control-sm" id="providerSearch" placeholder="Nombre del proveedor...">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="providerCategoryFilter" class="form-label fw-semibold small text-uppercase text-muted mb-2">Categoría</label>
+                                <select class="form-select form-select-sm" id="providerCategoryFilter">
+                                    <option value="">Todas las categorías</option>
+                                    {% for provider in providers %}
+                                    {% if provider.category %}
+                                    <option value="{{ provider.category.name }}">{{ provider.category.name }}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="cityFilter" class="form-label fw-semibold small text-uppercase text-muted mb-2">Ciudad</label>
+                                <select class="form-select form-select-sm" id="cityFilter">
+                                    <option value="">Todas las ciudades</option>
+                                    {% for provider in providers %}
+                                    <option value="{{ provider.city }}">{{ provider.city }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
                     {% if providers %}
                         <div class="table-responsive">
                             <table class="table table-hover align-middle mb-0">
-                                <thead class="bg-light">
+                                <thead class="table-light">
                                     <tr>
-                                        <th class="py-3 ps-4">Nombre</th>
-                                        <th class="py-3 d-none d-md-table-cell">WhatsApp</th>
-                                        <th class="py-3 d-none d-sm-table-cell">Ciudad</th>
-                                        <th class="py-3 pe-4 text-end">Acciones</th>
+                                        <th class="py-3 ps-4 border-0">Nombre</th>
+                                        <th class="py-3 d-none d-md-table-cell border-0">WhatsApp</th>
+                                        <th class="py-3 d-none d-sm-table-cell border-0">Categoría</th>
+                                        <th class="py-3 d-none d-sm-table-cell border-0">Ciudad</th>
+                                        <th class="py-3 pe-4 text-end border-0">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -72,6 +103,9 @@
                                             <div class="fw-medium">{{ provider.name }}</div>
                                             <div class="small text-muted d-md-none">
                                                 <i class="fas fa-phone-alt me-1"></i>{{ provider.phone }}
+                                            </div>
+                                            <div class="small text-muted d-md-none">
+                                                <i class="fas fa-tag me-1"></i>{{ provider.category.name|default:"Sin categoría" }}
                                             </div>
                                             <div class="small text-muted d-md-none">
                                                 <i class="fas fa-city me-1"></i>{{ provider.city }}
@@ -84,27 +118,34 @@
                                             </a>
                                         </td>
                                         <td class="d-none d-sm-table-cell">
+                                            {% if provider.category %}
+                                            <span class="badge bg-primary text-white">
+                                                <i class="fas fa-tag me-1"></i>{{ provider.category.name }}
+                                            </span>
+                                            {% else %}
+                                            <span class="text-muted small fst-italic">Sin categoría</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="d-none d-sm-table-cell">
                                             <span class="badge bg-light text-dark">
                                                 <i class="fas fa-city me-1"></i>{{ provider.city }}
                                             </span>
                                         </td>
                                         <td class="pe-4 text-nowrap text-end">
                                             <div class="btn-group">
-                                                <a href="{% url 'agents:provider_edit' pk=provider.id %}" 
-                                                   class="btn btn-sm btn-outline-dark" 
+                                                <a href="{% url 'agents:provider_edit' pk=provider.id %}"
+                                                   class="btn btn-sm btn-outline-dark"
                                                    title="Editar"
                                                    data-bs-toggle="tooltip"
                                                    data-bs-placement="top">
                                                     <i class="fas fa-edit"></i>
-                                                    <span class="d-none d-sm-inline ms-1">Editar</span>
                                                 </a>
-                                                <a href="{% url 'agents:provider_delete' pk=provider.id %}" 
-                                                   class="btn btn-sm btn-outline-danger" 
+                                                <a href="{% url 'agents:provider_delete' pk=provider.id %}"
+                                                   class="btn btn-sm btn-outline-danger"
                                                    title="Eliminar"
                                                    data-bs-toggle="tooltip"
                                                    data-bs-placement="top">
                                                     <i class="fas fa-trash"></i>
-                                                    <span class="d-none d-sm-inline ms-1">Eliminar</span>
                                                 </a>
                                             </div>
                                         </td>
@@ -173,83 +214,150 @@
 
             <!-- Products Management Section -->
             {% if enable_products %}
-            <div class="card border-0 shadow-sm mb-4">
+            <div class="card border-0 shadow-sm mb-4" id="products-section">
                 <div class="card-header bg-white d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center p-3 p-md-4">
                     <div class="d-flex align-items-center mb-2 mb-md-0">
                         <i class="fas fa-box me-2"></i>
                         <h4 class="h5 mb-0">Productos</h4>
                     </div>
-                    <div class="d-flex gap-2">
+                    <div class="d-flex flex-wrap gap-2">
                         <a href="{% url 'agents:product_category_list' agent.id %}" class="btn btn-outline-primary btn-sm">
-                            <i class="fas fa-tags me-1"></i>Gestionar Categorías
+                            <i class="fas fa-tags me-1"></i>Categorías
                         </a>
                         <a href="{% url 'agents:product_brand_list' agent.id %}" class="btn btn-outline-info btn-sm">
-                            <i class="fas fa-tag me-1"></i>Gestionar Marcas
+                            <i class="fas fa-tag me-1"></i>Marcas
                         </a>
+                        <div class="vr d-none d-sm-inline-block"></div>
                         <a href="{% url 'agents:product_add' agent_id=agent.id %}" class="btn btn-success btn-sm">
-                            <i class="fas fa-plus me-1"></i>Agregar Producto
+                            <i class="fas fa-plus me-1"></i>Nuevo Producto
                         </a>
                     </div>
                 </div>
                 <div class="card-body p-0">
+                    <!-- Product Filter -->
+                    <div class="p-3 border-bottom bg-light">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-3">
+                                <label for="productSearch" class="form-label fw-semibold small text-uppercase text-muted mb-2">Buscar Producto</label>
+                                <input type="text" class="form-control form-control-sm" id="productSearch" placeholder="Nombre del producto...">
+                            </div>
+                            <div class="col-md-2">
+                                <label for="categoryFilter" class="form-label fw-semibold small text-uppercase text-muted mb-2">Categoría</label>
+                                <select class="form-select form-select-sm" id="categoryFilter">
+                                    <option value="">Todas las categorías</option>
+                                    {% for product in products %}
+                                    {% if product.category %}
+                                    <option value="{{ product.category.name }}">{{ product.category.name }}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label for="brandFilter" class="form-label fw-semibold small text-uppercase text-muted mb-2">Marca</label>
+                                <select class="form-select form-select-sm" id="brandFilter">
+                                    <option value="">Todas las marcas</option>
+                                    {% for product in products %}
+                                    {% if product.brand %}
+                                    <option value="{{ product.brand.name }}">{{ product.brand.name }}</option>
+                                    {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="priceFilter" class="form-label fw-semibold small text-uppercase text-muted mb-2">Precio Máximo</label>
+                                <input type="number" class="form-control form-control-sm" id="priceFilter" placeholder="Precio máximo..." min="0" step="0.01">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-outline-secondary btn-sm w-100" id="clearFilters">
+                                    <i class="fas fa-times me-1"></i>Limpiar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
                     {% if products %}
                         <div class="table-responsive">
                             <table class="table table-hover align-middle mb-0">
-                                <thead class="bg-light">
+                                <thead class="table-light">
                                     <tr>
-                                        <th class="py-3 ps-4">Producto</th>
-                                        <th class="py-3 d-none d-md-table-cell">Descripción</th>
-                                        <th class="py-3 d-none d-sm-table-cell">Precio</th>
-                                        <th class="py-3 pe-4 text-end">Acciones</th>
+                                        <th class="py-3 ps-4 border-0">Producto</th>
+                                        <th class="py-3 d-none d-md-table-cell border-0">Categoría</th>
+                                        <th class="py-3 d-none d-md-table-cell border-0">Marca</th>
+                                        <th class="py-3 d-none d-sm-table-cell border-0">Precio</th>
+                                        <th class="py-3 pe-4 text-end border-0">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {% for product in products %}
-                                    <tr>
-                                        <td class="ps-4">
+                                    <tr class="border-bottom border-light">
+                                        <td class="ps-4 py-3">
                                             <div class="d-flex align-items-center">
                                                 {% if product.image %}
-                                                <img src="{% url 'api:serve_media' product.image.name %}" alt="{{ product.title }}" class="rounded me-3" style="width: 50px; height: 50px; object-fit: cover;">
+                                                <div class="position-relative me-3">
+                                                    <img src="{{ product.get_image_url }}" alt="{{ product.title }}" class="rounded shadow-sm" style="width: 48px; height: 48px; object-fit: cover; border: 1px solid #e9ecef;">
+                                                </div>
                                                 {% else %}
-                                                <div class="bg-light rounded me-3 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                                                <div class="bg-light rounded me-3 d-flex align-items-center justify-content-center shadow-sm" style="width: 48px; height: 48px; border: 1px solid #e9ecef;">
                                                     <i class="fas fa-image text-muted"></i>
                                                 </div>
                                                 {% endif %}
                                                 <div>
-                                                    <div class="fw-medium">{{ product.title }}</div>
+                                                    <div class="fw-semibold text-dark mb-1">{{ product.title }}</div>
+                                                    {% if product.brand %}
+                                                    <div class="small text-muted mb-1">
+                                                        <i class="fas fa-trademark me-1"></i>{{ product.brand.name }}
+                                                    </div>
+                                                    {% endif %}
+                                                    {% if product.category %}
                                                     <div class="small text-muted d-md-none">
+                                                        <i class="fas fa-tag me-1"></i>{{ product.category.name }}
+                                                    </div>
+                                                    {% endif %}
+                                                    <div class="small text-muted d-md-none fw-medium text-success">
                                                         ${{ product.price }}
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="d-none d-md-table-cell">
-                                            <div class="text-truncate" style="max-width: 200px;" title="{{ product.description }}">
-                                                {{ product.description|truncatechars:50 }}
-                                            </div>
+                                        <td class="d-none d-md-table-cell py-3">
+                                            {% if product.category %}
+                                            <span class="badge bg-primary text-white">
+                                                <i class="fas fa-tag me-1"></i>{{ product.category.name }}
+                                            </span>
+                                            {% else %}
+                                            <span class="text-muted small fst-italic">Sin categoría</span>
+                                            {% endif %}
                                         </td>
-                                        <td class="d-none d-sm-table-cell">
-                                            <span class="badge bg-success">
+                                        <td class="d-none d-md-table-cell py-3">
+                                            {% if product.brand %}
+                                            <span class="badge bg-info text-white">
+                                                <i class="fas fa-trademark me-1"></i>{{ product.brand.name }}
+                                            </span>
+                                            {% else %}
+                                            <span class="text-muted small fst-italic">Sin marca</span>
+                                            {% endif %}
+                                        </td>
+                                        <td class="d-none d-sm-table-cell py-3">
+                                            <span class="badge bg-success-subtle text-success border border-success fw-semibold px-2 py-1">
                                                 <i class="fas fa-dollar-sign me-1"></i>${{ product.price }}
                                             </span>
                                         </td>
-                                        <td class="pe-4 text-nowrap text-end">
-                                            <div class="btn-group">
+                                        <td class="pe-4 text-nowrap text-end py-3">
+                                            <div class="btn-group btn-group-sm">
                                                 <a href="{% url 'agents:product_edit' pk=product.id %}"
-                                                    class="btn btn-sm btn-outline-dark"
-                                                    title="Editar"
+                                                    class="btn btn-outline-primary btn-sm"
+                                                    title="Editar producto"
                                                     data-bs-toggle="tooltip"
                                                     data-bs-placement="top">
                                                     <i class="fas fa-edit"></i>
-                                                    <span class="d-none d-sm-inline ms-1">Editar</span>
                                                 </a>
                                                 <a href="{% url 'agents:product_delete' pk=product.id %}"
-                                                    class="btn btn-sm btn-outline-danger"
-                                                    title="Eliminar"
+                                                    class="btn btn-outline-danger btn-sm"
+                                                    title="Eliminar producto"
                                                     data-bs-toggle="tooltip"
-                                                    data-bs-placement="top">
+                                                    data-bs-placement="top"
+                                                    onclick="return confirm('¿Estás seguro de que deseas eliminar este producto?')">
                                                     <i class="fas fa-trash"></i>
-                                                    <span class="d-none d-sm-inline ms-1">Eliminar</span>
                                                 </a>
                                             </div>
                                         </td>
@@ -260,13 +368,16 @@
                         </div>
                     {% else %}
                         <div class="text-center p-4 p-md-5">
-                            <div class="mb-3">
-                                <i class="fas fa-box-open fa-3x text-muted"></i>
+                            <div class="mb-4">
+                                <i class="fas fa-box-open fa-4x text-muted mb-3"></i>
+                                <h5 class="h6 mb-2">No hay productos registrados</h5>
+                                <p class="text-muted mb-4">
+                                    Comienza agregando tu primer producto para organizar tu inventario.
+                                </p>
+                                <a href="{% url 'agents:product_add' agent_id=agent.id %}" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-plus me-2"></i>Agregar Primer Producto
+                                </a>
                             </div>
-                            <h5 class="h6 mb-2">No hay productos registrados</h5>
-                            <p class="text-muted mb-0">
-                                Comienza agregando tu primer producto haciendo clic en el botón superior.
-                            </p>
                         </div>
                     {% endif %}
                 </div>
@@ -357,9 +468,251 @@
         });
 
         // Inicializar máscaras de entrada
-        if (typeof $.fn.inputmask !== 'undefined') {
+        if (typeof $ !== 'undefined' && typeof $.fn.inputmask !== 'undefined') {
             $('[data-mask]').inputmask();
         }
+
+        // Product filtering functionality
+        console.log('=== FILTER SYSTEM LOADING ===');
+
+        const productSearch = document.getElementById('productSearch');
+        const categoryFilter = document.getElementById('categoryFilter');
+        const brandFilter = document.getElementById('brandFilter');
+        const priceFilter = document.getElementById('priceFilter');
+        const clearFilters = document.getElementById('clearFilters');
+        const productRows = document.querySelectorAll('#products-section tbody tr');
+
+        // Provider filtering functionality
+        const providerSearch = document.getElementById('providerSearch');
+        const providerCategoryFilter = document.getElementById('providerCategoryFilter');
+        const cityFilter = document.getElementById('cityFilter');
+        const providerRows = document.querySelectorAll('#providers-section tbody tr');
+
+        console.log('Product filter elements:');
+        console.log('- productSearch:', productSearch);
+        console.log('- categoryFilter:', categoryFilter);
+        console.log('- brandFilter:', brandFilter);
+        console.log('- priceFilter:', priceFilter);
+        console.log('- clearFilters:', clearFilters);
+        console.log('- productRows count:', productRows.length);
+
+        console.log('Provider filter elements:');
+        console.log('- providerSearch:', providerSearch);
+        console.log('- providerCategoryFilter:', providerCategoryFilter);
+        console.log('- cityFilter:', cityFilter);
+        console.log('- providerRows count:', providerRows.length);
+
+        // Remove duplicate options from select elements
+        function removeDuplicates(selectElement) {
+            const options = Array.from(selectElement.options);
+            const seen = new Set();
+
+            for (let i = options.length - 1; i >= 0; i--) {
+                const option = options[i];
+                if (option.value && seen.has(option.value)) {
+                    selectElement.remove(i);
+                } else if (option.value) {
+                    seen.add(option.value);
+                }
+            }
+        }
+
+        // Clean up duplicates after DOM is ready
+        setTimeout(() => {
+            if (categoryFilter) removeDuplicates(categoryFilter);
+            if (brandFilter) removeDuplicates(brandFilter);
+            if (providerCategoryFilter) removeDuplicates(providerCategoryFilter);
+            if (cityFilter) removeDuplicates(cityFilter);
+            console.log('✅ Duplicate options removed from all filters');
+        }, 100);
+
+        function filterProducts() {
+            console.log('🎯 FILTERING PRODUCTS...');
+            const searchTerm = (productSearch && productSearch.value.toLowerCase().trim()) || '';
+            const selectedCategory = (categoryFilter && categoryFilter.value) || '';
+            const selectedBrand = (brandFilter && brandFilter.value) || '';
+            const maxPrice = (priceFilter && priceFilter.value) ? parseFloat(priceFilter.value) : null;
+
+            console.log('📊 Filter values:');
+            console.log('  - Search term:', `"${searchTerm}"`);
+            console.log('  - Selected category:', `"${selectedCategory}"`);
+            console.log('  - Selected brand:', `"${selectedBrand}"`);
+            console.log('  - Max price:', maxPrice);
+
+            let visibleCount = 0;
+
+            productRows.forEach((row, index) => {
+                const productNameElement = row.querySelector('td:first-child .fw-semibold');
+                const categoryBadge = row.querySelector('td:nth-child(2) .badge');
+                const brandBadge = row.querySelector('td:nth-child(3) .badge');
+                const priceElement = row.querySelector('.badge.bg-success-subtle')?.textContent || '';
+
+                const productName = productNameElement ? productNameElement.textContent.toLowerCase().trim() : '';
+                const categoryName = categoryBadge ? categoryBadge.textContent.trim() : '';
+                const brandName = brandBadge ? brandBadge.textContent.trim() : '';
+                const price = priceElement ? parseFloat(priceElement.replace(/[^\d.,]/g, '').replace(',', '.')) : 0;
+
+                console.log(`📋 Row ${index}:`);
+                console.log(`   - Product name: "${productName}"`);
+                console.log(`   - Category: "${categoryName}"`);
+                console.log(`   - Brand: "${brandName}"`);
+                console.log(`   - Price: ${price}`);
+
+                const matchesSearch = !searchTerm || productName.includes(searchTerm);
+                const matchesCategory = !selectedCategory || categoryName === selectedCategory;
+                const matchesBrand = !selectedBrand || brandName === selectedBrand;
+                const matchesPrice = !maxPrice || price <= maxPrice;
+
+                console.log(`   - Matches search: ${matchesSearch}`);
+                console.log(`   - Matches category: ${matchesCategory}`);
+                console.log(`   - Matches brand: ${matchesBrand}`);
+                console.log(`   - Matches price: ${matchesPrice}`);
+
+                const shouldShow = matchesSearch && matchesCategory && matchesBrand && matchesPrice;
+                row.style.display = shouldShow ? '' : 'none';
+
+                if (shouldShow) visibleCount++;
+                console.log(`   - FINAL: ${shouldShow ? 'SHOW' : 'HIDE'}`);
+            });
+
+            console.log(`✅ Total visible rows: ${visibleCount}/${productRows.length}`);
+            updateFilterIndicators();
+        }
+
+        function updateFilterIndicators() {
+            const hasActiveFilters = (productSearch && productSearch.value.trim()) ||
+                                    (categoryFilter && categoryFilter.value) ||
+                                    (brandFilter && brandFilter.value) ||
+                                    (priceFilter && priceFilter.value);
+            if (clearFilters) {
+                clearFilters.style.display = hasActiveFilters ? 'block' : 'none';
+            }
+            console.log('🎛️ Active filters indicator:', hasActiveFilters ? 'visible' : 'hidden');
+        }
+
+        function clearAllFilters() {
+            console.log('🧹 CLEARING ALL FILTERS');
+            productSearch.value = '';
+            categoryFilter.value = '';
+            brandFilter.value = '';
+            priceFilter.value = '';
+            filterProducts();
+        }
+
+        // Provider filtering function
+        function filterProviders() {
+            console.log('🏢 FILTERING PROVIDERS...');
+            const searchTerm = (providerSearch && providerSearch.value.toLowerCase().trim()) || '';
+            const selectedCategory = (providerCategoryFilter && providerCategoryFilter.value) || '';
+            const selectedCity = (cityFilter && cityFilter.value) || '';
+
+            console.log('🏢 Provider filter values:');
+            console.log('  - Search term:', `"${searchTerm}"`);
+            console.log('  - Selected category:', `"${selectedCategory}"`);
+            console.log('  - Selected city:', `"${selectedCity}"`);
+
+            let visibleCount = 0;
+
+            providerRows.forEach((row, index) => {
+                const providerName = row.querySelector('td:first-child .fw-medium')?.textContent.toLowerCase().trim() || '';
+                const categoryElement = row.querySelector('td:nth-child(3) .badge');
+                const cityElement = row.querySelector('td:nth-child(4) .badge.bg-light');
+
+                const categoryName = categoryElement ? categoryElement.textContent.trim() : '';
+                const cityName = cityElement ? cityElement.textContent.trim() : '';
+
+                console.log(`🏢 Provider row ${index}:`);
+                console.log(`   - Name: "${providerName}"`);
+                console.log(`   - Category: "${categoryName}"`);
+                console.log(`   - City: "${cityName}"`);
+
+                const matchesSearch = !searchTerm || providerName.includes(searchTerm);
+                const matchesCategory = !selectedCategory || categoryName === selectedCategory;
+                const matchesCity = !selectedCity || cityName === selectedCity;
+
+                console.log(`   - Matches search: ${matchesSearch}`);
+                console.log(`   - Matches category: ${matchesCategory}`);
+                console.log(`   - Matches city: ${matchesCity}`);
+
+                const shouldShow = matchesSearch && matchesCategory && matchesCity;
+                row.style.display = shouldShow ? '' : 'none';
+
+                if (shouldShow) visibleCount++;
+                console.log(`   - FINAL: ${shouldShow ? 'SHOW' : 'HIDE'}`);
+            });
+
+            console.log(`✅ Total visible providers: ${visibleCount}/${providerRows.length}`);
+        }
+
+        // Event listeners
+        console.log('🔗 Setting up event listeners...');
+
+        // Product filters
+        if (productSearch) {
+            productSearch.addEventListener('input', function() {
+                console.log('⌨️ Product search input changed');
+                filterProducts();
+            });
+            console.log('✅ Product search input listener added');
+        }
+
+        if (categoryFilter) {
+            categoryFilter.addEventListener('change', function() {
+                console.log('📂 Product category filter changed');
+                filterProducts();
+            });
+            console.log('✅ Product category filter listener added');
+        }
+
+        if (brandFilter) {
+            brandFilter.addEventListener('change', function() {
+                console.log('🏷️ Product brand filter changed');
+                filterProducts();
+            });
+            console.log('✅ Product brand filter listener added');
+        }
+
+        if (priceFilter) {
+            priceFilter.addEventListener('input', function() {
+                console.log('💰 Product price filter changed');
+                filterProducts();
+            });
+            console.log('✅ Product price filter listener added');
+        }
+
+        if (clearFilters) {
+            clearFilters.addEventListener('click', clearAllFilters);
+            console.log('✅ Clear product filters listener added');
+        }
+
+        // Provider filters
+        if (providerSearch) {
+            providerSearch.addEventListener('input', function() {
+                console.log('⌨️ Provider search input changed');
+                filterProviders();
+            });
+            console.log('✅ Provider search input listener added');
+        }
+
+        if (providerCategoryFilter) {
+            providerCategoryFilter.addEventListener('change', function() {
+                console.log('📂 Provider category filter changed');
+                filterProviders();
+            });
+            console.log('✅ Provider category filter listener added');
+        }
+
+        if (cityFilter) {
+            cityFilter.addEventListener('change', function() {
+                console.log('🏙️ City filter changed');
+                filterProviders();
+            });
+            console.log('✅ City filter listener added');
+        }
+
+        // Initialize
+        updateFilterIndicators();
+        console.log('🚀 Filter system fully initialized and ready!');
     });
 </script>
 {% endblock %}

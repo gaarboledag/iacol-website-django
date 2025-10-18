@@ -176,7 +176,7 @@ class Provider(models.Model):
     def get_image_url(self):
         """Devuelve la URL correcta para acceder a la imagen"""
         if self.image and self.image.name:
-            return f"/api/media/products/{self.image.name}/"
+            return f"/api/media/{self.image.name}/"
         return None
 
     class Meta:
@@ -277,6 +277,12 @@ class Product(models.Model):
         verbose_name = 'Producto'
         verbose_name_plural = 'Productos'
         ordering = ['-created_at']
+
+    def get_image_url(self):
+        """Devuelve la URL correcta para acceder a la imagen"""
+        if self.image and self.image.name:
+            return f"/api/media/{self.image.name}/"
+        return None
 
     def __str__(self):
         return f"{self.title} - ${self.price}"
