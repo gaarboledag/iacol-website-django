@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Recursos - IACOL Empresarial{% endblock %}
 
@@ -8,6 +9,193 @@
   .resource-card { transition: transform .2s ease, box-shadow .2s ease; }
   .resource-card:hover { transform: translateY(-3px); }
   .resource-card .icon-box { width: 56px; height: 56px; border-radius: 14px; background: #f4f4f4; color: #111; }
+
+  /* Lucid Banner Styles */
+  .lucid-banner-card {
+    background: linear-gradient(135deg, #4b0082 0%, #6a0dad 30%, #8a2be2 70%, #9932cc 100%);
+    border-radius: 50px;
+    padding: 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 25px 50px rgba(75, 0, 130, 0.3),
+      inset 0 2px 4px rgba(255,255,255,0.1),
+      inset 0 -2px 4px rgba(0,0,0,0.1);
+    border: 2px solid rgba(255,255,255,0.1);
+  }
+
+  .lucid-banner-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255,255,255,0.08) 0%, transparent 35%),
+      radial-gradient(circle at 85% 80%, rgba(255,255,255,0.06) 0%, transparent 35%);
+    pointer-events: none;
+  }
+
+  .lucid-icon-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      inset 0 4px 8px rgba(0,0,0,0.1),
+      inset 0 -4px 8px rgba(255,255,255,0.1),
+      0 8px 16px rgba(0,0,0,0.15);
+    position: relative;
+  }
+
+  .lucid-icon-container::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(153, 50, 204, 0.1));
+    z-index: -1;
+  }
+
+  .lucid-icon {
+    width: 50px;
+    height: 50px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    transition: transform 0.3s ease;
+  }
+
+  .lucid-icon:hover {
+    transform: scale(1.1);
+  }
+
+  .lucid-title {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1.8rem;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    line-height: 1.2;
+  }
+
+  .lucid-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+    font-size: 1rem;
+    margin: 0;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+
+  .btn-lucid-cta {
+    background: #00ffff;
+    border: none;
+    color: #1a1a1a;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      0 8px 20px rgba(0, 255, 255, 0.3),
+      inset 0 2px 4px rgba(255,255,255,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-lucid-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-lucid-cta:hover {
+    background: #00e5e5;
+    transform: translateY(-2px);
+    box-shadow:
+      0 12px 30px rgba(0, 255, 255, 0.4),
+      inset 0 2px 4px rgba(255,255,255,0.3);
+    text-decoration: none;
+    color: #1a1a1a;
+  }
+
+  .btn-lucid-cta:hover::before {
+    left: 100%;
+  }
+
+  .btn-lucid-cta i {
+    font-size: 1rem;
+    margin-right: 8px;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .lucid-banner-card {
+      border-radius: 30px;
+      padding: 1.5rem 2rem;
+    }
+
+    .lucid-icon-container {
+      width: 60px;
+      height: 60px;
+    }
+
+    .lucid-icon {
+      width: 35px;
+      height: 35px;
+    }
+
+    .lucid-title {
+      font-size: 1.4rem;
+    }
+
+    .lucid-subtitle {
+      font-size: 0.9rem;
+    }
+
+    .btn-lucid-cta {
+      padding: 12px 20px;
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .lucid-banner-card {
+      padding: 1.25rem 1.5rem;
+    }
+
+    .row {
+      --bs-gutter-x: 1rem;
+    }
+
+    .lucid-title {
+      font-size: 1.2rem;
+    }
+
+    .btn-lucid-cta {
+      padding: 10px 16px;
+      font-size: 0.8rem;
+    }
+
+    .btn-lucid-cta i {
+      font-size: 0.9rem;
+      margin-right: 6px;
+    }
+  }
 </style>
 {% endblock %}
 
@@ -19,6 +207,39 @@
         <span class="badge-ghost mb-3">Biblioteca</span>
         <h1 class="display-5 fw-bold">Recursos para aprender, inspirarte y avanzar</h1>
         <p class="lead">Guías prácticas, casos de uso y materiales para ayudarte a aplicar IA, datos y automatización en tu empresa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lucid Bot Team Banner -->
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="lucid-banner-card text-white position-relative overflow-hidden">
+          <div class="row align-items-center g-4">
+            <!-- Icon Section -->
+            <div class="col-auto">
+              <div class="lucid-icon-container">
+                <img src="{% static 'img/lucidbot.webp' %}" alt="Lucid Bot" class="lucid-icon">
+              </div>
+            </div>
+
+            <!-- Text Content -->
+            <div class="col">
+              <h2 class="lucid-title mb-2">IACol Ludic Team</h2>
+              <p class="lucid-subtitle mb-0">Dominamos el ecosistema Lucid Bot, asesoría personalizada</p>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="col-auto">
+              <a href="{% url 'lucid_team' %}" class="btn-lucid-cta">
+                <i class="fas fa-users me-2"></i>CONOCE AL EQUIPO
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -44,7 +44,17 @@ def resources(request):
 
 def findpartai_landing(request):
     """Página de landing para FindPartAi"""
+    return render(request, 'findpartai_landing.html')
+
+def mechai_landing(request):
+    """Página de landing para MechAI"""
     return render(request, 'landing.html')
+
 def masterclass_auto_ai(request):
     """Página Masterclass en Implementación de IA para Centros Automotrices"""
     return render(request, 'masterclass_auto_ai.html')
+
+
+def lucid_team(request):
+    """Página del equipo de expertos en Lucid Bot"""
+    return render(request, 'lucid_team.html')

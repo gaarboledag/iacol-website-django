@@ -14360,3 +14360,5 @@ WARNING 2025-10-18 10:08:15,066 log 182 128582028256960 Not Found: /api/media/pr
 WARNING 2025-10-18 10:08:47,170 log 182 128582028256960 Not Found: /api/media/products/products/product_afssaf.jpg/
 WARNING 2025-10-18 10:30:56,152 log 366 124123548214976 Not Found: /api/media/products/products/product_afssaf.jpg/
 WARNING 2025-10-18 10:31:09,023 log 366 124123538773696 Not Found: /api/media/products/products/product_test.jpg/
+INFO 2025-10-28 08:38:09,236 autoreload 14480 8208 Watching for file changes with StatReloader
+INFO 2025-10-28 09:26:57,398 autoreload 14480 8208 C:\Users\Guillermo Andrés\Desktop\iacol-website-django\apps\authentication\urls.py changed, reloading.

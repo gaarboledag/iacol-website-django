@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MechAI - Atención al Cliente para Centros Automotrices</title>
+    <title>FindPartAi - Cotización con Proveedores para Centros Automotrices</title>
     <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
 
     <!-- Fonts -->
@@ -18,7 +18,7 @@
 
     <style>
         :root {
-            --primary-red: #992934;
+            --primary-red: #dc3545;
             --primary-white: #ffffff;
             --gray-light: #f8f9fa;
             --gray-dark: #343a40;
@@ -45,7 +45,7 @@
             margin-bottom: 2rem;
         }
 
-        .logo-mechai img {
+        .logo-findpartai img {
             height: 60px;
         }
 
@@ -407,15 +407,15 @@
             text-decoration: none;
             display: inline-block;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(153, 41, 52, 0.3);
+            box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3);
             align-content: center;
             height: 50px;
         }
 
         .btn-primary:hover {
-            background-color: #7a2029;
+            background-color: #b02a37;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(153, 41, 52, 0.4);
+            box-shadow: 0 6px 20px rgba(220, 53, 69, 0.4);
         }
 
         .btn-secondary {
@@ -731,7 +731,7 @@
             }
 
             .hero-section {
-                padding: 3rem 2.5rem;
+                padding: 3rem 2.5rem;                
             }
 
             .section {
@@ -773,14 +773,14 @@
     <section class="hero-section">
         <div class="container">
             <div class="hero-logos">
-                <div class="logo-mechai">
-                    <img src="{% static 'img/iacol_hor.webp' %}" alt="MechAI">
+                <div class="logo-findpartai">
+                    <img src="{% static 'img/findpartai.webp' %}" alt="FindPartAI">
                 </div>
             </div>
-        <h1>IA de Atención al cliente para Centros Automotrices</h1>
-        <h2>Agenda citas de servicios, responde consultas, ofrece productos por <strong>WhatsApp.</strong> Consolida una base de datos con cada cliente interesado.</h2>
+        <h1>Cotiza y compra los repuestos al instante con IA</h1>
+        <h2>FindPartAI contacta a tus proveedores por <strong>WhatsApp</strong>, compara precios y ayuda al equipo a gestionar las <strong>cotizaciones en segundos.</strong></strong></h2>
             <div class="hero-ctas">
-                <a href="https://wa.me/573042693804?text=Quiero%20saber%20m%C3%A1s%20sobre%20MechAI%20para%20mi%20taller" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
+                <a href="https://wa.me/573229528027?text=Quiero%20saber%20m%C3%A1s%20sobre%20FindPartAI%20para%20mi%20taller" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
                 <a href="#demo" class="btn-secondary">Ver Cómo Funciona</a>
             </div>
         </div>
@@ -796,22 +796,22 @@
     <!-- Problem Section -->
     <section class="problem-section">
         <div class="container">
-            <h2>¿<strong>Cuánto tiempo pierdes</strong> en consultas repetitivas de clientes?</h2>
+            <h2>¿<strong>Cuánto tiempo dedica</strong> el área administrativa del taller a <strong>cotizar repuestos</strong>?</h2>
             <div class="problem-stats">
                 <div class="stat-item">
                     <i class="fas fa-users"></i>
-                    <h3>RESPUESTAS TARDÍAS</h3>
-                    <p>Los clientes esperan respuestas rápidas, pero no siempre hay alguien disponible.</p>
+                    <h3>CONTACTOS EXCESIVOS</h3>
+                    <p>Cada cotización implica, en promedio, más de 6 contactos con distintos proveedores.</p>
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-clock"></i>
-                    <h3>CITAS PERDIDAS</h3>
-                    <p>Se pierden citas porque los mensajes no se atienden de inmediato.</p>
+                    <h3>FLUJO INTERRUMPIDO</h3>
+                    <p>La comparación de precios y disponibilidad se realiza en medio de un alto flujo de mensajes.</p>
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-cogs"></i>
-                    <h3>SATURACIÓN ADMINISTRATIVA</h3>
-                    <p>El área administrativa se ve saturada de mensajes y consultas.</p>
+                    <h3>BOTELLA ADMINISTRATIVA</h3>
+                    <p>Tareas repetitivas que demandan gran parte de la jornada del personal.</p>
                 </div>
             </div>
         </div>
@@ -820,7 +820,7 @@
     <!-- Demo Section -->
     <section id="demo" class="demo-section">
         <div class="container">
-            <h2 style="margin-bottom: 3rem; color: var(--gray-dark);">Observa a <strong>MechAI trabajando en Acción</strong></h2>
+            <h2 style="margin-bottom: 3rem; color: var(--gray-dark);">Observa a <strong>FindPartAI trabajando en Acción</strong></h2>
             <div class="demo-content">
                 <div class="mockup-container">
                     <div class="phone-notch"></div>
@@ -829,9 +829,9 @@
                     </div>
                 </div>
                 <div class="demo-text">
-                    <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--gray-dark);">Ve cómo MechAI automatiza la atención al cliente, respondiendo consultas por WhatsApp y gestionando citas en segundos.</p>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--gray-dark);">Ve cómo FindPartAI automatiza el proceso de cotización, contactando proveedores por WhatsApp y comparando precios en segundos.</p>
                     <div style="text-align: center;">
-                        <a href="https://wa.me/573042693804?text=Quiero%20saber%20m%C3%A1s%20sobre%20MechAI%20para%20mi%20taller" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
+                        <a href="https://wa.me/573229528027?text=Quiero%20saber%20m%C3%A1s%20sobre%20FindPartAI%20para%20mi%20taller" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
                     </div>
                 </div>
             </div>
@@ -843,33 +843,33 @@
     <section class="workflow-section">
         <div class="container">
             <div class="workflow-title">
-                <h2>¿Cómo Funciona <strong>MechAI</strong>? Explicado en <strong>5 Pasos</strong>.</h2>
+                <h2>¿Cómo Funciona <strong>FindPartAI</strong>? Explicado en <strong>5 Pasos</strong>.</h2>
             </div>
             <div class="workflow-steps">
                 <div class="step step-user">
                     <div class="step-number">1</div>
-                    <div class="step-title"><strong>CLIENTE ESCRIBE</strong></div>
-                    <div class="step-text">Los clientes escriben al WhatsApp del taller.<br><small><strong>Inician la conversación.</strong></small></div>
+                    <div class="step-title"><strong>SOLICITAS COTIZACIÓN</strong></div>
+                    <div class="step-text">El administrador envía la solicitud de cotización por WhatsApp a FindPartAI.<br><small><strong>Recibe tu cotización.</strong></small></div>
                 </div>
                 <div class="step step-ai">
                     <div class="step-number">2</div>
-                    <div class="step-title"><strong>MechAI RESPONDE</strong></div>
-                    <div class="step-text">MechAI responde de inmediato y resuelve las dudas del cliente.<br><small><strong>Atención automática 24/7.</strong></small></div>
+                    <div class="step-title"><strong>FindPartAI COTIZA</strong></div>
+                    <div class="step-text">FindPartAI le escribe automáticamente a cada proveedor que vendan los repuestos.<br><small><strong>Contacta tus proveedores.</strong></small></div>
                 </div>
                 <div class="step step-user">
                     <div class="step-number">3</div>
-                    <div class="step-title"><strong>CLIENTE SOLICITA</strong></div>
-                    <div class="step-text">El cliente agenda su cita de servicio mecánico.<br><small><strong>Agendamiento automático.</strong></small></div>
+                    <div class="step-title"><strong>EL PROVEEDOR RESPONDE</strong></div>
+                    <div class="step-text">Responden con precios, disponibilidad, etc.<br><small><strong>Recibe las respuestas.</strong></small></div>
                 </div>
                 <div class="step step-ai">
                     <div class="step-number">4</div>
-                    <div class="step-title"><strong>MechAI GESTIONA</strong></div>
-                    <div class="step-text">El sistema envía recordatorios automáticos.<br><small><strong>Mantiene el control total.</strong></small></div>
+                    <div class="step-title"><strong>FindPartAI COMPARA</strong></div>
+                    <div class="step-text">Te presenta una comparativa completa de costos y respuestas.<br><small><strong>Compara precios y disponibilidad de los repuestos.</strong></small></div>
                 </div>
                 <div class="step step-ai">
                     <div class="step-number">5</div>
-                    <div class="step-title"><strong>ESCALAMIENTO HUMANO</strong></div>
-                    <div class="step-text">Si el cliente necesita, se transfiere a un asesor humano.<br><small><strong>Conversación fluida.</strong></small></div>
+                    <div class="step-title"><strong>FindPartAI SOLICITA COMPRA</strong></div>
+                    <div class="step-text">El administrativo elige un proveedor y FindPartAI gestiona la compra/envío.<br><small><strong>Compra la c    otización indicada.</strong></small></div>
                 </div>
             </div>
             <p style="text-align: center; margin-top: 2rem; font-style: italic;">En todo momento, el administrativo mantiene el control sobre la conversación y el agente.</p>
@@ -877,32 +877,33 @@
     </section>
 
 
+
     <!-- Benefits Section -->
     <section class="benefits-section">
         <div class="container">
             <div class="benefits-title">
-                <h2>Beneficios Directos de <strong>MechAI</strong></h2>
+                <h2>El Impacto de FindPartAI en <strong>Resultados Inmediatos</strong></h2>
             </div>
             <div class="benefits-grid">
                 <div class="benefit-card">
+                    <div class="benefit-percentage">Hasta 80%</div>
+                    <h3>AHORRO DE TIEMPO EN COTIZACIONES</h3>
+                    <p>Optimiza el tiempo del área administrativa desde el primer dia de implementación.</p>
+                </div>
+                <div class="benefit-card">
+                    <i class="fas fa-dollar-sign" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
+                    <h3>MEJORES PRECIOS</h3>
+                    <p>Al consultar más proveedores, podrás acceder al mejor precio y disponibilidad.</p>
+                </div>
+                <div class="benefit-card">
                     <i class="fas fa-users" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
-                    <h3>MÁS CLIENTES ATENDIDOS</h3>
-                    <p>Sin contratar más personal administrativo.</p>
+                    <h3>ESCALABILIDAD SIN CONTRATACIÓN ADMINISTRATIVA</h3>
+                    <p>Las demás áreas del Centro Automotriz podrán crecer sin necesidad de contratar más personal administrativo.</p>
                 </div>
                 <div class="benefit-card">
-                    <i class="fas fa-clock" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
-                    <h3>MENOS CITAS PERDIDAS</h3>
-                    <p>Por olvidos o alto volumen de mensajes.</p>
-                </div>
-                <div class="benefit-card">
-                    <i class="fas fa-star" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
-                    <h3>ATENCIÓN PROFESIONAL</h3>
-                    <p>Y rápida en cualquier momento.</p>
-                </div>
-                <div class="benefit-card">
-                    <i class="fas fa-database" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
-                    <h3>ORGANIZACIÓN CENTRALIZADA</h3>
-                    <p>De las conversaciones y clientes.</p>
+                    <i class="fas fa-expand" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
+                    <h3>ORGANIZACIÓN Y UPLEVEL DE LA COMUNICACIÓN DEL TALLER</h3>
+                    <p>Convierte el caos de WhatsApp en una base de proveedores organizada que facilite la toma de decisiones.</p>
                 </div>
             </div>
         </div>
@@ -913,11 +914,11 @@
     <!-- Call to Action -->
     <section class="cta-section">
         <div class="container">
-            <h2>¿Listo para <strong>transformar la atención</strong> de tu centro automotriz?</h2>
+            <h2>¿Listo para <strong>revolucionar el abastecimiento</strong> tu centro automotriz?</h2>
             <p>Contacta conmigo para una demostración personalizada.</p>
-            <a href="https://wa.me/573042693804?text=Quiero%20saber%20m%C3%A1s%20sobre%20MechAI%20para%20mi%20taller" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
+            <a href="https://wa.me/573229528027?text=Quiero%20saber%20m%C3%A1s%20sobre%20FindPartAI%20para%20mi%20taller" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
             <div style="margin-top: 3rem;">
-                <img src="{% static 'img/iacol_hor.webp' %}" alt="MechAI" style="max-width: 150px;">
+                <img src="{% static 'img/findpartai.webp' %}" alt="FindPartAI" style="max-width: 150px;">
             </div>
         </div>
     </section>

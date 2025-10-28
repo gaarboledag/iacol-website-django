@@ -1,0 +1,1139 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Equipo Lucid Bot - IACOL Empresarial{% endblock %}
+
+{% block extra_css %}
+<style>
+  :root {
+    --lucid-primary: rgb(41, 27, 51);
+    --lucid-secondary: #8a2be2;
+    --lucid-accent: #9932cc;
+    --lucid-light: #f8f4ff;
+    --lucid-dark: #4b0082;
+  }
+
+  /* Integrated Banner Top */
+  .integrated-banner-top {
+    padding: 3rem 0 2rem;
+    background: linear-gradient(135deg, #291b33, #333333);
+    position: relative;
+    z-index: 10;
+  }
+
+  .lucid-icon-container {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--lucid-primary), var(--lucid-secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(106, 13, 173, 0.3);
+  }
+
+  .lucid-icon {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  /* First CTA Section */
+  .first-cta-section {
+    margin: 4rem 0;
+  }
+
+  .first-cta-card {
+    background: linear-gradient(135deg, rgb(41, 27, 51) 0%, rgb(59, 44, 70) 100%);
+    border-radius: 30px;
+    padding: 3rem 2rem;
+    color: white;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(106, 13, 173, 0.3);
+  }
+
+  .first-cta-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .first-cta-title {
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    position: relative;
+    z-index: 2;
+  }
+
+  .first-cta-desc {
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    opacity: 0.95;
+    position: relative;
+    z-index: 2;
+  }
+
+  .first-cta-subdesc {
+    font-weight: 400;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+    position: relative;
+    z-index: 2;
+  }
+
+  .btn-first-cta {
+    background: #00ffff;
+    border: none;
+    color: #1a1a1a;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3);
+    position: relative;
+    z-index: 2;
+  }
+
+  .btn-first-cta:hover {
+    background: #00e5e5;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 255, 255, 0.4);
+    text-decoration: none;
+    color: #1a1a1a;
+  }
+
+  /* Experts Hero Section */
+  .experts-hero {
+    background: #ffffff;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .experts-container {
+    position: relative;
+    padding: 0;
+  }
+
+  .hero-bg-shape {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(106, 13, 173, 0.05), rgba(138, 43, 226, 0.03));
+    pointer-events: none;
+  }
+
+  .shape-1 {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    right: -100px;
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  .shape-2 {
+    width: 200px;
+    height: 200px;
+    bottom: -50px;
+    left: -50px;
+    animation: float-reverse 10s ease-in-out infinite;
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  @keyframes float-reverse {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(15px) rotate(-3deg); }
+  }
+
+  .experts-main-title {
+    color: var(--lucid-primary);
+    font-weight: 800;
+    font-size: 3.5rem;
+    margin-top: 2rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .experts-subtitle {
+    color: #666;
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-bottom: 0;
+  }
+
+  /* Asymmetrical Expert Layout */
+  .experts-layout {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 2rem;
+    margin: 0;
+    flex-wrap: wrap;
+  }
+
+  .expert-primary {
+    position: relative;
+    z-index: 2;
+    max-width: 450px;
+  }
+
+  .expert-secondary {
+    position: relative;
+    z-index: 1;
+    max-width: 400px;
+    margin-top: -2rem;
+    margin-left: -1rem;
+  }
+
+  .expert-image-wrapper {
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+    height: 450px; /* Fixed height for both images */
+  }
+
+  .expert-image-wrapper:hover {
+    transform: translateY(-10px);
+  }
+
+  .primary .expert-image-wrapper {
+    border-radius: 40px 20px 40px 20px;
+  }
+
+  .secondary .expert-image-wrapper {
+    border-radius: 20px 40px 20px 40px;
+  }
+
+  .expert-image-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(106, 13, 173, 0.1), rgba(138, 43, 226, 0.05));
+    z-index: 1;
+  }
+
+  .expert-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 2;
+    filter: brightness(1.05) contrast(1.1);
+  }
+
+  .expert-content {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 2rem;
+    padding-top: 3rem;
+    margin-top: -2rem;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .primary .expert-content {
+    margin-left: 1rem;
+    margin-right: -1rem;
+  }
+
+  .secondary .expert-content {
+    margin-right: 1rem;
+    margin-left: -1rem;
+  }
+
+  .expert-name-primary,
+  .expert-name-secondary {
+    color: var(--lucid-primary);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .expert-role-primary,
+  .expert-role-secondary {
+    color: #666;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .expert-desc-primary,
+  .expert-desc-secondary {
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  /* Expert CTA Block */
+  .expert-cta-block {
+    margin: 4rem 0;
+    position: relative;
+  }
+
+  .cta-content {
+    background: linear-gradient(135deg, rgba(55, 17, 82, 0.08), rgba(62, 55, 68, 0.05));
+    border-radius: 30px;
+    padding: 3rem 2rem;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(106, 13, 173, 0.1);
+    border: 1px solid rgba(106, 13, 173, 0.1);
+  }
+
+  .cta-text {
+    color: rgb(62, 55, 68);
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin: 0;
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  /* Final CTA Section */
+  .final-cta-section {
+    background: linear-gradient(135deg, var(--lucid-primary) 0%, var(--lucid-secondary) 100%);
+    padding: 5rem 0;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .final-cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .final-cta-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 3rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    position: relative;
+    z-index: 2;
+  }
+
+  .final-cta-title {
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .final-cta-desc {
+    font-weight: 500;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    opacity: 0.95;
+  }
+
+  .final-cta-subdesc {
+    font-weight: 400;
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+  }
+
+  .btn-final-cta {
+    background: #00ffff;
+    border: none;
+    color: #1a1a1a;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3);
+    font-size: 1.1rem;
+  }
+
+  .btn-final-cta:hover {
+    background: #00e5e5;
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(0, 255, 255, 0.4);
+    text-decoration: none;
+    color: #1a1a1a;
+  }
+
+  /* Experts Section */
+  .expert-card {
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 2rem;
+  }
+
+  .expert-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  }
+
+  .expert-image {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .expert-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  }
+
+  .expert-info {
+    padding: 2rem;
+    position: relative;
+  }
+
+  .expert-name {
+    color: var(--lucid-dark);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  .expert-role {
+    color: var(--lucid-primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .expert-description {
+    color: #666;
+    line-height: 1.6;
+  }
+
+  /* About Section */
+  .about-section {
+    background: #fafafa;
+    padding: 5rem 0;
+    position: relative;
+  }
+
+  .about-content {
+    position: relative;
+  }
+
+  .about-title {
+    color: var(--lucid-primary);
+    font-weight: 800;
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .quote-block {
+    background: white;
+    border-left: 4px solid var(--lucid-primary);
+    border-radius: 0 20px 20px 0;
+    padding: 2rem 2.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    position: relative;
+  }
+
+  .quote-text {
+    color: var(--lucid-primary);
+    font-weight: 600;
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .about-description {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .desc-column p {
+    color: #666;
+    line-height: 1.7;
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  /* Services Section */
+  .services-section {
+    padding: 5rem 0;
+    background: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .services-title {
+    color: var(--lucid-primary);
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .services-subtitle {
+    color: #666;
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-bottom: 0;
+  }
+
+  .services-layout {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+
+  .service-floating-card {
+    background: rgba(106, 13, 173, 0.05);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    padding: 2.5rem;
+    max-width: 400px;
+    box-shadow: 0 20px 40px rgba(106, 13, 173, 0.1);
+    border: 1px solid rgba(106, 13, 173, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .card-1 {
+    transform: rotate(-2deg);
+  }
+
+  .card-2 {
+    transform: rotate(2deg);
+  }
+
+  .service-floating-card:hover {
+    transform: translateY(-10px) rotate(0deg);
+    box-shadow: 0 30px 60px rgba(106, 13, 173, 0.15);
+  }
+
+  .service-icon-wrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--lucid-primary), var(--lucid-secondary));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 8px 20px rgba(106, 13, 173, 0.3);
+  }
+
+  .service-icon {
+    color: white;
+    font-size: 1.8rem;
+  }
+
+  .service-title {
+    color: var(--lucid-primary);
+    font-weight: 700;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .service-description {
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  /* Experience Timeline */
+  .experience-timeline {
+    padding: 5rem 0;
+    background: #f8f9fa;
+    position: relative;
+  }
+
+  .experience-title {
+    color: var(--lucid-primary);
+    font-weight: 800;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .experience-subtitle {
+    color: #666;
+    font-weight: 400;
+    font-size: 1.2rem;
+    margin-bottom: 0;
+  }
+
+  .timeline-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .timeline-axis {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--lucid-primary), var(--lucid-secondary));
+    transform: translateX(-50%);
+    border-radius: 2px;
+    box-shadow: 0 0 20px rgba(106, 13, 173, 0.3);
+  }
+
+  .timeline-column {
+    flex: 1;
+    max-width: 500px;
+  }
+
+  .miguel-column {
+    text-align: right;
+  }
+
+  .guillermo-column {
+    text-align: left;
+  }
+
+  .expert-header {
+    margin-bottom: 3rem;
+  }
+
+  .expert-timeline-name {
+    color: var(--lucid-primary);
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin: 0;
+  }
+
+  .timeline-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .timeline-block {
+    background: white;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    border: 1px solid rgba(106, 13, 173, 0.1);
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .timeline-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
+  }
+
+  .carlos-column .timeline-block {
+    margin-right: 2rem;
+  }
+
+  .maria-column .timeline-block {
+    margin-left: 2rem;
+  }
+
+  .block-title {
+    color: var(--lucid-primary);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .block-content {
+    color: #555;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  /* Footer CTA Section */
+  .footer-cta-section {
+    background: linear-gradient(135deg, var(--lucid-primary) 0%, var(--lucid-secondary) 100%);
+    padding: 5rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .footer-cta-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .footer-cta-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px);
+    border-radius: 30px;
+    padding: 4rem 3rem;
+    border: 1px solid rgba(255,255,255,0.2);
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+  }
+
+  .cta-content-wrapper {
+    text-align: center;
+  }
+
+  .footer-cta-title {
+    color: white;
+    font-weight: 800;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .footer-cta-desc {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+  }
+
+  .footer-cta-subdesc {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 400;
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+  }
+
+  .btn-footer-cta {
+    background: #00ffff;
+    border: none;
+    color: #1a1a1a;
+    padding: 18px 40px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3);
+    font-size: 1.1rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-footer-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.6s;
+  }
+
+  .btn-footer-cta:hover {
+    background: #00e5e5;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 255, 255, 0.4);
+    text-decoration: none;
+    color: #1a1a1a;
+  }
+
+  .btn-footer-cta:hover::before {
+    left: 100%;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .lucid-hero {
+      padding: 6rem 0 3rem;
+    }
+
+    .expert-card {
+      margin-bottom: 1.5rem;
+    }
+
+    .slider-slide {
+      padding: 0 1rem;
+    }
+
+    .experience-title {
+      font-size: 1.5rem;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section with Experts -->
+<section class="experts-hero py-5" id="experts">
+  <div class="container-fluid px-0">
+    <div class="experts-container">
+      <!-- Integrated Banner at Top -->
+      <div class="integrated-banner-top">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-10">
+              <div class="lucid-banner-card text-white" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); border-radius: 20px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.2);">
+                <div class="row align-items-center g-4">
+                  <div class="col-auto">
+                    <div class="lucid-icon-container">
+                      <img src="{% static 'img/lucidbot.webp' %}" alt="Lucid Bot" class="lucid-icon">
+                    </div>
+                  </div>
+                  <div class="col">
+                    <h2 class="lucid-title mb-2">IACol Lucid Team</h2>
+                    <p class="lucid-subtitle mb-0">Dominamos el ecosistema Lucid Bot, asesoría externa personalizada.</p>
+                  </div>
+                  <div class="col-auto">
+                    <a href="#experts-content" class="btn-lucid-cta">
+                      <i class="fas fa-users me-2"></i>CONOCE AL EQUIPO
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Background Elements -->
+      <div class="hero-bg-shape shape-1"></div>
+      <div class="hero-bg-shape shape-2"></div>
+
+      <div class="container" id="experts-content">
+        <div class="row justify-content-center text-center mb-3">
+          <div class="col-lg-8">
+            <h1 class="experts-main-title">Nuestros Expertos</h1>
+          </div>
+        </div>
+
+        <!-- Asymmetrical Expert Layout -->
+        <div class="experts-layout">
+          <!-- Miguel (Left, Larger) -->
+          <div class="expert-primary">
+            <div class="expert-image-wrapper primary">
+              <div class="expert-image-bg"></div>
+              <img src="{% static 'img/Miguel.webp' %}" alt="Miguel" class="expert-photo">
+            </div>
+            <div class="expert-content primary">
+              <h3 class="expert-name-primary">Miguel Angel Diaz</h3>
+              <p class="expert-role-primary">Especialista de Automatizaciones E-Commerce</p>
+              <p class="expert-desc-primary">Matemático y Analista de Datos. Experto en LucidBot e implementación de soluciones de IA para empresas de e-commerce, optimización de campañas publicitarias y automatización de atención al cliente.</p>
+            </div>
+          </div>
+
+          <!-- Guillermo (Right, Overlapping) -->
+          <div class="expert-secondary">
+            <div class="expert-image-wrapper secondary">
+              <div class="expert-image-bg"></div>
+              <img src="{% static 'img/Guillermo.webp' %}" alt="Guillermo" class="expert-photo">
+            </div>
+            <div class="expert-content secondary">
+              <h3 class="expert-name-secondary">Guillermo A. Arboleda</h3>
+              <p class="expert-role-secondary">IA Software Developer / Fundador de IACol. </p>
+              <p class="expert-desc-secondary">Matemático y desarrollador de software enfocado en ciencia de datos. Apoyo en integraciones avanzadas con n8n y demás soluciones técnicas personalizadas.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- First CTA Section -->
+        <div class="first-cta-section">
+          <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+              <div class="first-cta-card">
+                <h2 class="first-cta-title">¿Te Podemos Ayudar?</h2>
+                <p class="first-cta-desc">Agenda una consulta gratuita de 20 minutos para evaluar cómo podemos potenciar tu negocio con soluciones Lucid Bot</p>
+                <p class="first-cta-subdesc">Sin compromiso, sin costo. Solo queremos entender tus necesidades y mostrarte el potencial que tenemos para transformar tus operaciones.</p>
+                <a href="https://cal.com/gaarboleda/mesa-de-ayuda-personal-lucidbot?overlayCalendar=true" class="btn-first-cta" target="_blank">
+                  <i class="fas fa-calendar-alt me-2"></i>Agendar Consulta Gratuita
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="about-content">
+          <!-- Quote Block -->
+          <div class="quote-block">
+            <p class="quote-text">IACol Lucid Team es un equipo de analistas dedicado a la implementación de soluciones en la plataforma Lucid Bot.</p>
+          </div>
+
+          <!-- Description Columns -->
+          <div class="about-description">
+            <div class="desc-column">
+              <p>Combinamos expertise técnico profundo con conocimiento del mercado Ecommerce para ofrecer consultoría personalizada que se adapta a las necesidades específicas de cada cliente.</p>
+            </div>
+            <div class="desc-column">
+              <p>Nuestro enfoque integral garantiza que cada solución no solo resuelva problemas actuales, sino que prepare a las empresas para el futuro de la automatización inteligente.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="services-section">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-8">
+        <h2 class="services-title">Nuestra Ayuda</h2>
+        <p class="services-subtitle">Soluciones integrales para potenciar tu negocio con Lucid Bot</p>
+      </div>
+    </div>
+
+    <div class="services-layout">
+      <!-- Service 1 -->
+      <div class="service-floating-card card-1">
+        <div class="service-card-content">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-cogs service-icon"></i>
+          </div>
+          <h4 class="service-title">Desarrollo de Soluciones desde Cero</h4>
+          <p class="service-description">Creamos y configuramos tu automatización a medida. Mas allá de temas técnicos, sabemos cómo debe hablar un agente para cerrar ventas. Nuestro enfoque se encuetra en los resultados.</p>
+        </div>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="service-floating-card card-2">
+        <div class="service-card-content">
+          <div class="service-icon-wrapper">
+            <i class="fas fa-user-shield service-icon"></i>
+          </div>
+          <h4 class="service-title">Asesoría Personalizada en Soluciones Existentes</h4>
+          <p class="service-description">Te ayudamos a optimizar tus implementaciones. Realizamos auditorías técnicas, organizamos tus proyectos, te recomendamos lás ultimas tendencias, buenas práctias, identificamos oportunidades de mejora y implementamos actualizaciones a medida que maximizan el ROI de tus campañas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Experience Timeline Section -->
+<section class="experience-timeline">
+  <div class="container">
+    <div class="row justify-content-center text-center mb-5">
+      <div class="col-lg-8">
+        <h2 class="experience-title">Experiencia Avanzada</h2>
+        <p class="experience-subtitle">Descubre en detalle la trayectoria y especializaciones de nuestros expertos</p>
+      </div>
+    </div>
+
+    <div class="timeline-container">
+      <!-- Timeline Axis -->
+      <div class="timeline-axis"></div>
+
+      <!-- Miguel Column -->
+      <div class="timeline-column miguel-column">
+        <div class="expert-header">
+          <h3 class="expert-timeline-name">Miguel Diaz</h3>
+        </div>
+
+        <div class="timeline-blocks">
+          <div class="timeline-block">
+            <h4 class="block-title">Experiencia</h4>
+            <p class="block-content">Analista de datos en empresas de E-commerce, enfocado en aplicar IA y automatización a procesos de venta y atención al cliente.</p>
+          </div>
+
+          <div class="timeline-block">
+            <h4 class="block-title">Especialidades</h4>
+            <p class="block-content">Implementación de agentes conversacionales con LucidBot, análisis de datos comerciales y optimización de flujos de automatización.</p>
+          </div>
+
+          <div class="timeline-block">
+            <h4 class="block-title">Proyectos Destacados</h4>
+            <p class="block-content">Creación de agentes inteligentes con LucidBot que ya operan con clientes y ventas activas. (+5000 conv) </p>
+          </div>
+
+          <div class="timeline-block">
+            <h4 class="block-title">Clientes</h4>
+            <p class="block-content">Empresas de e-commerce y comercios digitales en crecimiento.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Guillermo Column -->
+      <div class="timeline-column guillermo-column">
+        <div class="expert-header">
+          <h3 class="expert-timeline-name">Guillermo Arboleda</h3>
+        </div>
+
+        <div class="timeline-blocks">
+          <div class="timeline-block">
+            <h4 class="block-title">Experiencia</h4>
+            <p class="block-content">+3 años desarrollando soluciones de software y analisis de datos.</p>
+          </div>
+
+          <div class="timeline-block">
+            <h4 class="block-title">Especialidades</h4>
+            <p class="block-content">Desarrollo Fullstack, automatización de procesos empresariales e inteligencia artificial.</p>
+          </div>
+
+          <div class="timeline-block">
+            <h4 class="block-title">Proyectos Destacados</h4>
+            <p class="block-content">Implementación de agentes en atención al cliente, comunciación con proveedores y desarrollo de aplicaciones web</p>
+          </div>
+
+          <div class="timeline-block">
+            <h4 class="block-title">Clientes Y </h4>
+            <p class="block-content">Sector de servicio técnico automotriz con énfasis en transformación digital.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA Section (Footer CTA) -->
+<section class="footer-cta-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="footer-cta-card">
+          <div class="cta-content-wrapper">
+            <h2 class="footer-cta-title">¿Te Podemos Ayudar?</h2>
+            <p class="footer-cta-desc">Agenda una consulta gratuita   para evaluar cómo podemos potenciar tus soluciones Lucid Bot</p>
+            <p class="footer-cta-subdesc">Sin costo. Solo queremos entender tus necesidades y mostrarte el potencial que tenemos para transformar tus operaciones.</p>
+            <a href="https://cal.com/gaarboleda/mesa-de-ayuda-personal-lucidbot?overlayCalendar=true" class="btn-footer-cta" target="_blank">
+              <i class="fas fa-calendar-alt me-2"></i>Agendar Consulta Gratuita
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Smooth scroll for banner CTA
+document.addEventListener('DOMContentLoaded', function() {
+  const bannerBtn = document.querySelector('.btn-lucid-cta');
+  if (bannerBtn) {
+    bannerBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.getElementById('experts-content');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
+
+  // Smooth scroll for first CTA - only if it's an internal link
+  const firstCtaBtn = document.querySelector('.btn-first-cta');
+  if (firstCtaBtn) {
+    firstCtaBtn.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.getElementById(href.substring(1));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+      // If it's an external link, let it navigate normally
+    });
+  }
+
+  // Add intersection observer for timeline animations
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, observerOptions);
+
+  // Observe timeline blocks
+  document.querySelectorAll('.timeline-block').forEach(block => {
+    block.style.opacity = '0';
+    block.style.transform = 'translateY(30px)';
+    block.style.transition = 'all 0.6s ease';
+    observer.observe(block);
+  });
+
+  // Add stagger animation for timeline blocks
+  document.querySelectorAll('.timeline-blocks .timeline-block').forEach((block, index) => {
+    block.style.transitionDelay = `${index * 0.1}s`;
+  });
+});
+</script>
+{% endblock %}
