@@ -139,7 +139,6 @@ Thumbs.db
 # Django specific
 # static/
 staticfiles/
-media/
 
 # Videos
 *.mp4
