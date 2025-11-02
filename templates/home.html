@@ -6,7 +6,7 @@
   .hero-section {
     position: relative;
     overflow: hidden;
-    min-height: 60vh;
+    min-height: 50vh;
     display: flex;
     align-items: center;
     padding: 4rem 0;
@@ -97,6 +97,76 @@
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.08) !important;
   }
   
+  /* Interactive and creative styles for startup challenges section */
+  #startup-challenges .challenge-item {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid rgba(108, 99, 255, 0.1);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+  #startup-challenges .challenge-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(108, 99, 255, 0.1), transparent);
+    transition: left 0.5s;
+  }
+  #startup-challenges .challenge-item:hover::before {
+    left: 100%;
+  }
+  #startup-challenges .challenge-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(108, 99, 255, 0.15);
+    border-color: rgba(108, 99, 255, 0.3);
+  }
+  #startup-challenges .icon-box {
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #6c63ff, #00c2ff);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #startup-challenges .challenge-item:hover .icon-box {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+  }
+  #startup-challenges .challenge-item p {
+    transition: color 0.3s ease;
+  }
+  #startup-challenges .challenge-item:hover p {
+    color: #4a5568;
+    font-weight: 500;
+  }
+
+  /* Animation for section entrance */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  #startup-challenges .challenge-item {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  #startup-challenges .challenge-item:nth-child(1) { animation-delay: 0.1s; }
+  #startup-challenges .challenge-item:nth-child(2) { animation-delay: 0.2s; }
+  #startup-challenges .challenge-item:nth-child(3) { animation-delay: 0.3s; }
+  #startup-challenges .challenge-item:nth-child(4) { animation-delay: 0.4s; }
+
   /* Responsive styles for startup challenges section */
   @media (max-width: 767.98px) {
     #startup-challenges .icon-box {
@@ -113,6 +183,9 @@
       font-size: 1.5rem;
       line-height: 1.2;
     }
+    #startup-challenges .challenge-item {
+      padding: 1rem;
+    }
   }
 </style>
 {% endblock %}
@@ -123,20 +196,19 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 hero-content">
-                <span class="badge-ghost mb-3">Ciencia de datos a medida</span>
+                <span class="badge-ghost mb-3">El poder de la <strong>ciencia de datos</strong> sin contratación adicional.</span>
                 <h1 class="display-6 fw-bold mb-4">
-                    Transforma tu empresa con Inteligencia Artificial
+                    Estrategia en Transformación Digital Empresarial
                 </h1>
                 <p class="lead mb-4">
-                    Automatiza procesos, analiza datos y optimiza operaciones sin necesidad de un equipo interno especializado.
-                </p>
-                <div class="d-flex flex-wrap gap-3">
+                Analizamos procesos y construimos, junto a tu equipo, sistemas productivos basados en Ciencia de Datos e Inteligencia Artificial.                </p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center">
                     {% if not user.is_authenticated %}  
-                        <a href="{% url 'account_signup' %}" class="btn btn-lg px-4">
-                            Comenzar Ahora
+                        <a href="{% url 'contact' %}" class="btn btn-lg px-4">
+                            ¿Cómo Iniciar?
                         </a>
-                        <a href="{% url 'agents:agent_list' %}" class="btn btn-lg px-4">
-                            Ver Soluciones
+                        <a href="{% url 'solutions' %}" class="btn btn-lg px-4">
+                            Casos de Éxito
                         </a>
                     {% else %}
                         <a href="{% url 'dashboard:home' %}" class="btn btn-lg px-4">
@@ -152,17 +224,70 @@
     </div>
 </section>
 
+<!-- Features Section -->
+<section id="features" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3">Tecnología Aplicada con Propósito</h2>
+            <p class="lead text-muted">No se trata de usar más software, sino de usarlo con sentido operativo.<br>Analizamos tus procesos para encontrar dónde la ciencia de datos y la IA realmente aportan valor al negocio.</p>
+        </div>
+        
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0">
+                    <div class="card-body p-4">
+                        <div class="icon-box mb-4 mx-auto text-center" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
+                          <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3 class="h4 mb-3 text-center">Visualización de Datos y Dashboards BI</h3>
+                        <p class="text-muted text-center mb-0">
+                          Automatizamos el reportaje de información: conectamos tus sistemas y fuentes de datos para crear paneles interactivos que permiten monitorear KPIs y tomar decisiones en tiempo real.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0">
+                    <div class="card-body p-4">
+                        <div class="icon-box mb-4 mx-auto text-center" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
+                          <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="h4 mb-3 text-center">Agentes Conversacionales de IA</h3>
+                        <p class="text-muted text-center mb-0">
+                          Colaboradores virtuales que conversan de forma natural y ejecutan acciones en tus sistemas. Optimiza la comunicación y convierte cada interacción en un proceso productivo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-4">
+                <div class="card h-100 border-0">
+                    <div class="card-body p-4">
+                        <div class="icon-box mb-4 mx-auto text-center" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
+                          <i class="fas fa-gears"></i>
+                        </div>
+                        <h3 class="h4 mb-3 text-center">Automatización de Flujos y Desarrollos a Medida</h3>
+                        <p class="text-muted text-center mb-0">
+                          Cada proceso repetitivo en la operación administrativa y comercial es una oportunidad de mejora. Orquesta procesos de punta a punta e implementa  a la medida de tu negocio.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 <!-- About/Info Section -->
 <section id="about" class="py-5 position-relative info-ribbon">
   <div class="container">
     <div class="row align-items-center g-4">
       <div class="col-lg-6">
-        <span class="badge-ghost mb-3">Quiénes Somos</span>
         <h2 class="display-6 fw-bold mb-3">
-          Somos puente hacia el crecimiento impulsado por <span class="text-gradient">Datos/IA/<span class="fw-semibold">Software</span></span>
+          Somos puente hacia el crecimiento impulsado por <span class="text-gradient">Data/IA/<span class="fw-semibold">Software</span></span>
         </h2>
         <p class="lead mb-4">No vendemos software; resolvemos problemas empresariales con soluciones de IA y datos que tienen sentido empresarial.</p>
-        <p class="mb-0 text-muted">Hacemos que la ciencia de datos y la inteligencia artificial de vanguardia sea comprensible y aplicable para tu PYME, sin la necesidad de costosos equipos internos.</p>
       </div>
       <div class="col-lg-6">
         <div class="d-flex flex-column gap-3">
@@ -172,7 +297,7 @@
             </div>
             <div>
               <h5 class="mb-1">Acompañamiento constante</h5>
-              <p class="mb-0 text-muted">Somos tus socios, no solo proveedores. Te guiamos antes, durante y después de la implementación.</p>
+              <p class="mb-0 text-muted">Somos tus socios, no solo proveedores. Te guiamos antes, durante y después de cada implementación.</p>
             </div>
           </div>
           <div class="d-flex gap-3 p-3 p-md-4 rounded-3 bg-white shadow-sm feature-chip align-items-center">
@@ -190,67 +315,65 @@
   </div>
 </section>
 
-<!-- Features Section -->
-<section id="features" class="py-5">
+<!-- Startup Challenges Section -->
+<section id="startup-challenges" class="py-5 bg-light">
     <div class="container">
-        <div class="text-center mb-5">
-            <span class="badge-ghost mb-3">Nuestras Soluciones</span>
-            <h2 class="display-5 fw-bold mb-3">Potencia cada área de tu negocio</h2>
-            <p class="lead text-muted">Agentes especializados para cada necesidad de tu empresa</p>
+      <div class="row align-items-stretch">
+        <div class="col-lg-10 mx-auto">
+          <div class="p-4 p-md-5 rounded-4 border bg-white text-center">
+            <h2 class="display-6 fw-bold mb-3 text-center">
+              Desafíos comunes para empresas en crecimiento ¿Te identificas?
+            </h2>
+  
+            <div class="row g-3 mt-4">
+              <div class="col-md-6">
+                <div class="challenge-item d-flex align-items-center gap-3">
+                  <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.2rem;">
+                    <i class="fas fa-rotate"></i>
+                  </div>
+                  <p class="mb-0">Procesos manuales o repetitivos que consumen el tiempo valioso de tu equipo.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="challenge-item d-flex align-items-center gap-3">
+                  <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.2rem;">
+                    <i class="fas fa-diagram-project"></i>
+                  </div>
+                  <p class="mb-0">La información no fluye bien entre áreas, personas o herramientas, creando reprocesos que toman tiempo.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="challenge-item d-flex align-items-center gap-3">
+                  <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.2rem;">
+                    <i class="fas fa-brain"></i>
+                  </div>
+                  <p class="mb-0">Sabes que la IA es el camino, pero no sabes por dónde empezar a aplicarla a tu empresa.</p>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="challenge-item d-flex align-items-center gap-3">
+                  <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.2rem;">
+                    <i class="fas fa-chart-bar"></i>
+                  </div>
+                  <p class="mb-0">Buscas tomar decisiones en base a datos, pero no tienes un equipo interno de datos para apoyarte.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card h-100 border-0">
-                    <div class="card-body p-4">
-                        <div class="icon-box mb-4 mx-auto text-center" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
-                          <i class="fas fa-chart-pie"></i>
-                        </div>
-                        <h3 class="h4 mb-3 text-center">Visualización de Datos y Dashboards BI</h3>
-                        <p class="text-muted mb-0">
-                          Conecta tus fuentes y crea paneles interactivos para monitorear KPIs y descubrir insights accionables en tiempo real.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="card h-100 border-0">
-                    <div class="card-body p-4">
-                        <div class="icon-box mb-4 mx-auto text-center" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
-                          <i class="fas fa-robot"></i>
-                        </div>
-                        <h3 class="h4 mb-3 text-center">Agentes Conversacionales de IA</h3>
-                        <p class="text-muted mb-0">
-                          Chatbots y asistentes que entienden el contexto, resuelven consultas y se integran con tus sistemas 24/7.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="card h-100 border-0">
-                    <div class="card-body p-4">
-                        <div class="icon-box mb-4 mx-auto text-center" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
-                          <i class="fas fa-gears"></i>
-                        </div>
-                        <h3 class="h4 mb-3 text-center">Automatización de Flujos y Desarrollos a Medida</h3>
-                        <p class="text-muted mb-0">
-                          Orquesta procesos de punta a punta e implementa integraciones y microservicios a la medida de tu negocio.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
     </div>
-</section>
+  </section>
 
 <!-- CTA Section -->
 <section class="py-5">
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-lg-8">
-                <h2 class="display-6 fw-bold mb-4">¿Listo para transformar tu negocio?</h2>
+                <h2 class="display-6 fw-bold mb-4">Las decisiones que dejas al futuro son el presente de tus competidores</h2>
                 <p class="lead text-muted mb-4">Únete a cientos de empresas que ya están aprovechando el poder de la inteligencia artificial.</p>
                 <div class="d-flex justify-content-center gap-3">
                     <a href="{% if user.is_authenticated %}{% url 'dashboard:home' %}{% else %}{% url 'account_signup' %}{% endif %}" class="btn btn-lg px-4">
@@ -264,56 +387,6 @@
         </div>
     </div>
 </section>
-
-
-<!-- Here>
-
-<!-- Startup Challenges Section -->
-<section id="startup-challenges" class="py-5 bg-light">
-    <div class="container">
-      <div class="row align-items-stretch">
-        <div class="col-lg-10 mx-auto">
-          <div class="p-4 p-md-5 rounded-4 border bg-white text-center">
-            <span class="badge-ghost mb-3">Nuestros Socios</span>
-            <h2 class="display-6 fw-bold mb-3 text-center">
-              Desafíos comunes para Startups en crecimiento: ¿Te identificas?
-            </h2>
-  
-            <ul class="list-unstyled mt-4 mb-0">
-              <li class="d-flex align-items-center gap-3 mb-3">
-                <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.5rem;">
-                  <i class="fas fa-rotate"></i>
-                </div>
-                <p class="mb-0">Procesos manuales o repetitivos que consumen el tiempo valioso de tu equipo.</p>
-              </li>
-  
-              <li class="d-flex align-items-center gap-3 mb-3">
-                <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.5rem;">
-                  <i class="fas fa-diagram-project"></i>
-                </div>
-                <p class="mb-0">La información no fluye bien entre áreas, personas o herramientas, creando reprocesos que toman tiempo.</p>
-              </li>
-  
-              <li class="d-flex align-items-center gap-3 mb-3">
-                <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.5rem;">
-                  <i class="fas fa-brain"></i>
-                </div>
-                <p class="mb-0">Entiendes que la Inteligencia Artificial es el camino, pero no sabes por dónde empezar a aplicarla a tu empresa.</p>
-              </li>
-  
-              <li class="d-flex align-items-center gap-3">
-                <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.5rem;">
-                  <i class="fas fa-chart-bar"></i>
-                </div>
-                <p class="mb-0">Buscas tomar decisiones en base a datos, pero no tienes un equipo interno de datos para apoyarte.</p>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
 
 <!-- Contact Section -->
 <section id="contact" class="py-5">

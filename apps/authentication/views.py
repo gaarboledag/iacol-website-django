@@ -50,6 +50,10 @@ def mechai_landing(request):
     """Página de landing para MechAI"""
     return render(request, 'landing.html')
 
+def automotive(request):
+    """Página de landing para el sector automotriz"""
+    return render(request, 'automotive.html')
+
 def masterclass_auto_ai(request):
     """Página Masterclass en Implementación de IA para Centros Automotrices"""
     return render(request, 'masterclass_auto_ai.html')

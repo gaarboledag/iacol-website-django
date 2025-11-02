@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automotriz | IACOL - Transforma tu Taller con Inteligencia</title>
+    <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
+
+    <!-- Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/glacial-indifference" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-red: #dc143c;
+            --primary-black: #000000;
+            --metallic-gray: #2c2c2c;
+            --neon-red: #ff073a;
+            --tech-cyan: #00ffff;
+            --dark-gray: #1a1a1a;
+            --light-gray: #cccccc;
+        }
+
+        body {
+            font-family: 'Glacial Indifference', sans-serif;
+            color: var(--light-gray);
+            background-color: var(--primary-black);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-black) 0%, var(--metallic-gray) 100%);
+            padding: 8rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ff073a" stroke-width="0.2" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-section h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--primary-red);
+            margin-bottom: 2rem;
+            line-height: 1.1;
+            text-shadow: 0 0 20px rgba(220, 20, 60, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        .hero-section h2 {
+            font-size: 2rem;
+            color: var(--light-gray);
+            margin-bottom: 4rem;
+            font-weight: 600;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(220, 20, 60, 0.5); }
+            to { text-shadow: 0 0 30px rgba(220, 20, 60, 0.8), 0 0 40px rgba(220, 20, 60, 0.3); }
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-red) 0%, #b22222 100%);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(220, 20, 60, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #b22222 0%, var(--primary-red) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.6);
+            color: white;
+            text-decoration: none;
+        }
+
+        .btn-outline-primary {
+            background: transparent;
+            border: 2px solid var(--primary-red);
+            color: var(--primary-red);
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-outline-primary:hover {
+            background: var(--primary-red);
+            color: white;
+            transform: translateY(-3px);
+            text-decoration: none;
+        }
+
+        /* Solutions Section */
+        .solutions-section {
+            background: var(--metallic-gray);
+            padding: 6rem 0;
+        }
+
+        .solutions-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary-red);
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .solution-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .solution-card {
+            background: var(--primary-black);
+            border: 1px solid var(--primary-red);
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(220, 20, 60, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .solution-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 20, 60, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .solution-card:hover::before {
+            left: 100%;
+        }
+
+        .solution-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(220, 20, 60, 0.4);
+            border-color: var(--neon-red);
+        }
+
+        .solution-card i {
+            font-size: 3rem;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+        }
+
+        .solution-card h3 {
+            color: var(--primary-red);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .solution-card p {
+            color: var(--light-gray);
+            line-height: 1.6;
+        }
+
+        /* Value Proposition Section */
+        .value-section {
+            background: var(--primary-black);
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .value-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(220, 20, 60, 0.05) 50%, transparent 70%);
+            z-index: 0;
+        }
+
+        .value-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .value-content h2 {
+            color: var(--primary-red);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+        }
+
+        .value-content p {
+            color: var(--light-gray);
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
+
+        .highlight-red {
+            color: var(--neon-red);
+            font-weight: 700;
+            text-shadow: 0 0 10px rgba(255, 7, 58, 0.5);
+        }
+
+        /* Success Stories */
+        .success-section {
+            background: var(--metallic-gray);
+            padding: 6rem 0;
+        }
+
+        .success-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary-red);
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .story-card {
+            background: var(--primary-black);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .story-content {
+            padding: 2rem;
+        }
+
+        .story-content h4 {
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .story-content p {
+            color: var(--light-gray);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-red) 0%, #b22222 100%);
+            padding: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .solutions-title,
+            .success-title,
+            .value-content h2,
+            .cta-section h2 {
+                font-size: 2rem;
+            }
+
+            .solution-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-primary,
+            .btn-outline-primary {
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Impact Section - Brutal Design */
+        .impact-section {
+            background: linear-gradient(135deg, var(--primary-black) 0%, #0a0a0a 50%, var(--primary-black) 100%);
+            padding: 8rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(220, 20, 60, 0.03) 10px,
+                rgba(220, 20, 60, 0.03) 20px
+            );
+            z-index: 0;
+        }
+
+        .impact-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .impact-header h2 {
+            color: var(--primary-red);
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 30px rgba(220, 20, 60, 0.5);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .impact-subtitle {
+            color: var(--light-gray);
+            font-size: 1.4rem;
+            font-weight: 600;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .impact-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 6rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-metric {
+            background: linear-gradient(135deg, var(--metallic-gray) 0%, #1a1a1a 100%);
+            border: 2px solid var(--primary-red);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(220, 20, 60, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-metric::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 20, 60, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .stat-metric:hover::before {
+            left: 100%;
+        }
+
+        .stat-metric:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(220, 20, 60, 0.4);
+            border-color: var(--neon-red);
+        }
+
+        .metric-number {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--primary-red);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(220, 20, 60, 0.8);
+            animation: numberGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes numberGlow {
+            from { text-shadow: 0 0 20px rgba(220, 20, 60, 0.8); }
+            to { text-shadow: 0 0 30px rgba(220, 20, 60, 1), 0 0 40px rgba(220, 20, 60, 0.5); }
+        }
+
+        .metric-label {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--light-gray);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .metric-description {
+            color: var(--gray);
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .impact-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 6rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .comparison-item {
+            background: var(--primary-black);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 3px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comparison-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(220, 20, 60, 0.05) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .comparison-item > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .before {
+            border-color: #666;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .before h3 {
+            color: #666;
+            border-bottom: 2px solid #666;
+            padding-bottom: 1rem;
+        }
+
+        .before ul li {
+            color: #999;
+        }
+
+        .before ul li i {
+            color: #dc3545;
+        }
+
+        .after {
+            border-color: var(--primary-red);
+            background: linear-gradient(135deg, var(--metallic-gray) 0%, #1a1a1a 100%);
+            box-shadow: 0 15px 40px rgba(220, 20, 60, 0.3);
+        }
+
+        .after h3 {
+            color: var(--primary-red);
+            border-bottom: 2px solid var(--primary-red);
+            padding-bottom: 1rem;
+        }
+
+        .after ul li {
+            color: var(--light-gray);
+        }
+
+        .after ul li i {
+            color: #28a745;
+        }
+
+        .comparison-item h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .comparison-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .comparison-item ul li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .comparison-item ul li i {
+            margin-right: 1rem;
+            width: 20px;
+        }
+
+        .impact-cta {
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary-red) 0%, #b22222 100%);
+            border-radius: 25px;
+            padding: 4rem 3rem;
+            margin: 0 auto;
+            max-width: 800px;
+            box-shadow: 0 20px 60px rgba(220, 20, 60, 0.4);
+            position: relative;
+            z-index: 1;
+        }
+
+        .impact-cta h3 {
+            color: white;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .impact-cta p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            font-weight: 600;
+            line-height: 1.6;
+        }
+
+        /* Responsive for Impact Section */
+        @media (max-width: 768px) {
+            .impact-header h2 {
+                font-size: 2.5rem;
+            }
+
+            .impact-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .impact-stats {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                margin-bottom: 4rem;
+            }
+
+            .stat-metric {
+                padding: 2rem 1.5rem;
+            }
+
+            .metric-number {
+                font-size: 3rem;
+            }
+
+            .impact-comparison {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .comparison-item {
+                padding: 2rem;
+            }
+
+            .comparison-item h3 {
+                font-size: 1.5rem;
+            }
+
+            .impact-cta {
+                padding: 3rem 2rem;
+                margin: 0 1rem;
+            }
+
+            .impact-cta h3 {
+                font-size: 1.8rem;
+            }
+
+            .impact-cta p {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1>Transforma tu Taller con <span style="color: var(--neon-red);">Ciencia de Datos</span></h1>
+            <h2>Automatización, Inteligencia Artificial y Ciencia de Datos diseñadas para la eficiencia de Centros Automotrices.</h2>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="#solutions" class="btn-primary">Acelera tu Productividad Ahora</a>
+                <a href="#contact" class="btn-outline-primary">Agenda un Diagnóstico Gratuito</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition Section -->
+    <section class="value-section">
+        <div class="container">
+            <div class="value-content">
+                <h2>Transforma tu Área de Administración</h2>
+                <p>
+                    En IACOL transformamos la forma en que operan los Centros Automotrices.<br>
+                    Nuestras soluciones tecnológicas abarcan la <span class="highlight-red">Atención al Cliente Automatizada</span> y la
+                    <span class="highlight-red">Comunicación con Proveedores de Repuestos.</span>
+                </p>
+                <div class="row mt-5">
+                    <div class="col-md-6 text-center">
+                        <img src="{% static 'img/mechai.webp' %}" alt="MechAI" style="max-width: 300px; width: 100%; margin-bottom: 1rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);">
+                        <h4 style="color: var(--primary-red);">MechAI - Atención al Cliente</h4>
+                        <p>Chatbot inteligente para agendar citas, responder consultas y gestionar clientes por WhatsApp.</p>
+                        <a href="{% url 'mechai_landing' %}" class="btn-outline-primary">Conoce MechAI</a>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="{% static 'img/findpart.webp' %}" alt="FindPartAI" style="max-width: 300px; width: 100%; margin-bottom: 1rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);">
+                        <h4 style="color: var(--primary-red);">FindPartAI - Cotización de Repuestos</h4>
+                        <p>Automatiza la cotización con proveedores, compara precios y gestiona compras al instante.</p>
+                        <a href="{% url 'findpartai_landing' %}" class="btn-outline-primary">Conoce FindPartAI</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section - New Brutal Section -->
+    <section class="impact-section">
+        <div class="container">
+            <div class="impact-header">
+                <h2>La Revolución Digital en el Sector Automotriz</h2>
+                <p class="impact-subtitle">Mientras tus competidores pierden tiempo en procesos manuales, tú lideras con tecnología de vanguardia</p>
+            </div>
+
+            <div class="impact-stats">
+                <div class="stat-metric">
+                    <div class="metric-number">85%</div>
+                    <div class="metric-label">Reducción en Tiempo de Respuesta</div>
+                    <div class="metric-description">Clientes atendidos en segundos, no minutos</div>
+                </div>
+                <div class="stat-metric">
+                    <div class="metric-number">60%</div>
+                    <div class="metric-label">Aumento en Eficiencia Operativa</div>
+                    <div class="metric-description">Más trabajo, menos personal administrativo</div>
+                </div>
+                <div class="stat-metric">
+                    <div class="metric-number">40%</div>
+                    <div class="metric-label">Reducción en Costos Operativos</div>
+                    <div class="metric-description">ROI garantizado en los primeros 3 meses</div>
+                </div>
+            </div>
+
+            <div class="impact-comparison">
+                <div class="comparison-item before">
+                    <h3>ANTES: El Caos Manual</h3>
+                    <ul>
+                        <li><i class="fas fa-times"></i> Clientes esperando respuestas por horas</li>
+                        <li><i class="fas fa-times"></i> Cotizaciones que toman días</li>
+                        <li><i class="fas fa-times"></i> Información dispersa en WhatsApp</li>
+                        <li><i class="fas fa-times"></i> Equipos sobrecargados de tareas repetitivas</li>
+                        <li><i class="fas fa-times"></i> Decisiones basadas en intuición, no datos</li>
+                    </ul>
+                </div>
+                <div class="comparison-item after">
+                    <h3>DESPUÉS: La Máquina de Eficiencia</h3>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Atención 24/7 automática e instantánea</li>
+                        <li><i class="fas fa-check"></i> Cotizaciones en segundos con múltiples proveedores</li>
+                        <li><i class="fas fa-check"></i> Base de datos centralizada y organizada</li>
+                        <li><i class="fas fa-check"></i> Equipos enfocados en lo que realmente importa</li>
+                        <li><i class="fas fa-check"></i> Insights predictivos para maximizar ganancias</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="impact-cta">
+                <h3>¿Cuánto tiempo más vas a esperar para revolucionar tu taller?</h3>
+                <p>La transformación digital no es opcional. Es la diferencia entre liderar o desaparecer.</p>
+                <a href="#contact" class="btn-primary">Comienza la Revolución Ahora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="solutions-section">
+        <div class="container">
+            <h2 class="solutions-title">Potencia y Precisión en Cada Proceso</h2>
+            <div class="solution-cards">
+                <div class="solution-card">
+                    <i class="fas fa-cogs"></i>
+                    <h3>Automatización</h3>
+                    <p>Optimiza flujos de trabajo, reduce tiempos de respuesta y elimina tareas repetitivas en tu taller automotriz.</p>
+                </div>
+                <div class="solution-card">
+                    <i class="fas fa-chart-bar"></i>
+                    <h3>Ciencia de Datos</h3>
+                    <p>Analiza patrones de mantenimiento, predice fallos y toma decisiones basadas en datos reales de tu operación.</p>
+                </div>
+                <div class="solution-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Inteligencia Artificial</h3>
+                    <p>Asistentes inteligentes que entienden el contexto automotriz y proporcionan soporte 24/7 a tu equipo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="container">
+            <h2>Agenda un Diagnóstico de Productividad Gratuito</h2>
+            <p>Descubre cómo podemos transformar tu centro automotriz con soluciones de IA y automatización.</p>
+            <a href="https://wa.me/573042693804?text=Quiero%20agendar%20un%20diagnóstico%20gratuito%20para%20mi%20taller%20automotriz" class="btn-primary">Agenda Ahora</a>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JS -->
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.solution-card, .story-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
