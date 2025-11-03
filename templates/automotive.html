@@ -38,12 +38,12 @@
 
         /* Hero Section */
         .hero-section {
-            background: linear-gradient(135deg, var(--primary-black) 0%, var(--metallic-gray) 100%);
-            padding: 8rem 0;
+            background: var(--primary-black);
+            padding: 4rem 0 0 0;
             text-align: center;
             position: relative;
             overflow: hidden;
-            min-height: 80vh;
+            min-height: 40vh;
             display: flex;
             align-items: center;
         }
@@ -66,9 +66,9 @@
         }
 
         .hero-section h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            color: var(--primary-red);
+            font-size: 3.8rem;
+            font-weight: 600;
+            color: var(--primary-red);  
             margin-bottom: 2rem;
             line-height: 1.1;
             text-shadow: 0 0 20px rgba(220, 20, 60, 0.5);
@@ -76,7 +76,7 @@
         }
 
         .hero-section h2 {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--light-gray);
             margin-bottom: 4rem;
             font-weight: 600;
@@ -91,7 +91,7 @@
             background: linear-gradient(135deg, var(--primary-red) 0%, #b22222 100%);
             border: none;
             padding: 1rem 2rem;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 700;
             border-radius: 50px;
             color: white;
@@ -115,8 +115,8 @@
             background: transparent;
             border: 2px solid var(--primary-red);
             color: var(--primary-red);
-            padding: 1rem 2rem;
-            font-size: 1.2rem;
+            padding: 0.3rem 2rem;
+            font-size: 1rem;
             font-weight: 700;
             border-radius: 50px;
             text-decoration: none;
@@ -207,7 +207,7 @@
         /* Value Proposition Section */
         .value-section {
             background: var(--primary-black);
-            padding: 6rem 0;
+            padding: 4rem 0;
             position: relative;
         }
 
@@ -313,11 +313,11 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero-section h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
             .hero-section h2 {
-                font-size: 1.5rem;
+                font-size: 1rem;
             }
 
             .solutions-title,
@@ -333,7 +333,8 @@
 
             .btn-primary,
             .btn-outline-primary {
-                width: 100%;
+                width: 80%;
+                font-size: 0.6rem;
                 margin-bottom: 1rem;
             }
         }
@@ -663,37 +664,32 @@
     </style>
 </head>
 <body>
-    <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
-            <h1>Transforma tu Taller con <span style="color: var(--neon-red);">Ciencia de Datos</span></h1>
-            <h2>Automatización, Inteligencia Artificial y Ciencia de Datos diseñadas para la eficiencia de Centros Automotrices.</h2>
-            <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="#solutions" class="btn-primary">Acelera tu Productividad Ahora</a>
-                <a href="#contact" class="btn-outline-primary">Agenda un Diagnóstico Gratuito</a>
+            <div class="hero-logos">
+                <div class="logo-iacol">
+                    <img src="{% static 'img/iacol_logo_rojo.png' %}" alt="IACOL Logo" style="max-width: 200px; height: auto; background-color: var(--primary-black);">
+                </div>
             </div>
+        <h1>Transformamos el área administrativa de tu <br><span style="color: var(--neon-red);">Centro Automotriz</span> con <span style="color: var(--neon-red);">IA</span></h1>
+        <h2>Nuestras soluciones tecnológicas abarcan la <span class="highlight-red">Atención al Cliente Automatizada</span> y la <span class="highlight-red">Comunicación con Proveedores de Repuestos.</span></h2>
         </div>
     </section>
+
 
     <!-- Value Proposition Section -->
     <section class="value-section">
         <div class="container">
             <div class="value-content">
-                <h2>Transforma tu Área de Administración</h2>
-                <p>
-                    En IACOL transformamos la forma en que operan los Centros Automotrices.<br>
-                    Nuestras soluciones tecnológicas abarcan la <span class="highlight-red">Atención al Cliente Automatizada</span> y la
-                    <span class="highlight-red">Comunicación con Proveedores de Repuestos.</span>
-                </p>
                 <div class="row mt-5">
                     <div class="col-md-6 text-center">
-                        <img src="{% static 'img/mechai.webp' %}" alt="MechAI" style="max-width: 300px; width: 100%; margin-bottom: 1rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);">
+                        <img src="{% static 'img/mechai.webp' %}" alt="MechAI" style="max-width: 300px; width: 100%; margin-bottom: 1rem; border-radius: 20px; box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);">
                         <h4 style="color: var(--primary-red);">MechAI - Atención al Cliente</h4>
                         <p>Chatbot inteligente para agendar citas, responder consultas y gestionar clientes por WhatsApp.</p>
                         <a href="{% url 'mechai_landing' %}" class="btn-outline-primary">Conoce MechAI</a>
                     </div>
                     <div class="col-md-6 text-center">
-                        <img src="{% static 'img/findpart.webp' %}" alt="FindPartAI" style="max-width: 300px; width: 100%; margin-bottom: 1rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);">
+                        <img src="{% static 'img/findpart.webp' %}" alt="FindPartAI" style="max-width: 300px; width: 100%; margin-bottom: 1rem; border-radius: 0px; box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);">
                         <h4 style="color: var(--primary-red);">FindPartAI - Cotización de Repuestos</h4>
                         <p>Automatiza la cotización con proveedores, compara precios y gestiona compras al instante.</p>
                         <a href="{% url 'findpartai_landing' %}" class="btn-outline-primary">Conoce FindPartAI</a>
@@ -709,24 +705,6 @@
             <div class="impact-header">
                 <h2>La Revolución Digital en el Sector Automotriz</h2>
                 <p class="impact-subtitle">Mientras tus competidores pierden tiempo en procesos manuales, tú lideras con tecnología de vanguardia</p>
-            </div>
-
-            <div class="impact-stats">
-                <div class="stat-metric">
-                    <div class="metric-number">85%</div>
-                    <div class="metric-label">Reducción en Tiempo de Respuesta</div>
-                    <div class="metric-description">Clientes atendidos en segundos, no minutos</div>
-                </div>
-                <div class="stat-metric">
-                    <div class="metric-number">60%</div>
-                    <div class="metric-label">Aumento en Eficiencia Operativa</div>
-                    <div class="metric-description">Más trabajo, menos personal administrativo</div>
-                </div>
-                <div class="stat-metric">
-                    <div class="metric-number">40%</div>
-                    <div class="metric-label">Reducción en Costos Operativos</div>
-                    <div class="metric-description">ROI garantizado en los primeros 3 meses</div>
-                </div>
             </div>
 
             <div class="impact-comparison">
@@ -753,48 +731,25 @@
             </div>
 
             <div class="impact-cta">
-                <h3>¿Cuánto tiempo más vas a esperar para revolucionar tu taller?</h3>
+                <h3>La IA puede Optimizar tu administración, sin más costos de contratación</h3>
                 <p>La transformación digital no es opcional. Es la diferencia entre liderar o desaparecer.</p>
                 <a href="#contact" class="btn-primary">Comienza la Revolución Ahora</a>
             </div>
         </div>
     </section>
 
-    <!-- Solutions Section -->
-    <section id="solutions" class="solutions-section">
-        <div class="container">
-            <h2 class="solutions-title">Potencia y Precisión en Cada Proceso</h2>
-            <div class="solution-cards">
-                <div class="solution-card">
-                    <i class="fas fa-cogs"></i>
-                    <h3>Automatización</h3>
-                    <p>Optimiza flujos de trabajo, reduce tiempos de respuesta y elimina tareas repetitivas en tu taller automotriz.</p>
-                </div>
-                <div class="solution-card">
-                    <i class="fas fa-chart-bar"></i>
-                    <h3>Ciencia de Datos</h3>
-                    <p>Analiza patrones de mantenimiento, predice fallos y toma decisiones basadas en datos reales de tu operación.</p>
-                </div>
-                <div class="solution-card">
-                    <i class="fas fa-brain"></i>
-                    <h3>Inteligencia Artificial</h3>
-                    <p>Asistentes inteligentes que entienden el contexto automotriz y proporcionan soporte 24/7 a tu equipo.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- CTA Section -->
-    <section id="contact" class="cta-section">
+    <!-- Call to Action -->
+    <section class="cta-section">
         <div class="container">
             <h2>Agenda un Diagnóstico de Productividad Gratuito</h2>
             <p>Descubre cómo podemos transformar tu centro automotriz con soluciones de IA y automatización.</p>
-            <a href="https://wa.me/573042693804?text=Quiero%20agendar%20un%20diagnóstico%20gratuito%20para%20mi%20taller%20automotriz" class="btn-primary">Agenda Ahora</a>
+            <a href="https://wa.me/573229528027?text=Quiero%20saber%20m%C3%A1s%20sobre%20AI%20para%20mi%20taller" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
+            <div style="margin-top: 3rem;">
+                <img src="{% static 'img/iacol_logo.png' %}" alt="IACOL Logo" style="max-width: 100px;">
+            </div>
         </div>
     </section>
-
+    
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 

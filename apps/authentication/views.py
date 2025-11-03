@@ -48,7 +48,7 @@ def findpartai_landing(request):
 
 def mechai_landing(request):
     """Página de landing para MechAI"""
-    return render(request, 'landing.html')
+    return render(request, 'mechai_landing.html')
 
 def automotive(request):
     """Página de landing para el sector automotriz"""
