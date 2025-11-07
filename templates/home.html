@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block extra_css %}
 <style>
@@ -196,26 +197,26 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 hero-content">
-                <span class="badge-ghost mb-3">El poder de la <strong>ciencia de datos</strong> sin contratación adicional.</span>
+                <span class="badge-ghost mb-3">{% trans "El poder de la <strong>ciencia de datos</strong> sin contratación adicional." %}</span>
                 <h1 class="display-6 fw-bold mb-4">
-                    Estrategia en Transformación Digital Empresarial
+                    {% trans "Estrategia en Transformación Digital Empresarial" %}
                 </h1>
                 <p class="lead mb-4">
-                Analizamos procesos y construimos, junto a tu equipo, sistemas productivos basados en Ciencia de Datos e Inteligencia Artificial.                </p>
+                {% trans "Analizamos procesos y construimos, junto a tu equipo, sistemas productivos basados en Ciencia de Datos e Inteligencia Artificial." %}                </p>
                 <div class="d-flex flex-wrap gap-3 justify-content-center">
                     {% if not user.is_authenticated %}  
                         <a href="{% url 'contact' %}" class="btn btn-lg px-4">
-                            ¿Cómo Iniciar?
+                            {% trans "¿Cómo Iniciar?" %}
                         </a>
                         <a href="{% url 'solutions' %}" class="btn btn-lg px-4">
-                            Casos de Éxito
+                            {% trans "Casos de Éxito" %}
                         </a>
                     {% else %}
                         <a href="{% url 'dashboard:home' %}" class="btn btn-lg px-4">
-                            Ir al Dashboard
+                            {% trans "Ir al Dashboard" %}
                         </a>
                         <a href="{% url 'agents:agent_list' %}" class="btn btn-lg px-4">
-                            Explorar Agentes
+                            {% trans "Explorar Agentes" %}
                         </a>
                     {% endif %}
                 </div>
@@ -228,8 +229,8 @@
 <section id="features" class="py-5">
     <div class="container">
         <div class="text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">Tecnología Aplicada con Propósito</h2>
-            <p class="lead text-muted">No se trata de usar más software, sino de usarlo con sentido operativo.<br>Analizamos tus procesos para encontrar dónde la ciencia de datos y la IA realmente aportan valor al negocio.</p>
+            <h2 class="display-5 fw-bold mb-3">{% trans "Tecnología Aplicada con Propósito" %}</h2>
+            <p class="lead text-muted">{% trans "No se trata de usar más software, sino de usarlo con sentido operativo." %}<br>{% trans "Analizamos tus procesos para encontrar dónde la ciencia de datos y la IA realmente aportan valor al negocio." %}</p>
         </div>
         
         <div class="row g-4">
@@ -239,9 +240,9 @@
                         <div class="icon-box mb-4 mx-auto text-center" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
                           <i class="fas fa-chart-pie"></i>
                         </div>
-                        <h3 class="h4 mb-3 text-center">Visualización de Datos y Dashboards BI</h3>
+                        <h3 class="h4 mb-3 text-center">{% trans "Visualización de Datos y Dashboards BI" %}</h3>
                         <p class="text-muted text-center mb-0">
-                          Automatizamos el reportaje de información: conectamos tus sistemas y fuentes de datos para crear paneles interactivos que permiten monitorear KPIs y tomar decisiones en tiempo real.
+                          {% trans "Automatizamos el reportaje de información: conectamos tus sistemas y fuentes de datos para crear paneles interactivos que permiten monitorear KPIs y tomar decisiones en tiempo real." %}
                         </p>
                     </div>
                 </div>
@@ -253,9 +254,9 @@
                         <div class="icon-box mb-4 mx-auto text-center" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
                           <i class="fas fa-robot"></i>
                         </div>
-                        <h3 class="h4 mb-3 text-center">Agentes Conversacionales de IA</h3>
+                        <h3 class="h4 mb-3 text-center">{% trans "Agentes Conversacionales de IA" %}</h3>
                         <p class="text-muted text-center mb-0">
-                          Colaboradores virtuales que conversan de forma natural y ejecutan acciones en tus sistemas. Optimiza la comunicación y convierte cada interacción en un proceso productivo.
+                          {% trans "Colaboradores virtuales que conversan de forma natural y ejecutan acciones en tus sistemas. Optimiza la comunicación y convierte cada interacción en un proceso productivo." %}
                         </p>
                     </div>
                 </div>
@@ -267,9 +268,9 @@
                         <div class="icon-box mb-4 mx-auto text-center" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
                           <i class="fas fa-gears"></i>
                         </div>
-                        <h3 class="h4 mb-3 text-center">Automatización de Flujos y Desarrollos a Medida</h3>
+                        <h3 class="h4 mb-3 text-center">{% trans "Automatización de Flujos y Desarrollos a Medida" %}</h3>
                         <p class="text-muted text-center mb-0">
-                          Cada proceso repetitivo en la operación administrativa y comercial es una oportunidad de mejora. Orquesta procesos de punta a punta e implementa  a la medida de tu negocio.
+                          {% trans "Cada proceso repetitivo en la operación administrativa y comercial es una oportunidad de mejora. Orquesta procesos de punta a punta e implementa  a la medida de tu negocio." %}
                         </p>
                     </div>
                 </div>
@@ -285,9 +286,9 @@
     <div class="row align-items-center g-4">
       <div class="col-lg-6">
         <h2 class="display-6 fw-bold mb-3">
-          Somos puente hacia el crecimiento impulsado por <span class="text-gradient">Data/IA/<span class="fw-semibold">Software</span></span>
+          {% trans "Somos puente hacia el crecimiento impulsado por" %} <span class="text-gradient">Data/IA/<span class="fw-semibold">Software</span></span>
         </h2>
-        <p class="lead mb-4">No vendemos software; resolvemos problemas empresariales con soluciones de IA y datos que tienen sentido empresarial.</p>
+        <p class="lead mb-4">{% trans "No vendemos software; resolvemos problemas empresariales con soluciones de IA y datos que tienen sentido empresarial." %}</p>
       </div>
       <div class="col-lg-6">
         <div class="d-flex flex-column gap-3">
@@ -296,8 +297,8 @@
               <i class="fas fa-handshake-angle"></i>
             </div>
             <div>
-              <h5 class="mb-1">Acompañamiento constante</h5>
-              <p class="mb-0 text-muted">Somos tus socios, no solo proveedores. Te guiamos antes, durante y después de cada implementación.</p>
+              <h5 class="mb-1">{% trans "Acompañamiento constante" %}</h5>
+              <p class="mb-0 text-muted">{% trans "Somos tus socios, no solo proveedores. Te guiamos antes, durante y después de cada implementación." %}</p>
             </div>
           </div>
           <div class="d-flex gap-3 p-3 p-md-4 rounded-3 bg-white shadow-sm feature-chip align-items-center">
@@ -305,8 +306,8 @@
               <i class="fas fa-arrow-trend-up"></i>
             </div>
             <div>
-              <h5 class="mb-1">Impacto tangible y ROI</h5>
-              <p class="mb-0 text-muted">Nos enfocamos en resultados medibles que impulsan tu eficiencia y rentabilidad.</p>
+              <h5 class="mb-1">{% trans "Impacto tangible y ROI" %}</h5>
+              <p class="mb-0 text-muted">{% trans "Nos enfocamos en resultados medibles que impulsan tu eficiencia y rentabilidad." %}</p>
             </div>
           </div>
         </div>
@@ -322,7 +323,7 @@
         <div class="col-lg-10 mx-auto">
           <div class="p-4 p-md-5 rounded-4 border bg-white text-center">
             <h2 class="display-6 fw-bold mb-3 text-center">
-              Desafíos comunes para empresas en crecimiento ¿Te identificas?
+              {% trans "Desafíos comunes para empresas en crecimiento ¿Te identificas?" %}
             </h2>
   
             <div class="row g-3 mt-4">
@@ -331,7 +332,7 @@
                   <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.2rem;">
                     <i class="fas fa-rotate"></i>
                   </div>
-                  <p class="mb-0">Procesos manuales o repetitivos que consumen el tiempo valioso de tu equipo.</p>
+                  <p class="mb-0">{% trans "Procesos manuales o repetitivos que consumen el tiempo valioso de tu equipo." %}</p>
                 </div>
               </div>
 
@@ -340,7 +341,7 @@
                   <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.2rem;">
                     <i class="fas fa-diagram-project"></i>
                   </div>
-                  <p class="mb-0">La información no fluye bien entre áreas, personas o herramientas, creando reprocesos que toman tiempo.</p>
+                  <p class="mb-0">{% trans "La información no fluye bien entre áreas, personas o herramientas, creando reprocesos que toman tiempo." %}</p>
                 </div>
               </div>
 
@@ -349,7 +350,7 @@
                   <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.2rem;">
                     <i class="fas fa-brain"></i>
                   </div>
-                  <p class="mb-0">Sabes que la IA es el camino, pero no sabes por dónde empezar a aplicarla a tu empresa.</p>
+                  <p class="mb-0">{% trans "Sabes que la IA es el camino, pero no sabes por dónde empezar a aplicarla a tu empresa." %}</p>
                 </div>
               </div>
 
@@ -358,7 +359,7 @@
                   <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.2rem;">
                     <i class="fas fa-chart-bar"></i>
                   </div>
-                  <p class="mb-0">Buscas tomar decisiones en base a datos, pero no tienes un equipo interno de datos para apoyarte.</p>
+                  <p class="mb-0">{% trans "Buscas tomar decisiones en base a datos, pero no tienes un equipo interno de datos para apoyarte." %}</p>
                 </div>
               </div>
             </div>
@@ -373,14 +374,14 @@
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-lg-8">
-                <h2 class="display-6 fw-bold mb-4">Las decisiones que dejas al futuro son el presente de tus competidores</h2>
-                <p class="lead text-muted mb-4">Únete a cientos de empresas que ya están aprovechando el poder de la inteligencia artificial.</p>
+                <h2 class="display-6 fw-bold mb-4">{% trans "Las decisiones que dejas al futuro son el presente de tus competidores" %}</h2>
+                <p class="lead text-muted mb-4">{% trans "Únete a cientos de empresas que ya están aprovechando el poder de la inteligencia artificial." %}</p>
                 <div class="d-flex justify-content-center gap-3">
                     <a href="{% if user.is_authenticated %}{% url 'dashboard:home' %}{% else %}{% url 'account_signup' %}{% endif %}" class="btn btn-lg px-4">
-                        Comenzar Ahora
+                        {% trans "Comenzar Ahora" %}
                     </a>
                     <a href="#contact" class="btn btn-lg px-4">
-                        Contactar Ventas
+                        {% trans "Contactar Ventas" %}
                     </a>
                 </div>
             </div>
@@ -393,9 +394,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-                <span class="badge-ghost mb-3">Contáctanos</span>
-                <h2 class="display-5 fw-bold mb-4">¿Tienes alguna pregunta?</h2>
-                <p class="lead text-muted mb-5">Nuestro equipo está listo para ayudarte a encontrar la mejor solución para tu negocio.</p>
+                <span class="badge-ghost mb-3">{% trans "Contáctanos" %}</span>
+                <h2 class="display-5 fw-bold mb-4">{% trans "¿Tienes alguna pregunta?" %}</h2>
+                <p class="lead text-muted mb-5">{% trans "Nuestro equipo está listo para ayudarte a encontrar la mejor solución para tu negocio." %}</p>
                 
                 <div class="row g-4">
                     <div class="col-md-4">
@@ -403,7 +404,7 @@
                             <div class="icon-box mx-auto mb-0" style="width: 50px; height: 50px; font-size: 1.5rem;">
                                 <i class="fas fa-envelope"></i>
                             </div>
-                            <h5 class="h6 mb-0">Correo Electrónico</h5>
+                            <h5 class="h6 mb-0">{% trans "Correo Electrónico" %}</h5>
                             <p class="text-muted mb-0">gaarboledag@gmail.com</p>
                         </div>
                     </div>
@@ -413,7 +414,7 @@
                             <div class="icon-box mx-auto mb-0" style="width: 50px; height: 50px; font-size: 1.5rem;">
                                 <i class="fas fa-phone"></i>
                             </div>
-                            <h5 class="h6 mb-0">Teléfono</h5>
+                            <h5 class="h6 mb-0">{% trans "Teléfono" %}</h5>
                             <p class="text-muted mb-0">+57 (304) 269-3804</p>
                         </div>
                     </div>
@@ -423,7 +424,7 @@
                             <div class="icon-box mx-auto mb-0" style="width: 50px; height: 50px; font-size: 1.5rem;">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
-                            <h5 class="h6 mb-0">Ubicación</h5>
+                            <h5 class="h6 mb-0">{% trans "Ubicación" %}</h5>
                             <p class="text-muted mb-0">Colombia</p>
                         </div>
                     </div>

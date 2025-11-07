@@ -72,6 +72,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -113,10 +114,17 @@ DATABASES = {
 }
 
 # Internacionalización
-LANGUAGE_CODE = 'es-co'
+LANGUAGE_CODE = 'es'
+LANGUAGES = [
+    ('es', 'Español'),
+    ('en', 'English'),
+]
 TIME_ZONE = 'America/Bogota'
 USE_I18N = True
 USE_TZ = True
+
+# Configuración para URLs sin prefijo de idioma para el idioma por defecto
+PREFIX_DEFAULT_LANGUAGE = False
 
 # Archivos estáticos
 STATIC_URL = '/static/'
@@ -127,6 +135,11 @@ STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 # Archivos media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# Internationalization
+LOCALE_PATHS = [
+    BASE_DIR / 'locale',
+]
 
 # Django REST Framework
 REST_FRAMEWORK = {

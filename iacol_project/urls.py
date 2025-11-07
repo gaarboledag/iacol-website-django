@@ -2,10 +2,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls.i18n import i18n_patterns
 from django.views.generic import RedirectView
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
+    path('i18n/', include('django.conf.urls.i18n')),
+]
+
+urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('api/', include('apps.api.urls')),
@@ -13,7 +18,8 @@ urlpatterns = [
     path('agents/', include('apps.agents.urls')),
     path('payments/', include('apps.payments.urls')),
     path('', include('apps.authentication.urls')),
-]
+    prefix_default_language=False
+)
 
 # Servir archivos media en desarrollo y producción (temporal para testing)
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -25,3 +31,4 @@ if settings.DEBUG:
 urlpatterns += [
     path('<path:undefined_path>', RedirectView.as_view(url='/'), name='redirect-to-home'),
 ]
+

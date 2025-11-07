@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 {% load static %}
+{% load i18n %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FindPartAI - Cotización con Proveedores para Centros Automotrices</title>
+    <title>{% trans "FindPartAI - Cotización con Proveedores para Centros Automotrices" %}</title>
     <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
 
     <!-- Fonts -->
@@ -15,6 +16,57 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Language Switcher Styles -->
+    <style>
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 25px;
+            padding: 5px;
+            display: flex;
+            gap: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .language-switcher a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .language-switcher a:hover,
+        .language-switcher a.active {
+            border-color: var(--primary-red);
+            transform: scale(1.1);
+        }
+        .language-switcher img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+            .language-switcher a {
+                width: 30px;
+                height: 30px;
+            }
+            .language-switcher img {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    </style>
 
     <style>
         :root {
@@ -921,6 +973,26 @@
     </style>
 </head>
 <body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{% if request.get_full_path|slice:':4' == '/en/' %}{{ request.get_full_path }}{% else %}/en{{ request.get_full_path }}{% endif %}" />
+            <input name="language" type="hidden" value="en" />
+            <button type="submit" class="{% if request.LANGUAGE_CODE == 'en' %}active{% endif %}" title="English" style="background: none; border: none; padding: 0;">
+                <img src="https://flagcdn.com/w40/us.png" alt="English">
+            </button>
+        </form>
+        <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="/findpartai/" />
+            <input name="language" type="hidden" value="es" />
+            <button type="submit" class="{% if request.LANGUAGE_CODE == 'es' %}active{% endif %}" title="Español" style="background: none; border: none; padding: 0;">
+                <img src="https://flagcdn.com/w40/co.png" alt="Español">
+            </button>
+        </form>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
@@ -929,8 +1001,8 @@
                     <img src="{% static 'img/iacol_logo_rojo.png' %}" alt="IACOL Logo" style="max-width: 200px; height: auto; background-color: var(--primary-black);">
                 </div>
             </div>
-        <h1>Cotiza y compra los repuestos al instante con IA</h1>
-        <h2>FindPartAI contacta a tus proveedores por <strong>WhatsApp</strong>, compara precios y ayuda al equipo a gestionar las <strong>cotizaciones en segundos.</strong></strong></h2>
+        <h1>{% trans "Cotiza y compra los repuestos al instante con IA" %}</h1>
+        <h2>{% trans "FindPartAI contacta a tus proveedores por" %} <strong>{% trans "WhatsApp" %}</strong>, {% trans "compara precios y ayuda al equipo a gestionar las" %} <strong>{% trans "cotizaciones en segundos." %}</strong></h2>
         </div>
     </section>
 
@@ -944,22 +1016,22 @@
     <!-- Problem Section -->
     <section class="problem-section">
         <div class="container">
-            <h2>¿<strong>Cuánto tiempo dedica</strong> el área administrativa del taller a <strong>cotizar repuestos</strong>?</h2>
+            <h2>{% trans "¿Cuánto tiempo dedica el área administrativa del taller a cotizar repuestos?" %}</h2>
             <div class="problem-stats">
                 <div class="stat-item">
                     <i class="fas fa-users"></i>
-                    <h3>CONTACTOS EXCESIVOS</h3>
-                    <p>Cada cotización implica, en promedio, más de 6 contactos con distintos proveedores.</p>
+                    <h3>{% trans "CONTACTOS EXCESIVOS" %}</h3>
+                    <p>{% trans "Cada cotización implica, en promedio, más de 6 contactos con distintos proveedores." %}</p>
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-clock"></i>
-                    <h3>FLUJO INTERRUMPIDO</h3>
-                    <p>La comparación de precios y disponibilidad se realiza en medio de un alto flujo de mensajes.</p>
+                    <h3>{% trans "FLUJO INTERRUMPIDO" %}</h3>
+                    <p>{% trans "La comparación de precios y disponibilidad se realiza en medio de un alto flujo de mensajes." %}</p>
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-cogs"></i>
-                    <h3>BOTELLA ADMINISTRATIVA</h3>
-                    <p>Tareas repetitivas que demandan gran parte de la jornada del personal.</p>
+                    <h3>{% trans "BOTELLA ADMINISTRATIVA" %}</h3>
+                    <p>{% trans "Tareas repetitivas que demandan gran parte de la jornada del personal." %}</p>
                 </div>
             </div>
         </div>
@@ -977,9 +1049,9 @@
                     </div>
                 </div>
                 <div class="demo-text">
-                    <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--light-gray);">Ve cómo FindPartAI automatiza el proceso de cotización, contactando proveedores por WhatsApp y comparando precios en segundos.</p>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--light-gray);">{% trans "Ve cómo FindPartAI automatiza el proceso de cotización, contactando proveedores por WhatsApp y comparando precios en segundos." %}</p>
                     <div style="text-align: center;">
-                        <a href="https://wa.me/573229528027?text=Quiero%20saber%20m%C3%A1s%20sobre%20FindPartAI%20para%20mi%20taller" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
+                        <a href="https://wa.me/573229528027?text=Quiero%20saber%20m%C3%A1s%20sobre%20FindPartAI%20para%20mi%20taller" class="btn-primary">{% trans "AGENDA UNA DEMO GRATUITA" %}</a>
                     </div>
                 </div>
             </div>
@@ -991,36 +1063,36 @@
     <section class="workflow-section">
         <div class="container">
             <div class="workflow-title">
-                <h2>¿Cómo Funciona <strong>FindPartAI</strong>? Explicado en <strong>5 Pasos</strong>.</h2>
+                <h2>{% trans "¿Cómo Funciona" %} <strong>FindPartAI</strong>? {% trans "Explicado en" %} <strong>5 {% trans "Pasos" %}</strong>.</h2>
             </div>
             <div class="workflow-steps">
                 <div class="step step-user">
                     <div class="step-number">1</div>
-                    <div class="step-title"><strong>SOLICITAS COTIZACIÓN</strong></div>
-                    <div class="step-text">El administrador envía la solicitud de cotización por WhatsApp a FindPartAI.<br><small><strong>Recibe tu cotización.</strong></small></div>
+                    <div class="step-title"><strong>{% trans "SOLICITAS COTIZACIÓN" %}</strong></div>
+                    <div class="step-text">{% trans "El administrador envía la solicitud de cotización por WhatsApp a FindPartAI." %}<br><small><strong>{% trans "Recibe tu cotización." %}</strong></small></div>
                 </div>
                 <div class="step step-ai">
                     <div class="step-number">2</div>
-                    <div class="step-title"><strong>FindPartAI COTIZA</strong></div>
-                    <div class="step-text">FindPartAI le escribe automáticamente a cada proveedor que vendan los repuestos.<br><small><strong>Contacta tus proveedores.</strong></small></div>
+                    <div class="step-title"><strong>FindPartAI {% trans "COTIZA" %}</strong></div>
+                    <div class="step-text">{% trans "FindPartAI le escribe automáticamente a cada proveedor que vendan los repuestos." %}<br><small><strong>{% trans "Contacta tus proveedores." %}</strong></small></div>
                 </div>
                 <div class="step step-user">
                     <div class="step-number">3</div>
-                    <div class="step-title"><strong>EL PROVEEDOR RESPONDE</strong></div>
-                    <div class="step-text">Responden con precios, disponibilidad, etc.<br><small><strong>Recibe las respuestas.</strong></small></div>
+                    <div class="step-title"><strong>{% trans "EL PROVEEDOR RESPONDE" %}</strong></div>
+                    <div class="step-text">{% trans "Responden con precios, disponibilidad, etc." %}<br><small><strong>{% trans "Recibe las respuestas." %}</strong></small></div>
                 </div>
                 <div class="step step-ai">
                     <div class="step-number">4</div>
-                    <div class="step-title"><strong>FindPartAI COMPARA</strong></div>
-                    <div class="step-text">Te presenta una comparativa completa de costos y respuestas.<br><small><strong>Compara precios y disponibilidad de los repuestos.</strong></small></div>
+                    <div class="step-title"><strong>FindPartAI {% trans "COMPARA" %}</strong></div>
+                    <div class="step-text">{% trans "Te presenta una comparativa completa de costos y respuestas." %}<br><small><strong>{% trans "Compara precios y disponibilidad de los repuestos." %}</strong></small></div>
                 </div>
                 <div class="step step-ai">
                     <div class="step-number">5</div>
-                    <div class="step-title"><strong>FindPartAI SOLICITA COMPRA</strong></div>
-                    <div class="step-text">El administrativo elige un proveedor y FindPartAI gestiona la compra/envío.<br><small><strong>Compra la c    otización indicada.</strong></small></div>
+                    <div class="step-title"><strong>FindPartAI {% trans "SOLICITA COMPRA" %}</strong></div>
+                    <div class="step-text">{% trans "El administrativo elige un proveedor y FindPartAI gestiona la compra/envío." %}<br><small><strong>{% trans "Compra la cotización indicada." %}</strong></small></div>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 2rem; font-style: italic;">En cada paso, el administrativo mantiene el control sobre las conversación y el agente.</p>
+            <p style="text-align: center; margin-top: 2rem; font-style: italic;">{% trans "En cada paso, el administrativo mantiene el control sobre las conversación y el agente." %}</p>
         </div>
     </section>
 
@@ -1030,28 +1102,28 @@
     <section class="benefits-section">
         <div class="container">
             <div class="benefits-title">
-                <h2>El Impacto de FindPartAI en <strong>Resultados Inmediatos</strong></h2>
+                <h2>{% trans "El Impacto de FindPartAI en" %} <strong>{% trans "Resultados Inmediatos" %}</strong></h2>
             </div>
             <div class="benefits-grid">
                 <div class="benefit-card">
-                    <div class="benefit-percentage">Hasta 80%</div>
-                    <h3>AHORRO DE TIEMPO EN COTIZACIONES</h3>
-                    <p>Optimiza el tiempo del área administrativa desde el primer dia de implementación.</p>
+                    <div class="benefit-percentage">{% trans "Hasta 80%" %}</div>
+                    <h3>{% trans "AHORRO DE TIEMPO EN COTIZACIONES" %}</h3>
+                    <p>{% trans "Optimiza el tiempo del área administrativa desde el primer dia de implementación." %}</p>
                 </div>
                 <div class="benefit-card">
                     <i class="fas fa-dollar-sign" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
-                    <h3>MEJORES PRECIOS</h3>
-                    <p>Al consultar más proveedores, podrás acceder al mejor precio y disponibilidad.</p>
+                    <h3>{% trans "MEJORES PRECIOS" %}</h3>
+                    <p>{% trans "Al consultar más proveedores, podrás acceder al mejor precio y disponibilidad." %}</p>
                 </div>
                 <div class="benefit-card">
                     <i class="fas fa-users" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
-                    <h3>ESCALABILIDAD SIN CONTRATACIÓN ADMINISTRATIVA</h3>
-                    <p>Las demás áreas del Centro Automotriz podrán crecer sin necesidad de contratar más personal administrativo.</p>
+                    <h3>{% trans "ESCALABILIDAD SIN CONTRATACIÓN ADMINISTRATIVA" %}</h3>
+                    <p>{% trans "Las demás áreas del Centro Automotriz podrán crecer sin necesidad de contratar más personal administrativo." %}</p>
                 </div>
                 <div class="benefit-card">
                     <i class="fas fa-expand" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
-                    <h3>ORGANIZACIÓN Y UPLEVEL DE LA COMUNICACIÓN DEL TALLER</h3>
-                    <p>Convierte el caos de WhatsApp en una base de proveedores organizada que facilite la toma de decisiones.</p>
+                    <h3>{% trans "ORGANIZACIÓN Y UPLEVEL DE LA COMUNICACIÓN DEL TALLER" %}</h3>
+                    <p>{% trans "Convierte el caos de WhatsApp en una base de proveedores organizada que facilite la toma de decisiones." %}</p>
                 </div>
             </div>
         </div>
@@ -1060,9 +1132,9 @@
     <!-- Call to Action -->
     <section class="cta-section">
         <div class="container">
-            <h2>Abastecimiento Automatizado de Repuestos para Centros Automotrices</h2>
-            <p>¿Listo para <strong>revolucionar el abastecimiento</strong> tu centro automotriz?</p>
-            <a href="https://wa.me/573229528027?text=Quiero%20saber%20m%C3%A1s%20sobre%20FindPartAI%20para%20mi%20taller" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
+            <h2>{% trans "Abastecimiento Automatizado de Repuestos para Centros Automotrices" %}</h2>
+            <p>{% trans "¿Listo para" %} <strong>{% trans "revolucionar el abastecimiento" %}</strong> {% trans "tu centro automotriz?" %}</p>
+            <a href="https://wa.me/573229528027?text=Quiero%20saber%20m%C3%A1s%20sobre%20FindPartAI%20para%20mi%20taller" class="btn-primary">{% trans "AGENDA UNA DEMO GRATUITA" %}</a>
             <div style="margin-top: 3rem;">
                 <img src="{% static 'img/iacol_logo.png' %}" alt="IACOL Logo" style="max-width: 100px;">
             </div>

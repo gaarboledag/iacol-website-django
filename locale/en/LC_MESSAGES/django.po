@@ -1,0 +1,1232 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-11-06 20:20-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: apps/agents/views.py:203
+msgid "Proveedor creado exitosamente."
+msgstr "Provider created successfully."
+
+#: apps/agents/views.py:212
+msgid "Agregar Proveedor"
+msgstr "Add Provider"
+
+#: apps/agents/views.py:232
+msgid "Proveedor actualizado exitosamente."
+msgstr "Provider updated successfully."
+
+#: apps/agents/views.py:241
+msgid "Editar Proveedor"
+msgstr "Edit Provider"
+
+#: apps/agents/views.py:254
+msgid "Proveedor eliminado exitosamente."
+msgstr "Provider deleted successfully."
+
+#: apps/agents/views.py:314
+msgid "Categoría de producto agregada exitosamente."
+msgstr "Product category added successfully."
+
+#: apps/agents/views.py:328
+msgid "Agregar Categoría de Producto"
+msgstr "Add Product Category"
+
+#: apps/agents/views.py:342
+msgid "Categoría de producto actualizada exitosamente."
+msgstr "Product category updated successfully."
+
+#: apps/agents/views.py:356
+msgid "Editar Categoría de Producto"
+msgstr "Edit Product Category"
+
+#: apps/agents/views.py:369
+msgid "Categoría de producto eliminada exitosamente."
+msgstr "Product category deleted successfully."
+
+#: apps/agents/views.py:395
+msgid "Información del centro automotriz creada exitosamente."
+msgstr "Automotive center information created successfully."
+
+#: apps/agents/views.py:404
+msgid "Configurar Centro Automotriz"
+msgstr "Configure Automotive Center"
+
+#: apps/agents/views.py:418
+msgid "Información del centro automotriz actualizada exitosamente."
+msgstr "Automotive center information updated successfully."
+
+#: apps/agents/views.py:427
+msgid "Editar Centro Automotriz"
+msgstr "Edit Automotive Center"
+
+#: apps/agents/views.py:474
+msgid "Marca de producto creada exitosamente."
+msgstr "Product brand created successfully."
+
+#: apps/agents/views.py:483
+msgid "Agregar Marca de Producto"
+msgstr "Add Product Brand"
+
+#: apps/agents/views.py:503
+msgid "Marca de producto actualizada exitosamente."
+msgstr "Product brand updated successfully."
+
+#: apps/agents/views.py:512
+msgid "Editar Marca de Producto"
+msgstr "Edit Product Brand"
+
+#: apps/agents/views.py:526
+msgid "Marca de producto eliminada exitosamente."
+msgstr "Product brand deleted successfully."
+
+#: apps/agents/views.py:554
+msgid "Categoría de proveedor agregada exitosamente."
+msgstr "Provider category added successfully."
+
+#: apps/agents/views.py:568
+msgid "Agregar Categoría de Proveedor"
+msgstr "Add Provider Category"
+
+#: apps/agents/views.py:582
+msgid "Categoría de proveedor actualizada exitosamente."
+msgstr "Provider category updated successfully."
+
+#: apps/agents/views.py:596
+msgid "Editar Categoría de Proveedor"
+msgstr "Edit Provider Category"
+
+#: apps/agents/views.py:609
+msgid "Categoría de proveedor eliminada exitosamente."
+msgstr "Provider category deleted successfully."
+
+#: apps/agents/views.py:664
+msgid "Marca creada exitosamente."
+msgstr "Brand created successfully."
+
+#: apps/agents/views.py:673
+msgid "Agregar Marca"
+msgstr "Add Brand"
+
+#: apps/agents/views.py:693
+msgid "Marca actualizada exitosamente."
+msgstr "Brand updated successfully."
+
+#: apps/agents/views.py:702
+msgid "Editar Marca"
+msgstr "Edit Brand"
+
+#: apps/agents/views.py:716
+msgid "Marca eliminada exitosamente."
+msgstr "Brand deleted successfully."
+
+#: apps/agents/views.py:789
+msgid "Producto creado exitosamente."
+msgstr "Product created successfully."
+
+#: apps/agents/views.py:798
+msgid "Agregar Producto"
+msgstr "Add Product"
+
+#: apps/agents/views.py:859
+msgid "Producto actualizado exitosamente."
+msgstr "Product updated successfully."
+
+#: apps/agents/views.py:868
+msgid "Editar Producto"
+msgstr "Edit Product"
+
+#: apps/agents/views.py:881
+msgid "Producto eliminado exitosamente."
+msgstr "Product deleted successfully."
+
+#: templates/automotive.html:8
+msgid "Automotriz | IACOL - Transforma tu Taller con Inteligencia"
+msgstr "Automotive | IACOL - Transform your Workshop with Intelligence"
+
+#: templates/automotive.html:675
+msgid "Transformamos el área administrativa de tu"
+msgstr "We transform your administrative area"
+
+#: templates/automotive.html:675
+msgid "Centro Automotriz"
+msgstr "Automotive Center"
+
+#: templates/automotive.html:675
+msgid "con"
+msgstr "with"
+
+#: templates/automotive.html:675
+msgid "IA"
+msgstr "AI"
+
+#: templates/automotive.html:676
+msgid "Nuestras soluciones tecnológicas abarcan la"
+msgstr "Our technological solutions cover"
+
+#: templates/automotive.html:676
+msgid "Atención al Cliente Automatizada"
+msgstr "Automated Customer Service"
+
+#: templates/automotive.html:676
+msgid "y la"
+msgstr "and"
+
+#: templates/automotive.html:676
+msgid "Comunicación con Proveedores de Repuestos."
+msgstr "Communication with Spare Parts Suppliers."
+
+#: templates/automotive.html:688
+msgid "Atención al Cliente"
+msgstr "Customer Service"
+
+#: templates/automotive.html:689
+msgid ""
+"Chatbot inteligente para agendar citas, responder consultas y gestionar "
+"clientes por WhatsApp."
+msgstr "Intelligent chatbot to schedule appointments, answer queries and manage customers via WhatsApp."
+
+#: templates/automotive.html:690
+msgid "Conoce MechAI"
+msgstr "Meet MechAI"
+
+#: templates/automotive.html:694
+msgid "Cotización de Repuestos"
+msgstr "Spare Parts Quotation"
+
+#: templates/automotive.html:695
+msgid ""
+"Automatiza la cotización con proveedores, compara precios y gestiona compras "
+"al instante."
+msgstr "Automate quotation with suppliers, compare prices and manage purchases instantly."
+
+#: templates/automotive.html:696
+msgid "Conoce FindPartAI"
+msgstr "Meet FindPartAI"
+
+#: templates/automotive.html:707
+msgid "La Revolución Digital en el Sector Automotriz"
+msgstr "The Digital Revolution in the Automotive Sector"
+
+#: templates/automotive.html:708
+msgid ""
+"Mientras tus competidores pierden tiempo en procesos manuales, tú lideras "
+"con tecnología de vanguardia"
+msgstr "While your competitors waste time on manual processes, you lead with cutting-edge technology"
+
+#: templates/automotive.html:713
+msgid "ANTES: El Caos Manual"
+msgstr "BEFORE: Manual Chaos"
+
+#: templates/automotive.html:715
+msgid "Clientes esperando respuestas por horas"
+msgstr "Customers waiting for responses for hours"
+
+#: templates/automotive.html:716
+msgid "Cotizaciones que toman días"
+msgstr "Quotations that take days"
+
+#: templates/automotive.html:717
+msgid "Información dispersa en WhatsApp"
+msgstr "Scattered information in WhatsApp"
+
+#: templates/automotive.html:718
+msgid "Equipos sobrecargados de tareas repetitivas"
+msgstr "Teams overloaded with repetitive tasks"
+
+#: templates/automotive.html:719
+msgid "Decisiones basadas en intuición, no datos"
+msgstr "Decisions based on intuition, not data"
+
+#: templates/automotive.html:723
+msgid "DESPUÉS: La Máquina de Eficiencia"
+msgstr "AFTER: The Efficiency Machine"
+
+#: templates/automotive.html:725
+msgid "Atención 24/7 automática e instantánea"
+msgstr "24/7 automatic and instant attention"
+
+#: templates/automotive.html:726
+msgid "Cotizaciones en segundos con múltiples proveedores"
+msgstr "Quotations in seconds with multiple suppliers"
+
+#: templates/automotive.html:727
+msgid "Base de datos centralizada y organizada"
+msgstr "Centralized and organized database"
+
+#: templates/automotive.html:728
+msgid "Equipos enfocados en lo que realmente importa"
+msgstr "Teams focused on what really matters"
+
+#: templates/automotive.html:729
+msgid "Insights predictivos para maximizar ganancias"
+msgstr "Predictive insights to maximize profits"
+
+#: templates/automotive.html:735
+msgid "La IA puede Optimizar tu administración, sin más costos de contratación"
+msgstr "AI can optimize your administration, without additional hiring costs"
+
+#: templates/automotive.html:736
+msgid ""
+"La transformación digital no es opcional. Es la diferencia entre liderar o "
+"desaparecer."
+msgstr "Digital transformation is not optional. It's the difference between leading or disappearing."
+
+#: templates/automotive.html:737
+msgid "Comienza la Revolución Ahora"
+msgstr "Start the Revolution Now"
+
+#: templates/automotive.html:745
+msgid "Agenda un Diagnóstico de Productividad Gratuito"
+msgstr "Schedule a Free Productivity Diagnosis"
+
+#: templates/automotive.html:746
+msgid ""
+"Descubre cómo podemos transformar tu centro automotriz con soluciones de IA "
+"y automatización."
+msgstr "Discover how we can transform your automotive center with AI and automation solutions."
+
+#: templates/base.html:514
+msgid "Home"
+msgstr "Home"
+
+#: templates/base.html:517
+msgid "Innovation"
+msgstr "Innovation"
+
+#: templates/base.html:520
+msgid "Contact"
+msgstr "Contact"
+
+#: templates/base.html:523
+msgid "Laboratory"
+msgstr "Laboratory"
+
+#: templates/base.html:528
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: templates/base.html:533 templates/base.html:591
+msgid "Iniciar Sesión"
+msgstr "Sign In"
+
+#: templates/base.html:536 templates/base.html:592
+msgid "Registrarse"
+msgstr "Sign Up"
+
+#: templates/base.html:567
+msgid "IACOL Dev"
+msgstr "IACOL Dev"
+
+#: templates/base.html:568
+msgid ""
+"Aliados en Transformación Digital, Data Science y Automatizaciones con "
+"Inteligencia Artificial."
+msgstr ""
+"Allies in Digital Transformation, Data Science and Automations with "
+"Artificial Intelligence."
+
+#: templates/base.html:576
+msgid "Producto"
+msgstr "Product"
+
+#: templates/base.html:578
+msgid "Inicio"
+msgstr "Home"
+
+#: templates/base.html:579 templates/solutions.html:4
+msgid "Soluciones"
+msgstr "Solutions"
+
+#: templates/base.html:580 templates/resources.html:5
+msgid "Recursos"
+msgstr "Resources"
+
+#: templates/base.html:581 templates/base.html:599 templates/contact.html:5
+msgid "Contacto"
+msgstr "Contact"
+
+#: templates/base.html:586
+msgid "Cuenta"
+msgstr "Account"
+
+#: templates/base.html:589
+msgid "Panel de Control"
+msgstr "Control Panel"
+
+#: templates/base.html:594
+msgid "Restablecer contraseña"
+msgstr "Reset Password"
+
+#: templates/base.html:609
+msgid "Todos los derechos reservados."
+msgstr "All rights reserved."
+
+#: templates/contact.html:28
+msgid "Descubra oportunidades"
+msgstr "Discover opportunities"
+
+#: templates/contact.html:29
+msgid "Accede a una evaluación estratégica"
+msgstr "Access a strategic evaluation"
+
+#: templates/contact.html:29
+msgid "Sin Costo"
+msgstr "Free of Charge"
+
+#: templates/contact.html:30
+msgid ""
+"Nuestro primer paso es entender su operación y sus desafíos. Por eso, le "
+"invitamos a participar en una evaluación inicial, donde analizaremos el "
+"potencial de nuestra colaboración."
+msgstr ""
+"Our first step is to understand your operation and your challenges. That's "
+"why we invite you to participate in an initial evaluation, where we will "
+"analyze the potential of our collaboration."
+
+#: templates/contact.html:32
+msgid ""
+"Revisamos sus procesos, sus canales actuales y sus oportunidades de mejora."
+msgstr ""
+"We review your processes, your current channels and your improvement "
+"opportunities."
+
+#: templates/contact.html:33
+msgid ""
+"Le entregamos una visión clara de cómo podría optimizar resultados con datos "
+"y tecnología."
+msgstr ""
+"We deliver a clear vision of how you could optimize results with data and "
+"technology."
+
+#: templates/contact.html:36
+msgid "AGENDAR EVALUACIÓN"
+msgstr "SCHEDULE EVALUATION"
+
+#: templates/contact.html:37 templates/findpartai_landing.html:1005
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+#: templates/contact.html:43
+msgid "Información de contacto"
+msgstr "Contact information"
+
+#: templates/contact.html:63
+msgid "Diagnóstico inicial"
+msgstr "Initial diagnosis"
+
+#: templates/contact.html:64
+msgid ""
+"Analizamos rápidamente el estado actual de sus procesos y canales para "
+"identificar puntos de mejora."
+msgstr ""
+"We quickly analyze the current state of your processes and channels to "
+"identify improvement points."
+
+#: templates/contact.html:72
+msgid "Oportunidades"
+msgstr "Opportunities"
+
+#: templates/contact.html:73
+msgid ""
+"Detectamos oportunidades concretas donde la analítica y la automatización "
+"con IA generan impacto."
+msgstr ""
+"We detect concrete opportunities where analytics and automation with AI "
+"generate impact."
+
+#: templates/contact.html:81
+msgid "Plan de acción"
+msgstr "Action plan"
+
+#: templates/contact.html:82
+msgid ""
+"Le entregamos una visión clara y accionable para optimizar resultados con "
+"datos y tecnología."
+msgstr ""
+"We deliver a clear and actionable vision to optimize results with data and "
+"technology."
+
+#: templates/findpartai_landing.html:8
+msgid "FindPartAI - Cotización con Proveedores para Centros Automotrices"
+msgstr "FindPartAI - Quotation with Suppliers for Automotive Centers"
+
+#: templates/findpartai_landing.html:1004
+msgid "Cotiza y compra los repuestos al instante con IA"
+msgstr "Quote and buy spare parts instantly with AI"
+
+#: templates/findpartai_landing.html:1005
+msgid "FindPartAI contacta a tus proveedores por"
+msgstr "FindPartAI contacts your suppliers via"
+
+#: templates/findpartai_landing.html:1005
+msgid "compara precios y ayuda al equipo a gestionar las"
+msgstr "compares prices and helps the team manage"
+
+#: templates/findpartai_landing.html:1005
+msgid "cotizaciones en segundos."
+msgstr "quotations in seconds."
+
+#: templates/findpartai_landing.html:1019
+msgid ""
+"¿Cuánto tiempo dedica el área administrativa del taller a cotizar repuestos?"
+msgstr ""
+"How much time does the workshop's administrative area spend quoting spare "
+"parts?"
+
+#: templates/findpartai_landing.html:1023
+msgid "CONTACTOS EXCESIVOS"
+msgstr "EXCESSIVE CONTACTS"
+
+#: templates/findpartai_landing.html:1024
+msgid ""
+"Cada cotización implica, en promedio, más de 6 contactos con distintos "
+"proveedores."
+msgstr ""
+"Each quotation involves, on average, more than 6 contacts with different "
+"suppliers."
+
+#: templates/findpartai_landing.html:1028
+msgid "FLUJO INTERRUMPIDO"
+msgstr "INTERRUPTED FLOW"
+
+#: templates/findpartai_landing.html:1029
+msgid ""
+"La comparación de precios y disponibilidad se realiza en medio de un alto "
+"flujo de mensajes."
+msgstr ""
+"Price and availability comparison is done in the middle of a high flow of "
+"messages."
+
+#: templates/findpartai_landing.html:1033
+msgid "BOTELLA ADMINISTRATIVA"
+msgstr "ADMINISTRATIVE BOTTLENECK"
+
+#: templates/findpartai_landing.html:1034
+msgid "Tareas repetitivas que demandan gran parte de la jornada del personal."
+msgstr "Repetitive tasks that demand a large part of the staff's workday."
+
+#: templates/findpartai_landing.html:1052
+msgid ""
+"Ve cómo FindPartAI automatiza el proceso de cotización, contactando "
+"proveedores por WhatsApp y comparando precios en segundos."
+msgstr ""
+"See how FindPartAI automates the quotation process, contacting suppliers via "
+"WhatsApp and comparing prices in seconds."
+
+#: templates/findpartai_landing.html:1066 templates/mechai_landing.html:1068
+msgid "¿Cómo Funciona"
+msgstr "How it Works"
+
+#: templates/findpartai_landing.html:1066 templates/mechai_landing.html:1068
+msgid "Explicado en"
+msgstr "Explained in"
+
+#: templates/findpartai_landing.html:1066 templates/mechai_landing.html:1068
+msgid "Pasos"
+msgstr "Steps"
+
+#: templates/findpartai_landing.html:1071
+msgid "SOLICITAS COTIZACIÓN"
+msgstr "REQUEST QUOTATION"
+
+#: templates/findpartai_landing.html:1072
+msgid ""
+"El administrador envía la solicitud de cotización por WhatsApp a FindPartAI."
+msgstr ""
+"The administrator sends the quotation request via WhatsApp to FindPartAI."
+
+#: templates/findpartai_landing.html:1072
+msgid "Recibe tu cotización."
+msgstr "Receive your quotation."
+
+#: templates/findpartai_landing.html:1076
+msgid "COTIZA"
+msgstr "QUOTES"
+
+#: templates/findpartai_landing.html:1077
+msgid ""
+"FindPartAI le escribe automáticamente a cada proveedor que vendan los "
+"repuestos."
+msgstr ""
+"FindPartAI automatically writes to each supplier that sells the spare parts."
+
+#: templates/findpartai_landing.html:1077
+msgid "Contacta tus proveedores."
+msgstr "Contact your suppliers."
+
+#: templates/findpartai_landing.html:1081
+msgid "EL PROVEEDOR RESPONDE"
+msgstr "THE SUPPLIER RESPONDS"
+
+#: templates/findpartai_landing.html:1082
+msgid "Responden con precios, disponibilidad, etc."
+msgstr "They respond with prices, availability, etc."
+
+#: templates/findpartai_landing.html:1082
+msgid "Recibe las respuestas."
+msgstr "Receive the responses."
+
+#: templates/findpartai_landing.html:1086
+msgid "COMPARA"
+msgstr "COMPARE"
+
+#: templates/findpartai_landing.html:1087
+msgid "Te presenta una comparativa completa de costos y respuestas."
+msgstr "It presents you with a complete comparison of costs and responses."
+
+#: templates/findpartai_landing.html:1087
+msgid "Compara precios y disponibilidad de los repuestos."
+msgstr "Compare prices and availability of spare parts."
+
+#: templates/findpartai_landing.html:1091
+msgid "SOLICITA COMPRA"
+msgstr "REQUEST PURCHASE"
+
+#: templates/findpartai_landing.html:1092
+msgid ""
+"El administrativo elige un proveedor y FindPartAI gestiona la compra/envío."
+msgstr ""
+"The administrative chooses a supplier and FindPartAI manages the purchase/"
+"shipping."
+
+#: templates/findpartai_landing.html:1092
+msgid "Compra la cotización indicada."
+msgstr "Purchase the indicated quotation."
+
+#: templates/findpartai_landing.html:1095 templates/mechai_landing.html:1097
+msgid ""
+"En cada paso, el administrativo mantiene el control sobre las conversación y "
+"el agente."
+msgstr ""
+"In each step, the administrative maintains control over the conversation and "
+"the agent."
+
+#: templates/findpartai_landing.html:1105
+msgid "El Impacto de FindPartAI en"
+msgstr "The Impact of FindPartAI on"
+
+#: templates/findpartai_landing.html:1105
+msgid "Resultados Inmediatos"
+msgstr "Immediate Results"
+
+#: templates/findpartai_landing.html:1109
+#, python-format
+msgid "Hasta 80%%"
+msgstr "Up to 80%%"
+
+#: templates/findpartai_landing.html:1110
+msgid "AHORRO DE TIEMPO EN COTIZACIONES"
+msgstr "TIME SAVINGS IN QUOTATIONS"
+
+#: templates/findpartai_landing.html:1111
+msgid ""
+"Optimiza el tiempo del área administrativa desde el primer dia de "
+"implementación."
+msgstr ""
+"Optimizes administrative area time from the first day of implementation."
+
+#: templates/findpartai_landing.html:1115
+msgid "MEJORES PRECIOS"
+msgstr "BETTER PRICES"
+
+#: templates/findpartai_landing.html:1116
+msgid ""
+"Al consultar más proveedores, podrás acceder al mejor precio y "
+"disponibilidad."
+msgstr ""
+"By consulting more suppliers, you can access the best price and availability."
+
+#: templates/findpartai_landing.html:1120
+msgid "ESCALABILIDAD SIN CONTRATACIÓN ADMINISTRATIVA"
+msgstr "SCALABILITY WITHOUT ADMINISTRATIVE HIRING"
+
+#: templates/findpartai_landing.html:1121
+msgid ""
+"Las demás áreas del Centro Automotriz podrán crecer sin necesidad de "
+"contratar más personal administrativo."
+msgstr ""
+"Other areas of the Automotive Center can grow without needing to hire more "
+"administrative staff."
+
+#: templates/findpartai_landing.html:1125
+msgid "ORGANIZACIÓN Y UPLEVEL DE LA COMUNICACIÓN DEL TALLER"
+msgstr "WORKSHOP COMMUNICATION ORGANIZATION AND UPLEVEL"
+
+#: templates/findpartai_landing.html:1126
+msgid ""
+"Convierte el caos de WhatsApp en una base de proveedores organizada que "
+"facilite la toma de decisiones."
+msgstr ""
+"Converts WhatsApp chaos into an organized supplier database that facilitates "
+"decision making."
+
+#: templates/findpartai_landing.html:1135
+msgid "Abastecimiento Automatizado de Repuestos para Centros Automotrices"
+msgstr "Automated Spare Parts Supply for Automotive Centers"
+
+#: templates/findpartai_landing.html:1136
+msgid "¿Listo para"
+msgstr "Ready to"
+
+#: templates/findpartai_landing.html:1136
+msgid "revolucionar el abastecimiento"
+msgstr "revolutionize the supply"
+
+#: templates/findpartai_landing.html:1136
+msgid "tu centro automotriz?"
+msgstr "your automotive center?"
+
+#: templates/home.html:200
+msgid ""
+"El poder de la <strong>ciencia de datos</strong> sin contratación adicional."
+msgstr "The power of <strong>data science</strong> without additional hiring."
+
+#: templates/home.html:202
+msgid "Estrategia en Transformación Digital Empresarial"
+msgstr "Strategy in Business Digital Transformation"
+
+#: templates/home.html:205
+msgid ""
+"Analizamos procesos y construimos, junto a tu equipo, sistemas productivos "
+"basados en Ciencia de Datos e Inteligencia Artificial."
+msgstr ""
+"We analyze processes and build, together with your team, productive systems "
+"based on Data Science and Artificial Intelligence."
+
+#: templates/home.html:209
+msgid "¿Cómo Iniciar?"
+msgstr "How to Start?"
+
+#: templates/home.html:212
+msgid "Casos de Éxito"
+msgstr "Success Cases"
+
+#: templates/home.html:216
+msgid "Ir al Dashboard"
+msgstr "Go to Dashboard"
+
+#: templates/home.html:219
+msgid "Explorar Agentes"
+msgstr "Explore Agents"
+
+#: templates/home.html:232
+msgid "Tecnología Aplicada con Propósito"
+msgstr "Technology Applied with Purpose"
+
+#: templates/home.html:233
+msgid "No se trata de usar más software, sino de usarlo con sentido operativo."
+msgstr ""
+"It's not about using more software, but using it with operational sense."
+
+#: templates/home.html:233
+msgid ""
+"Analizamos tus procesos para encontrar dónde la ciencia de datos y la IA "
+"realmente aportan valor al negocio."
+msgstr ""
+"We analyze your processes to find where data science and AI really add value "
+"to the business."
+
+#: templates/home.html:243 templates/solutions.html:49
+msgid "Visualización de Datos y Dashboards BI"
+msgstr "Data Visualization and BI Dashboards"
+
+#: templates/home.html:245
+msgid ""
+"Automatizamos el reportaje de información: conectamos tus sistemas y fuentes "
+"de datos para crear paneles interactivos que permiten monitorear KPIs y "
+"tomar decisiones en tiempo real."
+msgstr ""
+"We automate information reporting: we connect your systems and data sources "
+"to create interactive panels that allow monitoring KPIs and making decisions "
+"in real time."
+
+#: templates/home.html:257 templates/solutions.html:66
+msgid "Agentes Conversacionales de IA"
+msgstr "AI Conversational Agents"
+
+#: templates/home.html:259
+msgid ""
+"Colaboradores virtuales que conversan de forma natural y ejecutan acciones "
+"en tus sistemas. Optimiza la comunicación y convierte cada interacción en un "
+"proceso productivo."
+msgstr ""
+"Virtual collaborators that converse naturally and execute actions in your "
+"systems. Optimize communication and turn each interaction into a productive "
+"process."
+
+#: templates/home.html:271 templates/solutions.html:83
+msgid "Automatización de Flujos y Desarrollos a Medida"
+msgstr "Flow Automation and Custom Developments"
+
+#: templates/home.html:273
+msgid ""
+"Cada proceso repetitivo en la operación administrativa y comercial es una "
+"oportunidad de mejora. Orquesta procesos de punta a punta e implementa  a la "
+"medida de tu negocio."
+msgstr ""
+"Each repetitive process in administrative and commercial operations is an "
+"improvement opportunity. Orchestrate end-to-end processes and implement "
+"tailored to your business."
+
+#: templates/home.html:289
+msgid "Somos puente hacia el crecimiento impulsado por"
+msgstr "We are a bridge to growth driven by"
+
+#: templates/home.html:291
+msgid ""
+"No vendemos software; resolvemos problemas empresariales con soluciones de "
+"IA y datos que tienen sentido empresarial."
+msgstr ""
+"We don't sell software; we solve business problems with AI and data "
+"solutions that make business sense."
+
+#: templates/home.html:300
+msgid "Acompañamiento constante"
+msgstr "Constant accompaniment"
+
+#: templates/home.html:301
+msgid ""
+"Somos tus socios, no solo proveedores. Te guiamos antes, durante y después "
+"de cada implementación."
+msgstr ""
+"We are your partners, not just providers. We guide you before, during and "
+"after each implementation."
+
+#: templates/home.html:309
+msgid "Impacto tangible y ROI"
+msgstr "Tangible impact and ROI"
+
+#: templates/home.html:310
+msgid ""
+"Nos enfocamos en resultados medibles que impulsan tu eficiencia y "
+"rentabilidad."
+msgstr ""
+"We focus on measurable results that drive your efficiency and profitability."
+
+#: templates/home.html:326
+msgid "Desafíos comunes para empresas en crecimiento ¿Te identificas?"
+msgstr "Common challenges for growing companies. Do you identify?"
+
+#: templates/home.html:335
+msgid ""
+"Procesos manuales o repetitivos que consumen el tiempo valioso de tu equipo."
+msgstr "Manual or repetitive processes that consume your team's valuable time."
+
+#: templates/home.html:344
+msgid ""
+"La información no fluye bien entre áreas, personas o herramientas, creando "
+"reprocesos que toman tiempo."
+msgstr ""
+"Information doesn't flow well between areas, people or tools, creating "
+"reprocesses that take time."
+
+#: templates/home.html:353
+msgid ""
+"Sabes que la IA es el camino, pero no sabes por dónde empezar a aplicarla a "
+"tu empresa."
+msgstr ""
+"You know AI is the way, but you don't know where to start applying it to "
+"your company."
+
+#: templates/home.html:362
+msgid ""
+"Buscas tomar decisiones en base a datos, pero no tienes un equipo interno de "
+"datos para apoyarte."
+msgstr ""
+"You seek to make data-based decisions, but you don't have an internal data "
+"team to support you."
+
+#: templates/home.html:377
+msgid "Las decisiones que dejas al futuro son el presente de tus competidores"
+msgstr "The decisions you leave to the future are your competitors' present"
+
+#: templates/home.html:378
+msgid ""
+"Únete a cientos de empresas que ya están aprovechando el poder de la "
+"inteligencia artificial."
+msgstr ""
+"Join hundreds of companies that are already taking advantage of the power of "
+"artificial intelligence."
+
+#: templates/home.html:381
+msgid "Comenzar Ahora"
+msgstr "Start Now"
+
+#: templates/home.html:384
+msgid "Contactar Ventas"
+msgstr "Contact Sales"
+
+#: templates/home.html:397
+msgid "Contáctanos"
+msgstr "Contact Us"
+
+#: templates/home.html:398
+msgid "¿Tienes alguna pregunta?"
+msgstr "Do you have any questions?"
+
+#: templates/home.html:399
+msgid ""
+"Nuestro equipo está listo para ayudarte a encontrar la mejor solución para "
+"tu negocio."
+msgstr ""
+"Our team is ready to help you find the best solution for your business."
+
+#: templates/home.html:407
+msgid "Correo Electrónico"
+msgstr "Email"
+
+#: templates/home.html:417
+msgid "Teléfono"
+msgstr "Phone"
+
+#: templates/home.html:427
+msgid "Ubicación"
+msgstr "Location"
+
+#: templates/mechai_landing.html:8
+msgid "MechAI - IA de Atención al cliente para Centros Automotrices"
+msgstr "MechAI - AI Customer Service for Automotive Centers"
+
+#: templates/mechai_landing.html:1008
+msgid "IA de Atención al cliente para Centros Automotrices"
+msgstr "AI Customer Service for Automotive Centers"
+
+#: templates/mechai_landing.html:1009
+msgid ""
+"Agenda citas de servicios, responde consultas, ofrece productos por "
+"WhatsApp. Consolida una base de datos con cada cliente interesado."
+msgstr ""
+"Schedules service appointments, answers queries, offers products via "
+"WhatsApp. Consolidates a database with each interested customer."
+
+#: templates/mechai_landing.html:1016
+msgid "¿Cuánto tiempo pierdes en consultas repetitivas de clientes?"
+msgstr "How much time do you lose in repetitive customer queries?"
+
+#: templates/mechai_landing.html:1020
+msgid "RESPUESTAS TARDÍAS"
+msgstr "LATE RESPONSES"
+
+#: templates/mechai_landing.html:1021
+msgid ""
+"Los clientes esperan respuestas rápidas, pero no siempre hay alguien "
+"disponible."
+msgstr "Customers expect fast responses, but someone is not always available."
+
+#: templates/mechai_landing.html:1025
+msgid "CITAS PERDIDAS"
+msgstr "MISSED APPOINTMENTS"
+
+#: templates/mechai_landing.html:1026
+msgid "Se pierden citas porque los mensajes no se atienden de inmediato."
+msgstr ""
+"Appointments are lost because messages are not attended to immediately."
+
+#: templates/mechai_landing.html:1030
+msgid "SATURACIÓN ADMINISTRATIVA"
+msgstr "ADMINISTRATIVE SATURATION"
+
+#: templates/mechai_landing.html:1031
+msgid "El área administrativa se ve saturada de mensajes y consultas."
+msgstr "The administrative area is saturated with messages and queries."
+
+#: templates/mechai_landing.html:1049
+msgid ""
+"Ve cómo MechAI automatiza la atención al cliente, respondiendo consultas por "
+"WhatsApp y gestionando citas en segundos."
+msgstr ""
+"See how MechAI automates customer service, answering queries via WhatsApp "
+"and managing appointments in seconds."
+
+#: templates/mechai_landing.html:1073
+msgid "CLIENTE ESCRIBE"
+msgstr "CUSTOMER WRITES"
+
+#: templates/mechai_landing.html:1074
+msgid "Los clientes escriben al WhatsApp del taller. Inician la conversación."
+msgstr ""
+"Customers write to the workshop's WhatsApp. They start the conversation."
+
+#: templates/mechai_landing.html:1074 templates/mechai_landing.html:1079
+msgid "Atención automática 24/7."
+msgstr "Automatic attention 24/7."
+
+#: templates/mechai_landing.html:1078
+msgid "RESPONDE"
+msgstr "RESPONDS"
+
+#: templates/mechai_landing.html:1079
+msgid "MechAI responde de inmediato y resuelve las dudas del cliente."
+msgstr "MechAI responds immediately and resolves the customer's doubts."
+
+#: templates/mechai_landing.html:1083
+msgid "CLIENTE SOLICITA"
+msgstr "CUSTOMER REQUESTS"
+
+#: templates/mechai_landing.html:1084
+msgid "El cliente agenda su cita de servicio mecánico."
+msgstr "The customer schedules their mechanical service appointment."
+
+#: templates/mechai_landing.html:1084
+msgid "Agendamiento automático."
+msgstr "Automatic scheduling."
+
+#: templates/mechai_landing.html:1088
+msgid "GESTIONA"
+msgstr "MANAGES"
+
+#: templates/mechai_landing.html:1089
+msgid "El sistema envía recordatorios automáticos."
+msgstr "The system sends automatic reminders."
+
+#: templates/mechai_landing.html:1089
+msgid "Mantiene el control total."
+msgstr "Maintains total control."
+
+#: templates/mechai_landing.html:1093
+msgid "ESCALAMIENTO HUMANO"
+msgstr "HUMAN ESCALATION"
+
+#: templates/mechai_landing.html:1094
+msgid "Si el cliente necesita, se transfiere a un asesor humano."
+msgstr "If the customer needs it, they are transferred to a human advisor."
+
+#: templates/mechai_landing.html:1094
+msgid "Conversación fluida."
+msgstr "Fluid conversation."
+
+#: templates/mechai_landing.html:1107
+msgid "Beneficios Directos de"
+msgstr "Direct Benefits of"
+
+#: templates/mechai_landing.html:1112
+msgid "MÁS CLIENTES ATENDIDOS"
+msgstr "MORE CUSTOMERS SERVED"
+
+#: templates/mechai_landing.html:1113
+msgid "Sin contratar más personal administrativo."
+msgstr "Without hiring more administrative staff."
+
+#: templates/mechai_landing.html:1117
+msgid "MENOS CITAS PERDIDAS"
+msgstr "FEWER MISSED APPOINTMENTS"
+
+#: templates/mechai_landing.html:1118
+msgid "Por olvidos o alto volumen de mensajes."
+msgstr "Due to forgetfulness or high volume of messages."
+
+#: templates/mechai_landing.html:1122
+msgid "ATENCIÓN PROFESIONAL Y rápida en cualquier momento"
+msgstr "PROFESSIONAL AND FAST ATTENTION at any time"
+
+#: templates/mechai_landing.html:1123
+msgid "Atención profesional y rápida en cualquier momento."
+msgstr "Professional and fast attention at any time."
+
+#: templates/mechai_landing.html:1127
+msgid "ORGANIZACIÓN CENTRALIZADA"
+msgstr "CENTRALIZED ORGANIZATION"
+
+#: templates/mechai_landing.html:1128
+msgid "De las conversaciones y clientes."
+msgstr "Of conversations and customers."
+
+#: templates/mechai_landing.html:1137
+msgid "¿Listo para transformar la atención de tu centro automotriz?"
+msgstr "Ready to transform your automotive center's service?"
+
+#: templates/mechai_landing.html:1138
+msgid "Contacta conmigo para una demostración personalizada."
+msgstr "Contact me for a personalized demonstration."
+
+#: templates/resources.html:208
+msgid "Biblioteca"
+msgstr "Library"
+
+#: templates/resources.html:209
+msgid "Recursos para aprender, inspirarte y avanzar"
+msgstr "Resources to learn, get inspired and advance"
+
+#: templates/resources.html:210
+msgid ""
+"Guías prácticas, casos de uso y materiales para ayudarte a aplicar IA, datos "
+"y automatización en tu empresa."
+msgstr ""
+"Practical guides, use cases and materials to help you apply AI, data and "
+"automation in your company."
+
+#: templates/resources.html:232
+msgid "IACol Ludic Team"
+msgstr "IACol Ludic Team"
+
+#: templates/resources.html:233
+msgid "Dominamos el ecosistema Lucid Bot, asesoría personalizada"
+msgstr "We master the Lucid Bot ecosystem, personalized consulting"
+
+#: templates/resources.html:239
+msgid "CONOCE AL EQUIPO"
+msgstr "MEET THE TEAM"
+
+#: templates/resources.html:256
+msgid "Guías y buenas prácticas"
+msgstr "Guides and best practices"
+
+#: templates/resources.html:257
+msgid ""
+"Recopilamos recomendaciones prácticas para iniciar y escalar iniciativas de "
+"IA y analítica."
+msgstr ""
+"We collect practical recommendations to start and scale AI and analytics "
+"initiatives."
+
+#: templates/resources.html:265
+#, fuzzy
+#| msgid "Casos de Éxito"
+msgid "Casos de uso"
+msgstr "Use cases"
+
+#: templates/resources.html:266
+msgid ""
+"Ideas y ejemplos de automatizaciones, asistentes y tableros BI aplicados a "
+"pymes."
+msgstr ""
+"Ideas and examples of automations, assistants and BI dashboards applied to "
+"SMEs."
+
+#: templates/resources.html:274
+msgid "Preguntas frecuentes"
+msgstr "Frequently asked questions"
+
+#: templates/resources.html:275
+msgid "Respuestas a dudas comunes sobre implementación, costos y tiempos."
+msgstr "Answers to common questions about implementation, costs and times."
+
+#: templates/resources.html:288
+msgid "¿Quieres recibir nuevos recursos?"
+msgstr "Do you want to receive new resources?"
+
+#: templates/resources.html:289
+msgid ""
+"Déjanos un mensaje y te compartimos materiales relevantes para tu industria."
+msgstr "Leave us a message and we share relevant materials for your industry."
+
+#: templates/resources.html:290 templates/solutions.html:109
+#, fuzzy
+#| msgid "Contact"
+msgid "Contactar"
+msgstr "Contact"
+
+#: templates/solutions.html:34
+msgid "Portafolio de Servicios"
+msgstr "Service Portfolio"
+
+#: templates/solutions.html:35
+msgid "Soluciones para acelerar la transformación de tu negocio"
+msgstr "Solutions to accelerate your business transformation"
+
+#: templates/solutions.html:36
+msgid ""
+"Tres líneas para cubrir analítica y BI, interacción inteligente con IA y la "
+"automatización de tus procesos. Elige el camino que mejor se ajuste a tus "
+"objetivos."
+msgstr ""
+"Three lines to cover analytics and BI, intelligent interaction with AI and "
+"the automation of your processes. Choose the path that best fits your "
+"objectives."
+
+#: templates/solutions.html:50
+msgid ""
+"Diseñamos tableros limpios y centrados en decisiones. Conectamos tus fuentes "
+"(ERP, CRM, hojas de cálculo, bases de datos) para ofrecer KPIs confiables en "
+"tiempo casi real."
+msgstr ""
+"We design clean dashboards focused on decisions. We connect your sources "
+"(ERP, CRM, spreadsheets, databases) to offer reliable KPIs in near real time."
+
+#: templates/solutions.html:52
+msgid "Integración de múltiples fuentes y modelado semántico."
+msgstr "Integration of multiple sources and semantic modeling."
+
+#: templates/solutions.html:53
+msgid "KPI y métricas accionables con alertas y segmentación."
+msgstr "KPI and actionable metrics with alerts and segmentation."
+
+#: templates/solutions.html:54
+msgid "Buenas prácticas de UX para data storytelling."
+msgstr "Best UX practices for data storytelling."
+
+#: templates/solutions.html:57
+msgid "Hablar con un experto"
+msgstr "Talk to an expert"
+
+#: templates/solutions.html:67
+msgid ""
+"Asistentes entrenados con el contexto de tu empresa para atención al "
+"cliente, soporte y operación interna, integrados a tus sistemas."
+msgstr ""
+"Assistants trained with your company context for customer service, support "
+"and internal operations, integrated into your systems."
+
+#: templates/solutions.html:69
+msgid "Flujos conversacionales guiados y comprensión de intención."
+msgstr "Guided conversational flows and intent understanding."
+
+#: templates/solutions.html:70
+msgid "Conexión a bases de conocimiento y sistemas internos."
+msgstr "Connection to knowledge bases and internal systems."
+
+#: templates/solutions.html:71
+msgid "Métricas de calidad y mejora continua."
+msgstr "Quality metrics and continuous improvement."
+
+#: templates/solutions.html:74
+msgid "Solicitar demo"
+msgstr "Request demo"
+
+#: templates/solutions.html:84
+msgid ""
+"Conecta y orquesta tus herramientas para eliminar tareas repetitivas y "
+"acelerar la operación. Donde no existe, desarrollamos a medida."
+msgstr ""
+"Connect and orchestrate your tools to eliminate repetitive tasks and "
+"accelerate operations. Where it doesn't exist, we develop custom solutions."
+
+#: templates/solutions.html:86
+msgid "Automatización de aprobaciones, ETL y notificaciones."
+msgstr "Automation of approvals, ETL and notifications."
+
+#: templates/solutions.html:87
+msgid "Integraciones API, RPA y bots de proceso."
+msgstr "API integrations, RPA and process bots."
+
+#: templates/solutions.html:88
+msgid "Desarrollo de componentes y microservicios específicos."
+msgstr "Development of specific components and microservices."
+
+#: templates/solutions.html:91
+msgid "Evaluar tu caso"
+msgstr "Evaluate your case"
+
+#: templates/solutions.html:105
+msgid "¿Listo para impulsar tus resultados con IA y datos?"
+msgstr "Ready to boost your results with AI and data?"
+
+#: templates/solutions.html:106
+msgid ""
+"Conversemos sobre tus objetivos y definamos el camino más rápido a valor."
+msgstr "Let's talk about your objectives and define the fastest path to value."

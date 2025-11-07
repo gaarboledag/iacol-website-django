@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 {% load static %}
+{% load i18n %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MechAI - IA de Atención al cliente para Centros Automotrices</title>
+    <title>{% trans "MechAI - IA de Atención al cliente para Centros Automotrices" %}</title>
     <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
 
     <!-- Fonts -->
@@ -15,6 +16,57 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Language Switcher Styles -->
+    <style>
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 25px;
+            padding: 5px;
+            display: flex;
+            gap: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .language-switcher a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .language-switcher a:hover,
+        .language-switcher a.active {
+            border-color: var(--primary-red);
+            transform: scale(1.1);
+        }
+        .language-switcher img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+            .language-switcher a {
+                width: 30px;
+                height: 30px;
+            }
+            .language-switcher img {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    </style>
 
     <style>
         :root {
@@ -925,6 +977,26 @@
     </style>
 </head>
 <body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="{% if request.get_full_path|slice:':4' == '/en/' %}{{ request.get_full_path }}{% else %}/en{{ request.get_full_path }}{% endif %}" />
+            <input name="language" type="hidden" value="en" />
+            <button type="submit" class="{% if request.LANGUAGE_CODE == 'en' %}active{% endif %}" title="English" style="background: none; border: none; padding: 0;">
+                <img src="https://flagcdn.com/w40/us.png" alt="English">
+            </button>
+        </form>
+        <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <input name="next" type="hidden" value="/mechai/" />
+            <input name="language" type="hidden" value="es" />
+            <button type="submit" class="{% if request.LANGUAGE_CODE == 'es' %}active{% endif %}" title="Español" style="background: none; border: none; padding: 0;">
+                <img src="https://flagcdn.com/w40/co.png" alt="Español">
+            </button>
+        </form>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero-section">
         <div class="container">
@@ -933,30 +1005,30 @@
                     <img src="{% static 'img/iacol_logo_rojo.png' %}" alt="MechAI Logo" style="max-width: 200px; height: auto; background-color: var(--primary-black);">
                 </div>
             </div>
-        <h1>IA de Atención al cliente para Centros Automotrices</h1>
-        <h2>Agenda citas de servicios, responde consultas, ofrece productos por WhatsApp. Consolida una base de datos con cada cliente interesado.</h2>
+        <h1>{% trans "IA de Atención al cliente para Centros Automotrices" %}</h1>
+        <h2>{% trans "Agenda citas de servicios, responde consultas, ofrece productos por WhatsApp. Consolida una base de datos con cada cliente interesado." %}</h2>
         </div>
     </section>
 
     <!-- Problem Section -->
     <section class="problem-section">
         <div class="container">
-            <h2>¿Cuánto tiempo pierdes en consultas repetitivas de clientes?</h2>
+            <h2>{% trans "¿Cuánto tiempo pierdes en consultas repetitivas de clientes?" %}</h2>
             <div class="problem-stats">
                 <div class="stat-item">
                     <i class="fas fa-clock"></i>
-                    <h3>RESPUESTAS TARDÍAS</h3>
-                    <p>Los clientes esperan respuestas rápidas, pero no siempre hay alguien disponible.</p>
+                    <h3>{% trans "RESPUESTAS TARDÍAS" %}</h3>
+                    <p>{% trans "Los clientes esperan respuestas rápidas, pero no siempre hay alguien disponible." %}</p>
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-calendar-times"></i>
-                    <h3>CITAS PERDIDAS</h3>
-                    <p>Se pierden citas porque los mensajes no se atienden de inmediato.</p>
+                    <h3>{% trans "CITAS PERDIDAS" %}</h3>
+                    <p>{% trans "Se pierden citas porque los mensajes no se atienden de inmediato." %}</p>
                 </div>
                 <div class="stat-item">
                     <i class="fas fa-users-cog"></i>
-                    <h3>SATURACIÓN ADMINISTRATIVA</h3>
-                    <p>El área administrativa se ve saturada de mensajes y consultas.</p>
+                    <h3>{% trans "SATURACIÓN ADMINISTRATIVA" %}</h3>
+                    <p>{% trans "El área administrativa se ve saturada de mensajes y consultas." %}</p>
                 </div>
             </div>
         </div>
@@ -974,13 +1046,13 @@
                     </div>
                 </div>
                 <div class="demo-text">
-                    <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--light-gray);">Ve cómo MechAI automatiza la atención al cliente, respondiendo consultas por WhatsApp y gestionando citas en segundos.</p>
+                    <p style="font-size: 1.2rem; margin-bottom: 2rem; color: var(--light-gray);">{% trans "Ve cómo MechAI automatiza la atención al cliente, respondiendo consultas por WhatsApp y gestionando citas en segundos." %}</p>
                     <div style="text-align: center;">
                         <a href="https://wa.me/573229528027?text=Quiero%20saber%20m%C3%A1s%20sobre%20MechAI%20para%20mi%20taller"
                         class="btn-primary"
                         target="_blank"
                         rel="noopener noreferrer">
-                        AGENDA UNA DEMO GRATUITA
+                        {% trans "AGENDA UNA DEMO GRATUITA" %}
                         </a>
                     </div>
                 </div>
@@ -993,36 +1065,36 @@
     <section class="workflow-section">
         <div class="container">
             <div class="workflow-title">
-                <h2>¿Cómo Funciona <strong>MechAI</strong>? Explicado en <strong>5 Pasos</strong>.</h2>
+                <h2>{% trans "¿Cómo Funciona" %} <strong>MechAI</strong>? {% trans "Explicado en" %} <strong>5 {% trans "Pasos" %}</strong>.</h2>
             </div>
             <div class="workflow-steps">
                 <div class="step step-user">
                     <div class="step-number">1</div>
-                    <div class="step-title"><strong>CLIENTE ESCRIBE</strong></div>
-                    <div class="step-text">Los clientes escriben al WhatsApp del taller. Inician la conversación.<br><small><strong>Atención automática 24/7.</strong></small></div>
+                    <div class="step-title"><strong>{% trans "CLIENTE ESCRIBE" %}</strong></div>
+                    <div class="step-text">{% trans "Los clientes escriben al WhatsApp del taller. Inician la conversación." %}<br><small><strong>{% trans "Atención automática 24/7." %}</strong></small></div>
                 </div>
                 <div class="step step-ai">
                     <div class="step-number">2</div>
-                    <div class="step-title"><strong>MechAI RESPONDE</strong></div>
-                    <div class="step-text">MechAI responde de inmediato y resuelve las dudas del cliente.<br><small><strong>Atención automática 24/7.</strong></small></div>
+                    <div class="step-title"><strong>MechAI {% trans "RESPONDE" %}</strong></div>
+                    <div class="step-text">{% trans "MechAI responde de inmediato y resuelve las dudas del cliente." %}<br><small><strong>{% trans "Atención automática 24/7." %}</strong></small></div>
                 </div>
                 <div class="step step-user">
                     <div class="step-number">3</div>
-                    <div class="step-title"><strong>CLIENTE SOLICITA</strong></div>
-                    <div class="step-text">El cliente agenda su cita de servicio mecánico.<br><small><strong>Agendamiento automático.</strong></small></div>
+                    <div class="step-title"><strong>{% trans "CLIENTE SOLICITA" %}</strong></div>
+                    <div class="step-text">{% trans "El cliente agenda su cita de servicio mecánico." %}<br><small><strong>{% trans "Agendamiento automático." %}</strong></small></div>
                 </div>
                 <div class="step step-ai">
                     <div class="step-number">4</div>
-                    <div class="step-title"><strong>MechAI GESTIONA</strong></div>
-                    <div class="step-text">El sistema envía recordatorios automáticos.<br><small><strong>Mantiene el control total.</strong></small></div>
+                    <div class="step-title"><strong>MechAI {% trans "GESTIONA" %}</strong></div>
+                    <div class="step-text">{% trans "El sistema envía recordatorios automáticos." %}<br><small><strong>{% trans "Mantiene el control total." %}</strong></small></div>
                 </div>
                 <div class="step step-ai">
                     <div class="step-number">5</div>
-                    <div class="step-title"><strong>ESCALAMIENTO HUMANO</strong></div>
-                    <div class="step-text">Si el cliente necesita, se transfiere a un asesor humano.<br><small><strong>Conversación fluida.</strong></small></div>
+                    <div class="step-title"><strong>{% trans "ESCALAMIENTO HUMANO" %}</strong></div>
+                    <div class="step-text">{% trans "Si el cliente necesita, se transfiere a un asesor humano." %}<br><small><strong>{% trans "Conversación fluida." %}</strong></small></div>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 2rem; font-style: italic;">En cada paso, el administrativo mantiene el control sobre las conversación y el agente.</p>
+            <p style="text-align: center; margin-top: 2rem; font-style: italic;">{% trans "En cada paso, el administrativo mantiene el control sobre las conversación y el agente." %}</p>
         </div>
     </section>
 
@@ -1032,28 +1104,28 @@
     <section class="benefits-section">
         <div class="container">
             <div class="benefits-title">
-                <h2>Beneficios Directos de <strong>MechAI</strong></h2>
+                <h2>{% trans "Beneficios Directos de" %} <strong>MechAI</strong></h2>
             </div>
             <div class="benefits-grid">
                 <div class="benefit-card">
                     <i class="fas fa-users" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
-                    <h3>MÁS CLIENTES ATENDIDOS</h3>
-                    <p>Sin contratar más personal administrativo.</p>
+                    <h3>{% trans "MÁS CLIENTES ATENDIDOS" %}</h3>
+                    <p>{% trans "Sin contratar más personal administrativo." %}</p>
                 </div>
                 <div class="benefit-card">
                     <i class="fas fa-calendar-check" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
-                    <h3>MENOS CITAS PERDIDAS</h3>
-                    <p>Por olvidos o alto volumen de mensajes.</p>
+                    <h3>{% trans "MENOS CITAS PERDIDAS" %}</h3>
+                    <p>{% trans "Por olvidos o alto volumen de mensajes." %}</p>
                 </div>
                 <div class="benefit-card">
                     <i class="fas fa-clock" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
-                    <h3>ATENCIÓN PROFESIONAL Y rápida en cualquier momento</h3>
-                    <p>Atención profesional y rápida en cualquier momento.</p>
+                    <h3>{% trans "ATENCIÓN PROFESIONAL Y rápida en cualquier momento" %}</h3>
+                    <p>{% trans "Atención profesional y rápida en cualquier momento." %}</p>
                 </div>
                 <div class="benefit-card">
                     <i class="fas fa-database" style="font-size: 3rem; color: var(--primary-red); margin-bottom: 1rem;"></i>
-                    <h3>ORGANIZACIÓN CENTRALIZADA</h3>
-                    <p>De las conversaciones y clientes.</p>
+                    <h3>{% trans "ORGANIZACIÓN CENTRALIZADA" %}</h3>
+                    <p>{% trans "De las conversaciones y clientes." %}</p>
                 </div>
             </div>
         </div>
@@ -1062,9 +1134,9 @@
     <!-- Call to Action -->
     <section class="cta-section">
         <div class="container">
-            <h2>¿Listo para transformar la atención de tu centro automotriz?</h2>
-            <p>Contacta conmigo para una demostración personalizada.</p>
-            <a href="https://api.whatsapp.com/send/?phone=573229528027&text=Quiero+saber+m%C3%A1s+sobre+MechAI+para+mi+taller&type=phone_number&app_absent=0" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
+            <h2>{% trans "¿Listo para transformar la atención de tu centro automotriz?" %}</h2>
+            <p>{% trans "Contacta conmigo para una demostración personalizada." %}</p>
+            <a href="https://api.whatsapp.com/send/?phone=573229528027&text=Quiero+saber+m%C3%A1s+sobre+MechAI+para+mi+taller&type=phone_number&app_absent=0" class="btn-primary">{% trans "AGENDA UNA DEMO GRATUITA" %}</a>
             <div style="margin-top: 3rem;">
                 <img src="{% static 'img/iacol_logo.png' %}" alt="IACOL Logo" style="max-width: 100px;">
             </div>

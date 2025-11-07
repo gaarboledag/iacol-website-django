@@ -6,6 +6,8 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y \
     gcc \
     postgresql-client \
+    gettext \
+    gettext-base \
     && rm -rf /var/lib/apt/lists/*
 
 # Copiar requirements (desde la raíz del repo)

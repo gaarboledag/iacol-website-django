@@ -1,10 +1,59 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}Masterclass en Implementación de IA para Centros Automotrices | IACOL Empresarial{% endblock %}
 
 {% block extra_css %}
 <style>
+    /* Language Switcher Styles */
+    .language-switcher {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1050;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 25px;
+        padding: 5px;
+        display: flex;
+        gap: 5px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    }
+    .language-switcher a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+    .language-switcher a:hover,
+    .language-switcher a.active {
+        border-color: #000;
+        transform: scale(1.1);
+    }
+    .language-switcher img {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+    }
+    @media (max-width: 768px) {
+        .language-switcher {
+            top: 10px;
+            right: 10px;
+        }
+        .language-switcher a {
+            width: 30px;
+            height: 30px;
+        }
+        .language-switcher img {
+            width: 16px;
+            height: 16px;
+        }
+    }
   .split-wrapper {
     position: relative;
   }
@@ -32,6 +81,26 @@
 {% endblock %}
 
 {% block content %}
+<!-- Language Switcher -->
+<div class="language-switcher">
+    <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ request.get_full_path }}" />
+        <input name="language" type="hidden" value="en" />
+        <button type="submit" class="{% if request.LANGUAGE_CODE == 'en' %}active{% endif %}" title="English" style="background: none; border: none; padding: 0;">
+            <img src="https://flagcdn.com/w40/us.png" alt="English">
+        </button>
+    </form>
+    <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <input name="next" type="hidden" value="{{ request.get_full_path }}" />
+        <input name="language" type="hidden" value="es" />
+        <button type="submit" class="{% if request.LANGUAGE_CODE == 'es' %}active{% endif %}" title="Español" style="background: none; border: none; padding: 0;">
+            <img src="https://flagcdn.com/w40/co.png" alt="Español">
+        </button>
+    </form>
+</div>
+
 <section class="py-5">
   <div class="container split-wrapper">
     <span class="badge-ghost mb-3 d-inline-block">Formación Especializada</span>

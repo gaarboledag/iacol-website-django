@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="es">
 {% load static %}
+{% load i18n %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Automotriz | IACOL - Transforma tu Taller con Inteligencia</title>
+    <title>{% trans "Automotriz | IACOL - Transforma tu Taller con Inteligencia" %}</title>
     <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
 
     <!-- Fonts -->
@@ -671,8 +672,8 @@
                     <img src="{% static 'img/iacol_logo_rojo.png' %}" alt="IACOL Logo" style="max-width: 200px; height: auto; background-color: var(--primary-black);">
                 </div>
             </div>
-        <h1>Transformamos el área administrativa de tu <br><span style="color: var(--neon-red);">Centro Automotriz</span> con <span style="color: var(--neon-red);">IA</span></h1>
-        <h2>Nuestras soluciones tecnológicas abarcan la <span class="highlight-red">Atención al Cliente Automatizada</span> y la <span class="highlight-red">Comunicación con Proveedores de Repuestos.</span></h2>
+        <h1>{% trans "Transformamos el área administrativa de tu" %} <br><span style="color: var(--neon-red);">{% trans "Centro Automotriz" %}</span> {% trans "con" %} <span style="color: var(--neon-red);">{% trans "IA" %}</span></h1>
+        <h2>{% trans "Nuestras soluciones tecnológicas abarcan la" %} <span class="highlight-red">{% trans "Atención al Cliente Automatizada" %}</span> {% trans "y la" %} <span class="highlight-red">{% trans "Comunicación con Proveedores de Repuestos." %}</span></h2>
         </div>
     </section>
 
@@ -684,15 +685,15 @@
                 <div class="row mt-5">
                     <div class="col-md-6 text-center">
                         <img src="{% static 'img/mechai.webp' %}" alt="MechAI" style="max-width: 300px; width: 100%; margin-bottom: 1rem; border-radius: 20px; box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);">
-                        <h4 style="color: var(--primary-red);">MechAI - Atención al Cliente</h4>
-                        <p>Chatbot inteligente para agendar citas, responder consultas y gestionar clientes por WhatsApp.</p>
-                        <a href="{% url 'mechai_landing' %}" class="btn-outline-primary">Conoce MechAI</a>
+                        <h4 style="color: var(--primary-red);">MechAI - {% trans "Atención al Cliente" %}</h4>
+                        <p>{% trans "Chatbot inteligente para agendar citas, responder consultas y gestionar clientes por WhatsApp." %}</p>
+                        <a href="{% url 'mechai_landing' %}" class="btn-outline-primary">{% trans "Conoce MechAI" %}</a>
                     </div>
                     <div class="col-md-6 text-center">
                         <img src="{% static 'img/findpart.webp' %}" alt="FindPartAI" style="max-width: 300px; width: 100%; margin-bottom: 1rem; border-radius: 0px; box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);">
-                        <h4 style="color: var(--primary-red);">FindPartAI - Cotización de Repuestos</h4>
-                        <p>Automatiza la cotización con proveedores, compara precios y gestiona compras al instante.</p>
-                        <a href="{% url 'findpartai_landing' %}" class="btn-outline-primary">Conoce FindPartAI</a>
+                        <h4 style="color: var(--primary-red);">FindPartAI - {% trans "Cotización de Repuestos" %}</h4>
+                        <p>{% trans "Automatiza la cotización con proveedores, compara precios y gestiona compras al instante." %}</p>
+                        <a href="{% url 'findpartai_landing' %}" class="btn-outline-primary">{% trans "Conoce FindPartAI" %}</a>
                     </div>
                 </div>
             </div>
@@ -703,37 +704,37 @@
     <section class="impact-section">
         <div class="container">
             <div class="impact-header">
-                <h2>La Revolución Digital en el Sector Automotriz</h2>
-                <p class="impact-subtitle">Mientras tus competidores pierden tiempo en procesos manuales, tú lideras con tecnología de vanguardia</p>
+                <h2>{% trans "La Revolución Digital en el Sector Automotriz" %}</h2>
+                <p class="impact-subtitle">{% trans "Mientras tus competidores pierden tiempo en procesos manuales, tú lideras con tecnología de vanguardia" %}</p>
             </div>
 
             <div class="impact-comparison">
                 <div class="comparison-item before">
-                    <h3>ANTES: El Caos Manual</h3>
+                    <h3>{% trans "ANTES: El Caos Manual" %}</h3>
                     <ul>
-                        <li><i class="fas fa-times"></i> Clientes esperando respuestas por horas</li>
-                        <li><i class="fas fa-times"></i> Cotizaciones que toman días</li>
-                        <li><i class="fas fa-times"></i> Información dispersa en WhatsApp</li>
-                        <li><i class="fas fa-times"></i> Equipos sobrecargados de tareas repetitivas</li>
-                        <li><i class="fas fa-times"></i> Decisiones basadas en intuición, no datos</li>
+                        <li><i class="fas fa-times"></i> {% trans "Clientes esperando respuestas por horas" %}</li>
+                        <li><i class="fas fa-times"></i> {% trans "Cotizaciones que toman días" %}</li>
+                        <li><i class="fas fa-times"></i> {% trans "Información dispersa en WhatsApp" %}</li>
+                        <li><i class="fas fa-times"></i> {% trans "Equipos sobrecargados de tareas repetitivas" %}</li>
+                        <li><i class="fas fa-times"></i> {% trans "Decisiones basadas en intuición, no datos" %}</li>
                     </ul>
                 </div>
                 <div class="comparison-item after">
-                    <h3>DESPUÉS: La Máquina de Eficiencia</h3>
+                    <h3>{% trans "DESPUÉS: La Máquina de Eficiencia" %}</h3>
                     <ul>
-                        <li><i class="fas fa-check"></i> Atención 24/7 automática e instantánea</li>
-                        <li><i class="fas fa-check"></i> Cotizaciones en segundos con múltiples proveedores</li>
-                        <li><i class="fas fa-check"></i> Base de datos centralizada y organizada</li>
-                        <li><i class="fas fa-check"></i> Equipos enfocados en lo que realmente importa</li>
-                        <li><i class="fas fa-check"></i> Insights predictivos para maximizar ganancias</li>
+                        <li><i class="fas fa-check"></i> {% trans "Atención 24/7 automática e instantánea" %}</li>
+                        <li><i class="fas fa-check"></i> {% trans "Cotizaciones en segundos con múltiples proveedores" %}</li>
+                        <li><i class="fas fa-check"></i> {% trans "Base de datos centralizada y organizada" %}</li>
+                        <li><i class="fas fa-check"></i> {% trans "Equipos enfocados en lo que realmente importa" %}</li>
+                        <li><i class="fas fa-check"></i> {% trans "Insights predictivos para maximizar ganancias" %}</li>
                     </ul>
                 </div>
             </div>
 
             <div class="impact-cta">
-                <h3>La IA puede Optimizar tu administración, sin más costos de contratación</h3>
-                <p>La transformación digital no es opcional. Es la diferencia entre liderar o desaparecer.</p>
-                <a href="#contact" class="btn-primary">Comienza la Revolución Ahora</a>
+                <h3>{% trans "La IA puede Optimizar tu administración, sin más costos de contratación" %}</h3>
+                <p>{% trans "La transformación digital no es opcional. Es la diferencia entre liderar o desaparecer." %}</p>
+                <a href="https://wa.me/573229528027?text=Quiero%20saber%20m%C3%A1s%20sobre%20AI%20para%20mi%20taller" class="btn-primary">{% trans "Comienza la Revolución Ahora" %}</a>
             </div>
         </div>
     </section>
@@ -741,9 +742,9 @@
     <!-- Call to Action -->
     <section class="cta-section">
         <div class="container">
-            <h2>Agenda un Diagnóstico de Productividad Gratuito</h2>
-            <p>Descubre cómo podemos transformar tu centro automotriz con soluciones de IA y automatización.</p>
-            <a href="https://wa.me/573229528027?text=Quiero%20saber%20m%C3%A1s%20sobre%20AI%20para%20mi%20taller" class="btn-primary">AGENDA UNA DEMO GRATUITA</a>
+            <h2>{% trans "Agenda un Diagnóstico de Productividad Gratuito" %}</h2>
+            <p>{% trans "Descubre cómo podemos transformar tu centro automotriz con soluciones de IA y automatización." %}</p>
+            <a href="https://wa.me/573229528027?text=Quiero%20saber%20m%C3%A1s%20sobre%20AI%20para%20mi%20taller" class="btn-primary">{% trans "AGENDA UNA DEMO GRATUITA" %}</a>
             <div style="margin-top: 3rem;">
                 <img src="{% static 'img/iacol_logo.png' %}" alt="IACOL Logo" style="max-width: 100px;">
             </div>
