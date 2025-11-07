@@ -1,43 +1,137 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="es">
 {% load static %}
+{% load i18n %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Lucid Team | IACOL - Expertos en Automatización con Lucid Bot" %}</title>
+    <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
 
-{% block title %}Equipo Lucid Bot - IACOL Empresarial{% endblock %}
+    <!-- Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/glacial-indifference" rel="stylesheet">
 
-{% block extra_css %}
-<style>
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Language Switcher Styles -->
+    <style>
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1050;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 25px;
+            padding: 5px;
+            display: flex;
+            gap: 5px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .language-switcher a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        .language-switcher a:hover,
+        .language-switcher a.active {
+            border-color: var(--iacol-secondary);
+            transform: scale(1.1);
+        }
+        .language-switcher img {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+            .language-switcher a {
+                width: 30px;
+                height: 30px;
+            }
+            .language-switcher img {
+                width: 16px;
+                height: 16px;
+            }
+        }
+    </style>
+
+    <style>
   :root {
-    --lucid-primary: rgb(41, 27, 51);
-    --lucid-secondary: #8a2be2;
-    --lucid-accent: #9932cc;
-    --lucid-light: #f8f4ff;
-    --lucid-dark: #4b0082;
+    --iacol-primary: #7cb7fc;
+    --iacol-secondary: #0891b2;
+    --iacol-accent: #475569;
+    --iacol-light: #f8fafc;
+    --iacol-dark: #1e293b;
+    --iacol-white: #ffffff;
+    --iacol-gray: #e2e8f0;
+    --lucid-primary: #1d4ed8;
+    --lucid-secondary: #0891b2;
   }
 
-  /* Integrated Banner Top */
-  .integrated-banner-top {
-    padding: 3rem 0 2rem;
-    background: linear-gradient(135deg, #291b33, #333333);
+  body {
+    font-family: 'Glacial Indifference', sans-serif;
+    color: var(--iacol-dark);
+    background-color: var(--iacol-white);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    background: var(--iacol-white);
+    padding: 4rem 0 0 0;
+    text-align: center;
     position: relative;
-    z-index: 10;
-  }
-
-  .lucid-icon-container {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
     overflow: hidden;
-    background: linear-gradient(135deg, var(--lucid-primary), var(--lucid-secondary));
+    min-height: 40vh;
     display: flex;
     align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 15px rgba(106, 13, 173, 0.3);
   }
 
-  .lucid-icon {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 50%;
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%231d4ed8" stroke-width="0.2" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+    opacity: 0.3;
+    z-index: 0;
+  }
+
+  .hero-section .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-section h1 {
+    font-size: 3rem;
+    font-weight: 600;
+    color: #1b1b1b;
+    margin-bottom: 2rem;
+    line-height: 1.1;
+  }
+
+  .hero-section h2 {
+    font-size: 1.8rem;
+    color: var(--iacol-accent);
+    margin-bottom: 4rem;
+    font-weight: 400;
   }
 
   /* First CTA Section */
@@ -46,13 +140,13 @@
   }
 
   .first-cta-card {
-    background: linear-gradient(135deg, rgb(41, 27, 51) 0%, rgb(59, 44, 70) 100%);
+    background: linear-gradient(135deg, var(--iacol-primary) 0%, var(--iacol-secondary) 100%);
     border-radius: 30px;
     padding: 3rem 2rem;
     color: white;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(106, 13, 173, 0.3);
+    box-shadow: 0 20px 40px rgba(29, 78, 216, 0.3);
   }
 
   .first-cta-card::before {
@@ -94,38 +188,198 @@
     z-index: 2;
   }
 
-  .btn-first-cta {
-    background: #00ffff;
-    border: none;
-    color: #1a1a1a;
-    padding: 16px 32px;
-    border-radius: 50px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
+  .btn-outline-primary:hover {
+    background: var(--iacol-primary);
+    color: white;
+    transform: translateY(-3px);
     text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3);
-    position: relative;
-    z-index: 2;
   }
 
-  .btn-first-cta:hover {
-    background: #00e5e5;
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(0, 255, 255, 0.4);
-    text-decoration: none;
-    color: #1a1a1a;
+  /* Solutions Section */
+  .solutions-section {
+    background: var(--iacol-light);
+    padding: 6rem 0;
+  }
+
+  .solutions-title {
+    text-align: center;
+    margin-bottom: 4rem;
+    color: #1b1b1b;
+    font-size: 2.5rem;
+    font-weight: 800;
+  }
+
+  .solution-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+  }
+
+  .solution-card {
+    background: var(--iacol-white);
+    border: 1px solid var(--iacol-primary);
+    border-radius: 15px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 25px rgba(29, 78, 216, 0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .solution-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(29, 78, 216, 0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .solution-card:hover::before {
+    left: 100%;
+  }
+
+  .solution-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(29, 78, 216, 0.4);
+    border-color: var(--iacol-secondary);
+  }
+
+  .solution-card i {
+    font-size: 3rem;
+    color: var(--iacol-primary);
+    margin-bottom: 1rem;
+  }
+
+  .solution-card h3 {
+    color: var(--iacol-primary);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .solution-card p {
+    color: var(--iacol-accent);
+    line-height: 1.6;
+  }
+
+  /* Value Proposition Section */
+  .value-section {
+    background: var(--iacol-white);
+    padding: 4rem 0;
+    position: relative;
+  }
+
+  .value-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(29, 78, 216, 0.05) 50%, transparent 70%);
+    z-index: 0;
+  }
+
+  .value-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .value-content h2 {
+    color: #1b1b1b;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+  }
+
+  .value-content p {
+    color: var(--iacol-accent);
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+  }
+
+  .highlight-blue {
+    color: var(--iacol-secondary);
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(0, 194, 255, 0.5);
+  }
+
+  /* Success Stories */
+  .success-section {
+    background: var(--iacol-light);
+    padding: 6rem 0;
+  }
+
+  .success-title {
+    text-align: center;
+    margin-bottom: 4rem;
+    color: #1b1b1b;
+    font-size: 2.5rem;
+    font-weight: 800;
+  }
+
+  .story-card {
+    background: var(--iacol-white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+    margin-bottom: 2rem;
+  }
+
+  .story-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .story-content {
+    padding: 2rem;
+  }
+
+  .story-content h4 {
+    color: var(--iacol-primary);
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+
+  .story-content p {
+    color: var(--iacol-accent);
+    line-height: 1.6;
+  }
+
+  /* CTA Section */
+  .cta-section {
+    background: linear-gradient(135deg, var(--iacol-primary) 0%, var(--iacol-secondary) 100%);
+    padding: 4rem 0;
+    text-align: center;
+    color: white;
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: #000000 !important;
+    text-shadow: 0 0 20px rgba(0,0,0,0.5);
+  }
+
+  .cta-section p {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: #000000 !important;
   }
 
   /* Experts Hero Section */
   .experts-hero {
-    background: #ffffff;
+    background: var(--iacol-white);
     position: relative;
     overflow: hidden;
+    padding: 6rem 0;
   }
 
   .experts-container {
@@ -136,7 +390,7 @@
   .hero-bg-shape {
     position: absolute;
     border-radius: 50%;
-    background: linear-gradient(135deg, rgba(106, 13, 173, 0.05), rgba(138, 43, 226, 0.03));
+    background: linear-gradient(135deg, rgba(29, 78, 216, 0.05), rgba(8, 145, 178, 0.03));
     pointer-events: none;
   }
 
@@ -167,7 +421,7 @@
   }
 
   .experts-main-title {
-    color: var(--lucid-primary);
+    color: var(--iacol-primary);
     font-weight: 800;
     font-size: 3.5rem;
     margin-top: 2rem;
@@ -175,7 +429,7 @@
   }
 
   .experts-subtitle {
-    color: #666;
+    color: var(--iacol-accent);
     font-weight: 400;
     font-size: 1.2rem;
     margin-bottom: 0;
@@ -187,8 +441,8 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    gap: 2rem;
-    margin: 0;
+    gap: 3rem;
+    margin: 4rem 0;
     flex-wrap: wrap;
   }
 
@@ -196,35 +450,41 @@
     position: relative;
     z-index: 2;
     max-width: 450px;
+    flex: 1;
   }
 
   .expert-secondary {
     position: relative;
     z-index: 1;
     max-width: 400px;
-    margin-top: -2rem;
-    margin-left: -1rem;
+    margin-top: -3rem;
+    margin-left: -2rem;
+    flex: 1;
   }
 
   .expert-image-wrapper {
     position: relative;
     border-radius: 30px;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-    transition: transform 0.3s ease;
-    height: 450px; /* Fixed height for both images */
+    box-shadow: 0 25px 50px rgba(29, 78, 216, 0.2);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    height: 500px;
+    background: linear-gradient(135deg, var(--iacol-primary), var(--iacol-secondary));
   }
 
   .expert-image-wrapper:hover {
-    transform: translateY(-10px);
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: 0 35px 70px rgba(29, 78, 216, 0.3);
   }
 
   .primary .expert-image-wrapper {
     border-radius: 40px 20px 40px 20px;
+    background: linear-gradient(135deg, var(--iacol-primary), var(--iacol-secondary));
   }
 
   .secondary .expert-image-wrapper {
     border-radius: 20px 40px 20px 40px;
+    background: linear-gradient(135deg, var(--iacol-secondary), var(--iacol-primary));
   }
 
   .expert-image-bg {
@@ -233,7 +493,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, rgba(106, 13, 173, 0.1), rgba(138, 43, 226, 0.05));
+    background: linear-gradient(135deg, rgba(29, 78, 216, 0.1), rgba(8, 145, 178, 0.05));
     z-index: 1;
   }
 
@@ -244,216 +504,74 @@
     display: block;
     position: relative;
     z-index: 2;
-    filter: brightness(1.05) contrast(1.1);
+    filter: brightness(1.05) contrast(1.1) saturate(1.1);
+    transition: filter 0.3s ease;
+  }
+
+  .expert-image-wrapper:hover .expert-photo {
+    filter: brightness(1.1) contrast(1.2) saturate(1.2);
   }
 
   .expert-content {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(20px);
-    border-radius: 20px;
-    padding: 2rem;
-    padding-top: 3rem;
-    margin-top: -2rem;
+    border-radius: 25px;
+    padding: 2.5rem;
+    padding-top: 4rem;
+    margin-top: -3rem;
     position: relative;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 15px 35px rgba(29, 78, 216, 0.15);
+    border: 2px solid rgba(108, 99, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .expert-content:hover {
+    box-shadow: 0 20px 45px rgba(29, 78, 216, 0.2);
+    border-color: rgba(29, 78, 216, 0.2);
   }
 
   .primary .expert-content {
-    margin-left: 1rem;
-    margin-right: -1rem;
+    margin-left: 2rem;
+    margin-right: -2rem;
   }
 
   .secondary .expert-content {
-    margin-right: 1rem;
-    margin-left: -1rem;
+    margin-right: 2rem;
+    margin-left: -2rem;
   }
 
   .expert-name-primary,
   .expert-name-secondary {
-    color: var(--lucid-primary);
-    font-weight: 700;
-    font-size: 1.5rem;
+    color: var(--iacol-primary);
+    font-weight: 800;
+    font-size: 1.8rem;
     margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
   }
 
   .expert-role-primary,
   .expert-role-secondary {
-    color: #666;
-    font-weight: 500;
-    margin-bottom: 1rem;
-    font-size: 0.95rem;
+    color: var(--iacol-accent);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   .expert-desc-primary,
   .expert-desc-secondary {
-    color: #555;
-    line-height: 1.6;
+    color: var(--iacol-dark);
+    line-height: 1.7;
     margin: 0;
-    font-size: 0.95rem;
-  }
-
-  /* Expert CTA Block */
-  .expert-cta-block {
-    margin: 4rem 0;
-    position: relative;
-  }
-
-  .cta-content {
-    background: linear-gradient(135deg, rgba(55, 17, 82, 0.08), rgba(62, 55, 68, 0.05));
-    border-radius: 30px;
-    padding: 3rem 2rem;
-    text-align: center;
-    box-shadow: 0 10px 30px rgba(106, 13, 173, 0.1);
-    border: 1px solid rgba(106, 13, 173, 0.1);
-  }
-
-  .cta-text {
-    color: rgb(62, 55, 68);
-    font-weight: 600;
-    font-size: 1.3rem;
-    margin: 0;
-    font-style: italic;
-    line-height: 1.4;
-  }
-
-  /* Final CTA Section */
-  .final-cta-section {
-    background: linear-gradient(135deg, var(--lucid-primary) 0%, var(--lucid-secondary) 100%);
-    padding: 5rem 0;
-    color: white;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .final-cta-section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
-                radial-gradient(circle at 70% 80%, rgba(255,255,255,0.05) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  .final-cta-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border-radius: 30px;
-    padding: 3rem;
-    border: 1px solid rgba(255,255,255,0.2);
-    position: relative;
-    z-index: 2;
-  }
-
-  .final-cta-title {
-    font-weight: 800;
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-  }
-
-  .final-cta-desc {
-    font-weight: 500;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    opacity: 0.95;
-  }
-
-  .final-cta-subdesc {
-    font-weight: 400;
     font-size: 1rem;
-    margin-bottom: 2rem;
-    opacity: 0.85;
-  }
-
-  .btn-final-cta {
-    background: #00ffff;
-    border: none;
-    color: #1a1a1a;
-    padding: 16px 32px;
-    border-radius: 50px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3);
-    font-size: 1.1rem;
-  }
-
-  .btn-final-cta:hover {
-    background: #00e5e5;
-    transform: translateY(-3px);
-    box-shadow: 0 15px 35px rgba(0, 255, 255, 0.4);
-    text-decoration: none;
-    color: #1a1a1a;
-  }
-
-  /* Experts Section */
-  .expert-card {
-    background: white;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 2rem;
-  }
-
-  .expert-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-  }
-
-  .expert-image {
-    height: 300px;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-  }
-
-  .expert-image::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50%;
-    background: linear-gradient(transparent, rgba(0,0,0,0.7));
-  }
-
-  .expert-info {
-    padding: 2rem;
-    position: relative;
-  }
-
-  .expert-name {
-    color: var(--lucid-dark);
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-  }
-
-  .expert-role {
-    color: var(--lucid-primary);
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  .expert-description {
-    color: #666;
-    line-height: 1.6;
+    font-weight: 400;
   }
 
   /* About Section */
   .about-section {
-    background: #fafafa;
-    padding: 5rem 0;
+    background: var(--iacol-light);
+    padding: 6rem 0;
     position: relative;
   }
 
@@ -462,66 +580,77 @@
   }
 
   .about-title {
-    color: var(--lucid-primary);
+    color: #1b1b1b;
     font-weight: 800;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
 
   .quote-block {
-    background: white;
-    border-left: 4px solid var(--lucid-primary);
-    border-radius: 0 20px 20px 0;
-    padding: 2rem 2.5rem;
-    margin-bottom: 3rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    background: var(--iacol-white);
+    border-left: 5px solid var(--iacol-primary);
+    border-radius: 0 25px 25px 0;
+    padding: 3rem 3rem;
+    margin-bottom: 4rem;
+    box-shadow: 0 15px 40px rgba(29, 78, 216, 0.1);
     position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .quote-block:hover {
+    box-shadow: 0 20px 50px rgba(29, 78, 216, 0.15);
+    transform: translateX(10px);
   }
 
   .quote-text {
-    color: var(--lucid-primary);
-    font-weight: 600;
-    font-size: 1.3rem;
+    color: var(--iacol-primary);
+    font-weight: 700;
+    font-size: 1.4rem;
     font-style: italic;
-    line-height: 1.5;
+    line-height: 1.6;
     margin: 0;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.05);
   }
 
   .about-description {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
+    gap: 3rem;
   }
 
   .desc-column p {
-    color: #666;
-    line-height: 1.7;
+    color: var(--iacol-dark);
+    line-height: 1.8;
     margin: 0;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    font-weight: 400;
   }
 
   /* Services Section */
   .services-section {
-    padding: 5rem 0;
-    background: white;
+    padding: 6rem 0;
+    background: var(--iacol-white);
     position: relative;
     overflow: hidden;
   }
 
   .services-title {
-    color: var(--lucid-primary);
+    color: #1b1b1b;
     font-weight: 800;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 2.8rem;
+    margin-bottom: 1.5rem;
     text-align: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
   }
 
   .services-subtitle {
-    color: #666;
-    font-weight: 400;
-    font-size: 1.2rem;
-    margin-bottom: 0;
+    color: var(--iacol-accent);
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin-bottom: 4rem;
+    text-align: center;
   }
 
   .services-layout {
@@ -529,176 +658,352 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 3rem;
+    gap: 4rem;
     flex-wrap: wrap;
   }
 
   .service-floating-card {
-    background: rgba(106, 13, 173, 0.05);
+    background: var(--iacol-white);
     backdrop-filter: blur(20px);
-    border-radius: 25px;
-    padding: 2.5rem;
-    max-width: 400px;
-    box-shadow: 0 20px 40px rgba(106, 13, 173, 0.1);
-    border: 1px solid rgba(106, 13, 173, 0.1);
-    transition: all 0.3s ease;
+    border-radius: 30px;
+    padding: 3rem;
+    max-width: 420px;
+    box-shadow: 0 25px 50px rgba(29, 78, 216, 0.1);
+    border: 2px solid rgba(29, 78, 216, 0.1);
+    transition: all 0.4s ease;
     position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .service-floating-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(29, 78, 216, 0.05), transparent);
+    transition: left 0.6s;
+  }
+
+  .service-floating-card:hover::before {
+    left: 100%;
   }
 
   .card-1 {
-    transform: rotate(-2deg);
+    transform: rotate(-3deg) translateY(10px);
   }
 
   .card-2 {
-    transform: rotate(2deg);
+    transform: rotate(3deg) translateY(-10px);
   }
 
   .service-floating-card:hover {
-    transform: translateY(-10px) rotate(0deg);
-    box-shadow: 0 30px 60px rgba(106, 13, 173, 0.15);
+    transform: translateY(-15px) rotate(0deg) scale(1.02);
+    box-shadow: 0 35px 70px rgba(29, 78, 216, 0.2);
+    border-color: rgba(29, 78, 216, 0.3);
   }
 
   .service-icon-wrapper {
-    width: 70px;
-    height: 70px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--lucid-primary), var(--lucid-secondary));
+    background: linear-gradient(135deg, var(--iacol-primary), var(--iacol-secondary));
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 8px 20px rgba(106, 13, 173, 0.3);
+    margin: 0 auto 2rem;
+    box-shadow: 0 10px 25px rgba(29, 78, 216, 0.3);
+    transition: all 0.3s ease;
+  }
+
+  .service-floating-card:hover .service-icon-wrapper {
+    transform: scale(1.1);
+    box-shadow: 0 15px 35px rgba(29, 78, 216, 0.4);
   }
 
   .service-icon {
-    color: white;
-    font-size: 1.8rem;
+    color: black;
+    font-size: 2rem;
   }
 
   .service-title {
-    color: var(--lucid-primary);
-    font-weight: 700;
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
-  }
-
-  .service-description {
-    color: #666;
-    line-height: 1.6;
-    margin: 0;
-    font-size: 0.95rem;
-  }
-
-  /* Experience Timeline */
-  .experience-timeline {
-    padding: 5rem 0;
-    background: #f8f9fa;
-    position: relative;
-  }
-
-  .experience-title {
-    color: var(--lucid-primary);
+    color: var(--iacol-primary);
     font-weight: 800;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .experience-subtitle {
-    color: #666;
-    font-weight: 400;
-    font-size: 1.2rem;
-    margin-bottom: 0;
-  }
-
-  .timeline-container {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 4rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .timeline-axis {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: linear-gradient(to bottom, var(--lucid-primary), var(--lucid-secondary));
-    transform: translateX(-50%);
-    border-radius: 2px;
-    box-shadow: 0 0 20px rgba(106, 13, 173, 0.3);
-  }
-
-  .timeline-column {
-    flex: 1;
-    max-width: 500px;
-  }
-
-  .miguel-column {
-    text-align: right;
-  }
-
-  .guillermo-column {
-    text-align: left;
-  }
-
-  .expert-header {
-    margin-bottom: 3rem;
-  }
-
-  .expert-timeline-name {
-    color: var(--lucid-primary);
-    font-weight: 700;
-    font-size: 1.8rem;
-    margin: 0;
-  }
-
-  .timeline-blocks {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .timeline-block {
-    background: white;
-    border-radius: 15px;
-    padding: 1.5rem;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    border: 1px solid rgba(106, 13, 173, 0.1);
-    position: relative;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-
-  .timeline-block:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.12);
-  }
-
-  .carlos-column .timeline-block {
-    margin-right: 2rem;
-  }
-
-  .maria-column .timeline-block {
-    margin-left: 2rem;
-  }
-
-  .block-title {
-    color: var(--lucid-primary);
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+    font-size: 1.4rem;
+    margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
 
-  .block-content {
-    color: #555;
+  .service-description {
+    color: var(--iacol-dark);
+    line-height: 1.7;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  /* Combined Experts & Experience Section */
+  .combined-experts-section {
+    padding: 7rem 0;
+    background: var(--iacol-light);
+    position: relative;
+  }
+
+  .combined-title {
+    color: #1b1b1b;
+    font-weight: 800;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .combined-subtitle {
+    color: var(--iacol-accent);
+    font-weight: 500;
+    font-size: 1.3rem;
+    margin-bottom: 5rem;
+    text-align: center;
+  }
+
+  .combined-experts-layout {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .experts-center-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .experts-cards-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    max-width: 1200px;
+    width: 100%;
+  }
+
+  .expert-center-card {
+    background: var(--iacol-white);
+    border-radius: 30px;
+    padding: 0;
+    box-shadow: 0 20px 50px rgba(29, 78, 216, 0.15);
+    border: 2px solid rgba(29, 78, 216, 0.1);
+    transition: all 0.4s ease;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .expert-center-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 30px 70px rgba(29, 78, 216, 0.25);
+    border-color: rgba(29, 78, 216, 0.3);
+  }
+
+  .expert-card-header {
+    background: linear-gradient(135deg, var(--iacol-primary), var(--iacol-secondary));
+    padding: 3rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .expert-card-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .expert-photo-integrated {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--iacol-white);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    margin: 0 auto 1.5rem;
+    transition: all 0.3s ease;
+  }
+
+  .expert-photo-integrated:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+  }
+
+  .expert-integrated-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .expert-info-header {
+    position: relative;
+    z-index: 2;
+  }
+
+  .expert-center-name {
+    color: var(--iacol-white);
+    font-weight: 800;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .expert-center-role {
+    color: rgba(255,255,255,0.9);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .expert-details {
+    padding: 2.5rem;
+    background: var(--iacol-white);
+  }
+
+  .expert-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .detail-block {
+    background: rgba(29, 78, 216, 0.03);
+    border-radius: 15px;
+    padding: 1.5rem;
+    border: 1px solid rgba(29, 78, 216, 0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .detail-block::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--iacol-primary), var(--iacol-secondary));
+    transition: width 0.3s ease;
+  }
+
+  .detail-block:hover {
+    background: rgba(29, 78, 216, 0.08);
+    transform: translateX(5px);
+    box-shadow: 0 8px 25px rgba(29, 78, 216, 0.15);
+  }
+
+  .detail-block:hover::before {
+    width: 6px;
+  }
+
+  .detail-title {
+    color: var(--iacol-primary);
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .detail-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--iacol-primary), transparent);
+    margin-left: 0.5rem;
+    opacity: 0.3;
+  }
+
+  .detail-content {
+    color: var(--iacol-dark);
     line-height: 1.6;
     margin: 0;
     font-size: 0.95rem;
+    font-weight: 400;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Responsive for Combined Section */
+  @media (max-width: 1200px) {
+    .experts-cards-row {
+      gap: 3rem;
+      max-width: 1000px;
+    }
+
+    .expert-photo-integrated {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  @media (max-width: 992px) {
+    .experts-cards-row {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      max-width: 600px;
+    }
+
+    .expert-center-card {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .experts-cards-row {
+      gap: 3rem;
+      max-width: 100%;
+    }
+
+    .expert-center-card {
+      max-width: 100%;
+    }
+
+    .expert-card-header {
+      padding: 2.5rem 1.5rem 2rem;
+    }
+
+    .expert-photo-integrated {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 1rem;
+    }
+
+    .expert-center-name {
+      font-size: 1.6rem;
+    }
+
+    .expert-center-role {
+      font-size: 0.9rem;
+    }
+
+    .expert-details {
+      padding: 2rem 1.5rem;
+    }
   }
 
   /* Footer CTA Section */
@@ -761,7 +1066,7 @@
   }
 
   .btn-footer-cta {
-    background: #00ffff;
+    background: var(--iacol-secondary);
     border: none;
     color: #1a1a1a;
     padding: 18px 40px;
@@ -774,7 +1079,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 25px rgba(0, 255, 255, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 194, 255, 0.3);
     font-size: 1.1rem;
     position: relative;
     overflow: hidden;
@@ -792,9 +1097,9 @@
   }
 
   .btn-footer-cta:hover {
-    background: #00e5e5;
+    background: #00b8e6;
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 15px 40px rgba(0, 255, 255, 0.4);
+    box-shadow: 0 15px 40px rgba(0, 194, 255, 0.4);
     text-decoration: none;
     color: #1a1a1a;
   }
@@ -805,151 +1110,108 @@
 
   /* Responsive */
   @media (max-width: 768px) {
-    .lucid-hero {
-      padding: 6rem 0 3rem;
+    .hero-section h1 {
+      font-size: 2rem;
     }
 
-    .expert-card {
-      margin-bottom: 1.5rem;
+    .hero-section h2 {
+      font-size: 1rem;
     }
 
-    .slider-slide {
-      padding: 0 1rem;
+    .solutions-title,
+    .success-title,
+    .value-content h2,
+    .cta-section h2 {
+      font-size: 2rem;
     }
 
-    .experience-title {
-      font-size: 1.5rem;
+    .solution-cards {
+      grid-template-columns: 1fr;
+    }
+
+    .btn-primary,
+    .btn-outline-primary {
+      width: 80%;
+      font-size: 0.6rem;
+      margin-bottom: 1rem;
     }
   }
+
+  /* Override purple titles to black */
+  .solution-card h3 {
+    color: #000000 !important;
+  }
+
+  .service-title {
+    color: #000000 !important;
+  }
+
+  .detail-title {
+    color: #000000 !important;
+  }
+
+  .expert-name-primary,
+  .expert-name-secondary {
+    color: #000000 !important;
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 1s ease-out;
+  }
 </style>
-{% endblock %}
+</head>
+<body>
+   <!-- Language Switcher -->
+   <div class="language-switcher">
+       <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+           {% csrf_token %}
+           <input name="next" type="hidden" value="{% if request.get_full_path|slice:':4' == '/en/' %}{{ request.get_full_path }}{% else %}/en{{ request.get_full_path }}{% endif %}" />
+           <input name="language" type="hidden" value="en" />
+           <button type="submit" class="{% if request.LANGUAGE_CODE == 'en' %}active{% endif %}" title="English" style="background: none; border: none; padding: 0;">
+               <img src="https://flagcdn.com/w40/us.png" alt="English">
+           </button>
+       </form>
+       <form action="{% url 'set_language' %}" method="post" style="display: inline;">
+           {% csrf_token %}
+           <input name="next" type="hidden" value="/lucid-team/" />
+           <input name="language" type="hidden" value="es" />
+           <button type="submit" class="{% if request.LANGUAGE_CODE == 'es' %}active{% endif %}" title="Español" style="background: none; border: none; padding: 0;">
+               <img src="https://flagcdn.com/w40/co.png" alt="Español">
+           </button>
+       </form>
+   </div>
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-logos">
+      <div class="logo-iacol">
+        <img src="{% static 'img/iacol_logo.png' %}" alt="IACOL Logo" style="padding-bottom: 3em; max-width: 100px; height: auto; background-color: var(--iacol-white);">
+      </div>
+    </div>
+    <h1 style="color: #1b1b1b; font-size: 3rem;">{% trans "Soporte Personalizado para" %} <span style="color: var(--iacol-primary);">{% trans "LucidBot" %}</span></h1>
+    <h2>{% trans "Ayudamos a empresas que usan la plataforma <strong>LucidBot</strong> a resolver limitaciones, optimizar flujos y conseguir resultados <strong>mediante asesoría y desarrollo a la medida</h2>" %}</h2>
+  </div>
+</section>
 
-{% block content %}
-<!-- Hero Section with Experts -->
+
+<!-- Experts Hero Section -->
 <section class="experts-hero py-5" id="experts">
-  <div class="container-fluid px-0">
-    <div class="experts-container">
-      <!-- Integrated Banner at Top -->
-      <div class="integrated-banner-top">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-lg-10">
-              <div class="lucid-banner-card text-white" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); border-radius: 20px; padding: 2rem; border: 1px solid rgba(255, 255, 255, 0.2);">
-                <div class="row align-items-center g-4">
-                  <div class="col-auto">
-                    <div class="lucid-icon-container">
-                      <img src="{% static 'img/lucidbot.webp' %}" alt="Lucid Bot" class="lucid-icon">
-                    </div>
-                  </div>
-                  <div class="col">
-                    <h2 class="lucid-title mb-2">IACol Lucid Team</h2>
-                    <p class="lucid-subtitle mb-0">Dominamos el ecosistema Lucid Bot, asesoría externa personalizada.</p>
-                  </div>
-                  <div class="col-auto">
-                    <a href="#experts-content" class="btn-lucid-cta">
-                      <i class="fas fa-users me-2"></i>CONOCE AL EQUIPO
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Background Elements -->
-      <div class="hero-bg-shape shape-1"></div>
-      <div class="hero-bg-shape shape-2"></div>
-
-      <div class="container" id="experts-content">
-        <div class="row justify-content-center text-center mb-3">
-          <div class="col-lg-8">
-            <h1 class="experts-main-title">Nuestros Expertos</h1>
-          </div>
-        </div>
-
-        <!-- Asymmetrical Expert Layout -->
-        <div class="experts-layout">
-          <!-- Miguel (Left, Larger) -->
-          <div class="expert-primary">
-            <div class="expert-image-wrapper primary">
-              <div class="expert-image-bg"></div>
-              <img src="{% static 'img/Miguel.webp' %}" alt="Miguel" class="expert-photo">
-            </div>
-            <div class="expert-content primary">
-              <h3 class="expert-name-primary">Miguel Angel Diaz</h3>
-              <p class="expert-role-primary">Especialista de Automatizaciones E-Commerce</p>
-              <p class="expert-desc-primary">Matemático y Analista de Datos. Experto en LucidBot e implementación de soluciones de IA para empresas de e-commerce, optimización de campañas publicitarias y automatización de atención al cliente.</p>
-            </div>
-          </div>
-
-          <!-- Guillermo (Right, Overlapping) -->
-          <div class="expert-secondary">
-            <div class="expert-image-wrapper secondary">
-              <div class="expert-image-bg"></div>
-              <img src="{% static 'img/Guillermo.webp' %}" alt="Guillermo" class="expert-photo">
-            </div>
-            <div class="expert-content secondary">
-              <h3 class="expert-name-secondary">Guillermo A. Arboleda</h3>
-              <p class="expert-role-secondary">IA Software Developer / Fundador de IACol. </p>
-              <p class="expert-desc-secondary">Matemático y desarrollador de software enfocado en ciencia de datos. Apoyo en integraciones avanzadas con n8n y demás soluciones técnicas personalizadas.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- First CTA Section -->
-        <div class="first-cta-section">
-          <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-              <div class="first-cta-card">
-                <h2 class="first-cta-title">¿Te Podemos Ayudar?</h2>
-                <p class="first-cta-desc">Agenda una consulta gratuita de 20 minutos para evaluar cómo podemos potenciar tu negocio con soluciones Lucid Bot</p>
-                <p class="first-cta-subdesc">Sin compromiso, sin costo. Solo queremos entender tus necesidades y mostrarte el potencial que tenemos para transformar tus operaciones.</p>
-                <a href="https://cal.com/gaarboleda/mesa-de-ayuda-personal-lucidbot?overlayCalendar=true" class="btn-first-cta" target="_blank">
-                  <i class="fas fa-calendar-alt me-2"></i>Agendar Consulta Gratuita
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- About Section -->
-<section class="about-section" id="about">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div class="about-content">
-          <!-- Quote Block -->
-          <div class="quote-block">
-            <p class="quote-text">IACol Lucid Team es un equipo de analistas dedicado a la implementación de soluciones en la plataforma Lucid Bot.</p>
-          </div>
-
-          <!-- Description Columns -->
-          <div class="about-description">
-            <div class="desc-column">
-              <p>Combinamos expertise técnico profundo con conocimiento del mercado Ecommerce para ofrecer consultoría personalizada que se adapta a las necesidades específicas de cada cliente.</p>
-            </div>
-            <div class="desc-column">
-              <p>Nuestro enfoque integral garantiza que cada solución no solo resuelva problemas actuales, sino que prepare a las empresas para el futuro de la automatización inteligente.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Services Section -->
-<section class="services-section">
-  <div class="container">
+<div class="container">
     <div class="row justify-content-center text-center mb-5">
       <div class="col-lg-8">
-        <h2 class="services-title">Nuestra Ayuda</h2>
-        <p class="services-subtitle">Soluciones integrales para potenciar tu negocio con Lucid Bot</p>
+        <h2 class="services-title" style="color: #1b1b1b;">{% trans "¿Cómo trabajamos?" %}</h2>
+        <p class="services-subtitle">{% trans "Brindamos consultoría y soporte técnico para optimizar tus implementaciones de Lucid Bot.<br><strong>Asesoría personalizada para tu equipo</strong> y <strong>desarrollo de soluciones</strong> de principio a fin." %}</p>
       </div>
     </div>
 
@@ -960,8 +1222,8 @@
           <div class="service-icon-wrapper">
             <i class="fas fa-cogs service-icon"></i>
           </div>
-          <h4 class="service-title">Desarrollo de Soluciones desde Cero</h4>
-          <p class="service-description">Creamos y configuramos tu automatización a medida. Mas allá de temas técnicos, sabemos cómo debe hablar un agente para cerrar ventas. Nuestro enfoque se encuetra en los resultados.</p>
+          <h4 class="service-title">{% trans "Desarrollo de Soluciones desde Cero" %}</h4>
+          <p class="service-description">{% trans "Creamos y configuramos tu automatización a medida. Mas allá de temas técnicos, sabemos cómo debe hablar un agente para cerrar ventas. Nuestro enfoque se encuetra en los resultados." %}</p>
         </div>
       </div>
 
@@ -971,72 +1233,103 @@
           <div class="service-icon-wrapper">
             <i class="fas fa-user-shield service-icon"></i>
           </div>
-          <h4 class="service-title">Asesoría Personalizada en Soluciones Existentes</h4>
-          <p class="service-description">Te ayudamos a optimizar tus implementaciones. Realizamos auditorías técnicas, organizamos tus proyectos, te recomendamos lás ultimas tendencias, buenas práctias, identificamos oportunidades de mejora y implementamos actualizaciones a medida que maximizan el ROI de tus campañas.</p>
+          <h4 class="service-title">{% trans "Asesoría Personalizada en Soluciones Existentes" %}</h4>
+          <p class="service-description">{% trans "Te ayudamos a optimizar tus implementaciones y realizar integraciones. Organizamos tus proyectos, te recomendamos lás ultimas tendencias, buenas práctias, identificamos oportunidades de mejora." %}</p>
         </div>
       </div>
     </div>
   </div>
+
+        <!-- First CTA Section -->
+        <div class="first-cta-section">
+          <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+              <div class="first-cta-card">
+                <h2 class="first-cta-title" style="color: #000000 !important;">{% trans "¿Te Podemos Ayudar?" %}</h2>
+                <p class="first-cta-desc" style="color: #000000 !important;">{% trans "Escríbenos al WhatsApp para analizar tu caso y potenciar tu negocio con soluciones Lucid Bot" %}</p>
+                <p class="first-cta-subdesc" style="color: #000000 !important;">{% trans "Sin compromiso, sin costo. Solo queremos entender tus necesidades y mostrarte el potencial que tenemos para transformar tus operaciones." %}</p>
+                <a href="https://wa.me/573042693804" class="btn btn-primary" target="_blank" style="background: linear-gradient(135deg, #000000 0%, #333333 100%); border: none; color: #ffffff; padding: 0.6rem 1.2rem; border-radius: 50px; font-weight: 500; font-size: 1.1rem; transition: all 0.3s ease; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(255,255,255,0.2); position: relative; overflow: hidden;">
+                  <i class="fab fa-whatsapp me-2"></i>{% trans "Contactar" %}
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 </section>
 
-<!-- Experience Timeline Section -->
-<section class="experience-timeline">
+<!-- Combined Experts & Experience Section -->
+<section class="combined-experts-section">
   <div class="container">
     <div class="row justify-content-center text-center mb-5">
       <div class="col-lg-8">
-        <h2 class="experience-title">Experiencia Avanzada</h2>
-        <p class="experience-subtitle">Descubre en detalle la trayectoria y especializaciones de nuestros expertos</p>
+        <h2 class="combined-title">{% trans "Nuestra Experiencia" %}</h2>
+        <p class="combined-subtitle">{% trans "Conoce al nuestro equipo y su trayectoria profesional" %}</p>
       </div>
     </div>
 
-    <div class="timeline-container">
-      <!-- Timeline Axis -->
-      <div class="timeline-axis"></div>
+    <div class="combined-experts-layout">
+      <!-- Center Content with Integrated Photos -->
+      <div class="experts-center-content">
+        <div class="experts-cards-row">
+          <!-- Miguel Card with Integrated Photo -->
+          <div class="expert-center-card miguel-card">
+            <div class="expert-card-header">
+              <div class="expert-photo-integrated">
+                <img src="{% static 'img/Miguel.webp' %}" alt="Miguel Angel Diaz" class="expert-integrated-photo">
+              </div>
+              <div class="expert-info-header">
+                <h3 class="expert-center-name">Miguel Angel Diaz</h3>
+                <p class="expert-center-role">{% trans "Especialista de Automatizaciones E-Commerce" %}</p>
+              </div>
+            </div>
 
-      <!-- Miguel Column -->
-      <div class="timeline-column miguel-column">
-        <div class="expert-header">
-          <h3 class="expert-timeline-name">Miguel Diaz</h3>
-        </div>
+            <div class="expert-details">
+              <div class="detail-block">
+                <h4 class="detail-title">{% trans "Experiencia" %}</h4>
+                <p class="detail-content">{% trans "Analista de datos en empresas de E-commerce, enfocado en aplicar IA y automatización a procesos de venta y atención al cliente." %}</p>
+              </div>
 
-        <div class="timeline-blocks">
-          <div class="timeline-block">
-            <h4 class="block-title">Experiencia</h4>
-            <p class="block-content">Analista de datos en empresas de E-commerce, enfocado en aplicar IA y automatización a procesos de venta y atención al cliente. Empresas de e-commerce y comercios digitales en crecimiento.</p>
+              <div class="detail-block">
+                <h4 class="detail-title">{% trans "Especialidades" %}</h4>
+                <p class="detail-content">{% trans "Implementación de agentes conversacionales con LucidBot, análisis de datos comerciales." %}</p>
+              </div>
+
+              <div class="detail-block">
+                <h4 class="detail-title">{% trans "Proyectos" %}</h4>
+                <p class="detail-content">{% trans "Agentes inteligentes operativos con +5000 conversaciones activas." %}</p>
+              </div>
+            </div>
           </div>
 
-          <div class="timeline-block">
-            <h4 class="block-title">Especialidades</h4>
-            <p class="block-content">Implementación de agentes conversacionales con LucidBot, análisis de datos comerciales y optimización de flujos de automatización.</p>
-          </div>
+          <!-- Guillermo Card with Integrated Photo -->
+          <div class="expert-center-card guillermo-card">
+            <div class="expert-card-header">
+              <div class="expert-photo-integrated">
+                <img src="{% static 'img/Guillermo.webp' %}" alt="Guillermo A. Arboleda" class="expert-integrated-photo">
+              </div>
+              <div class="expert-info-header">
+                <h3 class="expert-center-name">Guillermo A. Arboleda</h3>
+                <p class="expert-center-role">{% trans "IA Software Developer / Fundador de IACol." %}</p>
+              </div>
+            </div>
 
-          <div class="timeline-block">
-            <h4 class="block-title">Proyectos Destacados</h4>
-            <p class="block-content">Creación de agentes inteligentes con LucidBot que ya operan con clientes y ventas activas. (+5000 conv) </p>
-          </div>
-        </div>
-      </div>
+            <div class="expert-details">
+              <div class="detail-block">
+                <h4 class="detail-title">{% trans "Experiencia" %}</h4>
+                <p class="detail-content">{% trans "+2 años desarrollando soluciones de software y análisis de datos." %}</p>
+              </div>
 
-      <!-- Guillermo Column -->
-      <div class="timeline-column guillermo-column">
-        <div class="expert-header">
-          <h3 class="expert-timeline-name">Guillermo Arboleda</h3>
-        </div>
+              <div class="detail-block">
+                <h4 class="detail-title">{% trans "Especialidades" %}</h4>
+                <p class="detail-content">{% trans "Desarrollo Fullstack, automatización de procesos empresariales e IA." %}</p>
+              </div>
 
-        <div class="timeline-blocks">
-          <div class="timeline-block">
-            <h4 class="block-title">Experiencia</h4>
-            <p class="block-content">+3 años desarrollando soluciones de software y analisis de datos. Actualmente transformación digital para el sector de servicio técnico automotriz.</p>
-          </div>
-
-          <div class="timeline-block">
-            <h4 class="block-title">Especialidades</h4>
-            <p class="block-content">Desarrollo Fullstack, automatización de procesos empresariales e inteligencia artificial.</p>
-          </div>
-
-          <div class="timeline-block">
-            <h4 class="block-title">Proyectos Destacados</h4>
-            <p class="block-content">Implementación de agentes en atención al cliente, comunciación con proveedores y desarrollo de aplicaciones web</p>
+              <div class="detail-block">
+                <h4 class="detail-title">{% trans "Proyectos" %}</h4>
+                <p class="detail-content">{% trans "Implementación de agentes en atención al cliente y aplicaciones web." %}</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1044,60 +1337,39 @@
   </div>
 </section>
 
-<!-- Final CTA Section (Footer CTA) -->
-<section class="footer-cta-section">
+<!-- Call to Action Section -->
+<section class="cta-section">
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-10">
-        <div class="footer-cta-card">
-          <div class="cta-content-wrapper">
-            <h2 class="footer-cta-title">¿Te Podemos Ayudar?</h2>
-            <p class="footer-cta-desc">Agenda una consulta gratuita   para evaluar cómo podemos potenciar tus soluciones Lucid Bot</p>
-            <p class="footer-cta-subdesc">Sin costo. Solo queremos entender tus necesidades y mostrarte el potencial que tenemos para transformar tus operaciones.</p>
-            <a href="https://cal.com/gaarboleda/mesa-de-ayuda-personal-lucidbot?overlayCalendar=true" class="btn-footer-cta" target="_blank">
-              <i class="fas fa-calendar-alt me-2"></i>Agendar Consulta Gratuita
-            </a>
-          </div>
-        </div>
-      </div>
+    <h2>{% trans "¿Necesitas asistencia con Lucid Bot?" %}</h2>
+    <p>{% trans "Contacta con nuestro equipo para analizar tu caso específico." %}</p>
+    <a href="https://wa.me/573042693804" class="btn btn-primary" target="_blank" style="background: linear-gradient(135deg, #000000 0%, #333333 100%); border: none; color: #ffffff; padding: 0.6rem 1.2rem; border-radius: 50px; font-weight: 500; font-size: 1.1rem; transition: all 0.3s ease; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2), inset 0 2px 4px rgba(255,255,255,0.2); position: relative; overflow: hidden;">
+      <i class="fab fa-whatsapp me-2"></i>{% trans "Contactar Ahora" %}
+    </a>
+    <div style="margin-top: 3rem;">
+      <img src="{% static 'img/iacol_logo.png' %}" alt="IACOL Logo" style="max-width: 100px;">
     </div>
   </div>
 </section>
 
-{% endblock %}
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-{% block extra_js %}
+<!-- Custom JS -->
 <script>
-// Smooth scroll for banner CTA
-document.addEventListener('DOMContentLoaded', function() {
-  const bannerBtn = document.querySelector('.btn-lucid-cta');
-  if (bannerBtn) {
-    bannerBtn.addEventListener('click', function(e) {
+  // Smooth scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
       e.preventDefault();
-      const target = document.getElementById('experts-content');
+      const target = document.querySelector(this.getAttribute('href'));
       if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.scrollIntoView({
+          behavior: 'smooth'
+        });
       }
     });
-  }
+  });
 
-  // Smooth scroll for first CTA - only if it's an internal link
-  const firstCtaBtn = document.querySelector('.btn-first-cta');
-  if (firstCtaBtn) {
-    firstCtaBtn.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        const target = document.getElementById(href.substring(1));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
-      // If it's an external link, let it navigate normally
-    });
-  }
-
-  // Add intersection observer for timeline animations
+  // Fade in animation on scroll
   const observerOptions = {
     threshold: 0.1,
     rootMargin: '0px 0px -50px 0px'
@@ -1106,24 +1378,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
+        entry.target.classList.add('fade-in-up');
       }
     });
   }, observerOptions);
 
-  // Observe timeline blocks
-  document.querySelectorAll('.timeline-block').forEach(block => {
-    block.style.opacity = '0';
-    block.style.transform = 'translateY(30px)';
-    block.style.transition = 'all 0.6s ease';
-    observer.observe(block);
+  document.querySelectorAll('.solution-card, .story-card').forEach(card => {
+    observer.observe(card);
   });
-
-  // Add stagger animation for timeline blocks
-  document.querySelectorAll('.timeline-blocks .timeline-block').forEach((block, index) => {
-    block.style.transitionDelay = `${index * 0.1}s`;
-  });
-});
 </script>
-{% endblock %}
+</body>
+</html>
