@@ -574,3 +574,7 @@ INFO 2025-11-06 20:55:01,345 views 13 123177149650624 [DASHBOARD] Iniciando dash
 INFO 2025-11-06 20:55:01,374 views 13 123177149650624 [DASHBOARD] Suscripciones encontradas: 0
 INFO 2025-11-06 20:55:01,385 views 13 123177149650624 [DASHBOARD] Total de ejecuciones: 0
 INFO 2025-11-06 20:55:01,404 views 13 123177149650624 [DASHBOARD] Renderizando plantilla dashboard
+INFO 2025-11-06 21:03:19,460 views 13 137961772410560 [DASHBOARD] Iniciando dashboard para usuario: gaarboledag@gmail.com
+INFO 2025-11-06 21:03:19,479 views 13 137961772410560 [DASHBOARD] Suscripciones encontradas: 0
+INFO 2025-11-06 21:03:19,490 views 13 137961772410560 [DASHBOARD] Total de ejecuciones: 0
+INFO 2025-11-06 21:03:19,504 views 13 137961772410560 [DASHBOARD] Renderizando plantilla dashboard
