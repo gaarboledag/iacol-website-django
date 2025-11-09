@@ -59,6 +59,11 @@ def masterclass_auto_ai(request):
     return render(request, 'masterclass_auto_ai.html')
 
 
+def custom_service(request):
+    """Página de Servicio de Atención al Cliente con IA"""
+    return render(request, 'custom_service.html')
+
+
 def lucid_team(request):
     """Página del equipo de expertos en Lucid Bot"""
     return render(request, 'lucid_team.html')

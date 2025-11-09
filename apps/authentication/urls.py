@@ -11,5 +11,6 @@ urlpatterns = [
     path('findpartai/', views.findpartai_landing, name='findpartai_landing'),
     path('mechai/', views.mechai_landing, name='mechai_landing'),
     path('automotriz/', views.automotive, name='automotive'),
+    path('custom-service/', views.custom_service, name='custom_service'),
     path('masterclass-ia-centro-automotriz/', views.masterclass_auto_ai, name='masterclass_auto_ai'),
 ]

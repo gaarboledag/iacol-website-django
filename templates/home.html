@@ -4,13 +4,16 @@
 
 {% block extra_css %}
 <style>
+  /* ===========================================
+     HERO SECTION STYLES
+     =========================================== */
   .hero-section {
     position: relative;
     overflow: hidden;
     min-height: 50vh;
     display: flex;
     align-items: center;
-    padding: 4rem 0;
+    padding: 3rem 0;
   }
   .hero-section::before {
     content: '';
@@ -25,21 +28,21 @@
     z-index: 0;
     filter: grayscale(100%);
     opacity: 0.8;
-    mask-image: 
-      linear-gradient(to right, 
-        black 0%, 
-        black 50%, 
+    mask-image:
+      linear-gradient(to right,
+        black 0%,
+        black 50%,
         transparent 100%),
-      linear-gradient(to bottom, 
+      linear-gradient(to bottom,
         black 0%,
         black 60%,
         transparent 100%);
-    -webkit-mask-image: 
-      linear-gradient(to right, 
-        black 0%, 
-        black 50%, 
+    -webkit-mask-image:
+      linear-gradient(to right,
+        black 0%,
+        black 50%,
         transparent 100%),
-      linear-gradient(to bottom, 
+      linear-gradient(to bottom,
         black 0%,
         black 60%,
         transparent 100%);
@@ -53,34 +56,74 @@
     flex-direction: column;
     justify-content: center;
     height: 100%;
-    padding: 2rem 15px;
+    padding: 1.5rem 15px;
+  }
+
+  @media (max-width: 1199.98px) {
+    .hero-section {
+      min-height: 45vh;
+      padding: 2.5rem 0;
+    }
+    .hero-content {
+      padding: 1.25rem 15px;
+    }
   }
 
   @media (max-width: 991.98px) {
+    .hero-section {
+      min-height: 40vh;
+      padding: 2rem 0;
+    }
     .hero-section::before {
       width: 100%;
       opacity: 0.2;
-      mask-image: 
-        linear-gradient(to right, 
-          black 0%, 
-          black 30%, 
+      mask-image:
+        linear-gradient(to right,
+          black 0%,
+          black 30%,
           transparent 100%),
-        linear-gradient(to bottom, 
+        linear-gradient(to bottom,
           black 0%,
           black 50%,
           transparent 100%);
-      -webkit-mask-image: 
-        linear-gradient(to right, 
-          black 0%, 
-          black 30%, 
+      -webkit-mask-image:
+        linear-gradient(to right,
+          black 0%,
+          black 30%,
           transparent 100%),
-        linear-gradient(to bottom, 
+        linear-gradient(to bottom,
           black 0%,
           black 50%,
           transparent 100%);
     }
+    .hero-content {
+      padding: 1rem 15px;
+    }
   }
-  /* New section helpers */
+
+  @media (max-width: 767.98px) {
+    .hero-section {
+      min-height: 35vh;
+      padding: 1.5rem 0;
+    }
+    .hero-content {
+      padding: 0.75rem 15px;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .hero-section {
+      min-height: 30vh;
+      padding: 1.25rem 0;
+    }
+    .hero-content {
+      padding: 0.5rem 15px;
+    }
+  }
+
+  /* ===========================================
+     UTILITY CLASSES
+     =========================================== */
   .info-ribbon {
     background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
   }
@@ -97,14 +140,226 @@
     transform: translateY(-2px);
     box-shadow: 0 .5rem 1rem rgba(0,0,0,.08) !important;
   }
+
+  /* Standardized spacing utilities */
+  .section-spacing {
+    padding: 3rem 0;
+  }
+  .section-spacing-lg {
+    padding: 4rem 0;
+  }
+  .section-spacing-sm {
+    padding: 2.5rem 0;
+  }
+  .content-spacing {
+    margin-bottom: 1.5rem;
+  }
+  .content-spacing-lg {
+    margin-bottom: 2rem;
+  }
+  .content-spacing-sm {
+    margin-bottom: 1rem;
+  }
+
+  /* ===========================================
+     CUSTOM BUTTON STYLES
+     =========================================== */
+  .btn-primary-custom {
+    background-color: #000000;
+    border: 2px solid #000000;
+    color: #ffffff;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-primary-custom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-primary-custom:hover::before {
+    left: 100%;
+  }
+
+  .btn-primary-custom:hover {
+    background-color: #333333;
+    border-color: #333333;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .btn-outline-custom {
+    background-color: transparent;
+    border: 2px solid #000000;
+    color: #000000;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-outline-custom::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-outline-custom:hover::before {
+    left: 100%;
+  }
+
+  .btn-outline-custom:hover {
+    background-color: #000000;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  /* ===========================================
+     GENERAL MOBILE OPTIMIZATIONS
+     =========================================== */
+  @media (max-width: 767.98px) {
+    /* Reduce section spacing on mobile */
+    .section-spacing {
+      padding: 2.5rem 0;
+    }
+
+    /* Improve text readability on small screens */
+    .display-5 {
+      font-size: 2rem;
+      line-height: 1.2;
+    }
+
+    .lead {
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    /* Better button spacing */
+    .btn-lg {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+    }
+
+    /* Container padding adjustments */
+    .container {
+      padding-left: 15px;
+      padding-right: 15px;
+    }
+
+    /* Card improvements */
+    .card-body {
+      padding: 1rem;
+    }
+
+    /* Icon adjustments */
+    .icon-box {
+      margin-bottom: 1rem !important;
+    }
+
+    /* Force button width constraints on mobile */
+    .btn-primary-custom,
+    .btn-outline-custom {
+      max-width: 180px !important;
+      width: auto !important;
+      flex: 0 0 auto !important;
+      display: inline-block !important;
+      margin: 0 0.25rem !important;
+      padding: 10px 16px;
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    /* Extra small screen optimizations */
+    .section-spacing {
+      padding: 2rem 0;
+    }
+
+    .display-5 {
+      font-size: 1.75rem;
+    }
+
+    .btn-lg {
+      width: auto;
+      min-width: 160px;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Better gap spacing on very small screens */
+    .gap-3 {
+      gap: 1rem !important;
+    }
+
+    /* Enhanced button styling for mobile */
+    .btn-primary-custom,
+    .btn-outline-custom {
+      font-size: 0.8rem;
+      padding: 0.875rem 1.25rem;
+      letter-spacing: 0.25px;
+      min-width: 140px;
+      max-width: 160px !important;
+      width: auto !important;
+      display: inline-block !important;
+      text-align: center;
+      flex: none !important;
+      box-sizing: border-box !important;
+      margin: 0 0.25rem !important;
+      padding: 10px 16px;
+    }
+
+    .btn-primary-custom:hover,
+    .btn-outline-custom:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  @media (max-width: 480px) {
+    /* Ultra small screen optimizations */
+    .btn-primary-custom,
+    .btn-outline-custom {
+      font-size: 0.85rem;
+      padding: 0.75rem 1rem;
+      border-radius: 40px;
+      min-width: 120px;
+      max-width: 140px !important;
+      width: auto !important;
+      flex: none !important;
+      box-sizing: border-box !important;
+      margin: 0 0.25rem !important;
+    }
+  }
   
+  /* ===========================================
+     STARTUP CHALLENGES SECTION STYLES
+     =========================================== */
   /* Interactive and creative styles for startup challenges section */
   #startup-challenges .challenge-item {
     background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
     border: 1px solid rgba(108, 99, 255, 0.1);
     border-radius: 12px;
     padding: 1.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
     position: relative;
@@ -171,12 +426,12 @@
   /* Responsive styles for startup challenges section */
   @media (max-width: 767.98px) {
     #startup-challenges .icon-box {
-      width: 32px !important;
-      height: 32px !important;
-      font-size: 1.25rem !important;
+      width: 36px !important;
+      height: 36px !important;
+      font-size: 1.4rem !important;
     }
     #startup-challenges p {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       margin-bottom: 0.5rem !important;
       text-align: left;
     }
@@ -185,7 +440,264 @@
       line-height: 1.2;
     }
     #startup-challenges .challenge-item {
-      padding: 1rem;
+      padding: 1.25rem;
+    }
+  }
+
+  /* ===========================================
+     CUSTOMER SERVICE BANNER STYLES
+     =========================================== */
+  .customer-service-banner {
+    background: linear-gradient(135deg, #6c63ff 0%, #00a2d3 30%, #00b1b1 100%, #00ffff 100%);
+    border-radius: 50px;
+    padding: 2.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+      0 25px 15px rgba(99, 122, 255, 0.3),
+      inset 0 2px 4px rgba(255,255,255,0.1),
+      inset 0 -2px 4px rgba(0,0,0,0.1);
+    border: 2px solid rgba(255,255,255,0.1);
+  }
+
+  .customer-service-banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255,255,255,0.08) 0%, transparent 35%),
+      radial-gradient(circle at 85% 80%, rgba(255,255,255,0.06) 0%, transparent 35%);
+    pointer-events: none;
+  }
+
+  .customer-service-icon-container {
+    width: 80px;
+    height: 80px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      inset 0 4px 8px rgba(0,0,0,0.1),
+      inset 0 -4px 8px rgba(255,255,255,0.1),
+      0 8px 16px rgba(0,0,0,0.15);
+    position: relative;
+  }
+
+  .customer-service-icon-container::before {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 18px;
+    background: linear-gradient(135deg, rgba(0, 194, 255, 0.1), rgba(0, 255, 255, 0.1));
+    z-index: -1;
+  }
+
+  .customer-service-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 3em;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+    transition: transform 0.3s ease;
+  }
+
+  .customer-service-icon:hover {
+    transform: scale(1.1);
+  }
+
+  .customer-service-title {
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 1.8rem;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    line-height: 1.2;
+  }
+
+  .customer-service-subtitle {
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+    font-size: 1rem;
+    margin: 0;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  }
+
+  .btn-customer-service-cta {
+    background: #ffffff;
+    border: none;
+    color: #6c63ff;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+      0 8px 20px rgba(108, 99, 255, 0.3),
+      inset 0 2px 4px rgba(255,255,255,0.2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-customer-service-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(108, 99, 255, 0.3), transparent);
+    transition: left 0.5s;
+  }
+
+  .btn-customer-service-cta:hover {
+    background: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow:
+      0 12px 30px rgba(108, 99, 255, 0.4),
+      inset 0 2px 4px rgba(255,255,255,0.3);
+    text-decoration: none;
+    color: #6c63ff;
+  }
+
+  .btn-customer-service-cta:hover::before {
+    left: 100%;
+  }
+
+  .btn-customer-service-cta i {
+    font-size: 1rem;
+    margin-right: 8px;
+  }
+
+  /* Responsive Design for Customer Service Banner */
+  @media (max-width: 992px) {
+    .customer-service-banner {
+      padding: 2rem 2.5rem;
+    }
+
+    .customer-service-icon-container {
+      width: 70px;
+      height: 70px;
+    }
+
+    .customer-service-icon {
+      width: 42px;
+      height: 42px;
+      font-size: 2.5em;
+    }
+
+    .customer-service-title {
+      font-size: 1.6rem;
+    }
+
+    .customer-service-subtitle {
+      font-size: 0.95rem;
+    }
+
+    .btn-customer-service-cta {
+      padding: 13px 24px;
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .customer-service-banner {
+      border-radius: 30px;
+      padding: 1.75rem 2rem;
+    }
+
+    .customer-service-icon-container {
+      width: 60px;
+      height: 60px;
+    }
+
+    .customer-service-icon {
+      width: 35px;
+      height: 35px;
+      font-size: 2.2em;
+    }
+
+    .customer-service-title {
+      font-size: 1.4rem;
+    }
+
+    .customer-service-subtitle {
+      font-size: 0.9rem;
+    }
+
+    .btn-customer-service-cta {
+      padding: 12px 20px;
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .customer-service-banner {
+      padding: 1.5rem 1.5rem;
+      border-radius: 25px;
+    }
+
+    .row {
+      --bs-gutter-x: 1rem;
+    }
+
+    .customer-service-icon-container {
+      width: 50px;
+      height: 50px;
+    }
+
+    .customer-service-icon {
+      width: 28px;
+      height: 28px;
+      font-size: 1.8em;
+    }
+
+    .customer-service-title {
+      font-size: 1.2rem;
+      line-height: 1.3;
+    }
+
+    .customer-service-subtitle {
+      font-size: 0.85rem;
+    }
+
+    .btn-customer-service-cta {
+      padding: 10px 16px;
+      font-size: 0.8rem;
+    }
+
+    .btn-customer-service-cta i {
+      font-size: 0.9rem;
+      margin-right: 6px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .customer-service-banner {
+      padding: 1.25rem 1.25rem;
+    }
+
+    .customer-service-title {
+      font-size: 1.1rem;
+    }
+
+    .customer-service-subtitle {
+      font-size: 0.8rem;
+    }
+
+    .btn-customer-service-cta {
+      padding: 8px 14px;
+      font-size: 0.75rem;
     }
   }
 </style>
@@ -198,25 +710,25 @@
         <div class="row align-items-center">
             <div class="col-lg-6 hero-content">
                 <span class="badge-ghost mb-3">{% trans "El poder de la <strong>ciencia de datos</strong> sin contratación adicional." %}</span>
-                <h1 class="display-6 fw-bold mb-4">
+                <h1 class="display-5 fw-bold mb-3 mb-md-4">
                     {% trans "Estrategia en Transformación Digital Empresarial" %}
                 </h1>
-                <p class="lead mb-4">
+                <p class="lead mb-3 mb-md-4">
                 {% trans "Analizamos procesos y construimos, junto a tu equipo, sistemas productivos basados en Ciencia de Datos e Inteligencia Artificial." %}                </p>
-                <div class="d-flex flex-wrap gap-3 justify-content-center">
-                    {% if not user.is_authenticated %}  
-                        <a href="{% url 'contact' %}" class="btn btn-lg px-4">
+                <div class="d-flex flex-row flex-wrap gap-3 justify-content-center align-items-center">
+                    {% if not user.is_authenticated %}
+                        <a href="{% url 'contact' %}" class="btn btn-primary-custom btn-lg px-3 px-md-4 w-auto">
                             {% trans "¿Cómo Iniciar?" %}
                         </a>
-                        <a href="{% url 'solutions' %}" class="btn btn-lg px-4">
-                            {% trans "Casos de Éxito" %}
+                        <a href="{% url 'solutions' %}" class="btn btn-outline-custom btn-lg px-3 px-md-4 w-auto">
+                            {% trans "Soluciones" %}
                         </a>
                     {% else %}
-                        <a href="{% url 'dashboard:home' %}" class="btn btn-lg px-4">
+                        <a href="{% url 'dashboard:home' %}" class="btn btn-primary-custom btn-lg px-3 px-md-4 w-auto">
                             {% trans "Ir al Dashboard" %}
                         </a>
-                        <a href="{% url 'agents:agent_list' %}" class="btn btn-lg px-4">
-                            {% trans "Explorar Agentes" %}
+                        <a href="{% url 'resources' %}" class="btn btn-outline-custom btn-lg px-3 px-md-4 w-auto">
+                            {% trans "Ver Novedades" %}
                         </a>
                     {% endif %}
                 </div>
@@ -226,50 +738,92 @@
 </section>
 
 <!-- Features Section -->
-<section id="features" class="py-5">
+<section id="features" class="section-spacing">
     <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="display-5 fw-bold mb-3">{% trans "Tecnología Aplicada con Propósito" %}</h2>
-            <p class="lead text-muted">{% trans "No se trata de usar más software, sino de usarlo con sentido operativo." %}<br>{% trans "Analizamos tus procesos para encontrar dónde la ciencia de datos y la IA realmente aportan valor al negocio." %}</p>
+        <div class="text-center mb-4 mb-md-5">
+            <h2 class="display-5 fw-bold mb-3 mb-md-4">{% trans "Tecnología Aplicada con Propósito" %}</h2>
+            <p class="lead text-muted mb-0">{% trans "No se trata de usar más software, sino de usarlo con sentido operativo." %}<br class="d-none d-md-block">{% trans "Analizamos tus procesos para encontrar dónde la ciencia de datos y la IA realmente aportan valor al negocio." %}</p>
         </div>
         
+
+
+        <!-- Customer Service Agents Banner -->
+        <div class="container-fluid px-0 mb-5">
+          <div class="row justify-content-center">
+            <div class="col-lg-10 col-xl-9">
+              <div class="customer-service-banner text-white position-relative overflow-hidden">
+                <div class="row align-items-center g-3 g-md-4">
+                  <!-- Icon Section -->
+                  <div class="col-auto">
+                    <div class="customer-service-icon-container">
+                      <i class="fas fa-headset customer-service-icon"></i>
+                    </div>
+                  </div>
+
+                  <!-- Text Content -->
+                  <div class="col">
+                    <h2 class="customer-service-title mb-2">{% trans "Sistema de Atención al Cliente con IA" %}</h2>
+                    <p class="customer-service-subtitle mb-0">{% trans "Agentes conversacionales que resulven dudas, agendan citas, venden productos y hacen recordatorios como si fueran parte de tu equipo." %}</p>
+                  </div>
+
+                  <!-- CTA Button -->
+                  <div class="col-auto d-none d-md-block">
+                    <a href="{% url 'custom_service' %}" class="btn-customer-service-cta">
+                      <i class="fas fa-arrow-right me-2"></i>{% trans "MÁS INFORMACIÓN" %}
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Mobile CTA Button -->
+                <div class="row mt-3 d-md-none">
+                  <div class="col-12 text-center">
+                    <a href="{% url 'custom_service' %}" class="btn-customer-service-cta">
+                      <i class="fas fa-arrow-right me-2"></i>{% trans "MÁS INFORMACIÓN" %}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="row g-4">
-            <div class="col-md-4">
+            <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 border-0">
-                    <div class="card-body p-4">
-                        <div class="icon-box mb-4 mx-auto text-center" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
+                    <div class="card-body p-3 p-md-4">
+                        <div class="icon-box mb-3 mb-md-4 mx-auto text-center" style="width: 48px; height: 48px; font-size: 2.2rem; text-align: center">
                           <i class="fas fa-chart-pie"></i>
                         </div>
                         <h3 class="h4 mb-3 text-center">{% trans "Visualización de Datos y Dashboards BI" %}</h3>
-                        <p class="text-muted text-center mb-0">
+                        <p class="text-muted text-center mb-0 small">
                           {% trans "Automatizamos el reportaje de información: conectamos tus sistemas y fuentes de datos para crear paneles interactivos que permiten monitorear KPIs y tomar decisiones en tiempo real." %}
                         </p>
                     </div>
                 </div>
             </div>
-            
-            <div class="col-md-4">
+
+            <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 border-0">
-                    <div class="card-body p-4">
-                        <div class="icon-box mb-4 mx-auto text-center" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
+                    <div class="card-body p-3 p-md-4">
+                        <div class="icon-box mb-3 mb-md-4 mx-auto text-center" style="width: 48px; height: 48px; font-size: 2.2rem; text-align: center">
                           <i class="fas fa-robot"></i>
                         </div>
                         <h3 class="h4 mb-3 text-center">{% trans "Agentes Conversacionales de IA" %}</h3>
-                        <p class="text-muted text-center mb-0">
+                        <p class="text-muted text-center mb-0 small">
                           {% trans "Colaboradores virtuales que conversan de forma natural y ejecutan acciones en tus sistemas. Optimiza la comunicación y convierte cada interacción en un proceso productivo." %}
                         </p>
                     </div>
                 </div>
             </div>
-            
-            <div class="col-md-4">
+
+            <div class="col-12 col-lg-4">
                 <div class="card h-100 border-0">
-                    <div class="card-body p-4">
-                        <div class="icon-box mb-4 mx-auto text-center" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
+                    <div class="card-body p-3 p-md-4">
+                        <div class="icon-box mb-3 mb-md-4 mx-auto text-center" style="width: 48px; height: 48px; font-size: 2.2rem; text-align: center">
                           <i class="fas fa-gears"></i>
                         </div>
                         <h3 class="h4 mb-3 text-center">{% trans "Automatización de Flujos y Desarrollos a Medida" %}</h3>
-                        <p class="text-muted text-center mb-0">
+                        <p class="text-muted text-center mb-0 small">
                           {% trans "Cada proceso repetitivo en la operación administrativa y comercial es una oportunidad de mejora. Orquesta procesos de punta a punta e implementa  a la medida de tu negocio." %}
                         </p>
                     </div>
@@ -280,34 +834,35 @@
 </section>
 
 
+
 <!-- About/Info Section -->
-<section id="about" class="py-5 position-relative info-ribbon">
+<section id="about" class="section-spacing position-relative info-ribbon">
   <div class="container">
-    <div class="row align-items-center g-4">
-      <div class="col-lg-6">
-        <h2 class="display-6 fw-bold mb-3">
+    <div class="row align-items-center g-4 g-lg-5">
+      <div class="col-lg-6 order-2 order-lg-1">
+        <h2 class="display-5 fw-bold mb-3 mb-md-4">
           {% trans "Somos puente hacia el crecimiento impulsado por" %} <span class="text-gradient">Data/IA/<span class="fw-semibold">Software</span></span>
         </h2>
-        <p class="lead mb-4">{% trans "No vendemos software; resolvemos problemas empresariales con soluciones de IA y datos que tienen sentido empresarial." %}</p>
+        <p class="lead mb-4 mb-md-0">{% trans "No vendemos software; resolvemos problemas empresariales con soluciones de IA y datos que tienen sentido empresarial." %}</p>
       </div>
-      <div class="col-lg-6">
-        <div class="d-flex flex-column gap-3">
+      <div class="col-lg-6 order-1 order-lg-2">
+        <div class="d-flex flex-column gap-3 gap-md-4">
           <div class="d-flex gap-3 p-3 p-md-4 rounded-3 bg-white shadow-sm feature-chip align-items-center">
-            <div class="icon-box flex-shrink-0" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
+            <div class="icon-box flex-shrink-0" style="width: 48px; height: 48px; font-size: 2.2rem; text-align: center">
               <i class="fas fa-handshake-angle"></i>
             </div>
             <div>
-              <h5 class="mb-1">{% trans "Acompañamiento constante" %}</h5>
-              <p class="mb-0 text-muted">{% trans "Somos tus socios, no solo proveedores. Te guiamos antes, durante y después de cada implementación." %}</p>
+              <h5 class="mb-1 mb-md-2">{% trans "Acompañamiento constante" %}</h5>
+              <p class="mb-0 text-muted small">{% trans "Somos tus socios, no solo proveedores. Te guiamos antes, durante y después de cada implementación." %}</p>
             </div>
           </div>
           <div class="d-flex gap-3 p-3 p-md-4 rounded-3 bg-white shadow-sm feature-chip align-items-center">
-            <div class="icon-box flex-shrink-0" style="width: 44px; height: 44px; font-size: 2.1rem; text-align: center">
+            <div class="icon-box flex-shrink-0" style="width: 48px; height: 48px; font-size: 2.2rem; text-align: center">
               <i class="fas fa-arrow-trend-up"></i>
             </div>
             <div>
-              <h5 class="mb-1">{% trans "Impacto tangible y ROI" %}</h5>
-              <p class="mb-0 text-muted">{% trans "Nos enfocamos en resultados medibles que impulsan tu eficiencia y rentabilidad." %}</p>
+              <h5 class="mb-1 mb-md-2">{% trans "Impacto tangible y ROI" %}</h5>
+              <p class="mb-0 text-muted small">{% trans "Nos enfocamos en resultados medibles que impulsan tu eficiencia y rentabilidad." %}</p>
             </div>
           </div>
         </div>
@@ -317,49 +872,49 @@
 </section>
 
 <!-- Startup Challenges Section -->
-<section id="startup-challenges" class="py-5 bg-light">
+<section id="startup-challenges" class="section-spacing bg-light">
     <div class="container">
       <div class="row align-items-stretch">
         <div class="col-lg-10 mx-auto">
-          <div class="p-4 p-md-5 rounded-4 border bg-white text-center">
-            <h2 class="display-6 fw-bold mb-3 text-center">
+          <div class="p-3 p-md-4 p-lg-5 rounded-4 border bg-white text-center">
+            <h2 class="display-5 fw-bold mb-3 mb-md-4 text-center">
               {% trans "Desafíos comunes para empresas en crecimiento ¿Te identificas?" %}
             </h2>
-  
-            <div class="row g-3 mt-4">
-              <div class="col-md-6">
-                <div class="challenge-item d-flex align-items-center gap-3">
+
+            <div class="row g-3 g-md-4 mt-3 mt-md-4">
+              <div class="col-12 col-md-6">
+                <div class="challenge-item d-flex align-items-start gap-3">
                   <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.2rem;">
                     <i class="fas fa-rotate"></i>
                   </div>
-                  <p class="mb-0">{% trans "Procesos manuales o repetitivos que consumen el tiempo valioso de tu equipo." %}</p>
+                  <p class="mb-0 small">{% trans "Procesos manuales o repetitivos que consumen el tiempo valioso de tu equipo." %}</p>
                 </div>
               </div>
 
-              <div class="col-md-6">
-                <div class="challenge-item d-flex align-items-center gap-3">
+              <div class="col-12 col-md-6">
+                <div class="challenge-item d-flex align-items-start gap-3">
                   <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.2rem;">
                     <i class="fas fa-diagram-project"></i>
                   </div>
-                  <p class="mb-0">{% trans "La información no fluye bien entre áreas, personas o herramientas, creando reprocesos que toman tiempo." %}</p>
+                  <p class="mb-0 small">{% trans "La información no fluye bien entre áreas, personas o herramientas, creando reprocesos que toman tiempo." %}</p>
                 </div>
               </div>
 
-              <div class="col-md-6">
-                <div class="challenge-item d-flex align-items-center gap-3">
+              <div class="col-12 col-md-6">
+                <div class="challenge-item d-flex align-items-start gap-3">
                   <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.2rem;">
                     <i class="fas fa-brain"></i>
                   </div>
-                  <p class="mb-0">{% trans "Sabes que la IA es el camino, pero no sabes por dónde empezar a aplicarla a tu empresa." %}</p>
+                  <p class="mb-0 small">{% trans "Sabes que la IA es el camino, pero no sabes por dónde empezar a aplicarla a tu empresa." %}</p>
                 </div>
               </div>
 
-              <div class="col-md-6">
-                <div class="challenge-item d-flex align-items-center gap-3">
+              <div class="col-12 col-md-6">
+                <div class="challenge-item d-flex align-items-start gap-3">
                   <div class="icon-box d-flex align-items-center justify-content-center mb-0 flex-shrink-0" style="width: 40px; height: 40px; font-size: 1.2rem;">
                     <i class="fas fa-chart-bar"></i>
                   </div>
-                  <p class="mb-0">{% trans "Buscas tomar decisiones en base a datos, pero no tienes un equipo interno de datos para apoyarte." %}</p>
+                  <p class="mb-0 small">{% trans "Buscas tomar decisiones en base a datos, pero no tienes un equipo interno de datos para apoyarte." %}</p>
                 </div>
               </div>
             </div>
@@ -370,64 +925,19 @@
   </section>
 
 <!-- CTA Section -->
-<section class="py-5">
+<section class="section-spacing">
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-lg-8">
-                <h2 class="display-6 fw-bold mb-4">{% trans "Las decisiones que dejas al futuro son el presente de tus competidores" %}</h2>
-                <p class="lead text-muted mb-4">{% trans "Únete a cientos de empresas que ya están aprovechando el poder de la inteligencia artificial." %}</p>
-                <div class="d-flex justify-content-center gap-3">
-                    <a href="{% if user.is_authenticated %}{% url 'dashboard:home' %}{% else %}{% url 'account_signup' %}{% endif %}" class="btn btn-lg px-4">
+                <h2 class="display-5 fw-bold mb-3 mb-md-4">{% trans "Las decisiones que dejas al futuro son el presente de tus competidores" %}</h2>
+                <p class="lead text-muted mb-4 mb-md-5">{% trans "Únete a cientos de empresas que ya están aprovechando el poder de la inteligencia artificial." %}</p>
+                <div class="d-flex flex-row flex-wrap justify-content-center gap-3 align-items-center">
+                    <a href="https://wa.me/573242693804?text=Hola%20IACOL%2C%20quiero%20agendar%20una%20evaluaci%C3%B3n%20estrat%C3%A9gica" class="btn btn-primary-custom btn-lg px-3 px-md-4 w-auto">
                         {% trans "Comenzar Ahora" %}
                     </a>
-                    <a href="#contact" class="btn btn-lg px-4">
-                        {% trans "Contactar Ventas" %}
+                    <a href="{% url 'solutions' %}" class="btn btn-outline-custom btn-lg px-3 px-md-4 w-auto">
+                        {% trans "Soluciones" %}
                     </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Contact Section -->
-<section id="contact" class="py-5">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <span class="badge-ghost mb-3">{% trans "Contáctanos" %}</span>
-                <h2 class="display-5 fw-bold mb-4">{% trans "¿Tienes alguna pregunta?" %}</h2>
-                <p class="lead text-muted mb-5">{% trans "Nuestro equipo está listo para ayudarte a encontrar la mejor solución para tu negocio." %}</p>
-                
-                <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="p-4 rounded-3 h-100">
-                            <div class="icon-box mx-auto mb-0" style="width: 50px; height: 50px; font-size: 1.5rem;">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <h5 class="h6 mb-0">{% trans "Correo Electrónico" %}</h5>
-                            <p class="text-muted mb-0">gaarboledag@gmail.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="p-4 rounded-3 h-100">
-                            <div class="icon-box mx-auto mb-0" style="width: 50px; height: 50px; font-size: 1.5rem;">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <h5 class="h6 mb-0">{% trans "Teléfono" %}</h5>
-                            <p class="text-muted mb-0">+57 (304) 269-3804</p>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                        <div class="p-4 rounded-3 h-100">
-                            <div class="icon-box mx-auto mb-0" style="width: 50px; height: 50px; font-size: 1.5rem;">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <h5 class="h6 mb-0">{% trans "Ubicación" %}</h5>
-                            <p class="text-muted mb-0">Colombia</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
