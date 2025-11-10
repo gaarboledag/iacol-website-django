@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-06 20:20-0500\n"
+"POT-Creation-Date: 2025-11-10 09:01-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -197,7 +197,9 @@ msgstr "Customer Service"
 msgid ""
 "Chatbot inteligente para agendar citas, responder consultas y gestionar "
 "clientes por WhatsApp."
-msgstr "Intelligent chatbot to schedule appointments, answer queries and manage customers via WhatsApp."
+msgstr ""
+"Intelligent chatbot to schedule appointments, answer queries and manage "
+"customers via WhatsApp."
 
 #: templates/automotive.html:690
 msgid "Conoce MechAI"
@@ -211,7 +213,9 @@ msgstr "Spare Parts Quotation"
 msgid ""
 "Automatiza la cotización con proveedores, compara precios y gestiona compras "
 "al instante."
-msgstr "Automate quotation with suppliers, compare prices and manage purchases instantly."
+msgstr ""
+"Automate quotation with suppliers, compare prices and manage purchases "
+"instantly."
 
 #: templates/automotive.html:696
 msgid "Conoce FindPartAI"
@@ -225,7 +229,9 @@ msgstr "The Digital Revolution in the Automotive Sector"
 msgid ""
 "Mientras tus competidores pierden tiempo en procesos manuales, tú lideras "
 "con tecnología de vanguardia"
-msgstr "While your competitors waste time on manual processes, you lead with cutting-edge technology"
+msgstr ""
+"While your competitors waste time on manual processes, you lead with cutting-"
+"edge technology"
 
 #: templates/automotive.html:713
 msgid "ANTES: El Caos Manual"
@@ -283,7 +289,9 @@ msgstr "AI can optimize your administration, without additional hiring costs"
 msgid ""
 "La transformación digital no es opcional. Es la diferencia entre liderar o "
 "desaparecer."
-msgstr "Digital transformation is not optional. It's the difference between leading or disappearing."
+msgstr ""
+"Digital transformation is not optional. It's the difference between leading "
+"or disappearing."
 
 #: templates/automotive.html:737
 msgid "Comienza la Revolución Ahora"
@@ -297,7 +305,17 @@ msgstr "Schedule a Free Productivity Diagnosis"
 msgid ""
 "Descubre cómo podemos transformar tu centro automotriz con soluciones de IA "
 "y automatización."
-msgstr "Discover how we can transform your automotive center with AI and automation solutions."
+msgstr ""
+"Discover how we can transform your automotive center with AI and automation "
+"solutions."
+
+#: templates/automotive.html:747 templates/custom_service.html:1980
+#: templates/custom_service.html:2070 templates/custom_service.html:2194
+#: templates/findpartai_landing.html:1054
+#: templates/findpartai_landing.html:1137 templates/mechai_landing.html:1055
+#: templates/mechai_landing.html:1139
+msgid "AGENDA UNA DEMO GRATUITA"
+msgstr ""
 
 #: templates/base.html:514
 msgid "Home"
@@ -347,7 +365,8 @@ msgstr "Product"
 msgid "Inicio"
 msgstr "Home"
 
-#: templates/base.html:579 templates/solutions.html:4
+#: templates/base.html:579 templates/home.html:724 templates/home.html:939
+#: templates/solutions.html:4
 msgid "Soluciones"
 msgstr "Solutions"
 
@@ -460,6 +479,269 @@ msgstr ""
 "We deliver a clear and actionable vision to optimize results with data and "
 "technology."
 
+#: templates/custom_service.html:8
+msgid ""
+"Agentes de IA para Atención al Cliente - Automatiza WhatsApp, Facebook e "
+"Instagram"
+msgstr ""
+
+#: templates/custom_service.html:9
+msgid ""
+"Multiplica tus ventas y libera a tu equipo con agentes conversacionales de "
+"IA 24/7. Agenda citas, vende productos y hace seguimiento automático por "
+"WhatsApp."
+msgstr ""
+
+#: templates/custom_service.html:1973
+msgid "Atiende 24/7 y Libera a tu Equipo con Agentes de IA"
+msgstr ""
+
+#: templates/custom_service.html:1976
+msgid ""
+"Resuelve consultas, vende productos y agenda citas automáticamente por "
+"WhatsApp, Facebook e Instagram. Llevamos tu área de atención al cliente al "
+"siguiente nivel de eficiencia."
+msgstr ""
+
+#: templates/custom_service.html:1983 templates/custom_service.html:2072
+#: templates/custom_service.html:2195
+msgid "Solo quedan 5 demos disponibles esta semana"
+msgstr ""
+
+#: templates/custom_service.html:2050
+#, fuzzy
+#| msgid ""
+#| "Ve cómo MechAI automatiza la atención al cliente, respondiendo consultas "
+#| "por WhatsApp y gestionando citas en segundos."
+msgid ""
+"Ve cómo nuestros agentes conversacionales automatizan la atención al "
+"cliente, respondiendo consultas por WhatsApp y gestionando interacciones "
+"24/7."
+msgstr ""
+"See how MechAI automates customer service, answering queries via WhatsApp "
+"and managing appointments in seconds."
+
+#: templates/custom_service.html:2084 templates/mechai_landing.html:1016
+msgid "¿Cuánto tiempo pierdes en consultas repetitivas de clientes?"
+msgstr "How much time do you lose in repetitive customer queries?"
+
+#: templates/custom_service.html:2088
+msgid "Clientes Abandonan por Tiempos de Espera"
+msgstr ""
+
+#: templates/custom_service.html:2089
+#, fuzzy
+#| msgid ""
+#| "Los clientes esperan respuestas rápidas, pero no siempre hay alguien "
+#| "disponible."
+msgid ""
+"Los clientes esperan respuestas rápidas, pero no siempre hay alguien "
+"disponible para atender."
+msgstr "Customers expect fast responses, but someone is not always available."
+
+#: templates/custom_service.html:2093
+#, fuzzy
+#| msgid "Oportunidades"
+msgid "Fugas de Oportunidades 24/7"
+msgstr "Opportunities"
+
+#: templates/custom_service.html:2094
+#, fuzzy
+#| msgid "Se pierden citas porque los mensajes no se atienden de inmediato."
+msgid ""
+"Se pierden oportunidades de venta por no atender consultas de inmediato."
+msgstr ""
+"Appointments are lost because messages are not attended to immediately."
+
+#: templates/custom_service.html:2098
+#, fuzzy
+#| msgid "Equipos sobrecargados de tareas repetitivas"
+msgid "Talento Humano Atascado en Tareas Repetitivas"
+msgstr "Teams overloaded with repetitive tasks"
+
+#: templates/custom_service.html:2099
+#, fuzzy
+#| msgid "Equipos sobrecargados de tareas repetitivas"
+msgid ""
+"El equipo administrativo se ve sobrecargado con consultas básicas y "
+"repetitivas."
+msgstr "Teams overloaded with repetitive tasks"
+
+#: templates/custom_service.html:2110
+#, fuzzy
+#| msgid "¿Cómo Funciona"
+msgid "¿Cómo Funcionan nuestros"
+msgstr "How it Works"
+
+#: templates/custom_service.html:2110 templates/findpartai_landing.html:1066
+#: templates/mechai_landing.html:1068
+msgid "Explicado en"
+msgstr "Explained in"
+
+#: templates/custom_service.html:2110 templates/findpartai_landing.html:1066
+#: templates/mechai_landing.html:1068
+msgid "Pasos"
+msgstr "Steps"
+
+#: templates/custom_service.html:2116
+msgid "CLIENTE INICIA CONVERSACIÓN"
+msgstr ""
+
+#: templates/custom_service.html:2117
+#, fuzzy
+#| msgid ""
+#| "Los clientes escriben al WhatsApp del taller. Inician la conversación."
+msgid ""
+"El cliente escribe al WhatsApp de tu empresa con una consulta o solicitud."
+msgstr ""
+"Customers write to the workshop's WhatsApp. They start the conversation."
+
+#: templates/custom_service.html:2117 templates/mechai_landing.html:1074
+#: templates/mechai_landing.html:1079
+msgid "Atención automática 24/7."
+msgstr "Automatic attention 24/7."
+
+#: templates/custom_service.html:2121
+msgid "RESPONDE INMEDIATAMENTE"
+msgstr ""
+
+#: templates/custom_service.html:2122
+msgid ""
+"Nuestro agente IA responde de forma natural y resuelve consultas básicas al "
+"instante."
+msgstr ""
+
+#: templates/custom_service.html:2122
+msgid "Sin tiempos de espera."
+msgstr ""
+
+#: templates/custom_service.html:2126
+msgid "GESTIÓN INTELIGENTE"
+msgstr ""
+
+#: templates/custom_service.html:2127
+msgid ""
+"Agenda citas, registra pedidos, envía información de productos "
+"automáticamente."
+msgstr ""
+
+#: templates/custom_service.html:2127
+msgid "Procesos productivos."
+msgstr ""
+
+#: templates/custom_service.html:2133
+msgid "ENVÍA RECORDATORIOS"
+msgstr ""
+
+#: templates/custom_service.html:2134
+msgid ""
+"Mantiene el seguimiento con recordatorios automáticos de citas y pedidos."
+msgstr ""
+
+#: templates/custom_service.html:2134
+msgid "Mejora la experiencia."
+msgstr ""
+
+#: templates/custom_service.html:2138 templates/mechai_landing.html:1093
+msgid "ESCALAMIENTO HUMANO"
+msgstr "HUMAN ESCALATION"
+
+#: templates/custom_service.html:2139
+msgid ""
+"Si es necesario, transfiere la conversación a un agente humano especializado."
+msgstr ""
+
+#: templates/custom_service.html:2139 templates/mechai_landing.html:1094
+msgid "Conversación fluida."
+msgstr "Fluid conversation."
+
+#: templates/custom_service.html:2143
+#, fuzzy
+#| msgid ""
+#| "En cada paso, el administrativo mantiene el control sobre las "
+#| "conversación y el agente."
+msgid ""
+"En cada paso, mantienes el control total sobre las conversaciones y el "
+"rendimiento de tus agentes IA."
+msgstr ""
+"In each step, the administrative maintains control over the conversation and "
+"the agent."
+
+#: templates/custom_service.html:2152
+#, fuzzy
+#| msgid "Beneficios Directos de"
+msgid "Beneficios Directos de los"
+msgstr "Direct Benefits of"
+
+#: templates/custom_service.html:2156
+msgid "24/7"
+msgstr ""
+
+#: templates/custom_service.html:2157
+msgid "ATENCIÓN CONSTANTE"
+msgstr ""
+
+#: templates/custom_service.html:2158
+msgid "Tus clientes reciben atención inmediata en cualquier momento del día."
+msgstr ""
+
+#: templates/custom_service.html:2162
+msgid "Crecimiento de Capacidad de Atención"
+msgstr ""
+
+#: templates/custom_service.html:2163
+msgid "Aumenta la capacidad de atención sin contratar más personal."
+msgstr ""
+
+#: templates/custom_service.html:2167
+msgid "Respuestas en Milisegundos"
+msgstr ""
+
+#: templates/custom_service.html:2168
+msgid "De horas a segundos en respuestas a consultas comunes."
+msgstr ""
+
+#: templates/custom_service.html:2172
+#, python-format
+msgid "Crecimiento de Conversión (X%%)"
+msgstr ""
+
+#: templates/custom_service.html:2173
+#, fuzzy
+#| msgid ""
+#| "Los clientes escriben al WhatsApp del taller. Inician la conversación."
+msgid "Los agentes IA venden productos y servicios durante la conversación."
+msgstr ""
+"Customers write to the workshop's WhatsApp. They start the conversation."
+
+#: templates/custom_service.html:2177
+msgid "Data para Decisiones con Estrategia"
+msgstr ""
+
+#: templates/custom_service.html:2178
+msgid "Cada interacción queda registrada y organizada para análisis posterior."
+msgstr ""
+
+#: templates/custom_service.html:2182
+msgid "IA que Aprende y Mejora"
+msgstr ""
+
+#: templates/custom_service.html:2183
+msgid "Los agentes mejoran con cada conversación, volviéndose más efectivos."
+msgstr ""
+
+#: templates/custom_service.html:2192
+#, fuzzy
+#| msgid "¿Listo para transformar la atención de tu centro automotriz?"
+msgid "¿Listo para revolucionar la atención al cliente de tu empresa?"
+msgstr "Ready to transform your automotive center's service?"
+
+#: templates/custom_service.html:2193
+msgid ""
+"Obtén una demostración personalizada y descubre cómo nuestros agentes IA "
+"pueden transformar tu servicio al cliente"
+msgstr ""
+
 #: templates/findpartai_landing.html:8
 msgid "FindPartAI - Cotización con Proveedores para Centros Automotrices"
 msgstr "FindPartAI - Quotation with Suppliers for Automotive Centers"
@@ -530,14 +812,6 @@ msgstr ""
 #: templates/findpartai_landing.html:1066 templates/mechai_landing.html:1068
 msgid "¿Cómo Funciona"
 msgstr "How it Works"
-
-#: templates/findpartai_landing.html:1066 templates/mechai_landing.html:1068
-msgid "Explicado en"
-msgstr "Explained in"
-
-#: templates/findpartai_landing.html:1066 templates/mechai_landing.html:1068
-msgid "Pasos"
-msgstr "Steps"
 
 #: templates/findpartai_landing.html:1071
 msgid "SOLICITAS COTIZACIÓN"
@@ -690,16 +964,16 @@ msgstr "revolutionize the supply"
 msgid "tu centro automotriz?"
 msgstr "your automotive center?"
 
-#: templates/home.html:200
+#: templates/home.html:712
 msgid ""
 "El poder de la <strong>ciencia de datos</strong> sin contratación adicional."
 msgstr "The power of <strong>data science</strong> without additional hiring."
 
-#: templates/home.html:202
+#: templates/home.html:714
 msgid "Estrategia en Transformación Digital Empresarial"
 msgstr "Strategy in Business Digital Transformation"
 
-#: templates/home.html:205
+#: templates/home.html:717
 msgid ""
 "Analizamos procesos y construimos, junto a tu equipo, sistemas productivos "
 "basados en Ciencia de Datos e Inteligencia Artificial."
@@ -707,32 +981,28 @@ msgstr ""
 "We analyze processes and build, together with your team, productive systems "
 "based on Data Science and Artificial Intelligence."
 
-#: templates/home.html:209
+#: templates/home.html:721
 msgid "¿Cómo Iniciar?"
 msgstr "How to Start?"
 
-#: templates/home.html:212
-msgid "Casos de Éxito"
-msgstr "Success Cases"
-
-#: templates/home.html:216
+#: templates/home.html:728
 msgid "Ir al Dashboard"
 msgstr "Go to Dashboard"
 
-#: templates/home.html:219
-msgid "Explorar Agentes"
-msgstr "Explore Agents"
+#: templates/home.html:731
+msgid "Ver Novedades"
+msgstr ""
 
-#: templates/home.html:232
+#: templates/home.html:744
 msgid "Tecnología Aplicada con Propósito"
 msgstr "Technology Applied with Purpose"
 
-#: templates/home.html:233
+#: templates/home.html:745
 msgid "No se trata de usar más software, sino de usarlo con sentido operativo."
 msgstr ""
 "It's not about using more software, but using it with operational sense."
 
-#: templates/home.html:233
+#: templates/home.html:745
 msgid ""
 "Analizamos tus procesos para encontrar dónde la ciencia de datos y la IA "
 "realmente aportan valor al negocio."
@@ -740,11 +1010,27 @@ msgstr ""
 "We analyze your processes to find where data science and AI really add value "
 "to the business."
 
-#: templates/home.html:243 templates/solutions.html:49
+#: templates/home.html:765
+#, fuzzy
+#| msgid "Atención al Cliente"
+msgid "Sistema de Atención al Cliente con IA"
+msgstr "Customer Service"
+
+#: templates/home.html:766
+msgid ""
+"Agentes conversacionales que resulven dudas, agendan citas, venden productos "
+"y hacen recordatorios como si fueran parte de tu equipo."
+msgstr ""
+
+#: templates/home.html:772 templates/home.html:781
+msgid "MÁS INFORMACIÓN"
+msgstr ""
+
+#: templates/home.html:797 templates/solutions.html:49
 msgid "Visualización de Datos y Dashboards BI"
 msgstr "Data Visualization and BI Dashboards"
 
-#: templates/home.html:245
+#: templates/home.html:799
 msgid ""
 "Automatizamos el reportaje de información: conectamos tus sistemas y fuentes "
 "de datos para crear paneles interactivos que permiten monitorear KPIs y "
@@ -754,11 +1040,11 @@ msgstr ""
 "to create interactive panels that allow monitoring KPIs and making decisions "
 "in real time."
 
-#: templates/home.html:257 templates/solutions.html:66
+#: templates/home.html:811 templates/solutions.html:66
 msgid "Agentes Conversacionales de IA"
 msgstr "AI Conversational Agents"
 
-#: templates/home.html:259
+#: templates/home.html:813
 msgid ""
 "Colaboradores virtuales que conversan de forma natural y ejecutan acciones "
 "en tus sistemas. Optimiza la comunicación y convierte cada interacción en un "
@@ -768,11 +1054,11 @@ msgstr ""
 "systems. Optimize communication and turn each interaction into a productive "
 "process."
 
-#: templates/home.html:271 templates/solutions.html:83
+#: templates/home.html:825 templates/solutions.html:83
 msgid "Automatización de Flujos y Desarrollos a Medida"
 msgstr "Flow Automation and Custom Developments"
 
-#: templates/home.html:273
+#: templates/home.html:827
 msgid ""
 "Cada proceso repetitivo en la operación administrativa y comercial es una "
 "oportunidad de mejora. Orquesta procesos de punta a punta e implementa  a la "
@@ -782,11 +1068,11 @@ msgstr ""
 "improvement opportunity. Orchestrate end-to-end processes and implement "
 "tailored to your business."
 
-#: templates/home.html:289
+#: templates/home.html:844
 msgid "Somos puente hacia el crecimiento impulsado por"
 msgstr "We are a bridge to growth driven by"
 
-#: templates/home.html:291
+#: templates/home.html:846
 msgid ""
 "No vendemos software; resolvemos problemas empresariales con soluciones de "
 "IA y datos que tienen sentido empresarial."
@@ -794,11 +1080,11 @@ msgstr ""
 "We don't sell software; we solve business problems with AI and data "
 "solutions that make business sense."
 
-#: templates/home.html:300
+#: templates/home.html:855
 msgid "Acompañamiento constante"
 msgstr "Constant accompaniment"
 
-#: templates/home.html:301
+#: templates/home.html:856
 msgid ""
 "Somos tus socios, no solo proveedores. Te guiamos antes, durante y después "
 "de cada implementación."
@@ -806,27 +1092,27 @@ msgstr ""
 "We are your partners, not just providers. We guide you before, during and "
 "after each implementation."
 
-#: templates/home.html:309
+#: templates/home.html:864
 msgid "Impacto tangible y ROI"
 msgstr "Tangible impact and ROI"
 
-#: templates/home.html:310
+#: templates/home.html:865
 msgid ""
 "Nos enfocamos en resultados medibles que impulsan tu eficiencia y "
 "rentabilidad."
 msgstr ""
 "We focus on measurable results that drive your efficiency and profitability."
 
-#: templates/home.html:326
+#: templates/home.html:881
 msgid "Desafíos comunes para empresas en crecimiento ¿Te identificas?"
 msgstr "Common challenges for growing companies. Do you identify?"
 
-#: templates/home.html:335
+#: templates/home.html:890
 msgid ""
 "Procesos manuales o repetitivos que consumen el tiempo valioso de tu equipo."
 msgstr "Manual or repetitive processes that consume your team's valuable time."
 
-#: templates/home.html:344
+#: templates/home.html:899
 msgid ""
 "La información no fluye bien entre áreas, personas o herramientas, creando "
 "reprocesos que toman tiempo."
@@ -834,7 +1120,7 @@ msgstr ""
 "Information doesn't flow well between areas, people or tools, creating "
 "reprocesses that take time."
 
-#: templates/home.html:353
+#: templates/home.html:908
 msgid ""
 "Sabes que la IA es el camino, pero no sabes por dónde empezar a aplicarla a "
 "tu empresa."
@@ -842,7 +1128,7 @@ msgstr ""
 "You know AI is the way, but you don't know where to start applying it to "
 "your company."
 
-#: templates/home.html:362
+#: templates/home.html:917
 msgid ""
 "Buscas tomar decisiones en base a datos, pero no tienes un equipo interno de "
 "datos para apoyarte."
@@ -850,11 +1136,11 @@ msgstr ""
 "You seek to make data-based decisions, but you don't have an internal data "
 "team to support you."
 
-#: templates/home.html:377
+#: templates/home.html:932
 msgid "Las decisiones que dejas al futuro son el presente de tus competidores"
 msgstr "The decisions you leave to the future are your competitors' present"
 
-#: templates/home.html:378
+#: templates/home.html:933
 msgid ""
 "Únete a cientos de empresas que ya están aprovechando el poder de la "
 "inteligencia artificial."
@@ -862,40 +1148,154 @@ msgstr ""
 "Join hundreds of companies that are already taking advantage of the power of "
 "artificial intelligence."
 
-#: templates/home.html:381
+#: templates/home.html:936
 msgid "Comenzar Ahora"
 msgstr "Start Now"
 
-#: templates/home.html:384
-msgid "Contactar Ventas"
-msgstr "Contact Sales"
-
-#: templates/home.html:397
-msgid "Contáctanos"
-msgstr "Contact Us"
-
-#: templates/home.html:398
-msgid "¿Tienes alguna pregunta?"
-msgstr "Do you have any questions?"
-
-#: templates/home.html:399
-msgid ""
-"Nuestro equipo está listo para ayudarte a encontrar la mejor solución para "
-"tu negocio."
+#: templates/lucid_team.html:8
+msgid "Lucid Team | IACOL - Expertos en Automatización con Lucid Bot"
 msgstr ""
-"Our team is ready to help you find the best solution for your business."
 
-#: templates/home.html:407
-msgid "Correo Electrónico"
-msgstr "Email"
+#: templates/lucid_team.html:1202
+msgid "Soporte Personalizado para"
+msgstr ""
 
-#: templates/home.html:417
-msgid "Teléfono"
-msgstr "Phone"
+#: templates/lucid_team.html:1202
+msgid "LucidBot"
+msgstr ""
 
-#: templates/home.html:427
-msgid "Ubicación"
-msgstr "Location"
+#: templates/lucid_team.html:1203
+msgid ""
+"Ayudamos a empresas que usan la plataforma <strong>LucidBot</strong> a "
+"resolver limitaciones, optimizar flujos y conseguir resultados "
+"<strong>mediante asesoría y desarrollo a la medida</h2>"
+msgstr ""
+
+#: templates/lucid_team.html:1213
+msgid "¿Cómo trabajamos?"
+msgstr ""
+
+#: templates/lucid_team.html:1214
+msgid ""
+"Brindamos consultoría y soporte técnico para optimizar tus implementaciones "
+"de Lucid Bot.<br><strong>Asesoría personalizada para tu equipo</strong> y "
+"<strong>desarrollo de soluciones</strong> de principio a fin."
+msgstr ""
+
+#: templates/lucid_team.html:1225
+msgid "Desarrollo de Soluciones desde Cero"
+msgstr ""
+
+#: templates/lucid_team.html:1226
+msgid ""
+"Creamos y configuramos tu automatización a medida. Mas allá de temas "
+"técnicos, sabemos cómo debe hablar un agente para cerrar ventas. Nuestro "
+"enfoque se encuetra en los resultados."
+msgstr ""
+
+#: templates/lucid_team.html:1236
+msgid "Asesoría Personalizada en Soluciones Existentes"
+msgstr ""
+
+#: templates/lucid_team.html:1237
+msgid ""
+"Te ayudamos a optimizar tus implementaciones y realizar integraciones. "
+"Organizamos tus proyectos, te recomendamos lás ultimas tendencias, buenas "
+"práctias, identificamos oportunidades de mejora."
+msgstr ""
+
+#: templates/lucid_team.html:1248
+msgid "¿Te Podemos Ayudar?"
+msgstr ""
+
+#: templates/lucid_team.html:1249
+msgid ""
+"Escríbenos al WhatsApp para analizar tu caso y potenciar tu negocio con "
+"soluciones Lucid Bot"
+msgstr ""
+
+#: templates/lucid_team.html:1250
+msgid ""
+"Sin compromiso, sin costo. Solo queremos entender tus necesidades y "
+"mostrarte el potencial que tenemos para transformar tus operaciones."
+msgstr ""
+
+#: templates/lucid_team.html:1252 templates/resources.html:290
+#: templates/solutions.html:109
+#, fuzzy
+#| msgid "Contact"
+msgid "Contactar"
+msgstr "Contact"
+
+#: templates/lucid_team.html:1266
+msgid "Nuestra Experiencia"
+msgstr ""
+
+#: templates/lucid_team.html:1267
+msgid "Conoce al nuestro equipo y su trayectoria profesional"
+msgstr ""
+
+#: templates/lucid_team.html:1283
+msgid "Especialista de Automatizaciones E-Commerce"
+msgstr ""
+
+#: templates/lucid_team.html:1289 templates/lucid_team.html:1319
+msgid "Experiencia"
+msgstr ""
+
+#: templates/lucid_team.html:1290
+msgid ""
+"Analista de datos en empresas de E-commerce, enfocado en aplicar IA y "
+"automatización a procesos de venta y atención al cliente."
+msgstr ""
+
+#: templates/lucid_team.html:1294 templates/lucid_team.html:1324
+msgid "Especialidades"
+msgstr ""
+
+#: templates/lucid_team.html:1295
+msgid ""
+"Implementación de agentes conversacionales con LucidBot, análisis de datos "
+"comerciales."
+msgstr ""
+
+#: templates/lucid_team.html:1299 templates/lucid_team.html:1329
+msgid "Proyectos"
+msgstr ""
+
+#: templates/lucid_team.html:1300
+msgid "Agentes inteligentes operativos con +5000 conversaciones activas."
+msgstr ""
+
+#: templates/lucid_team.html:1313
+msgid "IA Software Developer / Fundador de IACol."
+msgstr ""
+
+#: templates/lucid_team.html:1320
+msgid "+2 años desarrollando soluciones de software y análisis de datos."
+msgstr ""
+
+#: templates/lucid_team.html:1325
+msgid "Desarrollo Fullstack, automatización de procesos empresariales e IA."
+msgstr ""
+
+#: templates/lucid_team.html:1330
+msgid "Implementación de agentes en atención al cliente y aplicaciones web."
+msgstr ""
+
+#: templates/lucid_team.html:1343
+msgid "¿Necesitas asistencia con Lucid Bot?"
+msgstr ""
+
+#: templates/lucid_team.html:1344
+msgid "Contacta con nuestro equipo para analizar tu caso específico."
+msgstr ""
+
+#: templates/lucid_team.html:1346
+#, fuzzy
+#| msgid "Comenzar Ahora"
+msgid "Contactar Ahora"
+msgstr "Start Now"
 
 #: templates/mechai_landing.html:8
 msgid "MechAI - IA de Atención al cliente para Centros Automotrices"
@@ -912,10 +1312,6 @@ msgid ""
 msgstr ""
 "Schedules service appointments, answers queries, offers products via "
 "WhatsApp. Consolidates a database with each interested customer."
-
-#: templates/mechai_landing.html:1016
-msgid "¿Cuánto tiempo pierdes en consultas repetitivas de clientes?"
-msgstr "How much time do you lose in repetitive customer queries?"
 
 #: templates/mechai_landing.html:1020
 msgid "RESPUESTAS TARDÍAS"
@@ -961,10 +1357,6 @@ msgid "Los clientes escriben al WhatsApp del taller. Inician la conversación."
 msgstr ""
 "Customers write to the workshop's WhatsApp. They start the conversation."
 
-#: templates/mechai_landing.html:1074 templates/mechai_landing.html:1079
-msgid "Atención automática 24/7."
-msgstr "Automatic attention 24/7."
-
 #: templates/mechai_landing.html:1078
 msgid "RESPONDE"
 msgstr "RESPONDS"
@@ -997,17 +1389,9 @@ msgstr "The system sends automatic reminders."
 msgid "Mantiene el control total."
 msgstr "Maintains total control."
 
-#: templates/mechai_landing.html:1093
-msgid "ESCALAMIENTO HUMANO"
-msgstr "HUMAN ESCALATION"
-
 #: templates/mechai_landing.html:1094
 msgid "Si el cliente necesita, se transfiere a un asesor humano."
 msgstr "If the customer needs it, they are transferred to a human advisor."
-
-#: templates/mechai_landing.html:1094
-msgid "Conversación fluida."
-msgstr "Fluid conversation."
 
 #: templates/mechai_landing.html:1107
 msgid "Beneficios Directos de"
@@ -1124,12 +1508,6 @@ msgid ""
 "Déjanos un mensaje y te compartimos materiales relevantes para tu industria."
 msgstr "Leave us a message and we share relevant materials for your industry."
 
-#: templates/resources.html:290 templates/solutions.html:109
-#, fuzzy
-#| msgid "Contact"
-msgid "Contactar"
-msgstr "Contact"
-
 #: templates/solutions.html:34
 msgid "Portafolio de Servicios"
 msgstr "Service Portfolio"
@@ -1229,3 +1607,33 @@ msgstr "Ready to boost your results with AI and data?"
 msgid ""
 "Conversemos sobre tus objetivos y definamos el camino más rápido a valor."
 msgstr "Let's talk about your objectives and define the fastest path to value."
+
+#~ msgid "Casos de Éxito"
+#~ msgstr "Success Cases"
+
+#~ msgid "Explorar Agentes"
+#~ msgstr "Explore Agents"
+
+#~ msgid "Contactar Ventas"
+#~ msgstr "Contact Sales"
+
+#~ msgid "Contáctanos"
+#~ msgstr "Contact Us"
+
+#~ msgid "¿Tienes alguna pregunta?"
+#~ msgstr "Do you have any questions?"
+
+#~ msgid ""
+#~ "Nuestro equipo está listo para ayudarte a encontrar la mejor solución "
+#~ "para tu negocio."
+#~ msgstr ""
+#~ "Our team is ready to help you find the best solution for your business."
+
+#~ msgid "Correo Electrónico"
+#~ msgstr "Email"
+
+#~ msgid "Teléfono"
+#~ msgstr "Phone"
+
+#~ msgid "Ubicación"
+#~ msgstr "Location"

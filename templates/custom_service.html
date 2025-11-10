@@ -751,14 +751,49 @@
 
         .workflow-steps {
             margin-top: 100px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 2rem;
             position: relative;
             z-index: 1;
             max-width: 1400px;
             margin-left: auto;
             margin-right: auto;
+        }
+
+        .workflow-row {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .workflow-row.top {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .workflow-row.bottom {
+            grid-template-columns: repeat(2, 1fr);
+            max-width: 66.666%;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 1024px) {
+            .workflow-row.top {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .workflow-row.bottom {
+                max-width: 100%;
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .workflow-row.top {
+                grid-template-columns: 1fr;
+            }
+            .workflow-row.bottom {
+                max-width: 100%;
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 1024px) {
@@ -1691,7 +1726,7 @@
             .demo-features {
                 justify-content: center;
                 margin-bottom: 1.5rem;
-                padding-top: 5rem;
+                padding-top: 1rem;
             }
 
             .demo-text {
@@ -1900,11 +1935,11 @@
         </a>
     </div>
 
-    <!-- Language Switcher - Hidden on landing page for better conversion focus -->
-    <div class="language-switcher" style="display: none;">
+    <!-- Language Switcher -->
+    <div class="language-switcher">
         <form action="{% url 'set_language' %}" method="post" style="display: inline;">
             {% csrf_token %}
-            <input name="next" type="hidden" value="{% if request.get_full_path|slice:':4' == '/en/' %}{{ request.get_full_path }}{% else %}/en{{ request.get_full_path }}{% endif %}" />
+            <input name="next" type="hidden" value="{{ request.get_full_path }}" />
             <input name="language" type="hidden" value="en" />
             <button type="submit" class="{% if request.LANGUAGE_CODE == 'en' %}active{% endif %}" title="English" style="background: none; border: none; padding: 0;">
                 <img src="https://flagcdn.com/w40/us.png" alt="English">
@@ -1912,7 +1947,7 @@
         </form>
         <form action="{% url 'set_language' %}" method="post" style="display: inline;">
             {% csrf_token %}
-            <input name="next" type="hidden" value="/custom-service/" />
+            <input name="next" type="hidden" value="{{ request.get_full_path }}" />
             <input name="language" type="hidden" value="es" />
             <button type="submit" class="{% if request.LANGUAGE_CODE == 'es' %}active{% endif %}" title="Español" style="background: none; border: none; padding: 0;">
                 <img src="https://flagcdn.com/w40/co.png" alt="Español">
@@ -1945,7 +1980,7 @@
                                 {% trans "AGENDA UNA DEMO GRATUITA" %}
                             </a>
                         </div>
-                        <p class="text-muted mt-3 d-none d-md-block" style="font-style: italic; font-size: 0.9rem; opacity: 0.8;">{% trans "Solo 15 demos disponibles esta semana." %}</p>
+                        <p class="text-muted mt-3 d-none d-md-block" style="font-style: italic; font-size: 0.9rem; opacity: 0.8; color: white !important;">{% trans "Solo quedan 5 demos disponibles esta semana" %}</p>
                     </div>
                 </div>
                 <!-- Right Visual -->
@@ -2034,7 +2069,7 @@
                             rel="noopener noreferrer">
                             {% trans "AGENDA UNA DEMO GRATUITA" %}
                             </a>
-                            <p style="font-size: 0.9rem; margin-top: 1rem; color: #666; font-style: italic;">{% trans "Solo 15 demos disponibles esta semana." %}</p>
+                            <p style="font-size: 0.9rem; margin-top: 1rem; color: #333; font-style: italic;">{% trans "Solo quedan 5 demos disponibles esta semana" %}</p>
                         </div>
                     </div>
                 </div>
@@ -2075,30 +2110,34 @@
                 <h2>{% trans "¿Cómo Funcionan nuestros" %} <strong>Agentes de Atención al Cliente</strong>? {% trans "Explicado en" %} <strong>5 {% trans "Pasos" %}</strong>.</h2>
             </div>
             <div class="workflow-steps">
-                <div class="step step-user">
-                    <div class="step-number">1</div>
-                    <div class="step-title"><strong>{% trans "CLIENTE INICIA CONVERSACIÓN" %}</strong></div>
-                    <div class="step-text">{% trans "El cliente escribe al WhatsApp de tu empresa con una consulta o solicitud." %}<br><small><strong>{% trans "Atención automática 24/7." %}</strong></small></div>
+                <div class="workflow-row top">
+                    <div class="step step-user">
+                        <div class="step-number">1</div>
+                        <div class="step-title"><strong>{% trans "CLIENTE INICIA CONVERSACIÓN" %}</strong></div>
+                        <div class="step-text">{% trans "El cliente escribe al WhatsApp de tu empresa con una consulta o solicitud." %}<br><small><strong>{% trans "Atención automática 24/7." %}</strong></small></div>
+                    </div>
+                    <div class="step step-ai">
+                        <div class="step-number">2</div>
+                        <div class="step-title"><strong>IA {% trans "RESPONDE INMEDIATAMENTE" %}</strong></div>
+                        <div class="step-text">{% trans "Nuestro agente IA responde de forma natural y resuelve consultas básicas al instante." %}<br><small><strong>{% trans "Sin tiempos de espera." %}</strong></small></div>
+                    </div>
+                    <div class="step step-user">
+                        <div class="step-number">3</div>
+                        <div class="step-title"><strong>{% trans "GESTIÓN INTELIGENTE" %}</strong></div>
+                        <div class="step-text">{% trans "Agenda citas, registra pedidos, envía información de productos automáticamente." %}<br><small><strong>{% trans "Procesos productivos." %}</strong></small></div>
+                    </div>
                 </div>
-                <div class="step step-ai">
-                    <div class="step-number">2</div>
-                    <div class="step-title"><strong>IA {% trans "RESPONDE INMEDIATAMENTE" %}</strong></div>
-                    <div class="step-text">{% trans "Nuestro agente IA responde de forma natural y resuelve consultas básicas al instante." %}<br><small><strong>{% trans "Sin tiempos de espera." %}</strong></small></div>
-                </div>
-                <div class="step step-user">
-                    <div class="step-number">3</div>
-                    <div class="step-title"><strong>{% trans "GESTIÓN INTELIGENTE" %}</strong></div>
-                    <div class="step-text">{% trans "Agenda citas, registra pedidos, envía información de productos automáticamente." %}<br><small><strong>{% trans "Procesos productivos." %}</strong></small></div>
-                </div>
-                <div class="step step-ai">
-                    <div class="step-number">4</div>
-                    <div class="step-title"><strong>IA {% trans "ENVÍA RECORDATORIOS" %}</strong></div>
-                    <div class="step-text">{% trans "Mantiene el seguimiento con recordatorios automáticos de citas y pedidos." %}<br><small><strong>{% trans "Mejora la experiencia." %}</strong></small></div>
-                </div>
-                <div class="step step-ai">
-                    <div class="step-number">5</div>
-                    <div class="step-title"><strong>{% trans "ESCALAMIENTO HUMANO" %}</strong></div>
-                    <div class="step-text">{% trans "Si es necesario, transfiere la conversación a un agente humano especializado." %}<br><small><strong>{% trans "Conversación fluida." %}</strong></small></div>
+                <div class="workflow-row bottom">
+                    <div class="step step-ai">
+                        <div class="step-number">4</div>
+                        <div class="step-title"><strong>IA {% trans "ENVÍA RECORDATORIOS" %}</strong></div>
+                        <div class="step-text">{% trans "Mantiene el seguimiento con recordatorios automáticos de citas y pedidos." %}<br><small><strong>{% trans "Mejora la experiencia." %}</strong></small></div>
+                    </div>
+                    <div class="step step-ai">
+                        <div class="step-number">5</div>
+                        <div class="step-title"><strong>{% trans "ESCALAMIENTO HUMANO" %}</strong></div>
+                        <div class="step-text">{% trans "Si es necesario, transfiere la conversación a un agente humano especializado." %}<br><small><strong>{% trans "Conversación fluida." %}</strong></small></div>
+                    </div>
                 </div>
             </div>
             <p style="text-align: center; margin-top: 2rem; font-style: italic;">{% trans "En cada paso, mantienes el control total sobre las conversaciones y el rendimiento de tus agentes IA." %}</p>
@@ -2153,7 +2192,7 @@
             <h2>{% trans "¿Listo para revolucionar la atención al cliente de tu empresa?" %}</h2>
             <p>{% trans "Obtén una demostración personalizada y descubre cómo nuestros agentes IA pueden transformar tu servicio al cliente" %}</p>
             <a href="https://wa.me/573242693804?text=Quiero%20saber%20m%C3%A1s%20sobre%20los%20agentes%20de%20atenci%C3%B3n%20al%20cliente%20con%20IA" class="btn-primary">{% trans "AGENDA UNA DEMO GRATUITA" %}</a>
-            <p style="font-size: 0.9rem; margin-top: 1rem; color: rgba(255,255,255,0.8); font-style: italic;">{% trans "Solo 15 demos disponibles esta semana." %}</p>
+            <p style="font-size: 0.9rem; margin-top: 1rem; color: #333; font-style: italic;">{% trans "Solo quedan 5 demos disponibles esta semana" %}</p>
             <div style="margin-top: 3rem;">
                 <img src="{% static 'img/iacol_logo.png' %}" alt="IACOL Logo" style="max-width: 100px;">
             </div>
