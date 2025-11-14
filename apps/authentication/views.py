@@ -66,7 +66,9 @@ def custom_service(request):
 
 def lucid_team(request):
     """Página del equipo de expertos en Lucid Bot"""
+    return render(request, 'lucid_team.html')
+
+
 def dental_ai_landing(request):
     """Página de landing para Dental AI"""
     return render(request, 'dental_ai_landing.html')
-    return render(request, 'lucid_team.html')
