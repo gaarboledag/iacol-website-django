@@ -31,9 +31,13 @@ def dashboard_home(request):
                 status='active',
                 agent__is_active=True
             ).select_related('agent').prefetch_related('agent__agentusagelog')
-            
+
             user_subscriptions = list(dashboard_data)
             logger.info(f"[DASHBOARD] Suscripciones encontradas: {len(user_subscriptions)}")
+
+            # Debug: Log all subscriptions for this user
+            all_subs = UserSubscription.objects.filter(user=request.user).values('agent__name', 'status', 'agent__is_active')
+            logger.info(f"[DASHBOARD] Todas las suscripciones del usuario: {list(all_subs)}")
             
             # Obtener configuraciones de una sola vez
             if user_subscriptions:
