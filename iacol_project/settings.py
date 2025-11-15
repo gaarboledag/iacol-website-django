@@ -19,26 +19,26 @@ if ENV_FILE.exists():
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env.bool('DEBUG', default=False)
 
-# Email configuration
-EMAIL_BACKEND = env("EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend")
+# Email configuration - CRITICAL FIX: Handle missing email config gracefully
+EMAIL_HOST = env("EMAIL_HOST", default=None)
 
-# Email configuration from environment variables
-EMAIL_HOST = env("EMAIL_HOST")
-EMAIL_HOST_USER = env("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = env.int("EMAIL_PORT", default=587)
-EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
-EMAIL_USE_SSL = env.bool("EMAIL_USE_SSL", default=False)
-
-# Email config — disable email if EMAIL_HOST is not set
-if not env("EMAIL_HOST", default=None):
+if not EMAIL_HOST:
+    # Use console backend if email host is not configured (development/safe fallback)
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-    EMAIL_HOST = ""
-    EMAIL_PORT = 25
+    EMAIL_HOST = "localhost"
     EMAIL_HOST_USER = ""
     EMAIL_HOST_PASSWORD = ""
+    EMAIL_PORT = 25
     EMAIL_USE_TLS = False
     EMAIL_USE_SSL = False
+else:
+    # Use SMTP backend if email host is configured
+    EMAIL_BACKEND = env("EMAIL_BACKEND", default="django.core.mail.backends.smtp.EmailBackend")
+    EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+    EMAIL_PORT = env.int("EMAIL_PORT", default=587)
+    EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
+    EMAIL_USE_SSL = env.bool("EMAIL_USE_SSL", default=False)
 
 
 # Email subject prefix  
@@ -75,13 +75,16 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    'django_extensions',
     'apps.authentication',
     'apps.dashboard.apps.DashboardConfig',
     'apps.agents',
     'apps.payments',
     'apps.api',
 ]
+
+# Add django_extensions only for development
+if DEBUG:
+    LOCAL_APPS.insert(0, 'django_extensions')
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
