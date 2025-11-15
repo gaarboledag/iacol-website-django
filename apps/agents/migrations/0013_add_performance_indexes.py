@@ -68,12 +68,14 @@ class Migration(migrations.Migration):
         ),
         
         # Índices para búsquedas de texto completo en español
-        migrations.AddIndex(
-            model_name='agent',
-            index=GinIndex(
-                django.contrib.postgres.fields.ArrayField(models.CharField(max_length=200)),
-                name='idx_agent_text_search',
-                opclasses=['gin_trgm_ops']
-            ),
-        ),
+        # TEMPORARILY COMMENTED: Index with ArrayField expression causes ValueError
+        # See Django issue: Index.opclasses cannot be used with expressions
+        # migrations.AddIndex(
+        #     model_name='agent',
+        #     index=GinIndex(
+        #         django.contrib.postgres.fields.ArrayField(models.CharField(max_length=200)),
+        #         name='idx_agent_text_search',
+        #         opclasses=['gin_trgm_ops']
+        #     ),
+        # ),
     ]
