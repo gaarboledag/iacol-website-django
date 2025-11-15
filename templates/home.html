@@ -19,16 +19,14 @@
     align-items: center;
     padding: 3rem 0;
   }
-  .hero-section::before {
-    content: '';
+  .hero-lcp-image {
     position: absolute;
     top: 0;
     right: 0;
     width: 50%;
     height: 100%;
-    background: url("{% static 'img/main.webp' %}") no-repeat right;
-    background-size: contain;
-    background-position: right;
+    object-fit: contain;
+    object-position: right;
     z-index: 0;
     filter: grayscale(100%);
     opacity: 0.8;
@@ -710,6 +708,9 @@
 {% block content %}
 <!-- Hero Section -->
 <section class="hero-section">
+    <!-- LCP Image - High priority for performance -->
+    <img src="{% static 'img/main.webp' %}" alt="IACOL - Ciencia de Datos e IA Empresarial" class="hero-lcp-image" fetchpriority="high" loading="eager">
+
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 hero-content">
