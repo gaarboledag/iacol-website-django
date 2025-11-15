@@ -75,6 +75,11 @@ def dental_ai_landing(request):
     return render(request, 'dental_ai_landing.html')
 
 
+def ibague_ai_landing(request):
+    """Página de landing para Agencia de IA en Ibagué"""
+    return render(request, 'ibague_ai_landing.html')
+
+
 def robots_txt(request):
     """Archivo robots.txt para SEO"""
     content = """User-agent: *
