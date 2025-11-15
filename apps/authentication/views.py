@@ -113,3 +113,57 @@ Allow: /
 Sitemap: https://iacol.online/sitemap.xml
 """
     return HttpResponse(content, content_type='text/plain')
+
+
+def sitemap(request):
+    """Genera el sitemap XML"""
+    from django.http import HttpResponse
+    from django.urls import reverse
+    from apps.agents.models import Agent
+
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+
+    # Static pages
+    static_pages = [
+        'home',
+        'about',
+        'contact',
+        'solutions',
+        'resources',
+        'lucid_team',
+        'findpartai_landing',
+        'mechai_landing',
+        'automotive',
+        'custom_service',
+        'masterclass_auto_ai',
+        'dental_ai_landing',
+        'ibague_ai_landing',
+        'bogota_ai_landing',
+        'cali_ai_landing',
+        'medellin_ai_landing',
+        'barranquilla_ai_landing',
+        'cartagena_ai_landing',
+    ]
+
+    for page in static_pages:
+        try:
+            url = request.build_absolute_uri(reverse(page))
+            xml += f'<url><loc>{url}</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>\n'
+        except:
+            pass
+
+    # Agents
+    agents = Agent.objects.filter(is_active=True, show_in_solutions=True).order_by('id')
+    for agent in agents:
+        url = request.build_absolute_uri(reverse('agents:agent_detail', args=[agent.id]))
+        xml += f'<url><loc>{url}</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>\n'
+
+    # Payments
+    try:
+        url = request.build_absolute_uri(reverse('payments:plans'))
+        xml += f'<url><loc>{url}</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>\n'
+    except:
+        pass
+
+    xml += '</urlset>'
+    return HttpResponse(xml, content_type='application/xml')

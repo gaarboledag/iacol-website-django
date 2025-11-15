@@ -21,4 +21,5 @@ urlpatterns = [
     path('agencia-ia-barranquilla/', views.barranquilla_ai_landing, name='barranquilla_ai_landing'),
     path('agencia-ia-cartagena/', views.cartagena_ai_landing, name='cartagena_ai_landing'),
     path('robots.txt', views.robots_txt, name='robots_txt'),
+    path('sitemap.xml', views.sitemap, name='sitemap'),
 ]

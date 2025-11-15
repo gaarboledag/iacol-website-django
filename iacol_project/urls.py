@@ -7,6 +7,8 @@ from django.views.generic import RedirectView
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.urls import resolve
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import StaticSitemap, AgentSitemap, PaymentSitemap
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
