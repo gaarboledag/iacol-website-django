@@ -27,8 +27,9 @@ def dashboard_home(request):
         try:
             # Query optimizada que combina todas las estadísticas en una sola consulta
             dashboard_data = UserSubscription.objects.filter(
-                user=request.user, 
-                status='active'
+                user=request.user,
+                status='active',
+                agent__is_active=True
             ).select_related('agent').prefetch_related('agent__agentusagelog')
             
             user_subscriptions = list(dashboard_data)
