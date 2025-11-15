@@ -18,7 +18,8 @@
     <meta name="theme-color" content="#000000">
     <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
     <title>{% block title %}Cortex Platform | IACOL Empresarial{% endblock %}</title>
-    
+    {% block meta_description %}{% endblock %}
+
     <!-- Preload critical resources -->
     <link rel="preconnect" href="https://fonts.cdnfonts.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
@@ -656,7 +657,7 @@
 
     <!-- Social Media Icons - Sticky -->
     <div class="social-media-sticky">
-        <a href="https://api.whatsapp.com/send/?phone=573042693804&text=Quiero+saber+m%C3%A1s+sobre+los+servicios+de+IACOL&type=phone_number&app_absent=0" class="social-icon whatsapp" target="_blank" rel="noopener noreferrer">
+        <a href="https://api.whatsapp.com/send/?phone=573042693804&text=Quiero+saber+m%C3%A1s+sobre+los+servicios+de+IACOL&type=phone_number&app_absent=0" class="social-icon whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
             <i class="fab fa-whatsapp"></i>
         </a>
     </div>

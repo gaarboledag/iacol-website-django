@@ -14,4 +14,5 @@ urlpatterns = [
     path('custom-service/', views.custom_service, name='custom_service'),
     path('masterclass-ia-centro-automotriz/', views.masterclass_auto_ai, name='masterclass_auto_ai'),
     path('dental-ai/', views.dental_ai_landing, name='dental_ai_landing'),
+    path('robots.txt', views.robots_txt, name='robots_txt'),
 ]

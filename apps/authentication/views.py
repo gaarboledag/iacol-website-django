@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 from apps.agents.models import Agent, UserSubscription
 
 
@@ -72,3 +73,13 @@ def lucid_team(request):
 def dental_ai_landing(request):
     """Página de landing para Dental AI"""
     return render(request, 'dental_ai_landing.html')
+
+
+def robots_txt(request):
+    """Archivo robots.txt para SEO"""
+    content = """User-agent: *
+Allow: /
+
+Sitemap: https://iacol.online/sitemap.xml
+"""
+    return HttpResponse(content, content_type='text/plain')
