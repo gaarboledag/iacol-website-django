@@ -170,18 +170,10 @@ def agent_configure(request, agent_id):
         defaults={'configuration_data': {}}
     )
 
-    # Get providers if enabled with paginación
-    providers_page = None
+    # Get providers if enabled (sin paginación)
+    providers = None
     if hasattr(configuration, 'enable_providers') and configuration.enable_providers:
-        providers_qs = configuration.providers.select_related('category').prefetch_related('brands').all().order_by('name')
-        paginator = Paginator(providers_qs, 10)  # 10 proveedores por página
-        page = request.GET.get('providers_page')
-        try:
-            providers_page = paginator.page(page)
-        except PageNotAnInteger:
-            providers_page = paginator.page(1)
-        except EmptyPage:
-            providers_page = paginator.page(paginator.num_pages)
+        providers = configuration.providers.select_related('category').prefetch_related('brands').all().order_by('name')
 
     # Get products if enabled con paginación
     products_page = None
@@ -204,7 +196,7 @@ def agent_configure(request, agent_id):
     return render(request, 'agents/agent_configure.html', {
         'agent': agent,
         'configuration': configuration,
-        'providers': providers_page,
+        'providers': providers,
         'products': products_page,
         'automotive_info': automotive_info,
         'enable_providers': getattr(configuration, 'enable_providers', False),
