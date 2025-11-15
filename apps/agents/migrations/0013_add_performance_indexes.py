@@ -13,40 +13,47 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        # Create pg_trgm extension for trigram searches
+        migrations.RunSQL(
+            "CREATE EXTENSION IF NOT EXISTS pg_trgm;",
+            reverse_sql="DROP EXTENSION IF EXISTS pg_trgm;"
+        ),
+
         # MEDIUM-004: Añadir índices para búsquedas frecuentes
         migrations.AddIndex(
             model_name='agent',
             index=models.Index(fields=['name'], name='idx_agent_name_search'),
         ),
-        
+
         migrations.AddIndex(
             model_name='agentcategory',
             index=models.Index(fields=['name'], name='idx_agentcategory_name'),
         ),
-        
+
         migrations.AddIndex(
             model_name='product',
             index=models.Index(fields=['title'], name='idx_product_title_search'),
         ),
-        
+
         migrations.AddIndex(
             model_name='product',
             index=GinIndex(
                 fields=['description'],
-                name='idx_product_description_search'
+                name='idx_product_description_search',
+                opclasses=['gin_trgm_ops']
             ),
         ),
-        
+
         migrations.AddIndex(
             model_name='provider',
             index=models.Index(fields=['name'], name='idx_provider_name_search'),
         ),
-        
+
         migrations.AddIndex(
             model_name='provider',
             index=models.Index(fields=['city'], name='idx_provider_city'),
         ),
-        
+
         # Índices para campos JSONField con GIN
         migrations.AddIndex(
             model_name='agent',
@@ -56,7 +63,7 @@ class Migration(migrations.Migration):
                 opclasses=['jsonb_path_ops']
             ),
         ),
-        
+
         migrations.AddIndex(
             model_name='agentconfiguration',
             index=GinIndex(
@@ -65,7 +72,7 @@ class Migration(migrations.Migration):
                 opclasses=['jsonb_path_ops']
             ),
         ),
-        
+
         # Índices para búsquedas de texto completo en español
         # TEMPORARILY COMMENTED: Index with ArrayField expression causes ValueError
         # See Django issue: Index.opclasses cannot be used with expressions
