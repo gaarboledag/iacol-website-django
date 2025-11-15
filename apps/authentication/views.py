@@ -80,6 +80,31 @@ def ibague_ai_landing(request):
     return render(request, 'ibague_ai_landing.html')
 
 
+def bogota_ai_landing(request):
+    """Página de landing para Agencia de IA en Bogotá"""
+    return render(request, 'bogota_ai_landing.html')
+
+
+def cali_ai_landing(request):
+    """Página de landing para Agencia de IA en Cali"""
+    return render(request, 'cali_ai_landing.html')
+
+
+def medellin_ai_landing(request):
+    """Página de landing para Agencia de IA en Medellín"""
+    return render(request, 'medellin_ai_landing.html')
+
+
+def barranquilla_ai_landing(request):
+    """Página de landing para Agencia de IA en Barranquilla"""
+    return render(request, 'barranquilla_ai_landing.html')
+
+
+def cartagena_ai_landing(request):
+    """Página de landing para Agencia de IA en Cartagena"""
+    return render(request, 'cartagena_ai_landing.html')
+
+
 def robots_txt(request):
     """Archivo robots.txt para SEO"""
     content = """User-agent: *

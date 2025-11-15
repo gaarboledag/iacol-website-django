@@ -15,7 +15,10 @@ urlpatterns = [
     path('masterclass-ia-centro-automotriz/', views.masterclass_auto_ai, name='masterclass_auto_ai'),
     path('dental-ai/', views.dental_ai_landing, name='dental_ai_landing'),
     path('agencia-ia-ibague/', views.ibague_ai_landing, name='ibague_ai_landing'),
-    path('robots.txt', views.robots_txt, name='robots_txt'),
-    path('dental-ai/', views.dental_ai_landing, name='dental_ai_landing'),
+    path('agencia-ia-bogota/', views.bogota_ai_landing, name='bogota_ai_landing'),
+    path('agencia-ia-cali/', views.cali_ai_landing, name='cali_ai_landing'),
+    path('agencia-ia-medellin/', views.medellin_ai_landing, name='medellin_ai_landing'),
+    path('agencia-ia-barranquilla/', views.barranquilla_ai_landing, name='barranquilla_ai_landing'),
+    path('agencia-ia-cartagena/', views.cartagena_ai_landing, name='cartagena_ai_landing'),
     path('robots.txt', views.robots_txt, name='robots_txt'),
 ]
