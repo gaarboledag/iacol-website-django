@@ -8,11 +8,16 @@ django-celery-beat==2.5.0
 Pillow==10.4.0  # Updated to latest version
 requests==2.31.0
 python-decouple==3.8
-django-extensions==3.2.3
 gunicorn==21.2.0
+uvicorn[standard]==0.24.0
 whitenoise==6.6.0
 django-crispy-forms==2.1
 crispy-bootstrap5==0.7
 django-allauth==0.57.0
 stripe==7.8.0
 django-environ==0.11.2
+django-redis==5.4.0
+python-json-logger==2.0.7
+django-ratelimit==4.1.0
+django-csp==3.7
+django-defender==0.9.7

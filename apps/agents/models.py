@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.core.validators import RegexValidator, MinValueValidator, EmailValidator
 import os
 import uuid
 
@@ -19,11 +20,15 @@ class Agent(models.Model):
         ('usage', 'Por Uso'),
         ('enterprise', 'Empresarial'),
     ]
-    
+
     name = models.CharField(max_length=200)
     description = models.TextField()
     category = models.ForeignKey(AgentCategory, on_delete=models.CASCADE)
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        validators=[MinValueValidator(0.01)]
+    )
     pricing_type = models.CharField(max_length=20, choices=PRICING_TYPES, default='monthly')
     n8n_workflow_id = models.CharField(max_length=100, unique=True)
     is_active = models.BooleanField(default=True)
@@ -35,6 +40,14 @@ class Agent(models.Model):
     image = models.ImageField(upload_to='agents/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        indexes = [
+            models.Index(fields=['is_active', 'show_in_agents']),
+            models.Index(fields=['is_active', 'show_in_solutions']),
+            models.Index(fields=['category', 'is_active']),
+            models.Index(fields=['created_at']),
+        ]
 
     def get_image_url(self):
         """Devuelve la URL correcta para acceder a la imagen"""
@@ -52,7 +65,7 @@ class UserSubscription(models.Model):
         ('expired', 'Expirada'),
         ('cancelled', 'Cancelada'),
     ]
-    
+
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     agent = models.ForeignKey(Agent, on_delete=models.CASCADE)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active')
@@ -63,6 +76,11 @@ class UserSubscription(models.Model):
 
     class Meta:
         unique_together = ['user', 'agent']
+        indexes = [
+            models.Index(fields=['user', 'status']),
+            models.Index(fields=['agent', 'status']),
+            models.Index(fields=['status', 'end_date']),
+        ]
 
     def __str__(self):
         return f"{self.user.username} - {self.agent.name}"
@@ -99,6 +117,9 @@ class AgentConfiguration(models.Model):
         unique_together = ['user', 'agent']
         verbose_name = 'Configuración de agente'
         verbose_name_plural = 'Configuraciones de agentes'
+        indexes = [
+            models.Index(fields=['user', 'agent']),
+        ]
 
     def __str__(self):
         return f"Config: {self.user.username} - {self.agent.name}"
@@ -120,6 +141,9 @@ class ProviderCategory(models.Model):
         verbose_name_plural = 'Categorías de proveedores'
         unique_together = ['name', 'agent_config']
         ordering = ['name']
+        indexes = [
+            models.Index(fields=['agent_config']),
+        ]
 
     def __str__(self):
         return self.name
@@ -141,15 +165,28 @@ class Brand(models.Model):
         verbose_name_plural = 'Marcas'
         unique_together = ['name', 'agent_config']
         ordering = ['name']
+        indexes = [
+            models.Index(fields=['agent_config']),
+        ]
 
     def __str__(self):
         return self.name
 
 class Provider(models.Model):
     """Modelo para almacenar información de proveedores de un agente"""
+    phone_validator = RegexValidator(
+        regex=r'^\+?1?\d{9,15}$',
+        message="El número de teléfono debe tener el formato: '+999999999'. Hasta 15 dígitos permitidos."
+    )
+
     name = models.CharField(max_length=200, verbose_name='Nombre del proveedor')
-    phone = models.CharField(max_length=20, verbose_name='Número de teléfono')
+    phone = models.CharField(
+        max_length=20,
+        validators=[phone_validator],
+        verbose_name='Número de teléfono'
+    )
     city = models.CharField(max_length=100, verbose_name='Ciudad')
+    image = models.ImageField(upload_to='providers/', null=True, blank=True, verbose_name='Imagen del proveedor')
     category = models.ForeignKey(
         ProviderCategory,
         on_delete=models.SET_NULL,
@@ -165,13 +202,23 @@ class Provider(models.Model):
         verbose_name='Marcas que maneja'
     )
     agent_config = models.ForeignKey(
-        AgentConfiguration, 
+        AgentConfiguration,
         on_delete=models.CASCADE,
         related_name='providers',
         verbose_name='Configuración del agente'
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Proveedor'
+        verbose_name_plural = 'Proveedores'
+        ordering = ['name']
+        indexes = [
+            models.Index(fields=['agent_config', 'name']),
+            models.Index(fields=['agent_config', 'city']),
+            models.Index(fields=['category']),
+        ]
 
     def get_image_url(self):
         """Devuelve la URL correcta para acceder a la imagen"""
@@ -204,6 +251,9 @@ class ProductCategory(models.Model):
         verbose_name_plural = 'Categorías de productos'
         unique_together = ['name', 'agent_config']
         ordering = ['name']
+        indexes = [
+            models.Index(fields=['agent_config']),
+        ]
 
     def __str__(self):
         return self.name
@@ -225,6 +275,9 @@ class ProductBrand(models.Model):
         verbose_name_plural = 'Marcas de productos'
         unique_together = ['name', 'agent_config']
         ordering = ['name']
+        indexes = [
+            models.Index(fields=['agent_config']),
+        ]
 
     def __str__(self):
         return self.name
@@ -238,7 +291,12 @@ class Product(models.Model):
 
     title = models.CharField(max_length=200, verbose_name='Título del producto')
     description = models.TextField(verbose_name='Descripción')
-    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Precio')
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        validators=[MinValueValidator(0.01)],
+        verbose_name='Precio'
+    )
     image = models.ImageField(upload_to='products/', null=True, blank=True, verbose_name='Imagen del producto')
     image_upload_method = models.CharField(
         max_length=10,
@@ -321,6 +379,17 @@ class AgentUsageLog(models.Model):
     success = models.BooleanField(default=True)
     error_message = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        # Consider partitioning by created_at for large datasets
+        # db_table = 'agents_agentusagelog'  # For partitioning in PostgreSQL
+        indexes = [
+            models.Index(fields=['user', 'agent', 'created_at']),
+            models.Index(fields=['agent', 'created_at']),
+            models.Index(fields=['success', 'created_at']),
+            models.Index(fields=['created_at']),
+            models.Index(fields=['execution_time']),
+        ]
 
     def __str__(self):
         status = "✓" if self.success else "✗"

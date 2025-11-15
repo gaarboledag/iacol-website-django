@@ -10,40 +10,73 @@ from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .models import Agent, UserSubscription, AgentConfiguration, AgentUsageLog, Provider, ProviderCategory, Brand, Product, ProductCategory, ProductBrand, AutomotiveCenterInfo
 from .forms import AgentConfigurationForm, ProviderForm, ProviderCategoryForm, BrandForm, ProductForm, ProductCategoryForm, ProductBrandForm, AutomotiveCenterInfoForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django_ratelimit.decorators import ratelimit
+from django.core.cache import cache
+from django.utils import timezone
+from django.db.models import Count, Sum, Q
 
 @login_required
+@ratelimit(key='user', rate='20/m', method='GET')
 def agent_list(request):
-    """Lista todos los agentes disponibles"""
-    if request.user.is_staff or request.user.is_superuser:
-        # Admines ven todos los agentes activos
-        agents = Agent.objects.filter(is_active=True)
-    else:
-        agents = Agent.objects.filter(is_active=True, show_in_agents=True)
+    """Lista todos los agentes disponibles con paginación"""
+    # MEDIUM-001: Corrección de cache key para incluir parámetros relevantes
+    page = request.GET.get('page', '1')
+    search_query = request.GET.get('search', '')
+    # Include user permissions and search query in cache key
+    cache_key = f'agent_list_{request.user.is_staff or request.user.is_superuser}_page_{page}_search_{search_query}'
+    agents = cache.get(cache_key)
+
+    if agents is None:
+        query = Agent.objects.filter(is_active=True).select_related('category')
+        
+        if request.user.is_staff or request.user.is_superuser:
+            # Admines ven todos los agentes activos
+            pass  # query already set above
+        else:
+            query = query.filter(show_in_agents=True)
+            
+        # Apply search if provided
+        if search_query:
+            query = query.filter(name__icontains=search_query)
+            
+        agents = list(query)
+        cache.set(cache_key, agents, 300)  # Cache for 5 minutes
+
+    # Paginación
+    paginator = Paginator(agents, 12)  # 12 agentes por página
+    try:
+        agents_page = paginator.page(page)
+    except PageNotAnInteger:
+        agents_page = paginator.page(1)
+    except EmptyPage:
+        agents_page = paginator.page(paginator.num_pages)
+
     user_subscriptions = UserSubscription.objects.filter(
-        user=request.user, 
+        user=request.user,
         status='active'
     ).values_list('agent_id', flat=True)
-    
+
     return render(request, 'agents/agent_list.html', {
-        'agents': agents,
+        'agents': agents_page,
         'user_subscriptions': list(user_subscriptions)
     })
 
 @login_required
 def agent_detail(request, agent_id):
     """Detalle de un agente específico"""
-    agent = get_object_or_404(Agent, id=agent_id)
+    agent = get_object_or_404(Agent.objects.select_related('category'), id=agent_id)
     # Control de visibilidad: admin/staff siempre pueden ver
     if not (request.user.is_staff or request.user.is_superuser):
         is_public = agent.show_in_agents or agent.show_in_solutions
         if not is_public and request.user not in agent.allowed_users.all():
             raise Http404("Agente no disponible")
     has_subscription = UserSubscription.objects.filter(
-        user=request.user, 
-        agent=agent, 
+        user=request.user,
+        agent=agent,
         status='active'
     ).exists()
     
@@ -55,36 +88,66 @@ def agent_detail(request, agent_id):
 @login_required
 def agent_dashboard(request, agent_id):
     """Dashboard de estadísticas para un agente"""
-    agent = get_object_or_404(Agent, id=agent_id)
+    agent = get_object_or_404(Agent.objects.select_related('category'), id=agent_id)
     subscription = get_object_or_404(
-        UserSubscription, 
-        user=request.user, 
-        agent=agent, 
+        UserSubscription,
+        user=request.user,
+        agent=agent,
         status='active'
     )
     
-    # Estadísticas básicas
-    usage_logs = AgentUsageLog.objects.filter(user=request.user, agent=agent)
-    total_executions = usage_logs.count()
-    successful_executions = usage_logs.filter(success=True).count()
-    failed_executions = usage_logs.filter(success=False).count()
+    # CRITICAL-001: Optimización crítica - Usar annotate para agregaciones en una sola query
+    cache_key = f'agent_dashboard_stats_{request.user.id}_{agent_id}'
+    stats = cache.get(cache_key)
     
-    # Últimas ejecuciones
-    recent_executions = usage_logs.order_by('-created_at')[:10]
+    if stats is None:
+        # Query optimizada con annotate para evitar N+1
+        usage_logs = AgentUsageLog.objects.filter(
+            user=request.user, 
+            agent=agent,
+            created_at__date=timezone.now().date()
+        ).aggregate(
+            total_executions=Count('id'),
+            successful_executions=Count('id', filter=Q(success=True)),
+            failed_executions=Count('id', filter=Q(success=False))
+        )
+        
+        # Calcular success rate
+        total = usage_logs['total_executions'] or 0
+        successful = usage_logs['successful_executions'] or 0
+        failed = usage_logs['failed_executions'] or 0
+        
+        stats = {
+            'total_executions': total,
+            'successful_executions': successful,
+            'failed_executions': failed,
+            'success_rate': (successful / total * 100) if total > 0 else 0
+        }
+        
+        # Cache por 5 minutos
+        cache.set(cache_key, stats, 300)
+    
+    # Últimas ejecuciones con select_related para mejor performance
+    recent_executions = AgentUsageLog.objects.filter(
+        user=request.user, agent=agent
+    ).select_related('agent').order_by('-created_at')[:10]
     
     # Configuración actual
     try:
-        configuration = AgentConfiguration.objects.get(user=request.user, agent=agent)
+        configuration = AgentConfiguration.objects.select_related('agent').get(
+            user=request.user, 
+            agent=agent
+        )
     except AgentConfiguration.DoesNotExist:
         configuration = None
     
     return render(request, 'agents/agent_dashboard.html', {
         'agent': agent,
         'subscription': subscription,
-        'total_executions': total_executions,
-        'successful_executions': successful_executions,
-        'failed_executions': failed_executions,
-        'success_rate': (successful_executions / total_executions * 100) if total_executions > 0 else 0,
+        'total_executions': stats['total_executions'],
+        'successful_executions': stats['successful_executions'],
+        'failed_executions': stats['failed_executions'],
+        'success_rate': stats['success_rate'],
         'recent_executions': recent_executions,
         'configuration': configuration,
     })
@@ -92,7 +155,7 @@ def agent_dashboard(request, agent_id):
 @login_required
 def agent_configure(request, agent_id):
     """Configuración de un agente"""
-    agent = get_object_or_404(Agent, id=agent_id)
+    agent = get_object_or_404(Agent.objects.select_related('category'), id=agent_id)
     subscription = get_object_or_404(
         UserSubscription,
         user=request.user,
@@ -107,15 +170,31 @@ def agent_configure(request, agent_id):
         defaults={'configuration_data': {}}
     )
 
-    # Get providers if enabled
-    providers = []
+    # Get providers if enabled with paginación
+    providers_page = None
     if hasattr(configuration, 'enable_providers') and configuration.enable_providers:
-        providers = configuration.providers.all().order_by('name')
+        providers_qs = configuration.providers.select_related('category').prefetch_related('brands').all().order_by('name')
+        paginator = Paginator(providers_qs, 10)  # 10 proveedores por página
+        page = request.GET.get('providers_page')
+        try:
+            providers_page = paginator.page(page)
+        except PageNotAnInteger:
+            providers_page = paginator.page(1)
+        except EmptyPage:
+            providers_page = paginator.page(paginator.num_pages)
 
-    # Get products if enabled
-    products = []
+    # Get products if enabled con paginación
+    products_page = None
     if hasattr(configuration, 'enable_products') and configuration.enable_products:
-        products = configuration.products.all().order_by('-created_at')
+        products_qs = configuration.products.select_related('category', 'brand').all().order_by('-created_at')
+        paginator = Paginator(products_qs, 10)  # 10 productos por página
+        page = request.GET.get('products_page')
+        try:
+            products_page = paginator.page(page)
+        except PageNotAnInteger:
+            products_page = paginator.page(1)
+        except EmptyPage:
+            products_page = paginator.page(paginator.num_pages)
 
     # Get automotive center info if enabled
     automotive_info = None
@@ -125,8 +204,8 @@ def agent_configure(request, agent_id):
     return render(request, 'agents/agent_configure.html', {
         'agent': agent,
         'configuration': configuration,
-        'providers': providers,
-        'products': products,
+        'providers': providers_page,
+        'products': products_page,
         'automotive_info': automotive_info,
         'enable_providers': getattr(configuration, 'enable_providers', False),
         'enable_products': getattr(configuration, 'enable_products', False),
@@ -139,7 +218,7 @@ def toggle_module(request, agent_id, module_name):
     if request.method != 'POST':
         return JsonResponse({'status': 'error', 'message': 'Método no permitido'}, status=405)
 
-    agent = get_object_or_404(Agent, id=agent_id)
+    agent = get_object_or_404(Agent.objects.select_related('category'), id=agent_id)
     configuration, _ = AgentConfiguration.objects.get_or_create(
         user=request.user,
         agent=agent,
@@ -186,7 +265,7 @@ class ProviderCreateView(LoginRequiredMixin, CreateView):
     template_name = 'agents/provider_form.html'
 
     def dispatch(self, request, *args, **kwargs):
-        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent = get_object_or_404(Agent.objects.select_related('category'), id=kwargs['agent_id'])
         self.agent_config = AgentConfiguration.objects.get(
             user=self.request.user,
             agent=self.agent
@@ -199,9 +278,14 @@ class ProviderCreateView(LoginRequiredMixin, CreateView):
         return kwargs
 
     def form_valid(self, form):
-        form.instance.agent_config = self.agent_config
-        messages.success(self.request, _("Proveedor creado exitosamente."))
-        return super().form_valid(form)
+        try:
+            form.instance.agent_config = self.agent_config
+            messages.success(self.request, _("Proveedor creado exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al crear el proveedor. Por favor intente nuevamente."))
+            return self.form_invalid(form)
 
     def get_success_url(self):
         return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
@@ -229,8 +313,13 @@ class ProviderUpdateView(LoginRequiredMixin, UpdateView):
         return kwargs
     
     def form_valid(self, form):
-        messages.success(self.request, _("Proveedor actualizado exitosamente."))
-        return super().form_valid(form)
+        try:
+            messages.success(self.request, _("Proveedor actualizado exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al actualizar el proveedor. Por favor intente nuevamente."))
+            return self.form_invalid(form)
     
     def get_success_url(self):
         return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
@@ -251,8 +340,13 @@ class ProviderDeleteView(LoginRequiredMixin, DeleteView):
         return super().dispatch(request, *args, **kwargs)
     
     def delete(self, request, *args, **kwargs):
-        messages.success(request, _("Proveedor eliminado exitosamente."))
-        return super().delete(request, *args, **kwargs)
+        try:
+            messages.success(request, _("Proveedor eliminado exitosamente."))
+            return super().delete(request, *args, **kwargs)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(request, _("Error al eliminar el proveedor. Por favor intente nuevamente."))
+            return redirect(reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id}))
     
     def get_success_url(self):
         return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
@@ -267,7 +361,7 @@ class ProviderCategoryListView(LoginRequiredMixin, ListView):
     template_name = 'agents/provider_category_list.html'
     
     def dispatch(self, request, *args, **kwargs):
-        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent = get_object_or_404(Agent.objects.select_related('category'), id=kwargs['agent_id'])
         return super().dispatch(request, *args, **kwargs)
     
     def get_queryset(self):
@@ -283,7 +377,7 @@ class ProductCategoryListView(LoginRequiredMixin, ListView):
     template_name = 'agents/product_category_list.html'
 
     def dispatch(self, request, *args, **kwargs):
-        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent = get_object_or_404(Agent.objects.select_related('category'), id=kwargs['agent_id'])
         return super().dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
@@ -300,7 +394,7 @@ class ProductCategoryCreateView(LoginRequiredMixin, CreateView):
     template_name = 'agents/product_category_form.html'
 
     def dispatch(self, request, *args, **kwargs):
-        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent = get_object_or_404(Agent.objects.select_related('category'), id=kwargs['agent_id'])
         # Get or create the agent configuration
         self.agent_config, _ = AgentConfiguration.objects.get_or_create(
             user=self.request.user,
@@ -310,9 +404,14 @@ class ProductCategoryCreateView(LoginRequiredMixin, CreateView):
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.instance.agent_config = self.agent_config
-        messages.success(self.request, _("Categoría de producto agregada exitosamente."))
-        return super().form_valid(form)
+        try:
+            form.instance.agent_config = self.agent_config
+            messages.success(self.request, _("Categoría de producto agregada exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al crear la categoría. Por favor intente nuevamente."))
+            return self.form_invalid(form)
 
     def get_success_url(self):
         return reverse_lazy('agents:product_category_list', kwargs={'agent_id': self.agent.id})
@@ -339,8 +438,13 @@ class ProductCategoryUpdateView(LoginRequiredMixin, UpdateView):
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        messages.success(self.request, _("Categoría de producto actualizada exitosamente."))
-        return super().form_valid(form)
+        try:
+            messages.success(self.request, _("Categoría de producto actualizada exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al actualizar la categoría. Por favor intente nuevamente."))
+            return self.form_invalid(form)
 
     def get_success_url(self):
         return reverse_lazy('agents:product_category_list', kwargs={'agent_id': self.agent.id})
@@ -366,8 +470,13 @@ class ProductCategoryDeleteView(LoginRequiredMixin, DeleteView):
         return super().dispatch(request, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
-        messages.success(request, _("Categoría de producto eliminada exitosamente."))
-        return super().delete(request, *args, **kwargs)
+        try:
+            messages.success(self.request, _("Categoría de producto eliminada exitosamente."))
+            return super().delete(request, *args, **kwargs)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al eliminar la categoría. Por favor intente nuevamente."))
+            return redirect(reverse_lazy('agents:product_category_list', kwargs={'agent_id': self.agent.id}))
 
     def get_success_url(self):
         return reverse_lazy('agents:product_category_list', kwargs={'agent_id': self.agent.id})
@@ -383,7 +492,7 @@ class AutomotiveCenterInfoCreateView(LoginRequiredMixin, CreateView):
     template_name = 'agents/automotive_center_form.html'
 
     def dispatch(self, request, *args, **kwargs):
-        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent = get_object_or_404(Agent.objects.select_related('category'), id=kwargs['agent_id'])
         self.agent_config = AgentConfiguration.objects.get(
             user=self.request.user,
             agent=self.agent
@@ -391,9 +500,14 @@ class AutomotiveCenterInfoCreateView(LoginRequiredMixin, CreateView):
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        form.instance.agent_config = self.agent_config
-        messages.success(self.request, _("Información del centro automotriz creada exitosamente."))
-        return super().form_valid(form)
+        try:
+            form.instance.agent_config = self.agent_config
+            messages.success(self.request, _("Información del centro automotriz creada exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al crear la información del centro. Por favor intente nuevamente."))
+            return self.form_invalid(form)
 
     def get_success_url(self):
         return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
@@ -415,8 +529,13 @@ class AutomotiveCenterInfoUpdateView(LoginRequiredMixin, UpdateView):
         return super().dispatch(request, *args, **kwargs)
 
     def form_valid(self, form):
-        messages.success(self.request, _("Información del centro automotriz actualizada exitosamente."))
-        return super().form_valid(form)
+        try:
+            messages.success(self.request, _("Información del centro automotriz actualizada exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al actualizar la información del centro. Por favor intente nuevamente."))
+            return self.form_invalid(form)
 
     def get_success_url(self):
         return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
@@ -433,7 +552,7 @@ class ProductBrandListView(LoginRequiredMixin, ListView):
     context_object_name = 'product_brands'
 
     def dispatch(self, request, *args, **kwargs):
-        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent = get_object_or_404(Agent.objects.select_related('category'), id=kwargs['agent_id'])
         self.agent_config = get_object_or_404(
             AgentConfiguration,
             user=request.user,
@@ -456,7 +575,7 @@ class ProductBrandCreateView(LoginRequiredMixin, CreateView):
     template_name = 'agents/product_brand_form.html'
 
     def dispatch(self, request, *args, **kwargs):
-        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent = get_object_or_404(Agent.objects.select_related('category'), id=kwargs['agent_id'])
         self.agent_config = get_object_or_404(
             AgentConfiguration,
             user=self.request.user,
@@ -470,9 +589,14 @@ class ProductBrandCreateView(LoginRequiredMixin, CreateView):
         return kwargs
 
     def form_valid(self, form):
-        form.instance.agent_config = self.agent_config
-        messages.success(self.request, _("Marca de producto creada exitosamente."))
-        return super().form_valid(form)
+        try:
+            form.instance.agent_config = self.agent_config
+            messages.success(self.request, _("Marca de producto creada exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al crear la marca. Por favor intente nuevamente."))
+            return self.form_invalid(form)
 
     def get_success_url(self):
         return reverse_lazy('agents:product_brand_list', kwargs={'agent_id': self.agent.id})
@@ -500,8 +624,13 @@ class ProductBrandUpdateView(LoginRequiredMixin, UpdateView):
         return kwargs
 
     def form_valid(self, form):
-        messages.success(self.request, _("Marca de producto actualizada exitosamente."))
-        return super().form_valid(form)
+        try:
+            messages.success(self.request, _("Marca de producto actualizada exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al actualizar la marca. Por favor intente nuevamente."))
+            return self.form_invalid(form)
 
     def get_success_url(self):
         return reverse_lazy('agents:product_brand_list', kwargs={'agent_id': self.agent.id})
@@ -522,9 +651,14 @@ class ProductBrandDeleteView(LoginRequiredMixin, DeleteView):
         return super().dispatch(request, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
-        response = super().delete(request, *args, **kwargs)
-        messages.success(request, _("Marca de producto eliminada exitosamente."))
-        return response
+        try:
+            response = super().delete(request, *args, **kwargs)
+            messages.success(request, _("Marca de producto eliminada exitosamente."))
+            return response
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(request, _("Error al eliminar la marca. Por favor intente nuevamente."))
+            return redirect(reverse_lazy('agents:product_brand_list', kwargs={'agent_id': self.agent.id}))
 
     def get_success_url(self):
         return reverse_lazy('agents:product_brand_list', kwargs={'agent_id': self.agent.id})
@@ -540,7 +674,7 @@ class ProviderCategoryCreateView(LoginRequiredMixin, CreateView):
     template_name = 'agents/provider_category_form.html'
     
     def dispatch(self, request, *args, **kwargs):
-        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent = get_object_or_404(Agent.objects.select_related('category'), id=kwargs['agent_id'])
         # Get or create the agent configuration
         self.agent_config, _ = AgentConfiguration.objects.get_or_create(
             user=self.request.user,
@@ -550,9 +684,14 @@ class ProviderCategoryCreateView(LoginRequiredMixin, CreateView):
         return super().dispatch(request, *args, **kwargs)
     
     def form_valid(self, form):
-        form.instance.agent_config = self.agent_config
-        messages.success(self.request, _("Categoría de proveedor agregada exitosamente."))
-        return super().form_valid(form)
+        try:
+            form.instance.agent_config = self.agent_config
+            messages.success(self.request, _("Categoría de proveedor agregada exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al crear la categoría. Por favor intente nuevamente."))
+            return self.form_invalid(form)
     
     def get_success_url(self):
         return reverse_lazy('agents:provider_category_list', kwargs={'agent_id': self.agent.id})
@@ -579,8 +718,13 @@ class ProviderCategoryUpdateView(LoginRequiredMixin, UpdateView):
         return super().dispatch(request, *args, **kwargs)
     
     def form_valid(self, form):
-        messages.success(self.request, _("Categoría de proveedor actualizada exitosamente."))
-        return super().form_valid(form)
+        try:
+            messages.success(self.request, _("Categoría de proveedor actualizada exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al actualizar la categoría. Por favor intente nuevamente."))
+            return self.form_invalid(form)
     
     def get_success_url(self):
         return reverse_lazy('agents:provider_category_list', kwargs={'agent_id': self.agent.id})
@@ -606,8 +750,13 @@ class ProviderCategoryDeleteView(LoginRequiredMixin, DeleteView):
         return super().dispatch(request, *args, **kwargs)
     
     def delete(self, request, *args, **kwargs):
-        messages.success(request, _("Categoría de proveedor eliminada exitosamente."))
-        return super().delete(request, *args, **kwargs)
+        try:
+            messages.success(self.request, _("Categoría de proveedor eliminada exitosamente."))
+            return super().delete(request, *args, **kwargs)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al eliminar la categoría. Por favor intente nuevamente."))
+            return redirect(reverse_lazy('agents:provider_category_list', kwargs={'agent_id': self.agent.id}))
     
     def get_success_url(self):
         return reverse_lazy('agents:provider_category_list', kwargs={'agent_id': self.agent.id})
@@ -623,7 +772,7 @@ class BrandListView(LoginRequiredMixin, ListView):
     context_object_name = 'brands'
     
     def dispatch(self, request, *args, **kwargs):
-        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent = get_object_or_404(Agent.objects.select_related('category'), id=kwargs['agent_id'])
         self.agent_config = get_object_or_404(
             AgentConfiguration,
             user=request.user,
@@ -646,7 +795,7 @@ class BrandCreateView(LoginRequiredMixin, CreateView):
     template_name = 'agents/brand_form.html'
 
     def dispatch(self, request, *args, **kwargs):
-        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent = get_object_or_404(Agent.objects.select_related('category'), id=kwargs['agent_id'])
         self.agent_config = get_object_or_404(
             AgentConfiguration,
             user=request.user,
@@ -660,9 +809,14 @@ class BrandCreateView(LoginRequiredMixin, CreateView):
         return kwargs
     
     def form_valid(self, form):
-        form.instance.agent_config = self.agent_config
-        messages.success(self.request, _("Marca creada exitosamente."))
-        return super().form_valid(form)
+        try:
+            form.instance.agent_config = self.agent_config
+            messages.success(self.request, _("Marca creada exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al crear la marca. Por favor intente nuevamente."))
+            return self.form_invalid(form)
     
     def get_success_url(self):
         return reverse_lazy('agents:brand_list', kwargs={'agent_id': self.agent.id})
@@ -690,8 +844,13 @@ class BrandUpdateView(LoginRequiredMixin, UpdateView):
         return kwargs
     
     def form_valid(self, form):
-        messages.success(self.request, _("Marca actualizada exitosamente."))
-        return super().form_valid(form)
+        try:
+            messages.success(self.request, _("Marca actualizada exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al actualizar la marca. Por favor intente nuevamente."))
+            return self.form_invalid(form)
     
     def get_success_url(self):
         return reverse_lazy('agents:brand_list', kwargs={'agent_id': self.agent.id})
@@ -712,9 +871,14 @@ class BrandDeleteView(LoginRequiredMixin, DeleteView):
         return super().dispatch(request, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
-        response = super().delete(request, *args, **kwargs)
-        messages.success(request, _("Marca eliminada exitosamente."))
-        return response
+        try:
+            response = super().delete(request, *args, **kwargs)
+            messages.success(request, _("Marca eliminada exitosamente."))
+            return response
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(request, _("Error al eliminar la marca. Por favor intente nuevamente."))
+            return redirect(reverse_lazy('agents:brand_list', kwargs={'agent_id': self.agent.id}))
 
     def get_success_url(self):
         return reverse_lazy('agents:brand_list', kwargs={'agent_id': self.agent.id})
@@ -730,7 +894,7 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     template_name = 'agents/product_form.html'
 
     def dispatch(self, request, *args, **kwargs):
-        self.agent = get_object_or_404(Agent, id=kwargs['agent_id'])
+        self.agent = get_object_or_404(Agent.objects.select_related('category'), id=kwargs['agent_id'])
         self.agent_config = AgentConfiguration.objects.get(
             user=self.request.user,
             agent=self.agent
@@ -745,26 +909,38 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.agent_config = self.agent_config
 
-        # Handle URL-based image upload
+        # CRITICAL-003: Memory leak fix - Handle URL-based image upload safely with streaming
         if hasattr(form.instance, 'image_upload_method') and form.cleaned_data.get('image_upload_method') == 'url':
             image_url = form.cleaned_data.get('image_url')
             if image_url:
                 try:
                     import requests
                     from django.core.files.base import ContentFile
-                    from django.core.files.storage import default_storage
                     import os
                     from urllib.parse import urlparse
+                    import tempfile
 
-                    # Download image from URL
-                    response = requests.get(image_url, timeout=10)
+                    # CRITICAL-003: Use streaming to prevent memory leaks
+                    response = requests.get(image_url, timeout=10, stream=True, headers={
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                    })
                     response.raise_for_status()
+
+                    # Check content length if available
+                    content_length = response.headers.get('content-length')
+                    if content_length and int(content_length) > 10 * 1024 * 1024:  # 10MB limit
+                        raise ValueError("File too large (max 10MB)")
+
+                    # Validate content type
+                    content_type = response.headers.get('content-type', '')
+                    allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp']
+                    if content_type and not any(allowed_type in content_type.lower() for allowed_type in allowed_types):
+                        raise ValueError("Invalid file type")
 
                     # Get file extension from URL or content-type
                     parsed_url = urlparse(image_url)
                     filename = os.path.basename(parsed_url.path)
                     if not filename or '.' not in filename:
-                        content_type = response.headers.get('content-type', '')
                         ext = '.jpg'  # default
                         if 'png' in content_type:
                             ext = '.png'
@@ -774,10 +950,33 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
                             ext = '.webp'
                         filename = f"product_{form.instance.title.replace(' ', '_')}{ext}"
 
-                    # Save image to storage
-                    file_path = f"products/{filename}"
-                    form.instance.image.save(filename, ContentFile(response.content), save=False)
-                    form.instance.image_url = image_url
+                    # CRITICAL-003: Use temporary file with streaming to prevent memory leaks
+                    temp_file_path = None
+                    try:
+                        with tempfile.NamedTemporaryFile(delete=True) as temp_file:
+                            total_size = 0
+                            # CRITICAL-003: Stream content in chunks to prevent memory usage
+                            for chunk in response.iter_content(chunk_size=8192):
+                                if chunk:
+                                    total_size += len(chunk)
+                                    # Strict size limit check during streaming
+                                    if total_size > 10 * 1024 * 1024:  # 10MB limit
+                                        raise ValueError("File too large (max 10MB)")
+                                    temp_file.write(chunk)
+                            
+                            temp_file.seek(0)
+                            temp_file_path = temp_file.name
+                            form.instance.image.save(filename, ContentFile(temp_file.read()), save=False)
+
+                        form.instance.image_url = image_url
+
+                    finally:
+                        # CRITICAL-003: Ensure temp file is cleaned up
+                        if temp_file_path and os.path.exists(temp_file_path):
+                            try:
+                                os.unlink(temp_file_path)
+                            except:
+                                pass
 
                 except requests.RequestException as e:
                     form.add_error('image_url', f"Error al descargar la imagen: {str(e)}")
@@ -786,8 +985,13 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
                     form.add_error('image_url', f"Error al procesar la imagen: {str(e)}")
                     return self.form_invalid(form)
 
-        messages.success(self.request, _("Producto creado exitosamente."))
-        return super().form_valid(form)
+        try:
+            messages.success(self.request, _("Producto creado exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al crear el producto. Por favor intente nuevamente."))
+            return self.form_invalid(form)
 
     def get_success_url(self):
         return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
@@ -815,26 +1019,38 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
         return kwargs
 
     def form_valid(self, form):
-        # Handle URL-based image upload
+        # CRITICAL-003: Memory leak fix - Handle URL-based image upload safely with streaming
         if hasattr(form.instance, 'image_upload_method') and form.cleaned_data.get('image_upload_method') == 'url':
             image_url = form.cleaned_data.get('image_url')
             if image_url and image_url != getattr(self.product, 'image_url', None):
                 try:
                     import requests
                     from django.core.files.base import ContentFile
-                    from django.core.files.storage import default_storage
                     import os
                     from urllib.parse import urlparse
+                    import tempfile
 
-                    # Download image from URL
-                    response = requests.get(image_url, timeout=10)
+                    # CRITICAL-003: Use streaming to prevent memory leaks
+                    response = requests.get(image_url, timeout=10, stream=True, headers={
+                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
+                    })
                     response.raise_for_status()
+
+                    # Check content length if available
+                    content_length = response.headers.get('content-length')
+                    if content_length and int(content_length) > 10 * 1024 * 1024:  # 10MB limit
+                        raise ValueError("File too large (max 10MB)")
+
+                    # Validate content type
+                    content_type = response.headers.get('content-type', '')
+                    allowed_types = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp']
+                    if content_type and not any(allowed_type in content_type.lower() for allowed_type in allowed_types):
+                        raise ValueError("Invalid file type")
 
                     # Get file extension from URL or content-type
                     parsed_url = urlparse(image_url)
                     filename = os.path.basename(parsed_url.path)
                     if not filename or '.' not in filename:
-                        content_type = response.headers.get('content-type', '')
                         ext = '.jpg'  # default
                         if 'png' in content_type:
                             ext = '.png'
@@ -844,10 +1060,33 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
                             ext = '.webp'
                         filename = f"product_{form.instance.title.replace(' ', '_')}{ext}"
 
-                    # Save image to storage
-                    file_path = f"products/{filename}"
-                    form.instance.image.save(filename, ContentFile(response.content), save=False)
-                    form.instance.image_url = image_url
+                    # CRITICAL-003: Use temporary file with streaming to prevent memory leaks
+                    temp_file_path = None
+                    try:
+                        with tempfile.NamedTemporaryFile(delete=True) as temp_file:
+                            total_size = 0
+                            # CRITICAL-003: Stream content in chunks to prevent memory usage
+                            for chunk in response.iter_content(chunk_size=8192):
+                                if chunk:
+                                    total_size += len(chunk)
+                                    # Strict size limit check during streaming
+                                    if total_size > 10 * 1024 * 1024:  # 10MB limit
+                                        raise ValueError("File too large (max 10MB)")
+                                    temp_file.write(chunk)
+                            
+                            temp_file.seek(0)
+                            temp_file_path = temp_file.name
+                            form.instance.image.save(filename, ContentFile(temp_file.read()), save=False)
+
+                        form.instance.image_url = image_url
+
+                    finally:
+                        # CRITICAL-003: Ensure temp file is cleaned up
+                        if temp_file_path and os.path.exists(temp_file_path):
+                            try:
+                                os.unlink(temp_file_path)
+                            except:
+                                pass
 
                 except requests.RequestException as e:
                     form.add_error('image_url', f"Error al descargar la imagen: {str(e)}")
@@ -856,8 +1095,13 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
                     form.add_error('image_url', f"Error al procesar la imagen: {str(e)}")
                     return self.form_invalid(form)
 
-        messages.success(self.request, _("Producto actualizado exitosamente."))
-        return super().form_valid(form)
+        try:
+            messages.success(self.request, _("Producto actualizado exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al actualizar el producto. Por favor intente nuevamente."))
+            return self.form_invalid(form)
 
     def get_success_url(self):
         return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
@@ -878,8 +1122,13 @@ class ProductDeleteView(LoginRequiredMixin, DeleteView):
         return super().dispatch(request, *args, **kwargs)
 
     def delete(self, request, *args, **kwargs):
-        messages.success(request, _("Producto eliminado exitosamente."))
-        return super().delete(request, *args, **kwargs)
+        try:
+            messages.success(self.request, _("Producto eliminado exitosamente."))
+            return super().delete(request, *args, **kwargs)
+        except Exception as e:
+            # LOW-001: Manejo de errores mejorado
+            messages.error(self.request, _("Error al eliminar el producto. Por favor intente nuevamente."))
+            return redirect(reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id}))
 
     def get_success_url(self):
         return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})

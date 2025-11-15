@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from apps.agents.models import Agent, UserSubscription
+from django_ratelimit.decorators import ratelimit
+from django.views.decorators.cache import cache_page
 
 
 def home(request):
@@ -18,13 +20,14 @@ def contact(request):
     return render(request, 'contact.html')
 
 
+@ratelimit(key='ip', rate='10/m', method='GET')
 def solutions(request):
     """Página pública de Soluciones con listado de agentes"""
     if request.user.is_authenticated and (request.user.is_staff or request.user.is_superuser):
         # Admines ven todos los agentes activos sin importar flags
-        agents = Agent.objects.filter(is_active=True)
+        agents = Agent.objects.filter(is_active=True).select_related('category')
     else:
-        agents = Agent.objects.filter(is_active=True, show_in_solutions=True)
+        agents = Agent.objects.filter(is_active=True, show_in_solutions=True).select_related('category')
     user_subscriptions = []
     if request.user.is_authenticated:
         user_subscriptions = list(

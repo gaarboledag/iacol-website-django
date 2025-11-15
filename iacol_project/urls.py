@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.urls import resolve
 from django.contrib.sitemaps.views import sitemap
+from django.utils import timezone
 from .sitemaps import StaticSitemap, AgentSitemap, PaymentSitemap
 
 urlpatterns = [
@@ -29,19 +30,30 @@ urlpatterns += i18n_patterns(
     prefix_default_language=False
 )
 
-# Redirect URLs without trailing slash to URLs with trailing slash
+# Health check endpoint for monitoring
+from django.http import JsonResponse
+
+def health_check(request):
+    return JsonResponse({'status': 'healthy', 'timestamp': timezone.now().isoformat()})
+
 urlpatterns += [
-    re_path(r'^(?P<path>.*[^/])$', append_slash_redirect),
+    path('health/', health_check, name='health-check'),
 ]
 
-# Catch-all debe ir AL FINAL para no interferir con rutas válidas
+# CRITICAL-004: Fixed URL patterns - More specific catch-all pattern
+# Redirect URLs without trailing slash to URLs with trailing slash (but only valid ones)
 urlpatterns += [
-    path('<path:undefined_path>', RedirectView.as_view(url='/'), name='redirect-to-home'),
+    re_path(r'^(?P<path>[^.]+)$', append_slash_redirect, name='append_slash'),
 ]
 
-# Servir archivos media en desarrollo y producción (temporal para testing)
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# CRITICAL-004: Restrictive catch-all pattern - avoid conflicts with static assets
+# Only catch paths that don't look like files or API endpoints
+urlpatterns += [
+    re_path(r'^(?P<undefined_path>[^/.]+\/?)$', RedirectView.as_view(url='/', name='redirect-to-home')),
+]
 
+# Static and media files are served by Nginx in production
+# Only serve in development
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -41,7 +41,7 @@ class AgentSitemap(Sitemap):
     template_name = None
 
     def items(self):
-        return Agent.objects.filter(is_active=True, show_in_solutions=True).order_by('id')
+        return Agent.objects.filter(is_active=True, show_in_solutions=True).select_related('category').order_by('id')
 
     def location(self, obj):
         return reverse('agents:agent_detail', args=[obj.pk])

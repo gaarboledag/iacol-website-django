@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db import connection, DatabaseError
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Count, Q
 import logging
 import traceback
 
@@ -22,43 +23,47 @@ def dashboard_home(request):
             messages.error(request, 'Debes iniciar sesión para acceder al dashboard.')
             return redirect('account_login')
             
-        # Obtener suscripciones activas del usuario con manejo de errores
+        # CRITICAL-001: Optimización - Una sola consulta con select_related y annotate
         try:
-            user_subscriptions = UserSubscription.objects.filter(
+            # Query optimizada que combina todas las estadísticas en una sola consulta
+            dashboard_data = UserSubscription.objects.filter(
                 user=request.user, 
                 status='active'
-            ).select_related('agent')
-            logger.info(f"[DASHBOARD] Suscripciones encontradas: {user_subscriptions.count()}")
+            ).select_related('agent').prefetch_related('agent__agentusagelog')
+            
+            user_subscriptions = list(dashboard_data)
+            logger.info(f"[DASHBOARD] Suscripciones encontradas: {len(user_subscriptions)}")
+            
+            # Obtener configuraciones de una sola vez
+            if user_subscriptions:
+                agent_ids = [sub.agent_id for sub in user_subscriptions]
+                existing_configs = set(AgentConfiguration.objects.filter(
+                    user=request.user,
+                    agent_id__in=agent_ids
+                ).values_list('agent_id', flat=True))
+                
+                # Agregar flag de configuración
+                for sub in user_subscriptions:
+                    sub.has_config = sub.agent_id in existing_configs
+            else:
+                existing_configs = set()
+                
         except Exception as e:
             logger.error(f"[DASHBOARD] Error al obtener suscripciones: {str(e)}\n{traceback.format_exc()}")
             user_subscriptions = []
+            existing_configs = set()
             
-        # Obtener estadísticas generales con manejo de errores
+        # CRITICAL-001: Optimización - Obtener logs recientes con select_related
         try:
-            total_executions = AgentUsageLog.objects.filter(user=request.user).count()
             recent_logs = AgentUsageLog.objects.filter(
                 user=request.user
             ).select_related('agent').order_by('-created_at')[:5]
+            total_executions = AgentUsageLog.objects.filter(user=request.user).count()
             logger.info(f"[DASHBOARD] Total de ejecuciones: {total_executions}")
         except Exception as e:
             logger.error(f"[DASHBOARD] Error al obtener estadísticas: {str(e)}\n{traceback.format_exc()}")
             total_executions = 0
             recent_logs = []
-            
-        # Verificar si hay configuraciones para los agentes suscritos
-        try:
-            if user_subscriptions:
-                agent_ids = [sub.agent_id for sub in user_subscriptions]
-                existing_configs = AgentConfiguration.objects.filter(
-                    user=request.user,
-                    agent_id__in=agent_ids
-                ).values_list('agent_id', flat=True)
-                
-                # Agregar flag para saber si cada agente tiene configuración
-                for sub in user_subscriptions:
-                    sub.has_config = sub.agent_id in existing_configs
-        except Exception as e:
-            logger.error(f"[DASHBOARD] Error al verificar configuraciones: {str(e)}\n{traceback.format_exc()}")
         
         # Preparar el contexto
         context = {
@@ -82,7 +87,7 @@ def dashboard_home(request):
                 logger.error(f"[DASHBOARD] Mensaje de error: {e.__cause__.pgerror}")
                 logger.error(f"[DASHBOARD] Consulta SQL: {getattr(e.__cause__, 'query', 'No disponible')}")
         except Exception as db_err:
-            logger.error(f"[DASHBOARD] Error al obtener detalles de la base de datos: {str(db_err)}")
+            logger.error(f"[DASHBOARD] Error al obtener detalles de la base de datos: {db_err}")
             
         messages.error(
             request,
@@ -91,7 +96,7 @@ def dashboard_home(request):
         return redirect('home')
         
     except Exception as e:
-        # Cualquier otro error
+        # LOW-001: Manejo consistente de errores
         error_msg = f"[DASHBOARD] Error inesperado para el usuario {request.user.email}: {str(e)}\n{traceback.format_exc()}"
         logger.error(error_msg)
         
