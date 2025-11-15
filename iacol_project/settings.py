@@ -89,6 +89,8 @@ if DEBUG:
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
+    'django_brotli.middleware.BrotliMiddleware',  # Compresión Brotli (mejor que GZIP)
+    'django.middleware.gzip.GZipMiddleware',  # Compresión GZIP como fallback
     'csp.middleware.CSPMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
