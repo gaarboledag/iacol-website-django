@@ -33,8 +33,7 @@ class Migration(migrations.Migration):
             model_name='product',
             index=GinIndex(
                 fields=['description'],
-                name='idx_product_description_search',
-                opclasses=['varchar_ops']
+                name='idx_product_description_search'
             ),
         ),
         
