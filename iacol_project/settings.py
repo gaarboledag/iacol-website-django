@@ -30,7 +30,18 @@ EMAIL_PORT = env.int("EMAIL_PORT", default=587)
 EMAIL_USE_TLS = env.bool("EMAIL_USE_TLS", default=True)
 EMAIL_USE_SSL = env.bool("EMAIL_USE_SSL", default=False)
 
-# Email subject prefix
+# Email config — disable email if EMAIL_HOST is not set
+if not env("EMAIL_HOST", default=None):
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    EMAIL_HOST = ""
+    EMAIL_PORT = 25
+    EMAIL_HOST_USER = ""
+    EMAIL_HOST_PASSWORD = ""
+    EMAIL_USE_TLS = False
+    EMAIL_USE_SSL = False
+
+
+# Email subject prefix  
 EMAIL_SUBJECT_PREFIX = '[IACOL] '
 
 # Set default from email if not provided
