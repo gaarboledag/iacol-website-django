@@ -627,15 +627,14 @@
                 </div>
 
                 <div class="col-6 col-md-2 footer-links">
-                    <h5>{% trans "Cuenta" %}</h5>
+                    <h5>{% trans "Ciudades" %}</h5>
                     <ul>
-                        {% if user.is_authenticated %}
-                            <li><a href="{% url 'dashboard:home' %}">{% trans "Panel de Control" %}</a></li>
-                        {% else %}
-                            <li><a href="{% url 'account_login' %}">{% trans "Iniciar Sesión" %}</a></li>
-                            <li><a href="{% url 'account_signup' %}">{% trans "Registrarse" %}</a></li>
-                        {% endif %}
-                        <li><a href="{% url 'account_reset_password' %}">{% trans "Restablecer contraseña" %}</a></li>
+                        <li><a href="/agencia-ia-bogota/">{% trans "Bogotá" %}</a></li>
+                        <li><a href="/agencia-ia-cali/">{% trans "Cali" %}</a></li>
+                        <li><a href="/agencia-ia-medellin/">{% trans "Medellín" %}</a></li>
+                        <li><a href="/agencia-ia-barranquilla/">{% trans "Barranquilla" %}</a></li>
+                        <li><a href="/agencia-ia-cartagena/">{% trans "Cartagena" %}</a></li>
+                        <li><a href="/agencia-ia-ibague/">{% trans "Ibagué" %}</a></li>
                     </ul>
                 </div>
 
@@ -650,7 +649,7 @@
             </div>
 
             <div class="copyright text-center">
-                <small>&copy; {% now "Y" %} IACOL Empresarial. {% trans "Todos los derechos reservados." %}</small>
+                <small>&copy; {% now "Y" %} IACOL Development. {% trans "Todos los derechos reservados." %}</small>
             </div>
         </div>
     </footer>
