@@ -30,7 +30,7 @@ def dashboard_home(request):
                 user=request.user,
                 status='active',
                 agent__is_active=True
-            ).select_related('agent').prefetch_related('agent__agentusagelog')
+            ).select_related('agent').prefetch_related('agent__agentusagelog_set')
 
             user_subscriptions = list(dashboard_data)
             logger.info(f"[DASHBOARD] Suscripciones encontradas: {len(user_subscriptions)}")
