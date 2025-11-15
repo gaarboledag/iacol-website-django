@@ -1,6 +1,7 @@
 # Generated migration for JSONField GIN indexes
 
-from django.db import migrations, models
+from django.db import migrations
+from django.contrib.postgres.indexes import GinIndex
 
 class Migration(migrations.Migration):
 
@@ -12,7 +13,7 @@ class Migration(migrations.Migration):
         # MEDIUM-002: Add GIN indexes for JSONField queries
         migrations.AddIndex(
             model_name='agentconfiguration',
-            index=models.Index(
+            index=GinIndex(
                 name='agent_config_data_gin',
                 fields=['configuration_data'],
                 opclasses=['jsonb_path_ops']
@@ -20,7 +21,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddIndex(
             model_name='automotivecenterinfo',
-            index=models.Index(
+            index=GinIndex(
                 name='auto_center_hours_gin',
                 fields=['business_hours'],
                 opclasses=['jsonb_path_ops']
