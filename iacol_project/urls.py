@@ -49,7 +49,7 @@ urlpatterns += [
 # CRITICAL-004: Restrictive catch-all pattern - avoid conflicts with static assets
 # Only catch paths that don't look like files or API endpoints
 urlpatterns += [
-    re_path(r'^(?P<undefined_path>[^/.]+\/?)$', RedirectView.as_view(url='/', name='redirect-to-home')),
+    re_path(r'^(?P<undefined_path>[^/.]+\/?)$', RedirectView.as_view(url='/'), name='redirect-to-home'),
 ]
 
 # Static and media files are served by Nginx in production
