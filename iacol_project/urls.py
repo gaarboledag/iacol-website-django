@@ -27,6 +27,7 @@ urlpatterns += i18n_patterns(
     path('dashboard/', include('apps.dashboard.urls')),
     path('agents/', include('apps.agents.urls')),
     path('payments/', include('apps.payments.urls')),
+    path('blog/', include('blog.urls')),
     path('', include('apps.authentication.urls')),
     prefix_default_language=False
 )

@@ -80,6 +80,7 @@ LOCAL_APPS = [
     'apps.agents',
     'apps.payments',
     'apps.api',
+    'blog',
 ]
 
 # Add django_extensions only for development
