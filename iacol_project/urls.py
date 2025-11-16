@@ -9,6 +9,7 @@ from django.shortcuts import redirect
 from django.urls import resolve
 from django.contrib.sitemaps.views import sitemap
 from django.utils import timezone
+from django.http import HttpResponse
 from .sitemaps import StaticSitemap, AgentSitemap, PaymentSitemap
 
 urlpatterns = [
