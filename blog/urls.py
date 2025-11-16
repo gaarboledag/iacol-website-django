@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path
 from . import views
 from .api_views import BlogPostCreateAPIView, api_status
 
@@ -9,8 +9,6 @@ urlpatterns = [
     path('<slug:slug>/', views.blog_detail, name='blog_detail'),
 
     # API endpoints
-    path('api/', include([
-        path('create-post/', BlogPostCreateAPIView.as_view(), name='api_create_post'),
-        path('status/', api_status, name='api_status'),
-    ])),
+    path('api/create-post/', BlogPostCreateAPIView.as_view(), name='api_create_post'),
+    path('api/status/', api_status, name='api_status'),
 ]

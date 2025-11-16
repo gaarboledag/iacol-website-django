@@ -71,6 +71,10 @@ class BlogPostCreateAPIView(APIView):
                 # Log successful creation
                 logger.info(f"Blog post created successfully: {blog_post.title} (ID: {blog_post.id})")
 
+                # Construct URL manually to avoid reverse issues
+                blog_url = f"/blog/{blog_post.slug}/"
+                absolute_url = request.build_absolute_uri(blog_url)
+
                 response_data = {
                     'success': True,
                     'message': 'Blog post created successfully',
@@ -78,7 +82,7 @@ class BlogPostCreateAPIView(APIView):
                         'id': blog_post.id,
                         'title': blog_post.title,
                         'slug': blog_post.slug,
-                        'url': request.build_absolute_uri(blog_post.get_absolute_url()),
+                        'url': absolute_url,
                         'is_published': blog_post.is_published,
                         'category': blog_post.category,
                         'created_at': blog_post.published_date.isoformat(),
