@@ -31,7 +31,7 @@ class APIKey(models.Model):
 class BlogPost(models.Model):
     # Basic fields
     title = models.CharField("Título (H1)", max_length=200)
-    slug = models.SlugField("URL amigable", unique=True, blank=True)
+    slug = models.SlugField("URL amigable", unique=True, blank=True, max_length=100)
     is_published = models.BooleanField("Publicado", default=False)
     published_date = models.DateTimeField("Fecha de publicación", auto_now_add=True)
     updated_date = models.DateTimeField("Última modificación", auto_now=True)
