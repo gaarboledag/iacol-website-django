@@ -126,14 +126,14 @@ TEMPLATES = [
 WSGI_APPLICATION = 'iacol_project.wsgi.application'
 ASGI_APPLICATION = 'iacol_project.asgi.application'
 
-# Base de datos
+# Base de datos - PostgreSQL for Docker environment (both DEBUG and production)
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': env('DB_NAME', default='iacol'),
         'USER': env('DB_USER', default='postgres'),
-        'PASSWORD': env('DB_PASSWORD', default='your-db-password'),
-        'HOST': env('DB_HOST', default='localhost'),
+        'PASSWORD': env('DB_PASSWORD', default='postgres'),
+        'HOST': env('DB_HOST', default='db'),  # Docker hostname
         'PORT': env('DB_PORT', default='5432'),
     }
 }
@@ -208,7 +208,8 @@ REDIS_URL = env('REDIS_URL', default='redis://redis:6379/0')
 CELERY_BROKER_URL = REDIS_URL
 CELERY_RESULT_BACKEND = REDIS_URL
 
-# Cache configuration
+# Cache configuration - use Redis for both development and production
+# (django-ratelimit requires a shared cache backend)
 CACHES = {
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
@@ -325,24 +326,35 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 
-# MEDIUM-003: Content Security Policy - Restrictive pero funcional
+# Content Security Policy
 CSP_DEFAULT_SRC = ("'self'",)
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", "https://fonts.cdnfonts.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com")
 CSP_SCRIPT_SRC = ("'self'", "https://www.googletagmanager.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com", "https://crm.iacol.online", "'unsafe-inline'")
 CSP_FONT_SRC = ("'self'", "https://fonts.cdnfonts.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com")
 CSP_IMG_SRC = ("'self'", "data:", "https:", "https://flagcdn.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com")
 CSP_FRAME_SRC = ("'self'", "https://crm.iacol.online")
-CSP_CONNECT_SRC = ("'self'", "https://crm.iacol.online", "wss://crm.iacol.online", "https://api.whatsapp.com", "https://www.google-analytics.com")
+CSP_CONNECT_SRC = ("'self'", "https://crm.iacol.online", "wss://crm.iacol.online", "https://api.whatsapp.com", "https://www.google-analytics.com", "https://cdn.jsdelivr.net")
 
 # Only set this to True if you're behind a proxy that sets X-Forwarded-Proto header
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# Ensure all cookies are only sent over HTTPS
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
-
-# Redirect all non-HTTPS requests to HTTPS
-SECURE_SSL_REDIRECT = True
+# Security settings - conditional based on DEBUG mode
+if DEBUG:
+    # Disable security features in development
+    SESSION_COOKIE_SECURE = False
+    CSRF_COOKIE_SECURE = False
+    SECURE_SSL_REDIRECT = False
+    SECURE_HSTS_SECONDS = 0
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = False
+    SECURE_HSTS_PRELOAD = False
+else:
+    # Enable security features in production
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_SSL_REDIRECT = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
 
 # HSTS Settings - 1 year for production
 SECURE_HSTS_SECONDS = 31536000

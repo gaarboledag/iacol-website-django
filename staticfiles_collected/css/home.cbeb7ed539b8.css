@@ -1,0 +1,696 @@
+/* ===========================================
+   HERO SECTION STYLES
+   =========================================== */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  padding: 3rem 0;
+}
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: url("../img/main.3ad105d42013.webp") no-repeat right;
+  background-size: contain;
+  background-position: right;
+  z-index: 0;
+  filter: grayscale(100%);
+  opacity: 0.8;
+  mask-image:
+    linear-gradient(to right,
+      black 0%,
+      black 50%,
+      transparent 100%),
+    linear-gradient(to bottom,
+      black 0%,
+      black 60%,
+      transparent 100%);
+  -webkit-mask-image:
+    linear-gradient(to right,
+      black 0%,
+      black 50%,
+      transparent 100%),
+    linear-gradient(to bottom,
+      black 0%,
+      black 60%,
+      transparent 100%);
+  mask-composite: intersect;
+  -webkit-mask-composite: source-in;
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 1.5rem 15px;
+}
+
+@media (max-width: 1199.98px) {
+  .hero-section {
+    min-height: 45vh;
+    padding: 2.5rem 0;
+  }
+  .hero-content {
+    padding: 1.25rem 15px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .hero-section {
+    min-height: 40vh;
+    padding: 2rem 0;
+  }
+  .hero-section::before {
+    width: 100%;
+    opacity: 0.2;
+    mask-image:
+      linear-gradient(to right,
+        black 0%,
+        black 30%,
+        transparent 100%),
+      linear-gradient(to bottom,
+        black 0%,
+        black 50%,
+        transparent 100%);
+    -webkit-mask-image:
+      linear-gradient(to right,
+        black 0%,
+        black 30%,
+        transparent 100%),
+      linear-gradient(to bottom,
+        black 0%,
+        black 50%,
+        transparent 100%);
+  }
+  .hero-content {
+    padding: 1rem 15px;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .hero-section {
+    min-height: 35vh;
+    padding: 1.5rem 0;
+  }
+  .hero-content {
+    padding: 0.75rem 15px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .hero-section {
+    min-height: 30vh;
+    padding: 1.25rem 0;
+  }
+  .hero-content {
+    padding: 0.5rem 15px;
+  }
+}
+
+/* ===========================================
+   UTILITY CLASSES
+   =========================================== */
+.info-ribbon {
+  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+}
+.text-gradient {
+  background: linear-gradient(90deg, #6c63ff, #00c2ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.feature-chip {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.feature-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.08) !important;
+}
+
+/* Standardized spacing utilities */
+.section-spacing {
+  padding: 3rem 0;
+}
+.section-spacing-lg {
+  padding: 4rem 0;
+}
+.section-spacing-sm {
+  padding: 2.5rem 0;
+}
+.content-spacing {
+  margin-bottom: 1.5rem;
+}
+.content-spacing-lg {
+  margin-bottom: 2rem;
+}
+.content-spacing-sm {
+  margin-bottom: 1rem;
+}
+
+/* ===========================================
+   CUSTOM BUTTON STYLES
+   =========================================== */
+.btn-primary-custom {
+  background-color: #000000;
+  border: 2px solid #000000;
+  color: #ffffff;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary-custom::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s;
+}
+
+.btn-primary-custom:hover::before {
+  left: 100%;
+}
+
+.btn-primary-custom:hover {
+  background-color: #333333;
+  border-color: #333333;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.btn-outline-custom {
+  background-color: transparent;
+  border: 2px solid #000000;
+  color: #000000;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  border-radius: 50px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-outline-custom::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0,0,0,0.1), transparent);
+  transition: left 0.5s;
+}
+
+.btn-outline-custom:hover::before {
+  left: 100%;
+}
+
+.btn-outline-custom:hover {
+  background-color: #000000;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* ===========================================
+   GENERAL MOBILE OPTIMIZATIONS
+   =========================================== */
+@media (max-width: 767.98px) {
+  /* Reduce section spacing on mobile */
+  .section-spacing {
+    padding: 2.5rem 0;
+  }
+
+  /* Improve text readability on small screens */
+  .display-5 {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .lead {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  /* Better button spacing */
+  .btn-lg {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  /* Container padding adjustments */
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  /* Card improvements */
+  .card-body {
+    padding: 1rem;
+  }
+
+  /* Icon adjustments */
+  .icon-box {
+    margin-bottom: 1rem !important;
+  }
+
+  /* Force button width constraints on mobile */
+  .btn-primary-custom,
+  .btn-outline-custom {
+    max-width: 180px !important;
+    width: auto !important;
+    flex: 0 0 auto !important;
+    display: inline-block !important;
+    margin: 0 0.25rem !important;
+    padding: 10px 16px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  /* Extra small screen optimizations */
+  .section-spacing {
+    padding: 2rem 0;
+  }
+
+  .display-5 {
+    font-size: 1.75rem;
+  }
+
+  .btn-lg {
+    width: auto;
+    min-width: 160px;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Better gap spacing on very small screens */
+  .gap-3 {
+    gap: 1rem !important;
+  }
+
+  /* Enhanced button styling for mobile */
+  .btn-primary-custom,
+  .btn-outline-custom {
+    font-size: 0.8rem;
+    padding: 0.875rem 1.25rem;
+    letter-spacing: 0.25px;
+    min-width: 140px;
+    max-width: 160px !important;
+    width: auto !important;
+    display: inline-block !important;
+    text-align: center;
+    flex: none !important;
+    box-sizing: border-box !important;
+    margin: 0 0.25rem !important;
+    padding: 10px 16px;
+  }
+
+  .btn-primary-custom:hover,
+  .btn-outline-custom:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media (max-width: 480px) {
+  /* Ultra small screen optimizations */
+  .btn-primary-custom,
+  .btn-outline-custom {
+    font-size: 0.85rem;
+    padding: 0.75rem 1rem;
+    border-radius: 40px;
+    min-width: 120px;
+    max-width: 140px !important;
+    width: auto !important;
+    flex: none !important;
+    box-sizing: border-box !important;
+    margin: 0 0.25rem !important;
+  }
+}
+
+/* ===========================================
+   STARTUP CHALLENGES SECTION STYLES
+   =========================================== */
+/* Interactive and creative styles for startup challenges section */
+#startup-challenges .challenge-item {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border: 1px solid rgba(108, 99, 255, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+#startup-challenges .challenge-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(108, 99, 255, 0.1), transparent);
+  transition: left 0.5s;
+}
+#startup-challenges .challenge-item:hover::before {
+  left: 100%;
+}
+#startup-challenges .challenge-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(108, 99, 255, 0.15);
+  border-color: rgba(108, 99, 255, 0.3);
+}
+#startup-challenges .icon-box {
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #6c63ff, #00c2ff);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#startup-challenges .challenge-item:hover .icon-box {
+  transform: scale(1.1) rotate(5deg);
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+}
+#startup-challenges .challenge-item p {
+  transition: color 0.3s ease;
+}
+#startup-challenges .challenge-item:hover p {
+  color: #4a5568;
+  font-weight: 500;
+}
+
+/* Animation for section entrance */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#startup-challenges .challenge-item {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+#startup-challenges .challenge-item:nth-child(1) { animation-delay: 0.1s; }
+#startup-challenges .challenge-item:nth-child(2) { animation-delay: 0.2s; }
+#startup-challenges .challenge-item:nth-child(3) { animation-delay: 0.3s; }
+#startup-challenges .challenge-item:nth-child(4) { animation-delay: 0.4s; }
+
+/* Responsive styles for startup challenges section */
+@media (max-width: 767.98px) {
+  #startup-challenges .icon-box {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1.4rem !important;
+  }
+  #startup-challenges p {
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem !important;
+    text-align: left;
+  }
+  #startup-challenges h2 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+  #startup-challenges .challenge-item {
+    padding: 1.25rem;
+  }
+}
+
+/* ===========================================
+   CUSTOMER SERVICE BANNER STYLES
+   =========================================== */
+.customer-service-banner {
+  background: linear-gradient(135deg, #6c63ff 0%, #00c2d3 30%, #00b1b1 100%, #00ffff 100%);
+  border-radius: 50px;
+  padding: 2.5rem 3rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 25px 15px rgba(99, 122, 255, 0.3),
+    inset 0 2px 4px rgba(255,255,255,0.1),
+    inset 0 -2px 4px rgba(0,0,0,0.1);
+  border: 2px solid rgba(255,255,255,0.1);
+}
+
+.customer-service-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,255,255,0.08) 0%, transparent 35%),
+    radial-gradient(circle at 85% 80%, rgba(255,255,255,0.06) 0%, transparent 35%);
+  pointer-events: none;
+}
+
+.customer-service-icon-container {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    inset 0 4px 8px rgba(0,0,0,0.1),
+    inset 0 -4px 8px rgba(255,255,255,0.1),
+    0 8px 16px rgba(0,0,0,0.15);
+  position: relative;
+}
+
+.customer-service-icon-container::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(0, 194, 255, 0.1), rgba(0, 255, 255, 0.1));
+  z-index: -1;
+}
+
+.customer-service-icon {
+  width: 50px;
+  height: 50px;
+  font-size: 3em;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+  transition: transform 0.3s ease;
+}
+
+.customer-service-icon:hover {
+  transform: scale(1.1);
+}
+
+.customer-service-title {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 1.8rem;
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  line-height: 1.2;
+}
+
+.customer-service-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+  font-size: 1rem;
+  margin: 0;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.btn-customer-service-cta {
+  background: #ffffff;
+  border: none;
+  color: #6c63ff;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 8px 20px rgba(108, 99, 255, 0.3),
+    inset 0 2px 4px rgba(255,255,255,0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-customer-service-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(108, 99, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.btn-customer-service-cta:hover {
+  background: #f8f9fa;
+  transform: translateY(-2px);
+  box-shadow:
+    0 12px 30px rgba(108, 99, 255, 0.4),
+    inset 0 2px 4px rgba(255,255,255,0.3);
+  text-decoration: none;
+  color: #6c63ff;
+}
+
+.btn-customer-service-cta:hover::before {
+  left: 100%;
+}
+
+.btn-customer-service-cta i {
+  font-size: 1rem;
+  margin-right: 8px;
+}
+
+/* Responsive Design for Customer Service Banner */
+@media (max-width: 992px) {
+  .customer-service-banner {
+    padding: 2rem 2.5rem;
+  }
+
+  .customer-service-icon-container {
+    width: 70px;
+    height: 70px;
+  }
+
+  .customer-service-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 2.5em;
+  }
+
+  .customer-service-title {
+    font-size: 1.6rem;
+  }
+
+  .customer-service-subtitle {
+    font-size: 0.95rem;
+  }
+
+  .btn-customer-service-cta {
+    padding: 13px 24px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .customer-service-banner {
+    border-radius: 30px;
+    padding: 1.75rem 2rem;
+  }
+
+  .customer-service-icon-container {
+    width: 60px;
+    height: 60px;
+  }
+
+  .customer-service-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 2.2em;
+  }
+
+  .customer-service-title {
+    font-size: 1.4rem;
+  }
+
+  .customer-service-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .btn-customer-service-cta {
+    padding: 12px 20px;
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .customer-service-banner {
+    padding: 1.5rem 1.5rem;
+    border-radius: 25px;
+  }
+
+  .row {
+    --bs-gutter-x: 1rem;
+  }
+
+  .customer-service-icon-container {
+    width: 50px;
+    height: 50px;
+  }
+
+  .customer-service-icon {
+    width: 28px;
+    height: 28px;
+    font-size: 1.8em;
+  }
+
+  .customer-service-title {
+    font-size: 1.2rem;
+    line-height: 1.3;
+  }
+
+  .customer-service-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .btn-customer-service-cta {
+    padding: 10px 16px;
+    font-size: 0.8rem;
+  }
+
+  .btn-customer-service-cta i {
+    font-size: 0.9rem;
+    margin-right: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .customer-service-banner {
+    padding: 1.25rem 1.25rem;
+  }
+
+  .customer-service-title {
+    font-size: 1.1rem;
+  }
+
+  .customer-service-subtitle {
+    font-size: 0.8rem;
+  }
+
+  .btn-customer-service-cta {
+    padding: 8px 14px;
+    font-size: 0.75rem;
+  }
+}

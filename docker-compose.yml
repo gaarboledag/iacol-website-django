@@ -1,6 +1,8 @@
 services:
   web:
     build: .
+    ports:
+      - "8000:8000"
     volumes:
       - .:/app
       - media_data:/app/media
@@ -13,19 +15,6 @@ services:
         condition: service_started
       posteio:
         condition: service_started
-    networks:
-      - app_network
-
-  nginx:
-    image: nginx:1.25-alpine
-    ports:
-      - "80:80"
-    volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
-      - static_data:/app/staticfiles_collected
-      - media_data:/app/media
-    depends_on:
-      - web
     networks:
       - app_network
 
