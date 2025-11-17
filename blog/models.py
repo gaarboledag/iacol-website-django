@@ -46,15 +46,10 @@ class BlogPost(models.Model):
     sales_angle_section = models.TextField("Ángulo de venta", help_text="Punto de venta único")
     how_it_works_section = models.TextField("Cómo funciona", help_text="Explicación técnica del funcionamiento")
 
-    agent_diagram_image = models.ImageField("Diagrama del Agente", upload_to='blog/diagram/', help_text="Imagen del diagrama del agente")
-
     benefits_section = models.TextField("Beneficios", help_text="Lista o descripción de beneficios")
     hypothetical_case_section = models.TextField("Caso hipotético", help_text="Ejemplo hipotético de uso")
 
-    case_image = models.ImageField("Imagen Caso/Historia", upload_to='blog/case/', blank=True, null=True)
-
     final_cta_section = models.TextField("CTA Final", help_text="Llamado a la acción final")
-    optional_icon_image = models.ImageField("Imagen Icono (opcional)", upload_to='blog/icon/', blank=True, null=True)
 
     # Metadata
     excerpt = models.TextField("Resumen breve", max_length=300, help_text="Para mostrar en listados y SEO")

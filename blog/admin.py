@@ -14,6 +14,9 @@ class BlogPostAdmin(admin.ModelAdmin):
     # Campos de solo lectura
     readonly_fields = ('slug', 'published_date', 'updated_date')
 
+    # Excluir campos eliminados del modelo
+    exclude = ('agent_diagram_image', 'case_image', 'optional_icon_image')
+
     # Campos que se muestran en el formulario
     fieldsets = (
         ('Información Básica', {
@@ -29,12 +32,9 @@ class BlogPostAdmin(admin.ModelAdmin):
                 'why_automate_section',
                 'sales_angle_section',
                 'how_it_works_section',
-                'agent_diagram_image',
                 'benefits_section',
                 'hypothetical_case_section',
-                'case_image',
-                'final_cta_section',
-                'optional_icon_image'
+                'final_cta_section'
             ),
             'classes': ('collapse',)
         }),

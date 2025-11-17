@@ -15,16 +15,10 @@ class BlogPostSerializer(serializers.ModelSerializer):
     # Custom fields for image handling
     hero_image_url = serializers.URLField(write_only=True, required=False, allow_blank=True)
     problem_image_url = serializers.URLField(write_only=True, required=False, allow_blank=True)
-    agent_diagram_image_url = serializers.URLField(write_only=True, required=False, allow_blank=True)
-    case_image_url = serializers.URLField(write_only=True, required=False, allow_blank=True)
-    optional_icon_image_url = serializers.URLField(write_only=True, required=False, allow_blank=True)
 
     # Base64 image fields
     hero_image_base64 = serializers.CharField(write_only=True, required=False, allow_blank=True)
     problem_image_base64 = serializers.CharField(write_only=True, required=False, allow_blank=True)
-    agent_diagram_image_base64 = serializers.CharField(write_only=True, required=False, allow_blank=True)
-    case_image_base64 = serializers.CharField(write_only=True, required=False, allow_blank=True)
-    optional_icon_image_base64 = serializers.CharField(write_only=True, required=False, allow_blank=True)
 
     class Meta:
         model = BlogPost
@@ -38,12 +32,10 @@ class BlogPostSerializer(serializers.ModelSerializer):
             'final_cta_section',
 
             # Image URLs (for input)
-            'hero_image_url', 'problem_image_url', 'agent_diagram_image_url',
-            'case_image_url', 'optional_icon_image_url',
+            'hero_image_url', 'problem_image_url',
 
             # Base64 images (for input)
-            'hero_image_base64', 'problem_image_base64', 'agent_diagram_image_base64',
-            'case_image_base64', 'optional_icon_image_base64',
+            'hero_image_base64', 'problem_image_base64',
 
             # Read-only fields
             'published_date', 'updated_date',
@@ -140,7 +132,7 @@ class BlogPostSerializer(serializers.ModelSerializer):
         image_urls = {}
         base64_images = {}
 
-        for field_name in ['hero_image', 'problem_image', 'agent_diagram_image', 'case_image', 'optional_icon_image']:
+        for field_name in ['hero_image', 'problem_image']:
             url_field = f"{field_name}_url"
             base64_field = f"{field_name}_base64"
 

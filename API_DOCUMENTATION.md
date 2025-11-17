@@ -48,10 +48,7 @@ X-API-Key: your-api-key-here
   "final_cta_section": "Comienza tu transformación digital hoy mismo",
 
   "hero_image_url": "https://example.com/hero-image.jpg",
-  "problem_image_url": "https://example.com/problem-diagram.jpg",
-  "agent_diagram_image_url": "https://example.com/agent-flow.jpg",
-  "case_image_url": "https://example.com/case-study.jpg",
-  "optional_icon_image_url": "https://example.com/icon.png"
+  "problem_image_url": "https://example.com/problem-diagram.jpg"
 }
 ```
 
@@ -83,9 +80,6 @@ X-API-Key: your-api-key-here
 **Nombres de imagen disponibles:**
 - `hero_image`
 - `problem_image`
-- `agent_diagram_image`
-- `case_image`
-- `optional_icon_image`
 
 ## 📤 Respuesta Exitosa
 
