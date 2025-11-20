@@ -20,6 +20,8 @@ urlpatterns = [
     path('agencia-ia-medellin/', views.medellin_ai_landing, name='medellin_ai_landing'),
     path('agencia-ia-barranquilla/', views.barranquilla_ai_landing, name='barranquilla_ai_landing'),
     path('agencia-ia-cartagena/', views.cartagena_ai_landing, name='cartagena_ai_landing'),
+    path('politica-privacidad-wh-conv/', views.privacy_policy, name='privacy_policy'),
+    path('condiciones-servicio-wh-conv/', views.terms_of_service, name='terms_of_service'),
     path('robots.txt', views.robots_txt, name='robots_txt'),
     path('sitemap.xml', views.sitemap, name='sitemap'),
 ]

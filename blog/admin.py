@@ -23,12 +23,12 @@ class BlogPostAdmin(admin.ModelAdmin):
             'fields': ('title', 'slug', 'is_published', 'category')
         }),
         ('Contenido', {
-            'fields': ('excerpt', 'hero_image'),
+            'fields': ('excerpt', 'hero_image', 'hero_image_url'),
             'classes': ('collapse',)
         }),
         ('Secciones Estructuradas', {
             'fields': (
-                'problem_section', 'problem_image',
+                'problem_section', 'problem_image', 'problem_image_url',
                 'why_automate_section',
                 'sales_angle_section',
                 'how_it_works_section',

@@ -24,9 +24,9 @@ class AgentConfigurationForm(forms.ModelForm):
         self.fields['configuration_data'].help_text = 'Ingrese los parámetros de configuración en formato JSON'
 
         # Restrict enable_providers, enable_products and enable_automotive_info based on agent name
-        if self.instance and self.instance.pk and 'MechAI' not in self.instance.agent.name:
+        if self.instance and self.instance.pk and 'MechAI' not in self.instance.agent.name and 'FindPart' not in self.instance.agent.name:
             self.fields['enable_providers'].disabled = True
-            self.fields['enable_providers'].help_text = 'Solo disponible para agentes MechAI'
+            self.fields['enable_providers'].help_text = 'Solo disponible para agentes MechAI y FindPartAI'
             self.fields['enable_products'].disabled = True
             self.fields['enable_products'].help_text = 'Solo disponible para agentes MechAI'
             self.fields['enable_automotive_info'].disabled = True
@@ -47,8 +47,8 @@ class AgentConfigurationForm(forms.ModelForm):
                     agent = Agent.objects.get(pk=agent_id)
                 else:
                     agent = None
-            if agent and 'MechAI' not in agent.name:
-                raise forms.ValidationError("La gestión de proveedores, productos e información del centro automotriz solo está disponible para agentes MechAI")
+            if agent and 'MechAI' not in agent.name and 'FindPart' not in agent.name:
+                raise forms.ValidationError("La gestión de proveedores, productos e información del centro automotriz solo está disponible para agentes MechAI y FindPartAI")
         return cleaned_data
 
 class ProviderCategoryForm(forms.ModelForm):

@@ -113,6 +113,16 @@ def cartagena_ai_landing(request):
     return render(request, 'cartagena_ai_landing.html')
 
 
+def privacy_policy(request):
+    """Página de Política de Privacidad"""
+    return render(request, 'privacy_policy.html')
+
+
+def terms_of_service(request):
+    """Página de Condiciones del Servicio"""
+    return render(request, 'terms_of_service.html')
+
+
 def robots_txt(request):
     """Archivo robots.txt para SEO"""
     content = """User-agent: *
@@ -151,6 +161,8 @@ def sitemap(request):
         'medellin_ai_landing',
         'barranquilla_ai_landing',
         'cartagena_ai_landing',
+        'privacy_policy',
+        'terms_of_service',
     ]
 
     for page in static_pages:

@@ -57,11 +57,15 @@
                     <!-- Provider Filter -->
                     <div class="p-3 border-bottom bg-light">
                         <div class="row g-3 align-items-end">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label for="providerSearch" class="form-label fw-semibold small text-uppercase text-muted mb-2">Buscar Proveedor</label>
                                 <input type="text" class="form-control form-control-sm" id="providerSearch" placeholder="Nombre del proveedor...">
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
+                                <label for="providerPhoneSearch" class="form-label fw-semibold small text-uppercase text-muted mb-2">Buscar por Teléfono</label>
+                                <input type="text" class="form-control form-control-sm" id="providerPhoneSearch" placeholder="Número de teléfono...">
+                            </div>
+                            <div class="col-md-3">
                                 <label for="providerCategoryFilter" class="form-label fw-semibold small text-uppercase text-muted mb-2">Categoría</label>
                                 <select class="form-select form-select-sm" id="providerCategoryFilter">
                                     <option value="">Todas las categorías</option>
@@ -70,9 +74,10 @@
                                     <option value="{{ provider.category.name }}">{{ provider.category.name }}</option>
                                     {% endif %}
                                     {% endfor %}
+                                    <option value="Sin categoría">Sin categoría</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label for="cityFilter" class="form-label fw-semibold small text-uppercase text-muted mb-2">Ciudad</label>
                                 <select class="form-select form-select-sm" id="cityFilter">
                                     <option value="">Todas las ciudades</option>
@@ -250,6 +255,7 @@
                                     <option value="{{ product.category.name }}">{{ product.category.name }}</option>
                                     {% endif %}
                                     {% endfor %}
+                                    <option value="Sin categoría">Sin categoría</option>
                                 </select>
                             </div>
                             <div class="col-md-2">
@@ -261,6 +267,7 @@
                                     <option value="{{ product.brand.name }}">{{ product.brand.name }}</option>
                                     {% endif %}
                                     {% endfor %}
+                                    <option value="Sin marca">Sin marca</option>
                                 </select>
                             </div>
                             <div class="col-md-3">
@@ -484,6 +491,7 @@
 
         // Provider filtering functionality
         const providerSearch = document.getElementById('providerSearch');
+        const providerPhoneSearch = document.getElementById('providerPhoneSearch');
         const providerCategoryFilter = document.getElementById('providerCategoryFilter');
         const cityFilter = document.getElementById('cityFilter');
         const providerRows = document.querySelectorAll('#providers-section tbody tr');
@@ -498,6 +506,7 @@
 
         console.log('Provider filter elements:');
         console.log('- providerSearch:', providerSearch);
+        console.log('- providerPhoneSearch:', providerPhoneSearch);
         console.log('- providerCategoryFilter:', providerCategoryFilter);
         console.log('- cityFilter:', cityFilter);
         console.log('- providerRows count:', providerRows.length);
@@ -543,13 +552,13 @@
 
             productRows.forEach((row, index) => {
                 const productNameElement = row.querySelector('td:first-child .fw-semibold');
-                const categoryBadge = row.querySelector('td:nth-child(2) .badge');
-                const brandBadge = row.querySelector('td:nth-child(3) .badge');
+                const categoryElement = row.querySelector('td:nth-child(2) .badge') || row.querySelector('td:nth-child(2) .text-muted');
+                const brandElement = row.querySelector('td:nth-child(3) .badge') || row.querySelector('td:nth-child(3) .text-muted');
                 const priceElement = row.querySelector('.badge.bg-success-subtle')?.textContent || '';
 
                 const productName = productNameElement ? productNameElement.textContent.toLowerCase().trim() : '';
-                const categoryName = categoryBadge ? categoryBadge.textContent.trim() : '';
-                const brandName = brandBadge ? brandBadge.textContent.trim() : '';
+                const categoryName = categoryElement ? categoryElement.textContent.trim().toLowerCase() : '';
+                const brandName = brandElement ? brandElement.textContent.trim().toLowerCase() : '';
                 const price = priceElement ? parseFloat(priceElement.replace(/[^\d.,]/g, '').replace(',', '.')) : 0;
 
                 console.log(`📋 Row ${index}:`);
@@ -559,8 +568,8 @@
                 console.log(`   - Price: ${price}`);
 
                 const matchesSearch = !searchTerm || productName.includes(searchTerm);
-                const matchesCategory = !selectedCategory || categoryName === selectedCategory;
-                const matchesBrand = !selectedBrand || brandName === selectedBrand;
+                const matchesCategory = !selectedCategory || categoryName === selectedCategory.toLowerCase();
+                const matchesBrand = !selectedBrand || brandName === selectedBrand.toLowerCase();
                 const matchesPrice = !maxPrice || price <= maxPrice;
 
                 console.log(`   - Matches search: ${matchesSearch}`);
@@ -603,11 +612,13 @@
         function filterProviders() {
             console.log('🏢 FILTERING PROVIDERS...');
             const searchTerm = (providerSearch && providerSearch.value.toLowerCase().trim()) || '';
+            const phoneSearchTerm = (providerPhoneSearch && providerPhoneSearch.value.toLowerCase().trim()) || '';
             const selectedCategory = (providerCategoryFilter && providerCategoryFilter.value) || '';
             const selectedCity = (cityFilter && cityFilter.value) || '';
 
             console.log('🏢 Provider filter values:');
             console.log('  - Search term:', `"${searchTerm}"`);
+            console.log('  - Phone search term:', `"${phoneSearchTerm}"`);
             console.log('  - Selected category:', `"${selectedCategory}"`);
             console.log('  - Selected city:', `"${selectedCity}"`);
 
@@ -615,26 +626,31 @@
 
             providerRows.forEach((row, index) => {
                 const providerName = row.querySelector('td:first-child .fw-medium')?.textContent.toLowerCase().trim() || '';
-                const categoryElement = row.querySelector('td:nth-child(3) .badge');
+                const phoneElement = row.querySelector('td:nth-child(2) a')?.textContent || '';
+                const phone = phoneElement.replace(/[^\d]/g, ''); // Extract digits only
+                const categoryElement = row.querySelector('td:nth-child(3) .badge') || row.querySelector('td:nth-child(3) .text-muted');
                 const cityElement = row.querySelector('td:nth-child(4) .badge.bg-light');
 
-                const categoryName = categoryElement ? categoryElement.textContent.trim() : '';
-                const cityName = cityElement ? cityElement.textContent.trim() : '';
+                const categoryName = categoryElement ? categoryElement.textContent.trim().toLowerCase() : '';
+                const cityName = cityElement ? cityElement.textContent.trim().toLowerCase() : '';
 
                 console.log(`🏢 Provider row ${index}:`);
                 console.log(`   - Name: "${providerName}"`);
+                console.log(`   - Phone: "${phone}"`);
                 console.log(`   - Category: "${categoryName}"`);
                 console.log(`   - City: "${cityName}"`);
 
                 const matchesSearch = !searchTerm || providerName.includes(searchTerm);
-                const matchesCategory = !selectedCategory || categoryName === selectedCategory;
-                const matchesCity = !selectedCity || cityName === selectedCity;
+                const matchesPhone = !phoneSearchTerm || phone.includes(phoneSearchTerm);
+                const matchesCategory = !selectedCategory || categoryName === selectedCategory.toLowerCase();
+                const matchesCity = !selectedCity || cityName === selectedCity.toLowerCase();
 
                 console.log(`   - Matches search: ${matchesSearch}`);
+                console.log(`   - Matches phone: ${matchesPhone}`);
                 console.log(`   - Matches category: ${matchesCategory}`);
                 console.log(`   - Matches city: ${matchesCity}`);
 
-                const shouldShow = matchesSearch && matchesCategory && matchesCity;
+                const shouldShow = matchesSearch && matchesPhone && matchesCategory && matchesCity;
                 row.style.display = shouldShow ? '' : 'none';
 
                 if (shouldShow) visibleCount++;
@@ -694,6 +710,14 @@
             console.log('✅ Provider search input listener added');
         }
 
+        if (providerPhoneSearch) {
+            providerPhoneSearch.addEventListener('input', function() {
+                console.log('📞 Provider phone search input changed');
+                filterProviders();
+            });
+            console.log('✅ Provider phone search input listener added');
+        }
+
         if (providerCategoryFilter) {
             providerCategoryFilter.addEventListener('change', function() {
                 console.log('📂 Provider category filter changed');
@@ -710,7 +734,9 @@
             console.log('✅ City filter listener added');
         }
 
-        // Initialize
+        // Initialize filters to ensure correct initial state
+        filterProducts();
+        filterProviders();
         updateFilterIndicators();
         console.log('🚀 Filter system fully initialized and ready!');
     });

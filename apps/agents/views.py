@@ -211,8 +211,8 @@ def toggle_module(request, agent_id, module_name):
 
     # Handle different modules
     if module_name == 'providers':
-        if 'MechAI' not in agent.name:
-            return JsonResponse({'status': 'error', 'message': 'La gestión de proveedores solo está disponible para agentes MechAI'}, status=403)
+        if 'MechAI' not in agent.name and 'FindPart' not in agent.name:
+            return JsonResponse({'status': 'error', 'message': 'La gestión de proveedores solo está disponible para agentes MechAI y FindPartAI'}, status=403)
         configuration.enable_providers = not getattr(configuration, 'enable_providers', False)
         configuration.save()
         return JsonResponse({

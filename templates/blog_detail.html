@@ -22,9 +22,9 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-10">
-        {% if post.hero_image %}
+        {% if post.get_hero_image_url %}
         <div class="mb-4">
-          <img src="{{ post.hero_image.url }}" alt="{{ post.title }}" class="blog-image">
+          <img src="{{ post.get_hero_image_url }}" alt="{{ post.title }}" class="blog-image">
         </div>
         {% endif %}
         <span class="badge-ghost mb-3">{{ post.get_category_display }}</span>
@@ -45,9 +45,9 @@
         <div class="content">
           {{ post.problem_section|safe }}
         </div>
-        {% if post.problem_image %}
+        {% if post.get_problem_image_url %}
         <div class="mt-4">
-          <img src="{{ post.problem_image.url }}" alt="Problema" class="blog-image">
+          <img src="{{ post.get_problem_image_url }}" alt="Problema" class="blog-image">
         </div>
         {% endif %}
       </div>

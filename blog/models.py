@@ -37,10 +37,12 @@ class BlogPost(models.Model):
     updated_date = models.DateTimeField("Última modificación", auto_now=True)
 
     # Structured content sections
-    hero_image = models.ImageField("Imagen Hero", upload_to='blog/hero/', help_text="Imagen principal del post")
+    hero_image = models.ImageField("Imagen Hero (Archivo)", upload_to='blog/hero/', blank=True, null=True, help_text="Subir archivo de imagen o usar URL abajo")
+    hero_image_url = models.URLField("Imagen Hero (URL)", blank=True, help_text="URL externa de la imagen principal")
 
     problem_section = models.TextField("Problema", help_text="Descripción del problema que resuelve")
-    problem_image = models.ImageField("Imagen Problema", upload_to='blog/problem/', blank=True, null=True)
+    problem_image = models.ImageField("Imagen Problema (Archivo)", upload_to='blog/problem/', blank=True, null=True, help_text="Subir archivo de imagen o usar URL abajo")
+    problem_image_url = models.URLField("Imagen Problema (URL)", blank=True, help_text="URL externa de la imagen del problema")
 
     why_automate_section = models.TextField("Por qué automatizar", help_text="Explicación de por qué automatizar")
     sales_angle_section = models.TextField("Ángulo de venta", help_text="Punto de venta único")
@@ -75,3 +77,19 @@ class BlogPost(models.Model):
 
     def get_absolute_url(self):
         return reverse('blog:blog_detail', kwargs={'slug': self.slug})
+
+    def get_hero_image_url(self):
+        """Retorna la URL de la imagen hero, priorizando archivo sobre URL externa"""
+        if self.hero_image:
+            return self.hero_image.url
+        elif self.hero_image_url:
+            return self.hero_image_url
+        return None
+
+    def get_problem_image_url(self):
+        """Retorna la URL de la imagen del problema, priorizando archivo sobre URL externa"""
+        if self.problem_image:
+            return self.problem_image.url
+        elif self.problem_image_url:
+            return self.problem_image_url
+        return None

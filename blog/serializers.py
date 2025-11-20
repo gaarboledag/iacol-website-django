@@ -12,9 +12,9 @@ class BlogPostSerializer(serializers.ModelSerializer):
     Serializer for BlogPost model with support for image URLs and base64 uploads.
     """
 
-    # Custom fields for image handling
-    hero_image_url = serializers.URLField(write_only=True, required=False, allow_blank=True)
-    problem_image_url = serializers.URLField(write_only=True, required=False, allow_blank=True)
+    # Custom fields for image handling (URLs are now model fields)
+    hero_image_url = serializers.URLField(required=False, allow_blank=True)
+    problem_image_url = serializers.URLField(required=False, allow_blank=True)
 
     # Base64 image fields
     hero_image_base64 = serializers.CharField(write_only=True, required=False, allow_blank=True)
@@ -31,7 +31,7 @@ class BlogPostSerializer(serializers.ModelSerializer):
             'how_it_works_section', 'benefits_section', 'hypothetical_case_section',
             'final_cta_section',
 
-            # Image URLs (for input)
+            # Image URLs (model fields)
             'hero_image_url', 'problem_image_url',
 
             # Base64 images (for input)
@@ -128,18 +128,7 @@ class BlogPostSerializer(serializers.ModelSerializer):
         """
         Create BlogPost instance with image handling.
         """
-        # Extract image URLs and base64 data
-        image_urls = {}
-        base64_images = {}
-
-        for field_name in ['hero_image', 'problem_image']:
-            url_field = f"{field_name}_url"
-            base64_field = f"{field_name}_base64"
-
-            if url_field in validated_data:
-                image_urls[field_name] = validated_data.pop(url_field)
-            if base64_field in validated_data:
-                base64_images[field_name] = validated_data.pop(base64_field)
+        # URL fields are now handled directly by the model
 
         # Create the blog post
         blog_post = BlogPost.objects.create(**validated_data)

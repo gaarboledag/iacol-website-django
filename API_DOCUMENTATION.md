@@ -73,13 +73,11 @@ X-API-Key: your-api-key-here
 - `hypothetical_case_section`
 - `final_cta_section`
 
-### Imágenes (elige una opción por imagen)
-- `{image_name}_url`: URL de la imagen
-- `{image_name}_base64`: Imagen en base64
+### Imágenes (URLs externas)
+- `hero_image_url`: URL externa de la imagen principal
+- `problem_image_url`: URL externa de la imagen del problema
 
-**Nombres de imagen disponibles:**
-- `hero_image`
-- `problem_image`
+**Nota:** También puedes subir archivos directamente desde el admin, pero las URLs tienen prioridad para display.
 
 ## 📤 Respuesta Exitosa
 
