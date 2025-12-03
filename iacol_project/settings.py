@@ -70,7 +70,7 @@ THIRD_PARTY_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'django_ratelimit',
-    'csp',
+    # 'csp',  # Temporarily disabled due to compatibility issues
     'defender',
 ]
 
@@ -92,7 +92,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIDDLEWARE = [
     'django_brotli.middleware.BrotliMiddleware',  # Compresión Brotli (mejor que GZIP)
     'django.middleware.gzip.GZipMiddleware',  # Compresión GZIP como fallback
-    'csp.middleware.CSPMiddleware',
+    # 'csp.middleware.CSPMiddleware',  # Temporarily disabled
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -327,14 +327,14 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 
-# Content Security Policy
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", "https://fonts.cdnfonts.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com")
-CSP_SCRIPT_SRC = ("'self'", "https://www.googletagmanager.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com", "https://crm.iacol.online", "'unsafe-inline'")
-CSP_FONT_SRC = ("'self'", "https://fonts.cdnfonts.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com")
-CSP_IMG_SRC = ("'self'", "data:", "https:", "https://flagcdn.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com")
-CSP_FRAME_SRC = ("'self'", "https://crm.iacol.online")
-CSP_CONNECT_SRC = ("'self'", "https://crm.iacol.online", "wss://crm.iacol.online", "https://api.whatsapp.com", "https://www.google-analytics.com", "https://cdn.jsdelivr.net")
+# Content Security Policy - Temporarily disabled
+# CSP_DEFAULT_SRC = ("'self'",)
+# CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", "https://fonts.cdnfonts.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com")
+# CSP_SCRIPT_SRC = ("'self'", "https://www.googletagmanager.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com", "https://crm.iacol.online", "'unsafe-inline'")
+# CSP_FONT_SRC = ("'self'", "https://fonts.cdnfonts.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com")
+# CSP_IMG_SRC = ("'self'", "data:", "https:", "https://flagcdn.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com")
+# CSP_FRAME_SRC = ("'self'", "https://crm.iacol.online")
+# CSP_CONNECT_SRC = ("'self'", "https://crm.iacol.online", "wss://crm.iacol.online", "https://api.whatsapp.com", "https://www.google-analytics.com", "https://cdn.jsdelivr.net")
 
 # Only set this to True if you're behind a proxy that sets X-Forwarded-Proto header
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
