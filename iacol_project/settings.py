@@ -69,7 +69,7 @@ THIRD_PARTY_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'django_ratelimit',
+    # 'django_ratelimit',  # Temporarily disabled due to cache issues
     'csp',
     'defender',
 ]
@@ -209,7 +209,7 @@ REDIS_URL = env('REDIS_URL', default='redis://redis:6379/0')
 CELERY_BROKER_URL = REDIS_URL
 CELERY_RESULT_BACKEND = REDIS_URL
 
-# Cache configuration - temporarily use local memory cache due to Redis issues
+# Cache configuration - simple local cache
 CACHES = {
     'default': {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',

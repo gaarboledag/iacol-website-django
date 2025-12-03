@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from apps.agents.models import Agent, UserSubscription
 from blog.models import BlogPost
-from django_ratelimit.decorators import ratelimit
+# from django_ratelimit.decorators import ratelimit  # Temporarily disabled
 from django.views.decorators.cache import cache_page
 from django.urls import reverse
 
