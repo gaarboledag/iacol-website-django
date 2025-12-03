@@ -209,21 +209,11 @@ REDIS_URL = env('REDIS_URL', default='redis://redis:6379/0')
 CELERY_BROKER_URL = REDIS_URL
 CELERY_RESULT_BACKEND = REDIS_URL
 
-# Cache configuration - use Redis for both development and production
-# (django-ratelimit requires a shared cache backend)
+# Cache configuration - temporarily use local memory cache due to Redis issues
 CACHES = {
     'default': {
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': REDIS_URL,
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-            'CONNECTION_POOL_KWARGS': {
-                'max_connections': 20,
-                'decode_responses': True,
-            },
-            'SERIALIZER': 'django_redis.serializers.json.JSONSerializer',
-        },
-        'KEY_PREFIX': 'iacol',
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake',
         'TIMEOUT': 300,  # 5 minutes default TTL
     }
 }

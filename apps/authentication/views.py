@@ -22,7 +22,7 @@ def contact(request):
     return render(request, 'contact.html')
 
 
-@ratelimit(key='ip', rate='10/m', method='GET')
+# @ratelimit(key='ip', rate='10/m', method='GET')  # Temporarily disabled due to Redis issues
 def solutions(request):
     """Página pública de Soluciones con listado de agentes"""
     try:
