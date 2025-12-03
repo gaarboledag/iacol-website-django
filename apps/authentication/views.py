@@ -25,17 +25,23 @@ def contact(request):
 @ratelimit(key='ip', rate='10/m', method='GET')
 def solutions(request):
     """Página pública de Soluciones con listado de agentes"""
-    if request.user.is_authenticated and (request.user.is_staff or request.user.is_superuser):
-        # Admines ven todos los agentes activos sin importar flags
-        agents = Agent.objects.filter(is_active=True).select_related('category')
-    else:
-        agents = Agent.objects.filter(is_active=True, show_in_solutions=True).select_related('category')
-    user_subscriptions = []
-    if request.user.is_authenticated:
-        user_subscriptions = list(
-            UserSubscription.objects.filter(user=request.user, status='active')
-            .values_list('agent_id', flat=True)
-        )
+    try:
+        if request.user.is_authenticated and (request.user.is_staff or request.user.is_superuser):
+            # Admines ven todos los agentes activos sin importar flags
+            agents = Agent.objects.filter(is_active=True).select_related('category')
+        else:
+            agents = Agent.objects.filter(is_active=True, show_in_solutions=True).select_related('category')
+        user_subscriptions = []
+        if request.user.is_authenticated:
+            user_subscriptions = list(
+                UserSubscription.objects.filter(user=request.user, status='active')
+                .values_list('agent_id', flat=True)
+            )
+    except Exception as e:
+        # Si hay error de base de datos, mostrar página sin datos
+        agents = []
+        user_subscriptions = []
+        print(f"Database error in solutions view: {e}")  # Para debugging
 
     return render(request, 'solutions.html', {
         'agents': agents,
