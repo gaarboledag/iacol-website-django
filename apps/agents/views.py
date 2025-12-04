@@ -11,8 +11,8 @@ from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
-from .models import Agent, UserSubscription, AgentConfiguration, AgentUsageLog, Provider, ProviderCategory, Brand, Product, ProductCategory, ProductBrand, AutomotiveCenterInfo
-from .forms import AgentConfigurationForm, ProviderForm, ProviderCategoryForm, BrandForm, ProductForm, ProductCategoryForm, ProductBrandForm, AutomotiveCenterInfoForm
+from .models import Agent, UserSubscription, AgentConfiguration, AgentUsageLog, Provider, ProviderCategory, Brand, Product, ProductCategory, ProductBrand, AutomotiveCenterInfo, AdvancedCatalogCategory, AdvancedCatalogProduct, AdvancedCatalogModel, AdvancedCatalogImage
+from .forms import AgentConfigurationForm, ProviderForm, ProviderCategoryForm, BrandForm, ProductForm, ProductCategoryForm, ProductBrandForm, AutomotiveCenterInfoForm, AdvancedCatalogCategoryForm, AdvancedCatalogProductForm, AdvancedCatalogModelForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django_ratelimit.decorators import ratelimit
 from django.core.cache import cache
@@ -185,15 +185,22 @@ def agent_configure(request, agent_id):
     if hasattr(configuration, 'enable_automotive_info') and configuration.enable_automotive_info:
         automotive_info = getattr(configuration, 'automotive_center_info', None)
 
+    # Get advanced catalog products if enabled
+    advanced_catalog_products = None
+    if hasattr(configuration, 'enable_advanced_catalog') and configuration.enable_advanced_catalog:
+        advanced_catalog_products = configuration.advanced_catalog_products.select_related('category').prefetch_related('models__images').all().order_by('-created_at')
+
     return render(request, 'agents/agent_configure.html', {
         'agent': agent,
         'configuration': configuration,
         'providers': providers,
         'products': products,
         'automotive_info': automotive_info,
+        'advanced_catalog_products': advanced_catalog_products,
         'enable_providers': getattr(configuration, 'enable_providers', False),
         'enable_products': getattr(configuration, 'enable_products', False),
         'enable_automotive_info': getattr(configuration, 'enable_automotive_info', False),
+        'enable_advanced_catalog': getattr(configuration, 'enable_advanced_catalog', False),
     })
 
 @login_required
@@ -238,6 +245,16 @@ def toggle_module(request, agent_id, module_name):
         return JsonResponse({
             'status': 'success',
             'enabled': configuration.enable_automotive_info,
+            'redirect': reverse_lazy('agents:agent_configure', kwargs={'agent_id': agent.id})
+        })
+    elif module_name == 'advanced_catalog':
+        if 'MechAI' not in agent.name:
+            return JsonResponse({'status': 'error', 'message': 'El catálogo avanzado solo está disponible para agentes MechAI'}, status=403)
+        configuration.enable_advanced_catalog = not getattr(configuration, 'enable_advanced_catalog', False)
+        configuration.save()
+        return JsonResponse({
+            'status': 'success',
+            'enabled': configuration.enable_advanced_catalog,
             'redirect': reverse_lazy('agents:agent_configure', kwargs={'agent_id': agent.id})
         })
 
@@ -468,6 +485,306 @@ class ProductCategoryDeleteView(LoginRequiredMixin, DeleteView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['agent'] = self.agent
+        return context
+
+# Advanced Catalog Views
+class AdvancedCatalogCategoryListView(LoginRequiredMixin, ListView):
+    model = AdvancedCatalogCategory
+    template_name = 'agents/advanced_catalog_category_list.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.agent = get_object_or_404(Agent.objects.select_related('category'), id=kwargs['agent_id'])
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_queryset(self):
+        return AdvancedCatalogCategory.objects.filter(agent_config__agent=self.agent)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        return context
+
+class AdvancedCatalogCategoryCreateView(LoginRequiredMixin, CreateView):
+    model = AdvancedCatalogCategory
+    form_class = AdvancedCatalogCategoryForm
+    template_name = 'agents/advanced_catalog_category_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.agent = get_object_or_404(Agent.objects.select_related('category'), id=kwargs['agent_id'])
+        self.agent_config, _ = AgentConfiguration.objects.get_or_create(
+            user=self.request.user,
+            agent=self.agent,
+            defaults={'configuration_data': {}}
+        )
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        try:
+            form.instance.agent_config = self.agent_config
+            messages.success(self.request, _("Categoría de catálogo avanzado agregada exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            messages.error(self.request, _("Error al crear la categoría. Por favor intente nuevamente."))
+            return self.form_invalid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:advanced_catalog_category_list', kwargs={'agent_id': self.agent.id})
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.agent_config
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Agregar Categoría de Catálogo Avanzado")
+        return context
+
+class AdvancedCatalogCategoryUpdateView(LoginRequiredMixin, UpdateView):
+    model = AdvancedCatalogCategory
+    form_class = AdvancedCatalogCategoryForm
+    template_name = 'agents/advanced_catalog_category_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.category = self.get_object()
+        self.agent = self.category.agent_config.agent
+        return super().dispatch(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        try:
+            messages.success(self.request, _("Categoría de catálogo avanzado actualizada exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            messages.error(self.request, _("Error al actualizar la categoría. Por favor intente nuevamente."))
+            return self.form_invalid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:advanced_catalog_category_list', kwargs={'agent_id': self.agent.id})
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.category.agent_config
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Editar Categoría de Catálogo Avanzado")
+        return context
+
+class AdvancedCatalogCategoryDeleteView(LoginRequiredMixin, DeleteView):
+    model = AdvancedCatalogCategory
+    template_name = 'agents/advanced_catalog_category_confirm_delete.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.category = self.get_object()
+        self.agent = self.category.agent_config.agent
+        return super().dispatch(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        try:
+            messages.success(request, _("Categoría de catálogo avanzado eliminada exitosamente."))
+            return super().delete(request, *args, **kwargs)
+        except Exception as e:
+            messages.error(request, _("Error al eliminar la categoría. Por favor intente nuevamente."))
+            return redirect(reverse_lazy('agents:advanced_catalog_category_list', kwargs={'agent_id': self.agent.id}))
+
+    def get_success_url(self):
+        return reverse_lazy('agents:advanced_catalog_category_list', kwargs={'agent_id': self.agent.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        return context
+
+class AdvancedCatalogProductCreateView(LoginRequiredMixin, CreateView):
+    model = AdvancedCatalogProduct
+    form_class = AdvancedCatalogProductForm
+    template_name = 'agents/advanced_catalog_product_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.agent = get_object_or_404(Agent.objects.select_related('category'), id=kwargs['agent_id'])
+        self.agent_config = AgentConfiguration.objects.get(
+            user=self.request.user,
+            agent=self.agent
+        )
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.agent_config
+        return kwargs
+
+    def form_valid(self, form):
+        form.instance.agent_config = self.agent_config
+        try:
+            messages.success(self.request, _("Producto de catálogo avanzado creado exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            messages.error(self.request, _("Error al crear el producto. Por favor intente nuevamente."))
+            return self.form_invalid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Agregar Producto de Catálogo Avanzado")
+        return context
+
+class AdvancedCatalogProductUpdateView(LoginRequiredMixin, UpdateView):
+    model = AdvancedCatalogProduct
+    form_class = AdvancedCatalogProductForm
+    template_name = 'agents/advanced_catalog_product_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.product = self.get_object()
+        self.agent = self.product.agent_config.agent
+        self.agent_config = self.product.agent_config
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['agent_config'] = self.agent_config
+        return kwargs
+
+    def form_valid(self, form):
+        try:
+            messages.success(self.request, _("Producto de catálogo avanzado actualizado exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            messages.error(self.request, _("Error al actualizar el producto. Por favor intente nuevamente."))
+            return self.form_invalid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['title'] = _("Editar Producto de Catálogo Avanzado")
+        return context
+
+class AdvancedCatalogProductDeleteView(LoginRequiredMixin, DeleteView):
+    model = AdvancedCatalogProduct
+    template_name = 'agents/advanced_catalog_product_confirm_delete.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.product = self.get_object()
+        self.agent = self.product.agent_config.agent
+        return super().dispatch(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        try:
+            messages.success(request, _("Producto de catálogo avanzado eliminado exitosamente."))
+            return super().delete(request, *args, **kwargs)
+        except Exception as e:
+            messages.error(request, _("Error al eliminar el producto. Por favor intente nuevamente."))
+            return redirect(reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id}))
+
+    def get_success_url(self):
+        return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        return context
+
+class AdvancedCatalogModelCreateView(LoginRequiredMixin, CreateView):
+    model = AdvancedCatalogModel
+    form_class = AdvancedCatalogModelForm
+    template_name = 'agents/advanced_catalog_model_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.product = get_object_or_404(AdvancedCatalogProduct, id=kwargs['product_id'])
+        self.agent = self.product.agent_config.agent
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['product'] = self.product
+        return kwargs
+
+    def form_valid(self, form):
+        form.instance.product = self.product
+        try:
+            messages.success(self.request, _("Modelo de catálogo avanzado creado exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            messages.error(self.request, _("Error al crear el modelo. Por favor intente nuevamente."))
+            return self.form_invalid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['product'] = self.product
+        context['title'] = _("Agregar Modelo")
+        return context
+
+class AdvancedCatalogModelUpdateView(LoginRequiredMixin, UpdateView):
+    model = AdvancedCatalogModel
+    form_class = AdvancedCatalogModelForm
+    template_name = 'agents/advanced_catalog_model_form.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.model_instance = self.get_object()
+        self.product = self.model_instance.product
+        self.agent = self.product.agent_config.agent
+        return super().dispatch(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['product'] = self.product
+        return kwargs
+
+    def form_valid(self, form):
+        try:
+            messages.success(self.request, _("Modelo de catálogo avanzado actualizado exitosamente."))
+            return super().form_valid(form)
+        except Exception as e:
+            messages.error(self.request, _("Error al actualizar el modelo. Por favor intente nuevamente."))
+            return self.form_invalid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['product'] = self.product
+        context['title'] = _("Editar Modelo")
+        return context
+
+class AdvancedCatalogModelDeleteView(LoginRequiredMixin, DeleteView):
+    model = AdvancedCatalogModel
+    template_name = 'agents/advanced_catalog_model_confirm_delete.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        self.model_instance = self.get_object()
+        self.product = self.model_instance.product
+        self.agent = self.product.agent_config.agent
+        return super().dispatch(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        try:
+            messages.success(request, _("Modelo de catálogo avanzado eliminado exitosamente."))
+            return super().delete(request, *args, **kwargs)
+        except Exception as e:
+            messages.error(request, _("Error al eliminar el modelo. Por favor intente nuevamente."))
+            return redirect(reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id}))
+
+    def get_success_url(self):
+        return reverse_lazy('agents:agent_configure', kwargs={'agent_id': self.agent.id})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['agent'] = self.agent
+        context['product'] = self.product
         return context
 
 class AutomotiveCenterInfoCreateView(LoginRequiredMixin, CreateView):

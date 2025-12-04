@@ -1,12 +1,12 @@
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field, Div, HTML
-from .models import AgentConfiguration, Provider, ProviderCategory, Brand, Product, ProductCategory, ProductBrand, AutomotiveCenterInfo
+from .models import AgentConfiguration, Provider, ProviderCategory, Brand, Product, ProductCategory, ProductBrand, AutomotiveCenterInfo, AdvancedCatalogCategory, AdvancedCatalogProduct, AdvancedCatalogModel, AdvancedCatalogImage
 
 class AgentConfigurationForm(forms.ModelForm):
     class Meta:
         model = AgentConfiguration
-        fields = ['configuration_data', 'enable_providers']
+        fields = ['configuration_data', 'enable_providers', 'enable_products', 'enable_automotive_info', 'enable_advanced_catalog']
         widgets = {
             'configuration_data': forms.Textarea(attrs={
                 'rows': 10,
@@ -23,7 +23,7 @@ class AgentConfigurationForm(forms.ModelForm):
         self.fields['configuration_data'].label = 'Configuración'
         self.fields['configuration_data'].help_text = 'Ingrese los parámetros de configuración en formato JSON'
 
-        # Restrict enable_providers, enable_products and enable_automotive_info based on agent name
+        # Restrict enable_providers, enable_products, enable_automotive_info and enable_advanced_catalog based on agent name
         if self.instance and self.instance.pk and 'MechAI' not in self.instance.agent.name and 'FindPart' not in self.instance.agent.name:
             self.fields['enable_providers'].disabled = True
             self.fields['enable_providers'].help_text = 'Solo disponible para agentes MechAI y FindPartAI'
@@ -31,13 +31,16 @@ class AgentConfigurationForm(forms.ModelForm):
             self.fields['enable_products'].help_text = 'Solo disponible para agentes MechAI'
             self.fields['enable_automotive_info'].disabled = True
             self.fields['enable_automotive_info'].help_text = 'Solo disponible para agentes MechAI'
+            self.fields['enable_advanced_catalog'].disabled = True
+            self.fields['enable_advanced_catalog'].help_text = 'Solo disponible para agentes MechAI'
 
     def clean(self):
         cleaned_data = super().clean()
         enable_providers = cleaned_data.get('enable_providers')
         enable_products = cleaned_data.get('enable_products')
         enable_automotive_info = cleaned_data.get('enable_automotive_info')
-        if enable_providers or enable_products or enable_automotive_info:
+        enable_advanced_catalog = cleaned_data.get('enable_advanced_catalog')
+        if enable_providers or enable_products or enable_automotive_info or enable_advanced_catalog:
             if self.instance.pk:
                 agent = self.instance.agent
             else:
@@ -158,6 +161,112 @@ class ProductBrandForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance
+
+class AdvancedCatalogCategoryForm(forms.ModelForm):
+    class Meta:
+        model = AdvancedCatalogCategory
+        fields = ['name']
+
+    def __init__(self, *args, **kwargs):
+        self.agent_config = kwargs.pop('agent_config', None)
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if self.agent_config:
+            instance.agent_config = self.agent_config
+        if commit:
+            instance.save()
+        return instance
+
+class AdvancedCatalogProductForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.agent_config = kwargs.pop('agent_config', None)
+        super().__init__(*args, **kwargs)
+
+        # Filter categories by agent_config
+        if self.agent_config:
+            self.fields['category'].queryset = AdvancedCatalogCategory.objects.filter(
+                agent_config=self.agent_config
+            )
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if self.agent_config:
+            instance.agent_config = self.agent_config
+        if commit:
+            instance.save()
+        return instance
+
+    class Meta:
+        model = AdvancedCatalogProduct
+        fields = ['name', 'category']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Nombre del producto'
+            }),
+            'category': forms.Select(attrs={
+                'class': 'form-select',
+                'placeholder': 'Seleccione una categoría'
+            }),
+        }
+
+class AdvancedCatalogModelForm(forms.ModelForm):
+    catalog_images = forms.FileField(
+        required=False,
+        widget=forms.ClearableFileInput(attrs={'multiple': True}),
+        label='Imágenes de catálogo'
+    )
+    price_images = forms.FileField(
+        required=False,
+        widget=forms.ClearableFileInput(attrs={'multiple': True}),
+        label='Imágenes de precio'
+    )
+
+    def __init__(self, *args, **kwargs):
+        self.product = kwargs.pop('product', None)
+        super().__init__(*args, **kwargs)
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if self.product:
+            instance.product = self.product
+        if commit:
+            instance.save()
+            # Handle multiple images
+            catalog_images = self.files.getlist('catalog_images')
+            price_images = self.files.getlist('price_images')
+
+            for img in catalog_images:
+                AdvancedCatalogImage.objects.create(
+                    model=instance,
+                    image_type='catalog',
+                    image=img
+                )
+
+            for img in price_images:
+                AdvancedCatalogImage.objects.create(
+                    model=instance,
+                    image_type='price',
+                    image=img
+                )
+        return instance
+
+    class Meta:
+        model = AdvancedCatalogModel
+        fields = ['name', 'price']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Nombre del modelo'
+            }),
+            'price': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': '0.00',
+                'step': '0.01'
+            }),
+        }
 
 class ProductForm(forms.ModelForm):
     image_url = forms.URLField(

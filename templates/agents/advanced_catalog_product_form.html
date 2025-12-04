@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static crispy_forms_tags %}
+
+{% block title %}{{ title }} - {{ agent.name }} - IACOL Empresarial{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-lg-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <!-- Header -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
+                <div class="d-flex align-items-center mb-2 mb-md-0">
+                    <i class="fas fa-book fa-lg me-2 text-primary"></i>
+                    <h2 class="h4 mb-0">{{ title }}</h2>
+                </div>
+                <a href="{% url 'agents:agent_configure' agent.id %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-1"></i>Volver a configuración
+                </a>
+            </div>
+
+            <!-- Form Card -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>Guardar Producto
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Select2 for better category selection
+        $('#id_category').select2({
+            placeholder: 'Seleccione una categoría',
+            allowClear: true
+        });
+    });
+</script>
+{% endblock %}

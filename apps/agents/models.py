@@ -113,6 +113,13 @@ class AgentConfiguration(models.Model):
         help_text='Permitir a los usuarios configurar información del centro automotriz para este agente'
     )
 
+    # Nuevo campo para indicar si este agente tiene habilitado el catálogo avanzado
+    enable_advanced_catalog = models.BooleanField(
+        default=False,
+        verbose_name='Habilitar catálogo avanzado',
+        help_text='Permitir a los usuarios gestionar catálogo avanzado para este agente'
+    )
+
     class Meta:
         unique_together = ['user', 'agent']
         verbose_name = 'Configuración de agente'
@@ -394,3 +401,112 @@ class AgentUsageLog(models.Model):
     def __str__(self):
         status = "✓" if self.success else "✗"
         return f"{status} {self.user.username} - {self.agent.name} [{self.created_at}]"
+
+class AdvancedCatalogCategory(models.Model):
+    """Modelo para categorías del catálogo avanzado"""
+    name = models.CharField(max_length=100, verbose_name='Nombre de la categoría')
+    agent_config = models.ForeignKey(
+        AgentConfiguration,
+        on_delete=models.CASCADE,
+        related_name='advanced_catalog_categories',
+        verbose_name='Configuración del agente'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Categoría de catálogo avanzado'
+        verbose_name_plural = 'Categorías de catálogo avanzado'
+        unique_together = ['name', 'agent_config']
+        ordering = ['name']
+        indexes = [
+            models.Index(fields=['agent_config']),
+        ]
+
+    def __str__(self):
+        return self.name
+
+class AdvancedCatalogProduct(models.Model):
+    """Modelo para productos del catálogo avanzado"""
+    name = models.CharField(max_length=200, verbose_name='Nombre del producto')
+    category = models.ForeignKey(
+        AdvancedCatalogCategory,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='products',
+        verbose_name='Categoría'
+    )
+    agent_config = models.ForeignKey(
+        AgentConfiguration,
+        on_delete=models.CASCADE,
+        related_name='advanced_catalog_products',
+        verbose_name='Configuración del agente'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Producto de catálogo avanzado'
+        verbose_name_plural = 'Productos de catálogo avanzado'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return self.name
+
+class AdvancedCatalogModel(models.Model):
+    """Modelo para variantes de productos del catálogo avanzado"""
+    name = models.CharField(max_length=200, verbose_name='Nombre del modelo')
+    product = models.ForeignKey(
+        AdvancedCatalogProduct,
+        on_delete=models.CASCADE,
+        related_name='models',
+        verbose_name='Producto'
+    )
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        validators=[MinValueValidator(0.01)],
+        verbose_name='Precio'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        verbose_name = 'Modelo de catálogo avanzado'
+        verbose_name_plural = 'Modelos de catálogo avanzado'
+        ordering = ['name']
+
+    def __str__(self):
+        return f"{self.product.name} - {self.name}"
+
+class AdvancedCatalogImage(models.Model):
+    """Modelo para imágenes de modelos del catálogo avanzado"""
+    IMAGE_TYPES = [
+        ('catalog', 'Imagen de catálogo'),
+        ('price', 'Imagen de precio'),
+    ]
+
+    model = models.ForeignKey(
+        AdvancedCatalogModel,
+        on_delete=models.CASCADE,
+        related_name='images',
+        verbose_name='Modelo'
+    )
+    image_type = models.CharField(max_length=10, choices=IMAGE_TYPES, verbose_name='Tipo de imagen')
+    image = models.ImageField(upload_to='advanced_catalog/', verbose_name='Imagen')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Imagen de catálogo avanzado'
+        verbose_name_plural = 'Imágenes de catálogo avanzado'
+        ordering = ['image_type', 'created_at']
+
+    def get_image_url(self):
+        """Devuelve la URL correcta para acceder a la imagen"""
+        if self.image and self.image.name:
+            return f"/api/media/{self.image.name}/"
+        return None
+
+    def __str__(self):
+        return f"{self.model} - {self.get_image_type_display()}"

@@ -52,4 +52,18 @@ urlpatterns = [
     # URLs para la gestión de información del centro automotriz
     path('<int:agent_id>/automotive-info/create/', views.AutomotiveCenterInfoCreateView.as_view(), name='automotive_info_create'),
     path('automotive-info/<int:pk>/edit/', views.AutomotiveCenterInfoUpdateView.as_view(), name='automotive_info_update'),
+
+    # URLs para la gestión de catálogo avanzado
+    path('<int:agent_id>/advanced-catalog-categories/', views.AdvancedCatalogCategoryListView.as_view(), name='advanced_catalog_category_list'),
+    path('<int:agent_id>/advanced-catalog-categories/add/', views.AdvancedCatalogCategoryCreateView.as_view(), name='advanced_catalog_category_add'),
+    path('advanced-catalog-categories/<int:pk>/edit/', views.AdvancedCatalogCategoryUpdateView.as_view(), name='advanced_catalog_category_edit'),
+    path('advanced-catalog-categories/<int:pk>/delete/', views.AdvancedCatalogCategoryDeleteView.as_view(), name='advanced_catalog_category_delete'),
+
+    path('<int:agent_id>/advanced-catalog-products/add/', views.AdvancedCatalogProductCreateView.as_view(), name='advanced_catalog_product_add'),
+    path('advanced-catalog-products/<int:pk>/edit/', views.AdvancedCatalogProductUpdateView.as_view(), name='advanced_catalog_product_edit'),
+    path('advanced-catalog-products/<int:pk>/delete/', views.AdvancedCatalogProductDeleteView.as_view(), name='advanced_catalog_product_delete'),
+
+    path('advanced-catalog-products/<int:product_id>/models/add/', views.AdvancedCatalogModelCreateView.as_view(), name='advanced_catalog_model_add'),
+    path('advanced-catalog-models/<int:pk>/edit/', views.AdvancedCatalogModelUpdateView.as_view(), name='advanced_catalog_model_edit'),
+    path('advanced-catalog-models/<int:pk>/delete/', views.AdvancedCatalogModelDeleteView.as_view(), name='advanced_catalog_model_delete'),
 ]

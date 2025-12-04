@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AgentCategory, Agent, UserSubscription, AgentConfiguration, AgentUsageLog, Product, AutomotiveCenterInfo
+from .models import AgentCategory, Agent, UserSubscription, AgentConfiguration, AgentUsageLog, Product, AutomotiveCenterInfo, AdvancedCatalogCategory, AdvancedCatalogProduct, AdvancedCatalogModel, AdvancedCatalogImage
 
 @admin.register(AgentCategory)
 class AgentCategoryAdmin(admin.ModelAdmin):
@@ -47,20 +47,20 @@ class AgentConfigurationAdmin(admin.ModelAdmin):
             'fields': ('user', 'agent')
         }),
         ('Configuración', {
-            'fields': ('configuration_data', 'enable_providers', 'enable_products', 'enable_automotive_info')
+            'fields': ('configuration_data', 'enable_providers', 'enable_products', 'enable_automotive_info', 'enable_advanced_catalog')
         }),
     )
 
     def get_readonly_fields(self, request, obj=None):
         readonly = super().get_readonly_fields(request, obj)
         if obj and 'MechAI' not in obj.agent.name and 'FindPart' not in obj.agent.name:
-            readonly = list(readonly) + ['enable_providers', 'enable_products', 'enable_automotive_info']
+            readonly = list(readonly) + ['enable_providers', 'enable_products', 'enable_automotive_info', 'enable_advanced_catalog']
         return readonly
 
     def get_exclude(self, request, obj=None):
         exclude = super().get_exclude(request, obj)
         if obj and 'MechAI' not in obj.agent.name and 'FindPart' not in obj.agent.name:
-            exclude = list(exclude or []) + ['enable_providers', 'enable_products', 'enable_automotive_info']
+            exclude = list(exclude or []) + ['enable_providers', 'enable_products', 'enable_automotive_info', 'enable_advanced_catalog']
         return exclude
 
     def get_form(self, request, obj=None, **kwargs):
@@ -72,6 +72,8 @@ class AgentConfigurationAdmin(admin.ModelAdmin):
                 form.base_fields['enable_products'].help_text = "Solo disponible para agentes MechAI"
             if 'enable_automotive_info' in form.base_fields:
                 form.base_fields['enable_automotive_info'].help_text = "Solo disponible para agentes MechAI"
+            if 'enable_advanced_catalog' in form.base_fields:
+                form.base_fields['enable_advanced_catalog'].help_text = "Solo disponible para agentes MechAI"
         return form
 
 @admin.register(Product)
@@ -92,4 +94,32 @@ class AgentUsageLogAdmin(admin.ModelAdmin):
     list_display = ['user', 'agent', 'success', 'execution_time', 'created_at']
     list_filter = ['success', 'agent', 'created_at']
     search_fields = ['user__username', 'agent__name']
+    readonly_fields = ['created_at']
+
+@admin.register(AdvancedCatalogCategory)
+class AdvancedCatalogCategoryAdmin(admin.ModelAdmin):
+    list_display = ['name', 'agent_config', 'created_at']
+    list_filter = ['agent_config__agent', 'created_at']
+    search_fields = ['name']
+    readonly_fields = ['created_at', 'updated_at']
+
+@admin.register(AdvancedCatalogProduct)
+class AdvancedCatalogProductAdmin(admin.ModelAdmin):
+    list_display = ['name', 'category', 'agent_config', 'created_at']
+    list_filter = ['agent_config__agent', 'category', 'created_at']
+    search_fields = ['name']
+    readonly_fields = ['created_at', 'updated_at']
+
+@admin.register(AdvancedCatalogModel)
+class AdvancedCatalogModelAdmin(admin.ModelAdmin):
+    list_display = ['name', 'product', 'price', 'created_at']
+    list_filter = ['product__agent_config__agent', 'created_at']
+    search_fields = ['name', 'product__name']
+    readonly_fields = ['created_at', 'updated_at']
+
+@admin.register(AdvancedCatalogImage)
+class AdvancedCatalogImageAdmin(admin.ModelAdmin):
+    list_display = ['model', 'image_type', 'created_at']
+    list_filter = ['image_type', 'model__product__agent_config__agent', 'created_at']
+    search_fields = ['model__name', 'model__product__name']
     readonly_fields = ['created_at']

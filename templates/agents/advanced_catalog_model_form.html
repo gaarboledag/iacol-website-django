@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static crispy_forms_tags %}
+
+{% block title %}{{ title }} - {{ product.name }} - IACOL Empresarial{% endblock %}
+
+{% block content %}
+<div class="container py-4 py-lg-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <!-- Header -->
+            <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4 gap-3">
+                <div class="d-flex align-items-center mb-2 mb-md-0">
+                    <i class="fas fa-cube fa-lg me-2 text-primary"></i>
+                    <h2 class="h4 mb-0">{{ title }}</h2>
+                    <small class="text-muted ms-2">Producto: {{ product.name }}</small>
+                </div>
+                <a href="{% url 'agents:agent_configure' agent.id %}" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left me-1"></i>Volver a configuración
+                </a>
+            </div>
+
+            <!-- Form Card -->
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-4 p-md-5">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save me-2"></i>Guardar Modelo
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Existing Models -->
+            {% if product.models.exists %}
+            <div class="card border-0 shadow-sm mt-4">
+                <div class="card-header bg-light">
+                    <h5 class="mb-0"><i class="fas fa-list me-2"></i>Modelos Existentes</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        {% for model in product.models.all %}
+                        <div class="col-md-6 col-lg-4 mb-3">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h6 class="card-title">{{ model.name }}</h6>
+                                    <p class="card-text text-success fw-bold">${{ model.price }}</p>
+
+                                    {% if model.images.exists %}
+                                    <div class="mb-2">
+                                        <small class="text-muted">Imágenes:</small>
+                                        {% for image in model.images.all %}
+                                        <div class="badge bg-secondary me-1">{{ image.get_image_type_display }}</div>
+                                        {% endfor %}
+                                    </div>
+                                    {% endif %}
+
+                                    <div class="btn-group btn-group-sm w-100">
+                                        <a href="{% url 'agents:advanced_catalog_model_edit' pk=model.id %}" class="btn btn-outline-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="{% url 'agents:advanced_catalog_model_delete' pk=model.id %}" class="btn btn-outline-danger"
+                                           onclick="return confirm('¿Estás seguro de que deseas eliminar este modelo?')">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        // Handle multiple file inputs
+        const catalogImagesInput = document.getElementById('id_catalog_images');
+        const priceImagesInput = document.getElementById('id_price_images');
+
+        if (catalogImagesInput) {
+            catalogImagesInput.addEventListener('change', function(e) {
+                console.log('Catalog images selected:', e.target.files.length);
+            });
+        }
+
+        if (priceImagesInput) {
+            priceImagesInput.addEventListener('change', function(e) {
+                console.log('Price images selected:', e.target.files.length);
+            });
+        }
+    });
+</script>
+{% endblock %}
