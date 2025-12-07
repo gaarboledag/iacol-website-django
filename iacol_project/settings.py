@@ -317,14 +317,36 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 
-# Content Security Policy - django-csp settings
-CSP_DEFAULT_SRC = ("'self'",)
-CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", "https://fonts.cdnfonts.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com")
-CSP_SCRIPT_SRC = ("'self'", "https://www.googletagmanager.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com", "https://crm.iacol.online", "'unsafe-inline'")
-CSP_FONT_SRC = ("'self'", "https://fonts.cdnfonts.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com")
-CSP_IMG_SRC = ("'self'", "data:", "https:", "https://flagcdn.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com")
-CSP_FRAME_SRC = ("'self'", "https://crm.iacol.online")
-CSP_CONNECT_SRC = ("'self'", "https://crm.iacol.online", "wss://crm.iacol.online", "https://api.whatsapp.com", "https://www.google-analytics.com", "https://cdn.jsdelivr.net")
+# Content Security Policy - django-csp settings (updated to v4.0 format)
+CONTENT_SECURITY_POLICY = {'DIRECTIVES': {'connect-src': ("'self'",
+                                'https://crm.iacol.online',
+                                'wss://crm.iacol.online',
+                                'https://api.whatsapp.com',
+                                'https://www.google-analytics.com',
+                                'https://cdn.jsdelivr.net'),
+                'default-src': ("'self'",),
+                'font-src': ("'self'",
+                             'https://fonts.cdnfonts.com',
+                             'https://cdn.jsdelivr.net',
+                             'https://cdnjs.cloudflare.com'),
+                'frame-src': ("'self'", 'https://crm.iacol.online'),
+                'img-src': ("'self'",
+                            'data:',
+                            'https:',
+                            'https://flagcdn.com',
+                            'https://cdn.jsdelivr.net',
+                            'https://cdnjs.cloudflare.com'),
+                'script-src': ("'self'",
+                               'https://www.googletagmanager.com',
+                               'https://cdn.jsdelivr.net',
+                               'https://cdnjs.cloudflare.com',
+                               'https://crm.iacol.online',
+                               "'unsafe-inline'"),
+                'style-src': ("'self'",
+                              "'unsafe-inline'",
+                              'https://fonts.cdnfonts.com',
+                              'https://cdn.jsdelivr.net',
+                              'https://cdnjs.cloudflare.com')}}
 
 # Only set this to True if you're behind a proxy that sets X-Forwarded-Proto header
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
