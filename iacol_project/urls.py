@@ -16,10 +16,6 @@ urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
 ]
 
-def append_slash_redirect(request, path):
-    """Redirect URLs without trailing slash to URLs with trailing slash"""
-    return redirect(path + '/')
-
 urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
@@ -40,18 +36,6 @@ def health_check(request):
 
 urlpatterns += [
     path('health/', health_check, name='health-check'),
-]
-
-# CRITICAL-004: Fixed URL patterns - More specific catch-all pattern
-# Redirect URLs without trailing slash to URLs with trailing slash (but only valid ones)
-urlpatterns += [
-    re_path(r'^(?P<path>[^.]+)$', append_slash_redirect, name='append_slash'),
-]
-
-# CRITICAL-004: Restrictive catch-all pattern - avoid conflicts with static assets
-# Only catch paths that don't look like files or API endpoints
-urlpatterns += [
-    re_path(r'^(?P<undefined_path>[^/.]+\/?)$', RedirectView.as_view(url='/'), name='redirect-to-home'),
 ]
 
 # Static and media files are served by Nginx in production

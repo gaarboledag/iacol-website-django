@@ -317,18 +317,14 @@ SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 
-# Content Security Policy - New format for django-csp 4.0
-CONTENT_SECURITY_POLICY = {
-    'DIRECTIVES': {
-        'default-src': ("'self'",),
-        'style-src': ("'self'", "'unsafe-inline'", "https://fonts.cdnfonts.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com"),
-        'script-src': ("'self'", "https://www.googletagmanager.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com", "https://crm.iacol.online", "'unsafe-inline'"),
-        'font-src': ("'self'", "https://fonts.cdnfonts.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com"),
-        'img-src': ("'self'", "data:", "https:", "https://flagcdn.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com"),
-        'frame-src': ("'self'", "https://crm.iacol.online"),
-        'connect-src': ("'self'", "https://crm.iacol.online", "wss://crm.iacol.online", "https://api.whatsapp.com", "https://www.google-analytics.com", "https://cdn.jsdelivr.net"),
-    }
-}
+# Content Security Policy - django-csp settings
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_STYLE_SRC = ("'self'", "'unsafe-inline'", "https://fonts.cdnfonts.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com")
+CSP_SCRIPT_SRC = ("'self'", "https://www.googletagmanager.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com", "https://crm.iacol.online", "'unsafe-inline'")
+CSP_FONT_SRC = ("'self'", "https://fonts.cdnfonts.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com")
+CSP_IMG_SRC = ("'self'", "data:", "https:", "https://flagcdn.com", "https://cdn.jsdelivr.net", "https://cdnjs.cloudflare.com")
+CSP_FRAME_SRC = ("'self'", "https://crm.iacol.online")
+CSP_CONNECT_SRC = ("'self'", "https://crm.iacol.online", "wss://crm.iacol.online", "https://api.whatsapp.com", "https://www.google-analytics.com", "https://cdn.jsdelivr.net")
 
 # Only set this to True if you're behind a proxy that sets X-Forwarded-Proto header
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -350,11 +346,6 @@ else:
     SECURE_HSTS_SECONDS = 31536000
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
-
-# HSTS Settings - 1 year for production
-SECURE_HSTS_SECONDS = 31536000
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
 
 # Ensure SecurityMiddleware is in MIDDLEWARE
 if 'django.middleware.security.SecurityMiddleware' not in MIDDLEWARE:

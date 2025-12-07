@@ -3,6 +3,11 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field, Div, HTML
 from .models import AgentConfiguration, Provider, ProviderCategory, Brand, Product, ProductCategory, ProductBrand, AutomotiveCenterInfo, AdvancedCatalogCategory, AdvancedCatalogProduct, AdvancedCatalogModel, AdvancedCatalogImage
 
+
+class MultiFileInput(forms.ClearableFileInput):
+    """Permite múltiples archivos en un FileField."""
+    allow_multiple_selected = True
+
 class AgentConfigurationForm(forms.ModelForm):
     class Meta:
         model = AgentConfiguration
@@ -215,12 +220,12 @@ class AdvancedCatalogProductForm(forms.ModelForm):
 class AdvancedCatalogModelForm(forms.ModelForm):
     catalog_images = forms.FileField(
         required=False,
-        widget=forms.ClearableFileInput(attrs={'multiple': True}),
+        widget=MultiFileInput(attrs={'multiple': True}),
         label='Imágenes de catálogo'
     )
     price_images = forms.FileField(
         required=False,
-        widget=forms.ClearableFileInput(attrs={'multiple': True}),
+        widget=MultiFileInput(attrs={'multiple': True}),
         label='Imágenes de precio'
     )
 

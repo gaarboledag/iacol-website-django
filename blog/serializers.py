@@ -1,8 +1,6 @@
 from rest_framework import serializers
 from .models import BlogPost
-import requests
 from django.core.files.base import ContentFile
-from django.core.files import File
 import base64
 import os
 
@@ -61,49 +59,25 @@ class BlogPostSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("El título debe tener al menos 5 caracteres")
         return value.strip()
 
-    def download_image_from_url(self, url, filename_prefix):
+    def decode_base64_image(self, base64_string, filename_prefix, max_bytes=5 * 1024 * 1024):
         """
-        Download image from URL and return a Django File object.
-        """
-        try:
-            response = requests.get(url, timeout=30)
-            response.raise_for_status()
-
-            # Get file extension from content-type or URL
-            content_type = response.headers.get('content-type', '')
-            if 'jpeg' in content_type or 'jpg' in content_type:
-                ext = 'jpg'
-            elif 'png' in content_type:
-                ext = 'png'
-            elif 'gif' in content_type:
-                ext = 'gif'
-            elif 'webp' in content_type:
-                ext = 'webp'
-            else:
-                # Try to get from URL
-                url_path = url.split('?')[0]  # Remove query params
-                ext = os.path.splitext(url_path)[1].lstrip('.')
-                if not ext:
-                    ext = 'jpg'  # Default
-
-            filename = f"{filename_prefix}_{self._get_timestamp()}.{ext}"
-
-            return ContentFile(response.content, name=filename)
-
-        except requests.RequestException as e:
-            raise serializers.ValidationError(f"Error descargando imagen desde {url}: {str(e)}")
-
-    def decode_base64_image(self, base64_string, filename_prefix):
-        """
-        Decode base64 image and return a Django File object.
+        Decode base64 image and return a Django File object with basic limits to avoid DoS.
         """
         try:
+            header = ''
             # Remove data URL prefix if present
             if ',' in base64_string:
                 header, base64_string = base64_string.split(',', 1)
 
+            # Basic size guard before decoding
+            if len(base64_string) > (max_bytes * 1.4):  # base64 adds ~33%
+                raise serializers.ValidationError("La imagen en base64 es demasiado grande")
+
             # Decode base64
             image_data = base64.b64decode(base64_string)
+
+            if len(image_data) > max_bytes:
+                raise serializers.ValidationError("La imagen en base64 supera el tamaño permitido (5MB)")
 
             # Determine file extension from header or default to png
             ext = 'png'  # Default
@@ -128,24 +102,25 @@ class BlogPostSerializer(serializers.ModelSerializer):
         """
         Create BlogPost instance with image handling.
         """
-        # URL fields are now handled directly by the model
+        # Extra fields that are not model fields
+        hero_image_base64 = validated_data.pop('hero_image_base64', '').strip()
+        problem_image_base64 = validated_data.pop('problem_image_base64', '').strip()
 
-        # Create the blog post
+        # Crear el post con los campos simples (incluyendo las URLs, que se almacenan en texto)
         blog_post = BlogPost.objects.create(**validated_data)
 
-        # Handle image URLs
-        for field_name, url in image_urls.items():
-            if url:
-                image_file = self.download_image_from_url(url, f"{field_name}_{blog_post.id}")
-                setattr(blog_post, f"{field_name}_image", image_file)
+        # Procesar imágenes en base64 si vienen en la petición
+        base64_images = {
+            'hero_image': hero_image_base64,
+            'problem_image': problem_image_base64,
+        }
 
-        # Handle base64 images
         for field_name, base64_data in base64_images.items():
             if base64_data:
                 image_file = self.decode_base64_image(base64_data, f"{field_name}_{blog_post.id}")
-                setattr(blog_post, f"{field_name}_image", image_file)
+                setattr(blog_post, field_name, image_file)
 
-        # Save with images
+        # Guardar con archivos si aplica
         blog_post.save()
 
         return blog_post

@@ -15,6 +15,8 @@ import re
 from datetime import datetime
 from django_ratelimit.decorators import ratelimit
 
+from apps.agents.models import Agent, AgentUsageLog, UserSubscription
+
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 @ratelimit(key='user', rate='100/m', method='POST')
@@ -30,10 +32,23 @@ def log_agent_execution(request):
         execution_time = data.get('execution_time', 0)
         success = data.get('success', True)
         error_message = data.get('error_message', '')
-        
-        user = User.objects.get(id=user_id)
-        agent = Agent.objects.get(id=agent_id)
-        
+
+        # Usar siempre el usuario autenticado; si viene user_id debe coincidir
+        if user_id and int(user_id) != request.user.id:
+            return Response({'status': 'error', 'message': 'Invalid user'}, status=status.HTTP_403_FORBIDDEN)
+
+        user = request.user
+        agent = Agent.objects.filter(id=agent_id, is_active=True).first()
+        if agent is None:
+            return Response({'status': 'error', 'message': 'Agent not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        # Validar que el usuario tenga acceso al agente (suscripción o staff)
+        has_access = request.user.is_staff or request.user.is_superuser or UserSubscription.objects.filter(
+            user=user, agent=agent, status='active'
+        ).exists()
+        if not has_access:
+            return Response({'status': 'error', 'message': 'No subscription for this agent'}, status=status.HTTP_403_FORBIDDEN)
+
         usage_log = AgentUsageLog.objects.create(
             user=user,
             agent=agent,
@@ -44,12 +59,12 @@ def log_agent_execution(request):
             success=success,
             error_message=error_message
         )
-        
+
         return Response({
             'status': 'success',
             'log_id': usage_log.id
         }, status=status.HTTP_201_CREATED)
-        
+
     except Exception as e:
         return Response({
             'status': 'error',
@@ -62,7 +77,16 @@ def log_agent_execution(request):
 def get_agent_stats(request, agent_id):
     """Obtiene estadísticas de un agente para un usuario"""
     try:
-        agent = Agent.objects.get(id=agent_id)
+        agent = Agent.objects.filter(id=agent_id, is_active=True).first()
+        if agent is None:
+            return Response({'error': 'Agent not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        has_access = request.user.is_staff or request.user.is_superuser or UserSubscription.objects.filter(
+            user=request.user, agent=agent, status='active'
+        ).exists()
+        if not has_access:
+            return Response({'error': 'No subscription for this agent'}, status=status.HTTP_403_FORBIDDEN)
+
         logs = AgentUsageLog.objects.filter(user=request.user, agent=agent)
         
         total = logs.count()

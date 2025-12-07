@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 import uuid
+import hashlib
 
 
 class APIKey(models.Model):
@@ -21,8 +22,16 @@ class APIKey(models.Model):
     def save(self, *args, **kwargs):
         if not self.key:
             # Generate a secure random key
-            self.key = uuid.uuid4().hex + uuid.uuid4().hex
+            raw_key = uuid.uuid4().hex + uuid.uuid4().hex
+            # Store hashed version to avoid guardar en texto claro
+            self.key = self._hash_key(raw_key)
+            # Keep a non-persisted reference to show once if needed
+            self._plain_key = raw_key
         super().save(*args, **kwargs)
+
+    @staticmethod
+    def _hash_key(raw_key: str) -> str:
+        return hashlib.sha256(raw_key.encode()).hexdigest()
 
     def __str__(self):
         return f"{self.name} ({'Activa' if self.is_active else 'Inactiva'})"

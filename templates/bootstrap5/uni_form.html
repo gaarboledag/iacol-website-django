@@ -1,0 +1,76 @@
+{% load crispy_forms_tags %}
+
+{% with help_text_inline|default:True as help_text_inline %}
+{% with error_text_inline|default:True as error_text_inline %}
+{% with tag|default:True as tag %}
+{% with include_media|default:True as include_media %}
+{% with form_error_title|default:"" as form_error_title %}
+{% with form_class|default:"" as form_class %}
+{% with wrapper_class|default:"mb-3" as wrapper_class %}
+
+{% if tag %}
+<form{% if form_class %} class="{{ form_class }}"{% endif %}{% if form_id %} id="{{ form_id }}"{% endif %}{% if form_action %} action="{{ form_action }}"{% endif %}{% if form_method %} method="{{ form_method }}"{% endif %}{% if form_enctype %} enctype="{{ form_enctype }}"{% endif %}>
+{% endif %}
+
+{% if include_media %}{{ form.media }}{% endif %}
+
+{% if form_error_title %}
+<div class="alert alert-danger" role="alert">
+  <strong>{{ form_error_title }}</strong>
+  {{ form.non_field_errors }}
+</div>
+{% endif %}
+
+{% for field in form %}
+  {% if field.is_hidden %}
+    {{ field }}
+  {% else %}
+    {% if field|is_checkbox %}
+      <div class="{% if wrapper_class %}{{ wrapper_class }}{% else %}mb-3{% endif %}">
+        {{ field }}
+        {% if field.errors %}
+          <div class="invalid-feedback d-block">
+            {{ field.errors }}
+          </div>
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="{% if wrapper_class %}{{ wrapper_class }}{% else %}mb-3{% endif %}">
+        {% if field.label and form_show_labels %}
+          <label for="{{ field.id_for_label }}" class="{% if label_class %}{{ label_class }}{% else %}form-label{% endif %}">
+            {{ field.label }}{% if field.field.required %} <span class="text-danger">*</span>{% endif %}
+          </label>
+        {% endif %}
+        <div class="{% if field_class %}{{ field_class }}{% else %}input-group{% endif %}">
+          {{ field }}
+        </div>
+        {% if help_text_inline %}
+          {% if field.help_text %}
+            <div class="form-text">
+              {{ field.help_text }}
+            </div>
+          {% endif %}
+        {% endif %}
+        {% if error_text_inline %}
+          {% if field.errors %}
+            <div class="invalid-feedback d-block">
+              {{ field.errors }}
+            </div>
+          {% endif %}
+        {% endif %}
+      </div>
+    {% endif %}
+  {% endif %}
+{% endfor %}
+
+{% if tag %}
+</form>
+{% endif %}
+
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}
+{% endwith %}

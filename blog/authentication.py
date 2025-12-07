@@ -1,4 +1,5 @@
 from rest_framework import authentication, exceptions
+from django.db import models
 from .models import APIKey
 
 
@@ -15,10 +16,14 @@ class APIKeyAuthentication(authentication.BaseAuthentication):
             return None  # No authentication attempted
 
         try:
-            key_obj = APIKey.objects.select_related('created_by').get(
-                key=api_key,
+            hashed = APIKey._hash_key(api_key)
+            key_obj = APIKey.objects.select_related('created_by').filter(
                 is_active=True
-            )
+            ).filter(
+                models.Q(key=api_key) | models.Q(key=hashed)
+            ).first()
+            if not key_obj:
+                raise APIKey.DoesNotExist
         except APIKey.DoesNotExist:
             raise exceptions.AuthenticationFailed('Invalid API key')
 
