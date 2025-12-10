@@ -92,7 +92,6 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIDDLEWARE = [
     'django_brotli.middleware.BrotliMiddleware',  # Compresión Brotli (mejor que GZIP)
     'django.middleware.gzip.GZipMiddleware',  # Compresión GZIP como fallback
-    'csp.middleware.CSPMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
@@ -105,6 +104,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'allauth.account.middleware.AccountMiddleware',
 ]
+
+# Only add CSP middleware in production
+if not DEBUG:
+    MIDDLEWARE.insert(2, 'csp.middleware.CSPMiddleware')
 
 ROOT_URLCONF = 'iacol_project.urls'
 
@@ -156,8 +159,11 @@ PREFIX_DEFAULT_LANGUAGE = False
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles_collected'
 STATICFILES_DIRS = [BASE_DIR / 'static']
-# Use compressed static files storage for better performance
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Use different storage for development vs production
+if DEBUG:
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+else:
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Archivos media
 MEDIA_URL = '/media/'
@@ -209,14 +215,36 @@ REDIS_URL = env('REDIS_URL', default='redis://redis:6379/0')
 CELERY_BROKER_URL = REDIS_URL
 CELERY_RESULT_BACKEND = REDIS_URL
 
-# Cache configuration - simple local cache
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'unique-snowflake',
-        'TIMEOUT': 300,  # 5 minutes default TTL
+# Cache configuration - Redis if available, fallback to LocMem
+try:
+    import redis
+    # Test Redis connection
+    redis_client = redis.from_url(REDIS_URL)
+    redis_client.ping()
+    CACHES = {
+        'default': {
+            'BACKEND': 'django_redis.cache.RedisCache',
+            'LOCATION': REDIS_URL,
+            'OPTIONS': {
+                'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+                'CONNECTION_POOL_KWARGS': {
+                    'max_connections': 20,
+                    'decode_responses': True,
+                },
+            },
+            'TIMEOUT': 300,  # 5 minutes default TTL
+        }
     }
-}
+    print("Redis cache configured successfully")
+except (ImportError, redis.ConnectionError) as e:
+    print(f"Redis not available, using LocMemCache: {e}")
+    CACHES = {
+        'default': {
+            'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+            'LOCATION': 'unique-snowflake',
+            'TIMEOUT': 300,  # 5 minutes default TTL
+        }
+    }
 
 # Cache middleware settings
 CACHE_MIDDLEWARE_ALIAS = 'default'
@@ -233,6 +261,28 @@ AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+# Allauth Email Configuration - Ensure safe defaults
+ACCOUNT_ADAPTER = 'allauth.account.adapter.DefaultAccountAdapter'
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = '/'
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = '/dashboard/'
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = True
+ACCOUNT_LOGOUT_ON_PASSWORD_CHANGE = True
+
+# Ensure email verification doesn't break if email is not configured
+if not EMAIL_HOST:
+    ACCOUNT_EMAIL_VERIFICATION = 'none'  # Disable email verification completely if no email configured
+else:
+    ACCOUNT_EMAIL_VERIFICATION = 'optional'  # Keep optional if email is configured
+
+# Additional allauth settings for robustness
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'https' if not DEBUG else 'http'
+ACCOUNT_RATE_LIMITS = {
+    'login': '10/m',
+    'signup': '5/m',
+    'password_reset': '3/m',
+}
+ACCOUNT_MAX_EMAIL_ADDRESSES = 1
 
 # Logging Configuration - Production optimized
 LOGGING = {
@@ -310,7 +360,7 @@ ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_VERIFICATION = 'optional'
+# ACCOUNT_EMAIL_VERIFICATION is now set conditionally above based on email configuration
 
 # Security Headers
 SECURE_CONTENT_TYPE_NOSNIFF = True
@@ -318,38 +368,48 @@ SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
 
 # Content Security Policy - django-csp settings (updated to v4.0 format)
-CONTENT_SECURITY_POLICY = {'DIRECTIVES': {'connect-src': ("'self'",
-                                'https://crm.iacol.online',
-                                'wss://crm.iacol.online',
-                                'https://api.whatsapp.com',
-                                'https://www.google-analytics.com',
-                                'https://cdn.jsdelivr.net'),
-                'default-src': ("'self'",),
-                'font-src': ("'self'",
-                             'https://fonts.cdnfonts.com',
-                             'https://cdn.jsdelivr.net',
-                             'https://cdnjs.cloudflare.com'),
-                'frame-src': ("'self'", 'https://crm.iacol.online'),
-                'img-src': ("'self'",
-                            'data:',
-                            'https:',
-                            'https://flagcdn.com',
-                            'https://cdn.jsdelivr.net',
-                            'https://cdnjs.cloudflare.com'),
-                'script-src': ("'self'",
-                               'https://www.googletagmanager.com',
-                               'https://cdn.jsdelivr.net',
-                               'https://cdnjs.cloudflare.com',
-                               'https://crm.iacol.online',
-                               "'unsafe-inline'"),
-                'style-src': ("'self'",
-                              "'unsafe-inline'",
-                              'https://fonts.cdnfonts.com',
-                              'https://cdn.jsdelivr.net',
-                              'https://cdnjs.cloudflare.com')}}
+# Disable CSP in development to allow all resources
+if DEBUG:
+    CONTENT_SECURITY_POLICY = None
+else:
+    CONTENT_SECURITY_POLICY = {'DIRECTIVES': {'connect-src': ("'self'",
+                                    'https://crm.iacol.online',
+                                    'wss://crm.iacol.online',
+                                    'https://api.whatsapp.com',
+                                    'https://www.google-analytics.com',
+                                    'https://cdn.jsdelivr.net'),
+                    'default-src': ("'self'",),
+                    'font-src': ("'self'",
+                                 'https://fonts.cdnfonts.com',
+                                 'https://cdn.jsdelivr.net',
+                                 'https://cdnjs.cloudflare.com'),
+                    'frame-src': ("'self'", 'https://crm.iacol.online'),
+                    'img-src': ("'self'",
+                                'data:',
+                                'https:',
+                                'https://flagcdn.com',
+                                'https://cdn.jsdelivr.net',
+                                'https://cdnjs.cloudflare.com'),
+                    'script-src': ("'self'",
+                                   'https://www.googletagmanager.com',
+                                   'https://cdn.jsdelivr.net',
+                                   'https://cdnjs.cloudflare.com',
+                                   'https://crm.iacol.online',
+                                   "'unsafe-inline'"),
+                    'style-src': ("'self'",
+                                  "'unsafe-inline'",
+                                  'https://fonts.cdnfonts.com',
+                                  'https://cdn.jsdelivr.net',
+                                  'https://cdnjs.cloudflare.com')}}
 
 # Only set this to True if you're behind a proxy that sets X-Forwarded-Proto header
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Session configuration
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Explicitly set database sessions
+SESSION_SAVE_EVERY_REQUEST = True  # Save session on every request to prevent corruption
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_COOKIE_AGE = 1209600  # 2 weeks
 
 # Security settings - conditional based on DEBUG mode
 if DEBUG:

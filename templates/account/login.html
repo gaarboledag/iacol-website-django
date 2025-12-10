@@ -1,49 +1,49 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %}
 
-{% block title %}Iniciar Sesión - IACOL{% endblock %}
+{% load i18n %}
 
-{% block extra_css %}
-<style>
-  .auth-wrapper { min-height: calc(100vh - 140px); display: flex; align-items: center; }
-  .auth-card { border: 1px solid #eee; border-radius: 16px; padding: 2rem; background: #fff; }
-  .auth-title { font-weight: 800; letter-spacing: -0.5px; }
-  .auth-subtitle { color: var(--gray); }
-  .auth-divider { height: 1px; background: #eee; margin: 1.25rem 0; }
-  .form-text a { text-decoration: none; }
-</style>
-{% endblock %}
+{% block title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
-<section class="auth-wrapper py-5">
-  <div class="container">
+
+<div class="container mt-5">
+
     <div class="row justify-content-center">
-      <div class="col-md-6 col-lg-5">
-        <div class="auth-card">
-          <div class="mb-3 text-center">
-            <h1 class="h3 auth-title mb-2">Iniciar sesión</h1>
-            <p class="auth-subtitle mb-0">Accede a tu cuenta para continuar</p>
-          </div>
 
-          <form method="post" action="{% url 'account_login' %}">
-            {% csrf_token %}
-            {{ form|crispy }}
-            <div class="d-flex justify-content-between align-items-center mt-3">
-              <div>
-                <a class="link-secondary" href="{% url 'account_reset_password' %}">¿Olvidaste tu contraseña?</a>
-              </div>
+        <div class="col-md-6">
+
+            <h1 class="text-center mb-4">{% trans "Sign In" %}</h1>
+
+            {% if form.errors %}
+
+                <div class="alert alert-danger">
+
+                    {% trans "Please correct the error below." %}
+
+                </div>
+
+            {% endif %}
+
+            <form method="post" class="card p-4 shadow">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button type="submit" class="btn btn-primary w-100">{% trans "Sign In" %}</button>
+
+            </form>
+
+            <div class="text-center mt-3">
+
+                <a href="{% url 'account_signup' %}">{% trans "Don't have an account? Sign up" %}</a>
+
             </div>
-            <button type="submit" class="btn btn-primary w-100 mt-3">Entrar</button>
-          </form>
 
-          <div class="auth-divider"></div>
-          <p class="mb-0 text-center">
-            ¿No tienes cuenta?
-            <a href="{% url 'account_signup' %}" class="link-dark">Crear cuenta</a>
-          </p>
         </div>
-      </div>
+
     </div>
-  </div>
-</section>
+
+</div>
+
 {% endblock %}
