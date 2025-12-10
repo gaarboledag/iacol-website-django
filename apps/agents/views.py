@@ -650,6 +650,16 @@ class AdvancedCatalogProductUpdateView(LoginRequiredMixin, UpdateView):
         kwargs['agent_config'] = self.agent_config
         return kwargs
 
+    def get_object(self, queryset=None):
+        """Override get_object to handle potential issues with product lookup"""
+        try:
+            return super().get_object(queryset)
+        except Exception as e:
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Error getting product object: {str(e)}", exc_info=True)
+            raise Http404("Producto no encontrado")
+
     def form_valid(self, form):
         try:
             messages.success(self.request, _("Producto de catálogo avanzado actualizado exitosamente."))
@@ -1309,9 +1319,17 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'agents/product_form.html'
 
     def dispatch(self, request, *args, **kwargs):
-        self.product = self.get_object()
-        self.agent = self.product.agent_config.agent
-        self.agent_config = self.product.agent_config
+        try:
+            self.product = self.get_object()
+            self.agent = self.product.agent_config.agent
+            self.agent_config = self.product.agent_config
+        except Exception as e:
+            # Log the error for debugging
+            import logging
+            logger = logging.getLogger(__name__)
+            logger.error(f"Error in ProductUpdateView.dispatch: {str(e)}", exc_info=True)
+            # Return 404 if product doesn't exist or has issues
+            raise Http404("Producto no encontrado")
         return super().dispatch(request, *args, **kwargs)
 
     def get_form_kwargs(self):
