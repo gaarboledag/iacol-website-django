@@ -20,7 +20,7 @@ from django.utils import timezone
 from django.db.models import Count, Sum, Q
 
 @login_required
-@ratelimit(key='user', rate='20/m', method='GET')
+# @ratelimit(key='user', rate='20/m', method='GET')  # Temporarily disabled due to Redis issues
 def agent_list(request):
     """Lista todos los agentes disponibles con paginación"""
     # MEDIUM-001: Corrección de cache key para incluir parámetros relevantes
